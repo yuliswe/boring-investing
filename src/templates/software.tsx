@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { LineChart } from '@/charts';
-import { Card, Stat, Text } from '@/design-system';
+import { Card, Text } from '@/design-system';
 import type { Stock } from '@/lib/stocks';
 
 export type SoftwareMetric = {
@@ -33,46 +33,84 @@ export function SoftwareTemplate({
   children,
 }: SoftwareTemplateProps) {
   return (
-    <main className='mx-auto flex max-w-4xl flex-col gap-8 px-4 py-10'>
-      <header className='flex flex-col gap-2'>
-        <Text variant='caption'>{stock.sector}</Text>
-        <div className='flex items-baseline gap-3'>
+    <main
+      className='ds'
+      style={{
+        maxWidth: 820,
+        margin: '0 auto',
+        padding: '40px 20px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 32,
+      }}
+    >
+      <header style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <Text variant='overline' style={{ color: 'var(--color-accent)' }}>
+          {stock.sector}
+        </Text>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
           <Text variant='display'>{stock.symbol}</Text>
-          <Text variant='subheading' as='span' className='text-ink-muted'>
+          <Text variant='h4' as='span' muted>
             {stock.name}
           </Text>
         </div>
-        <Text variant='body' className='text-ink-muted'>
+        <Text variant='body' muted>
           {stock.summary}
         </Text>
       </header>
 
       <Card>
-        <div className='grid grid-cols-2 gap-6 sm:grid-cols-4'>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+            gap: 20,
+          }}
+        >
           {financials.metrics.map(metric => (
-            <Stat
+            <div
               key={metric.label}
-              label={metric.label}
-              value={metric.value}
-              changePct={metric.changePct}
-            />
+              style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
+            >
+              <Text variant='caption' muted>
+                {metric.label}
+              </Text>
+              <Text variant='h4' tabular>
+                {metric.value}
+              </Text>
+              {typeof metric.changePct === 'number' ? (
+                <Text
+                  variant='small'
+                  tabular
+                  style={{
+                    fontStyle: metric.changePct < 0 ? 'italic' : 'normal',
+                  }}
+                >
+                  {metric.changePct >= 0 ? '↑' : '↓'}{' '}
+                  {metric.changePct.toFixed(1)}%
+                </Text>
+              ) : null}
+            </div>
           ))}
         </div>
       </Card>
 
-      <Card
-        title='Revenue and operating income'
-        hint='Fiscal year, in billions of USD'
-      >
+      <Card>
+        <Text variant='h4' as='h3'>
+          Revenue and operating income
+        </Text>
+        <Text variant='caption' muted>
+          Fiscal year, in billions of USD
+        </Text>
         <LineChart
           data={financials.revenue}
           xKey='year'
           series={[
-            { dataKey: 'revenue', label: 'Revenue', color: '#2563eb' },
+            { dataKey: 'revenue', label: 'Revenue', color: '#b68235' },
             {
               dataKey: 'operatingIncome',
               label: 'Operating income',
-              color: '#16a34a',
+              color: '#605d5d',
             },
           ]}
         />
@@ -80,8 +118,19 @@ export function SoftwareTemplate({
 
       {children}
 
-      <Card title='Investment thesis'>
-        <ul className='flex list-disc flex-col gap-2 pl-5'>
+      <Card>
+        <Text variant='h4' as='h3'>
+          Investment thesis
+        </Text>
+        <ul
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+            margin: 0,
+            paddingLeft: 20,
+          }}
+        >
           {financials.thesis.map((point, index) => (
             <li key={index}>
               <Text variant='body' as='span'>

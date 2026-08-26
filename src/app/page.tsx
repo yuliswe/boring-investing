@@ -1,31 +1,44 @@
-import { Card, Link, Text } from '@/design-system';
+import { Card, Text } from '@/design-system';
 import { STOCKS } from '@/lib/stocks';
 
 export default function HomePage() {
   return (
-    <main className='mx-auto flex max-w-4xl flex-col gap-8 px-4 py-10'>
-      <header className='flex flex-col gap-2'>
+    <main
+      className='ds'
+      style={{ maxWidth: 900, margin: '0 auto', padding: '48px 20px' }}
+    >
+      <header style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         <Text variant='display'>Boring Investing</Text>
-        <Text variant='body' className='text-ink-muted'>
+        <Text variant='body' muted>
           Plain, static analysis of a few companies worth understanding.
         </Text>
       </header>
 
-      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: 14,
+          marginTop: 28,
+        }}
+      >
         {STOCKS.map(stock => (
-          <Card key={stock.symbol}>
-            <div className='flex flex-col gap-2'>
-              <div className='flex items-baseline justify-between'>
-                <Text variant='subheading'>{stock.symbol}</Text>
-                <Text variant='caption'>{stock.sector}</Text>
-              </div>
-              <Text variant='caption'>{stock.name}</Text>
-              <Text variant='body' className='text-ink-muted'>
-                {stock.summary}
-              </Text>
-              <Link href={`/${stock.symbol}`}>View analysis &rarr;</Link>
-            </div>
-          </Card>
+          <Card
+            key={stock.symbol}
+            href={`/${stock.symbol}`}
+            kicker={stock.sector}
+            title={stock.symbol}
+            body={stock.summary}
+            meta={
+              <>
+                <span>{stock.name}</span>
+                <span>&middot;</span>
+                <span style={{ color: 'var(--color-accent)' }}>
+                  View analysis &#8594;
+                </span>
+              </>
+            }
+          />
         ))}
       </div>
     </main>

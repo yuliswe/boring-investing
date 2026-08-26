@@ -4,18 +4,29 @@ import type { ComponentPropsWithoutRef } from 'react';
 type NextLinkProps = ComponentPropsWithoutRef<typeof NextLink>;
 
 type LinkProps = NextLinkProps & {
-  tone?: 'default' | 'muted';
+  variant?: 'inline' | 'standalone';
+  disabled?: boolean;
 };
 
-export function Link({ tone = 'default', className = '', ...rest }: LinkProps) {
-  const toneClasses =
-    tone === 'muted'
-      ? 'text-ink-muted hover:text-ink'
-      : 'text-brand hover:text-brand/80';
+export function Link({
+  variant = 'inline',
+  disabled = false,
+  className = '',
+  children,
+  ...rest
+}: LinkProps) {
+  const base = variant === 'standalone' ? 'ds-link-standalone' : 'ds-link';
+  const classes = [base, className].filter(Boolean).join(' ');
+  if (disabled) {
+    return (
+      <span className={classes} aria-disabled='true'>
+        {children}
+      </span>
+    );
+  }
   return (
-    <NextLink
-      className={`font-medium underline-offset-4 hover:underline ${toneClasses} ${className}`}
-      {...rest}
-    />
+    <NextLink className={classes} {...rest}>
+      {children}
+    </NextLink>
   );
 }

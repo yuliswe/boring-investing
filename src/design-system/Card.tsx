@@ -1,25 +1,51 @@
+import NextLink from 'next/link';
 import type { ReactNode } from 'react';
-import { Text } from '@/design-system/Text';
 
 type CardProps = {
-  title?: string;
-  hint?: string;
+  kicker?: ReactNode;
+  title?: ReactNode;
+  body?: ReactNode;
+  meta?: ReactNode;
+  elevation?: 'sm' | 'md' | 'lg';
+  href?: string;
+  disabled?: boolean;
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
-export function Card({ title, hint, className = '', children }: CardProps) {
-  return (
-    <section
-      className={`rounded-2xl bg-surface p-6 shadow-sm ring-1 ring-slate-200/70 ${className}`}
-    >
-      {title ? (
-        <header className='mb-4'>
-          <Text variant='subheading'>{title}</Text>
-          {hint ? <Text variant='caption'>{hint}</Text> : null}
-        </header>
-      ) : null}
+export function Card({
+  kicker,
+  title,
+  body,
+  meta,
+  elevation,
+  href,
+  disabled = false,
+  className = '',
+  children,
+}: CardProps) {
+  const classes = ['card', elevation ? `elev-${elevation}` : '', className]
+    .filter(Boolean)
+    .join(' ');
+  const content = (
+    <>
+      {kicker ? <span className='card-kicker'>{kicker}</span> : null}
+      {title ? <div className='card-title'>{title}</div> : null}
+      {body ? <p className='card-body'>{body}</p> : null}
       {children}
-    </section>
+      {meta ? <div className='card-meta'>{meta}</div> : null}
+    </>
+  );
+  if (href && !disabled) {
+    return (
+      <NextLink href={href} className={classes}>
+        {content}
+      </NextLink>
+    );
+  }
+  return (
+    <div className={classes} style={disabled ? { opacity: 0.45 } : undefined}>
+      {content}
+    </div>
   );
 }

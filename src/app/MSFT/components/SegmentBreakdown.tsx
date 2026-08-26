@@ -1,10 +1,16 @@
 import { BarChart } from '@/charts';
-import { Card } from '@/design-system';
+import { Card, Text } from '@/design-system';
 import segments from '@/app/MSFT/data/segments.json';
 
 export function SegmentBreakdown() {
   return (
-    <Card title='Revenue by segment' hint='Fiscal year, in billions of USD'>
+    <Card>
+      <Text variant='h4' as='h3'>
+        Revenue by segment
+      </Text>
+      <Text variant='caption' muted>
+        Fiscal year, in billions of USD
+      </Text>
       <BarChart
         data={segments.segments}
         xKey='year'
@@ -13,17 +19,17 @@ export function SegmentBreakdown() {
           {
             dataKey: 'productivity',
             label: 'Productivity & Business Processes',
-            color: '#2563eb',
+            color: '#b68235',
           },
           {
             dataKey: 'intelligentCloud',
             label: 'Intelligent Cloud',
-            color: '#16a34a',
+            color: '#7d5411',
           },
           {
             dataKey: 'morePersonalComputing',
             label: 'More Personal Computing',
-            color: '#f59e0b',
+            color: '#bab6b6',
           },
         ]}
       />
