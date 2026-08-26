@@ -1,0 +1,22 @@
+{
+  "segments": [
+    {
+      "year": "FY22",
+      "productivity": 63,
+      "intelligentCloud": 75,
+      "morePersonalComputing": 60
+    },
+    {
+      "year": "FY23",
+      "productivity": 69,
+      "intelligentCloud": 88,
+      "morePersonalComputing": 55
+    },
+    {
+      "year": "FY24",
+      "productivity": 78,
+      "intelligentCloud": 105,
+      "morePersonalComputing": 62
+    }
+  ]
+}

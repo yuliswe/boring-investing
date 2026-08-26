@@ -3,6 +3,8 @@ declare module '*.graphql' {
   export default content;
 }
 
+declare module '*.css';
+
 declare type ObjectConstructor = {
   keys<T>(o: T): (keyof T)[];
 };

@@ -1,0 +1,20 @@
+{
+  "metrics": [
+    { "label": "Market cap", "value": "$3.1T" },
+    { "label": "Revenue (FY)", "value": "$245B", "changePct": 16.0 },
+    { "label": "Operating margin", "value": "44%", "changePct": 1.8 },
+    { "label": "Free cash flow", "value": "$74B", "changePct": 9.5 }
+  ],
+  "revenue": [
+    { "year": "FY20", "revenue": 143, "operatingIncome": 53 },
+    { "year": "FY21", "revenue": 168, "operatingIncome": 70 },
+    { "year": "FY22", "revenue": 198, "operatingIncome": 83 },
+    { "year": "FY23", "revenue": 212, "operatingIncome": 89 },
+    { "year": "FY24", "revenue": 245, "operatingIncome": 109 }
+  ],
+  "thesis": [
+    "Azure keeps compounding as enterprises migrate workloads to the cloud, and it now anchors the fastest-growing segment.",
+    "Microsoft 365 and the Copilot add-ons turn a large installed base into expanding per-seat revenue.",
+    "Durable operating margins and heavy free cash flow fund buybacks, a growing dividend, and continued AI infrastructure investment."
+  ]
+}
