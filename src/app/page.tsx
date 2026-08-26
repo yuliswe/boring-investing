@@ -1,4 +1,4 @@
-import { Card, Text } from '@/design-system';
+import { Card, Link, Text } from '@/design-system';
 import { STOCKS } from '@/lib/stocks';
 
 export default function HomePage() {
@@ -41,6 +41,18 @@ export default function HomePage() {
           />
         ))}
       </div>
+
+      <footer
+        style={{
+          marginTop: 32,
+          paddingTop: 18,
+          borderTop: '1px solid var(--color-divider)',
+        }}
+      >
+        <Link href='/components' variant='standalone'>
+          Component library &#8594;
+        </Link>
+      </footer>
     </main>
   );
 }

@@ -28,7 +28,7 @@ colocated and never becomes a route.
 
 ```
 src/
-  design-system/<Component>.tsx   Reusable primitives (Button, Link, Text, Card, Stat)
+  design-system/<Component>.tsx   Reusable primitives + classical.css (see Design system)
   charts/<Chart>.tsx              Reusable chart components (LineChart, BarChart)
   templates/<template>.tsx        Layout templates, one per company type (software.tsx)
   lib/                            Shared helpers (stocks registry, base path)
@@ -81,6 +81,21 @@ public/
 - `.github/workflows/deploy.yml` builds the export and publishes it on every push
   to `release`. Enable Pages once in the repository settings with
   **Source: GitHub Actions**.
+
+## Design system
+
+- The design system is the "Classical" system from Claude Design, configured with
+  Newsreader headings, Lora body, Archivo for interactive labels, Regular (500)
+  heading weight and Default density.
+- `src/design-system/classical.css` holds the tokens (`--color-*`, `--font-*`,
+  `--space-*`, `--radius-*`, `--tap`), base type and every component class. It is
+  loaded once from `src/app/layout.tsx`. Take colors, fonts and spacing from the
+  tokens rather than hard-coding values.
+- Components render on the design-system palette when placed inside a `.ds`
+  container (the page `<main>` carries it); the component classes themselves are
+  global.
+- `/components` (`src/app/components/`) is a living gallery that demos every
+  component and its variations; update it when adding or changing a component.
 
 ## Conventions
 
