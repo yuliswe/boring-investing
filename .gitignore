@@ -12,3 +12,16 @@ build/
 *.temp.*
 *.tmp
 *.tmp.*
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Runtime symlinks created inside git worktrees
+.nodevenv
+.venv
+
+# Git worktrees created under the repo
+.worktrees/

@@ -1,11 +1,15 @@
 {
-  "name": "my-app",
+  "name": "boring-investing",
   "version": "0.0.1",
-  "description": "My App Template",
+  "description": "Static stock-analysis showcase built with Next.js",
   "type": "module",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "test": "jest",
-    "start": "nodemon --config nodemon.json",
     "postinstall": "scripts/postinstall.sh"
   },
   "repository": {},
@@ -14,13 +18,24 @@
   "license": "MIT",
   "bugs": {},
   "homepage": "",
+  "dependencies": {
+    "next": "^15.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@tailwindcss/postcss": "^4.1.0",
     "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@typescript-eslint/eslint-plugin": "^8.65.0",
     "@typescript-eslint/parser": "^8.65.0",
     "esbuild-jest-fixed": "^0.5.2",
     "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.0",
     "eslint-import-resolver-typescript": "^4.4.5",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^29.16.0",
@@ -33,6 +48,7 @@
     "jest": "^30.4.2",
     "nodemon": "^3.1.14",
     "prettier": "^3.9.6",
+    "tailwindcss": "^4.1.0",
     "ts-jest": "^29.4.12",
     "tsx": "^4.23.1",
     "typescript": "^6.0.3"

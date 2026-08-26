@@ -1,0 +1,22 @@
+@import 'tailwindcss';
+
+/* Tailwind v4 is configured from CSS: `@theme` values become utility classes. */
+@theme {
+  --color-brand: #2563eb;
+  --color-brand-muted: #93c5fd;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f8fafc;
+  --color-ink: #0f172a;
+  --color-ink-muted: #64748b;
+  --color-positive: #16a34a;
+  --color-negative: #dc2626;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-surface-muted);
+  color: var(--color-ink);
+}
