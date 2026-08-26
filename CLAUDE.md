@@ -18,7 +18,7 @@ static HTML, and deployed to GitHub Pages.
 - `npm run dev` — start the dev server at http://localhost:3000.
 - `npm run build` — produce the static export in `out/`.
 - `npm run typecheck` — run `tsc --noEmit`.
-- `npm run lint` — run ESLint through the Next.js config.
+- `npm run lint` — run ESLint (`eslint .`) over the flat config.
 
 ## Folder structure
 
