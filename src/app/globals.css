@@ -10,6 +10,15 @@
   --color-ink-muted: #64748b;
   --color-positive: #16a34a;
   --color-negative: #dc2626;
+
+  --color-ds-accent: var(--color-accent);
+  --color-ds-neutral-500: var(--color-neutral-500);
+  --color-ds-divider-faint: color-mix(
+    in srgb,
+    var(--color-text) 8%,
+    transparent
+  );
+  --font-ds-heading: var(--font-heading);
 }
 
 html {
