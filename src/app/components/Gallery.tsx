@@ -154,6 +154,19 @@ const Wrap = ({ children }: { children: ReactNode }) => (
 );
 
 export function Gallery() {
+  const [theme, setTheme] = useState(() =>
+    typeof document !== 'undefined'
+      ? document.documentElement.getAttribute('data-theme') || 'light'
+      : 'light'
+  );
+  const pickTheme = (t: string) => {
+    setTheme(t);
+    document.documentElement.setAttribute('data-theme', t);
+    try {
+      localStorage.setItem('boring-investing.theme', t);
+    } catch {}
+  };
+
   const [filters, setFilters] = useState<string[]>(['Textiles', 'Transport']);
   const [tags, setTags] = useState(['Dividend', 'Small cap', 'Value']);
   const [email, setEmail] = useState('anna@ledger.co');
@@ -222,8 +235,23 @@ export function Gallery() {
               Archivo on the interactive labels.
             </Text>
           </p>
-          <div style={{ marginTop: 14 }}>
+          <div
+            style={{
+              marginTop: 14,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: 12,
+            }}
+          >
             <Link href='/'>&#8592; Back to companies</Link>
+            <Segmented
+              name='theme'
+              options={['light', 'dark']}
+              value={theme}
+              onChange={pickTheme}
+            />
           </div>
         </header>
 
