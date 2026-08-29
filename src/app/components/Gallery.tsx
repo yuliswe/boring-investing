@@ -85,6 +85,9 @@ const ROWS: Row[] = [
 
 const SECTORS = ['Textiles', 'Materials', 'Transport', 'Publishing', 'Energy'];
 
+const FAINT_BORDER_COLOR =
+  'color-mix(in srgb, var(--color-text) 8%, transparent)';
+
 function Section({
   n,
   title,
@@ -97,19 +100,12 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <section
-      style={{
-        padding: '30px 0 8px',
-        borderTop: '1px solid var(--color-divider)',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+    <section className='pt-[30px] pb-2 border-t border-[var(--color-divider)]'>
+      <div className='flex items-baseline gap-3'>
         <span
-          className='ds-tnum'
+          className='ds-tnum text-xs tracking-[0.12em]'
           style={{
             fontFamily: 'var(--font-heading)',
-            fontSize: 12,
-            letterSpacing: '0.12em',
             color: 'var(--color-accent)',
           }}
         >
@@ -117,7 +113,7 @@ function Section({
         </span>
         <Text variant='h3'>{title}</Text>
       </div>
-      <p style={{ margin: '8px 0 6px', maxWidth: '62ch' }}>
+      <p className='mt-2 mb-1.5 max-w-[62ch]'>
         <Text variant='small' as='span' muted>
           {blurb}
         </Text>
@@ -130,14 +126,8 @@ function Section({
 function Sub({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 12,
-        padding: '18px 0',
-        borderTop:
-          '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-      }}
+      className='flex flex-col gap-3 py-[18px] border-t'
+      style={{ borderColor: FAINT_BORDER_COLOR }}
     >
       <span className='ds-kicker'>{label}</span>
       {children}
@@ -146,11 +136,7 @@ function Sub({ label, children }: { label: string; children: ReactNode }) {
 }
 
 const Wrap = ({ children }: { children: ReactNode }) => (
-  <div
-    style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center' }}
-  >
-    {children}
-  </div>
+  <div className='flex flex-wrap gap-3 items-center'>{children}</div>
 );
 
 export function Gallery() {
@@ -217,34 +203,18 @@ export function Gallery() {
     sort.by === by ? (sort.dir === 1 ? 'asc' : 'desc') : null;
 
   return (
-    <main className='ds' style={{ minHeight: '100vh', paddingBottom: 80 }}>
-      <div
-        style={{
-          margin: '0 auto',
-          width: '100%',
-          maxWidth: 900,
-          padding: '0 20px',
-        }}
-      >
-        <header style={{ padding: '40px 0 8px' }}>
+    <main className='ds min-h-screen pb-20'>
+      <div className='mx-auto w-full max-w-[900px] px-5'>
+        <header className='pt-10 pb-2'>
           <Text variant='display'>Component library</Text>
-          <p style={{ margin: '8px 0 0', maxWidth: '62ch' }}>
+          <p className='mt-2 max-w-[62ch]'>
             <Text variant='small' as='span' muted>
               Every component in the Boring Investing design system, with its
               variations and live states. Newsreader headings over Lora body,
               Archivo on the interactive labels.
             </Text>
           </p>
-          <div
-            style={{
-              marginTop: 14,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: 12,
-            }}
-          >
+          <div className='mt-3.5 flex items-center justify-between flex-wrap gap-3'>
             <Link href='/'>&#8592; Back to companies</Link>
             <Segmented
               name='theme'
@@ -292,12 +262,7 @@ export function Gallery() {
               <Text variant='body' as='span' tabular>
                 &#8593; +1.84%
               </Text>
-              <Text
-                variant='body'
-                as='span'
-                tabular
-                style={{ fontStyle: 'italic' }}
-              >
+              <Text variant='body' as='span' tabular className='italic'>
                 &#8595; −0.92%
               </Text>
               <Text variant='body' as='span' tabular muted>
@@ -401,14 +366,7 @@ export function Gallery() {
             </Wrap>
           </Sub>
           <Sub label='Filter chips · live, multi-select'>
-            <div
-              style={{
-                display: 'flex',
-                gap: 8,
-                overflowX: 'auto',
-                paddingBottom: 4,
-              }}
-            >
+            <div className='flex gap-2 overflow-x-auto pb-1'>
               {SECTORS.map(s => (
                 <FilterChip
                   key={s}
@@ -421,15 +379,7 @@ export function Gallery() {
             </div>
           </Sub>
           <Sub label='Removable · live'>
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 8,
-                alignItems: 'center',
-                minHeight: 34,
-              }}
-            >
+            <div className='flex flex-wrap gap-2 items-center min-h-[34px]'>
               {tags.map(t => (
                 <RemovableTag
                   key={t}
@@ -466,11 +416,11 @@ export function Gallery() {
               <Badge tone='neutral'>24</Badge>
               <StatusBadge status='open'>Open</StatusBadge>
               <StatusBadge status='closed'>Closed</StatusBadge>
-              <span style={{ position: 'relative', display: 'inline-flex' }}>
+              <span className='relative inline-flex'>
                 <Button variant='secondary' icon aria-label='Alerts'>
                   &#9737;
                 </Button>
-                <span style={{ position: 'absolute', top: -5, right: -5 }}>
+                <span className='absolute -top-[5px] -right-[5px]'>
                   <Badge tone='accent'>3</Badge>
                 </span>
               </span>
@@ -485,14 +435,8 @@ export function Gallery() {
           blurb='Transparent field on a hairline border; the accent appears only on focus. Fields fill their column, minimum 44px tall.'
         >
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
-              gap: 16,
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-4 py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Input label='Default' placeholder='Search companies' />
             <Input
@@ -518,8 +462,8 @@ export function Gallery() {
               }
               affixEnd={
                 <span
-                  className='ds-tnum'
-                  style={{ fontSize: 11, color: 'var(--color-neutral-500)' }}
+                  className='ds-tnum text-[11px]'
+                  style={{ color: 'var(--color-neutral-500)' }}
                 >
                   {ROWS.length}
                 </span>
@@ -540,14 +484,8 @@ export function Gallery() {
           blurb="The input's border and focus behaviour at a 90px minimum, resizable vertically only. Counter sits under the right edge, tabular."
         >
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: 16,
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4 py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Textarea
               label='Filled · live, with counter'
@@ -576,14 +514,8 @@ export function Gallery() {
           blurb='A native select carrying the input shell. Two or three short options become a segmented control instead.'
         >
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-              gap: 16,
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Select
               label='Default · live'
@@ -615,19 +547,11 @@ export function Gallery() {
           blurb='Both sit inside a 44px label so the whole row is tappable. Checked state is an accent stroke with an inset ground.'
         >
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: 22,
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[22px] py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className='ds-kicker' style={{ marginBottom: 6 }}>
-                Checkbox · live
-              </span>
+            <div className='flex flex-col'>
+              <span className='ds-kicker mb-1.5'>Checkbox · live</span>
               {['Cash flow', 'Dividends', 'Buybacks'].map(c => (
                 <Checkbox
                   key={c}
@@ -638,10 +562,8 @@ export function Gallery() {
               ))}
               <Checkbox label='Disabled option' disabled />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-              <span className='ds-kicker' style={{ marginBottom: 6 }}>
-                Radio · live
-              </span>
+            <div className='flex flex-col'>
+              <span className='ds-kicker mb-1.5'>Radio · live</span>
               {['Annual report', 'Quarterly update'].map(r => (
                 <Radio
                   key={r}
@@ -663,11 +585,8 @@ export function Gallery() {
           blurb='For settings that take effect immediately. Label left, control right-aligned, hairline between rows.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             {Object.keys(switches).map(k => (
               <ToggleRow
@@ -689,14 +608,8 @@ export function Gallery() {
           blurb='Bordered, unfilled. An auto-fit grid at a 240px minimum handles one, two and three columns without a breakpoint.'
         >
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: 14,
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5 py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Card
               kicker='Sector'
@@ -743,11 +656,8 @@ export function Gallery() {
           blurb='Hairline-separated rows, 56px tall, primary text left and figures right. What a table becomes below 640px.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             {ROWS.map(r => (
               <ListRow
@@ -757,15 +667,9 @@ export function Gallery() {
                 secondary={`${r.sym} · ${r.sector}`}
                 trailing={
                   <>
-                    <div className='ds-tnum' style={{ fontSize: 14 }}>
-                      {r.price.toFixed(2)}
-                    </div>
+                    <div className='ds-tnum text-sm'>{r.price.toFixed(2)}</div>
                     <div
-                      className='ds-tnum'
-                      style={{
-                        fontSize: 11,
-                        fontStyle: r.dir < 0 ? 'italic' : 'normal',
-                      }}
+                      className={`ds-tnum text-[11px] ${r.dir < 0 ? 'italic' : ''}`}
                     >
                       {r.dir > 0 ? '↑' : '↓'} {r.chg}
                     </div>
@@ -783,12 +687,8 @@ export function Gallery() {
           blurb='Uppercase hairline header, row rules, tabular figures right-aligned. Company and Price headers sort live.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-              overflowX: 'auto',
-            }}
+            className='py-[18px] overflow-x-auto border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Table>
               <thead>
@@ -801,15 +701,15 @@ export function Gallery() {
                     />
                   </th>
                   <th>Sector</th>
-                  <th style={{ textAlign: 'right' }}>
+                  <th className='text-right'>
                     <SortHeader
                       label='Price'
                       direction={dirOf('price')}
                       onSort={() => toggleSort('price')}
                     />
                   </th>
-                  <th style={{ textAlign: 'right' }}>P/E</th>
-                  <th style={{ textAlign: 'right' }}>Change</th>
+                  <th className='text-right'>P/E</th>
+                  <th className='text-right'>Change</th>
                 </tr>
               </thead>
               <tbody>
@@ -818,21 +718,16 @@ export function Gallery() {
                     <td>
                       <span className='table-name'>{r.name}</span>{' '}
                       <span
-                        style={{
-                          fontSize: 11,
-                          color: 'var(--color-neutral-500)',
-                        }}
+                        className='text-[11px]'
+                        style={{ color: 'var(--color-neutral-500)' }}
                       >
                         {r.sym}
                       </span>
                     </td>
-                    <td style={{ fontSize: 13 }}>{r.sector}</td>
+                    <td className='text-[13px]'>{r.sector}</td>
                     <td className='table-num'>{r.price.toFixed(2)}</td>
                     <td className='table-num'>{r.pe.toFixed(1)}</td>
-                    <td
-                      className='table-num'
-                      style={{ fontStyle: r.dir < 0 ? 'italic' : 'normal' }}
-                    >
+                    <td className={`table-num ${r.dir < 0 ? 'italic' : ''}`}>
                       {r.dir > 0 ? '↑' : '↓'} {r.chg}
                     </td>
                   </tr>
@@ -849,11 +744,8 @@ export function Gallery() {
           blurb='A hairline baseline with the active tab underlined in accent. The strip scrolls horizontally when labels outrun the width.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Tabs
               items={[
@@ -897,11 +789,8 @@ export function Gallery() {
           blurb='One open at a time. Rule above each row, 52px minimum header, a rotating hairline marker.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Accordion
               defaultOpen={0}
@@ -933,11 +822,8 @@ export function Gallery() {
           blurb='Centred, 440px maximum, on the surface tone at the top elevation. Escape and backdrop both dismiss.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Button variant='primary' onClick={() => setDialogOpen(true)}>
               Open dialog
@@ -979,11 +865,8 @@ export function Gallery() {
           blurb="The dialog's mobile form: docked to the bottom edge, rounded at the top only, rising on open."
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <Button variant='secondary' onClick={() => setSheetOpen(true)}>
               Open bottom sheet
@@ -1053,11 +936,8 @@ export function Gallery() {
           blurb='Brand left, links right, one hairline beneath. Below 768px the links collapse behind a menu button.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
             <NavBar
               brand='Ledger'
@@ -1082,13 +962,10 @@ export function Gallery() {
           blurb='Placeholders mirror the shape of what is loading, at the same heights, so nothing jumps when content lands.'
         >
           <div
-            style={{
-              padding: '18px 0',
-              borderTop:
-                '1px solid color-mix(in srgb, var(--color-text) 8%, transparent)',
-            }}
+            className='py-[18px] border-t'
+            style={{ borderColor: FAINT_BORDER_COLOR }}
           >
-            <div style={{ marginBottom: 16 }}>
+            <div className='mb-4'>
               <Button
                 variant='secondary'
                 size='small'
@@ -1102,20 +979,12 @@ export function Gallery() {
                 <ListRow
                   primary='Arcadia Mills'
                   secondary='ARC · Textiles'
-                  trailing={
-                    <span className='ds-tnum' style={{ fontSize: 14 }}>
-                      142.60
-                    </span>
-                  }
+                  trailing={<span className='ds-tnum text-sm'>142.60</span>}
                 />
                 <ListRow
                   primary='Brandt Chemical'
                   secondary='BDC · Materials'
-                  trailing={
-                    <span className='ds-tnum' style={{ fontSize: 14 }}>
-                      58.14
-                    </span>
-                  }
+                  trailing={<span className='ds-tnum text-sm'>58.14</span>}
                 />
               </>
             ) : (
@@ -1127,12 +996,7 @@ export function Gallery() {
           </div>
         </Section>
 
-        <footer
-          style={{
-            padding: '34px 0 0',
-            borderTop: '1px solid var(--color-divider)',
-          }}
-        >
+        <footer className='pt-[34px] border-t border-[var(--color-divider)]'>
           <Text variant='caption'>
             Twenty components on the Classical tokens. Every interactive element
             carries a themed hover, a pressed state and the 2px accent focus
