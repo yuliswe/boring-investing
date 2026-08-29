@@ -44,7 +44,7 @@ export function Card({
     );
   }
   return (
-    <div className={classes} style={disabled ? { opacity: 0.45 } : undefined}>
+    <div className={disabled ? `${classes} opacity-45` : classes}>
       {content}
     </div>
   );

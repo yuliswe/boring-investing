@@ -13,6 +13,8 @@
 
   --color-ds-accent: var(--color-accent);
   --color-ds-neutral-500: var(--color-neutral-500);
+  --color-ds-neutral-600: var(--color-neutral-600);
+  --color-ds-divider: var(--color-divider);
   --color-ds-divider-faint: color-mix(
     in srgb,
     var(--color-text) 8%,

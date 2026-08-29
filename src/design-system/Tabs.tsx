@@ -31,7 +31,7 @@ export function Tabs({ items, defaultIndex = 0 }: TabsProps) {
           </button>
         ))}
       </div>
-      <div role='tabpanel' style={{ paddingTop: 16 }}>
+      <div role='tabpanel' className='pt-4'>
         {items[active]?.content}
       </div>
     </div>

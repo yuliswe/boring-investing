@@ -32,19 +32,8 @@ export function Skeleton({
 
 export function SkeletonRow() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 14,
-        minHeight: 56,
-        padding: '8px 4px',
-        borderBottom: '1px solid var(--color-divider)',
-      }}
-    >
-      <div
-        style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 7 }}
-      >
+    <div className='flex items-center gap-3.5 min-h-14 px-1 py-2 border-b border-ds-divider'>
+      <div className='flex flex-1 flex-col gap-[7px]'>
         <Skeleton width='52%' />
         <Skeleton width='32%' height='9px' faint delay='.2s' />
       </div>

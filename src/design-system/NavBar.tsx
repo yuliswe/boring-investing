@@ -20,7 +20,7 @@ export function NavBar({ brand, links, action }: NavBarProps) {
   const [open, setOpen] = useState(false);
   return (
     <div className='nav-shell'>
-      <div className='nav' style={{ borderBottom: 0 }}>
+      <div className='nav border-b-0'>
         <span className='nav-brand'>{brand}</span>
         <div className='nav-links'>
           {links.map(link => (
