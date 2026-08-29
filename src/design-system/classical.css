@@ -56,6 +56,41 @@
   --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
 }
 
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #1a1917;
+  --color-surface: #232120;
+  --color-text: #ece7e1;
+  --color-accent: #d9a862;
+  --color-accent-2: #d9a862;
+  --color-divider: color-mix(in srgb, #ece7e1 20%, transparent);
+
+  --color-neutral-100: #211f1e;
+  --color-neutral-200: #2a2827;
+  --color-neutral-300: #363331;
+  --color-neutral-400: #57534f;
+  --color-neutral-500: #6c6763;
+  --color-neutral-600: #8f8985;
+  --color-neutral-700: #b3aca6;
+  --color-neutral-800: #d3ccc5;
+  --color-neutral-900: #0d0c0b;
+
+  --color-accent-100: #2a2017;
+  --color-accent-200: #3a2c1c;
+  --color-accent-300: #56401f;
+  --color-accent-400: #7d5f2e;
+  --color-accent-500: #a37c3e;
+  --color-accent-600: #c79a54;
+  --color-accent-700: #e0b573;
+  --color-accent-800: #f0cd97;
+  --color-accent-900: #f8e2c0;
+
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #000 40%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #000 46%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #000 55%, transparent);
+}
+
 /* — base type — */
 .ds *,
 .ds *::before,
@@ -336,9 +371,13 @@ select.input {
   appearance: none;
   padding-right: 30px;
   cursor: pointer;
+  background-color: transparent;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b68235' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 10px center;
+}
+[data-theme='dark'] select.input {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23d9a862' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
 }
 .field-error {
   display: flex;
