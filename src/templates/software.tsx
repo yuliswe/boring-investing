@@ -33,7 +33,7 @@ export function SoftwareTemplate({
   children,
 }: SoftwareTemplateProps) {
   return (
-    <main className='ds mx-auto flex max-w-[820px] flex-col gap-8 px-5 py-10'>
+    <main className='ds mx-auto flex max-w-[51.25rem] flex-col gap-8 px-5 py-10'>
       <header className='flex flex-col gap-2'>
         <Text variant='overline' className='text-ds-accent'>
           {stock.sector}
@@ -50,7 +50,7 @@ export function SoftwareTemplate({
       </header>
 
       <Card>
-        <div className='grid grid-cols-[repeat(auto-fit,minmax(140px,1fr))] gap-5'>
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(8.75rem,1fr))] gap-5'>
           {financials.metrics.map(metric => (
             <div key={metric.label} className='flex flex-col gap-1'>
               <Text variant='caption' muted>

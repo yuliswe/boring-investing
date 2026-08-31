@@ -10,7 +10,7 @@ type SkeletonProps = {
 
 export function Skeleton({
   width = '100%',
-  height = '14px',
+  height = '0.875rem',
   faint = false,
   delay,
   className = '',
@@ -33,11 +33,11 @@ export function Skeleton({
 export function SkeletonRow() {
   return (
     <div className='flex items-center gap-3.5 min-h-14 px-1 py-2 border-b border-ds-divider'>
-      <div className='flex flex-1 flex-col gap-[7px]'>
+      <div className='flex flex-1 flex-col gap-1.75'>
         <Skeleton width='52%' />
-        <Skeleton width='32%' height='9px' faint delay='.2s' />
+        <Skeleton width='32%' height='0.5625rem' faint delay='.2s' />
       </div>
-      <Skeleton width='64px' delay='.1s' />
+      <Skeleton width='4rem' delay='.1s' />
     </div>
   );
 }

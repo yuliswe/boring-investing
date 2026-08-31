@@ -97,7 +97,7 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <section className='pt-[30px] pb-2 border-t border-[var(--color-divider)]'>
+    <section className='pt-7.5 pb-2 border-t border-ds-divider'>
       <div className='flex items-baseline gap-3'>
         <span className='ds-tnum text-xs tracking-[0.12em] font-ds-heading text-ds-accent'>
           {n}
@@ -116,7 +116,7 @@ function Section({
 
 function Sub({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className='flex flex-col gap-3 py-[18px] border-t border-ds-divider-faint'>
+    <div className='flex flex-col gap-3 py-4.5 border-t border-ds-divider-faint'>
       <span className='ds-kicker'>{label}</span>
       {children}
     </div>
@@ -192,7 +192,7 @@ export function Gallery() {
 
   return (
     <main className='ds min-h-screen pb-20'>
-      <div className='mx-auto w-full max-w-[900px] px-5'>
+      <div className='mx-auto w-full max-w-[56.25rem] px-5'>
         <header className='pt-10 pb-2'>
           <Text variant='display'>Component library</Text>
           <p className='mt-2 max-w-[62ch]'>
@@ -367,7 +367,7 @@ export function Gallery() {
             </div>
           </Sub>
           <Sub label='Removable · live'>
-            <div className='flex flex-wrap gap-2 items-center min-h-[34px]'>
+            <div className='flex flex-wrap gap-2 items-center min-h-8.5'>
               {tags.map(t => (
                 <RemovableTag
                   key={t}
@@ -408,7 +408,7 @@ export function Gallery() {
                 <Button variant='secondary' icon aria-label='Alerts'>
                   &#9737;
                 </Button>
-                <span className='absolute -top-[5px] -right-[5px]'>
+                <span className='absolute -top-1.25 -right-1.25'>
                   <Badge tone='accent'>3</Badge>
                 </span>
               </span>
@@ -422,7 +422,7 @@ export function Gallery() {
           title='Input'
           blurb='Transparent field on a hairline border; the accent appears only on focus. Fields fill their column, minimum 44px tall.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(230px,1fr))] gap-4 py-[18px] border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(14.375rem,1fr))] gap-4 py-4.5 border-t border-ds-divider-faint\'>
             <Input label='Default' placeholder='Search companies' />
             <Input
               label='Filled · live'
@@ -442,7 +442,7 @@ export function Gallery() {
               placeholder='Ticker or name'
               affixStart={<span className='text-ds-neutral-500'>&#9906;</span>}
               affixEnd={
-                <span className='ds-tnum text-[11px] text-ds-neutral-500'>
+                <span className='ds-tnum text-xs text-ds-neutral-500'>
                   {ROWS.length}
                 </span>
               }
@@ -461,7 +461,7 @@ export function Gallery() {
           title='Textarea'
           blurb="The input's border and focus behaviour at a 90px minimum, resizable vertically only. Counter sits under the right edge, tabular."
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(260px,1fr))] gap-4 py-[18px] border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-4 py-4.5 border-t border-ds-divider-faint\'>
             <Textarea
               label='Filled · live, with counter'
               value={bio}
@@ -488,7 +488,7 @@ export function Gallery() {
           title='Select'
           blurb='A native select carrying the input shell. Two or three short options become a segmented control instead.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-4 py-[18px] border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(13.75rem,1fr))] gap-4 py-4.5 border-t border-ds-divider-faint\'>
             <Select
               label='Default · live'
               options={['Annual', 'Quarterly', 'Trailing twelve months']}
@@ -518,7 +518,7 @@ export function Gallery() {
           title='Checkbox & radio'
           blurb='Both sit inside a 44px label so the whole row is tappable. Checked state is an accent stroke with an inset ground.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[22px] py-[18px] border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-5.5 py-4.5 border-t border-ds-divider-faint\'>
             <div className='flex flex-col'>
               <span className='ds-kicker mb-1.5'>Checkbox · live</span>
               {['Cash flow', 'Dividends', 'Buybacks'].map(c => (
@@ -553,7 +553,7 @@ export function Gallery() {
           title='Toggle'
           blurb='For settings that take effect immediately. Label left, control right-aligned, hairline between rows.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             {Object.keys(switches).map(k => (
               <ToggleRow
                 key={k}
@@ -573,7 +573,7 @@ export function Gallery() {
           title='Card'
           blurb='Bordered, unfilled. An auto-fit grid at a 240px minimum handles one, two and three columns without a breakpoint.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5 py-[18px] border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-3.5 py-4.5 border-t border-ds-divider-faint\'>
             <Card
               kicker='Sector'
               title='Arcadia Mills'
@@ -614,7 +614,7 @@ export function Gallery() {
           title='List row'
           blurb='Hairline-separated rows, 56px tall, primary text left and figures right. What a table becomes below 640px.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             {ROWS.map(r => (
               <ListRow
                 key={r.sym}
@@ -625,7 +625,7 @@ export function Gallery() {
                   <>
                     <div className='ds-tnum text-sm'>{r.price.toFixed(2)}</div>
                     <div
-                      className={`ds-tnum text-[11px] ${r.dir < 0 ? 'italic' : ''}`}
+                      className={`ds-tnum text-xs ${r.dir < 0 ? 'italic' : ''}`}
                     >
                       {r.dir > 0 ? '↑' : '↓'} {r.chg}
                     </div>
@@ -642,7 +642,7 @@ export function Gallery() {
           title='Table'
           blurb='Uppercase hairline header, row rules, tabular figures right-aligned. Company and Price headers sort live.'
         >
-          <div className='py-[18px] overflow-x-auto border-t border-ds-divider-faint\'>
+          <div className='py-4.5 overflow-x-auto border-t border-ds-divider-faint\'>
             <Table>
               <thead>
                 <tr>
@@ -670,11 +670,11 @@ export function Gallery() {
                   <tr key={r.sym}>
                     <td>
                       <span className='table-name'>{r.name}</span>{' '}
-                      <span className='text-[11px] text-ds-neutral-500'>
+                      <span className='text-xs text-ds-neutral-500'>
                         {r.sym}
                       </span>
                     </td>
-                    <td className='text-[13px]'>{r.sector}</td>
+                    <td className='text-sm'>{r.sector}</td>
                     <td className='table-num'>{r.price.toFixed(2)}</td>
                     <td className='table-num'>{r.pe.toFixed(1)}</td>
                     <td className={`table-num ${r.dir < 0 ? 'italic' : ''}`}>
@@ -693,7 +693,7 @@ export function Gallery() {
           title='Tabs'
           blurb='A hairline baseline with the active tab underlined in accent. The strip scrolls horizontally when labels outrun the width.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             <Tabs
               items={[
                 {
@@ -735,7 +735,7 @@ export function Gallery() {
           title='Accordion'
           blurb='One open at a time. Rule above each row, 52px minimum header, a rotating hairline marker.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             <Accordion
               defaultOpen={0}
               items={[
@@ -765,7 +765,7 @@ export function Gallery() {
           title='Dialog'
           blurb='Centred, 440px maximum, on the surface tone at the top elevation. Escape and backdrop both dismiss.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             <Button variant='primary' onClick={() => setDialogOpen(true)}>
               Open dialog
             </Button>
@@ -805,7 +805,7 @@ export function Gallery() {
           title='Bottom sheet'
           blurb="The dialog's mobile form: docked to the bottom edge, rounded at the top only, rising on open."
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             <Button variant='secondary' onClick={() => setSheetOpen(true)}>
               Open bottom sheet
             </Button>
@@ -873,7 +873,7 @@ export function Gallery() {
           title='Nav bar'
           blurb='Brand left, links right, one hairline beneath. Below 768px the links collapse behind a menu button.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             <NavBar
               brand='Ledger'
               links={[
@@ -896,7 +896,7 @@ export function Gallery() {
           title='Skeleton'
           blurb='Placeholders mirror the shape of what is loading, at the same heights, so nothing jumps when content lands.'
         >
-          <div className='py-[18px] border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-ds-divider-faint\'>
             <div className='mb-4'>
               <Button
                 variant='secondary'
@@ -928,7 +928,7 @@ export function Gallery() {
           </div>
         </Section>
 
-        <footer className='pt-[34px] border-t border-[var(--color-divider)]'>
+        <footer className='pt-8.5 border-t border-ds-divider'>
           <Text variant='caption'>
             Twenty components on the Ledger tokens. Every interactive element
             carries a themed hover, a pressed state and the 2px accent focus

@@ -3,7 +3,7 @@ import { STOCKS } from '@/lib/stocks';
 
 export default function HomePage() {
   return (
-    <main className='ds mx-auto max-w-[900px] px-5 py-12'>
+    <main className='ds mx-auto max-w-[56.25rem] px-5 py-12'>
       <header className='flex flex-col gap-2'>
         <Text variant='display'>Boring Investing</Text>
         <Text variant='body' muted>
@@ -11,7 +11,7 @@ export default function HomePage() {
         </Text>
       </header>
 
-      <div className='mt-7 grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-3.5'>
+      <div className='mt-7 grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-3.5'>
         {STOCKS.map(stock => (
           <Card
             key={stock.symbol}
@@ -30,7 +30,7 @@ export default function HomePage() {
         ))}
       </div>
 
-      <footer className='mt-8 pt-[18px] border-t border-ds-divider'>
+      <footer className='mt-8 pt-4.5 border-t border-ds-divider'>
         <Link href='/components' variant='standalone'>
           Component library &#8594;
         </Link>
