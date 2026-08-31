@@ -197,9 +197,9 @@ export function Gallery() {
           <Text variant='display'>Component library</Text>
           <p className='mt-2 max-w-[62ch]'>
             <Text variant='small' as='span' muted>
-              Every component in the Boring Investing design system, with its
-              variations and live states. Newsreader headings over Lora body,
-              Archivo on the interactive labels.
+              Every component in the Ledger design system, with its variations
+              and live states. Newsreader headings over Karla body and
+              interactive labels.
             </Text>
           </p>
           <div className='mt-3.5 flex items-center justify-between flex-wrap gap-3'>
@@ -217,29 +217,29 @@ export function Gallery() {
         <Section
           n='01'
           title='Text'
-          blurb='Newsreader for headings, Lora for body. Weight and italics carry emphasis; figures set tabular wherever they stand as data.'
+          blurb='Newsreader for headings, Karla for body. Weight and italics carry emphasis; figures set tabular wherever they stand as data.'
         >
           <Sub label='Scale'>
-            <Text variant='display'>Display, 42px</Text>
-            <Text variant='h2'>Heading two, 32px</Text>
-            <Text variant='h3'>Heading three, 25px</Text>
-            <Text variant='h4'>Heading four, 20px</Text>
-            <Text variant='h5'>Heading five, 16px</Text>
-            <Text variant='overline'>Overline, 12px</Text>
+            <Text variant='display'>Display, 2.25rem</Text>
+            <Text variant='h2'>Heading two, 1.875rem</Text>
+            <Text variant='h3'>Heading three, 1.5rem</Text>
+            <Text variant='h4'>Heading four, 1.25rem</Text>
+            <Text variant='h5'>Heading five, 1rem</Text>
+            <Text variant='overline'>Overline, 0.75rem</Text>
           </Sub>
           <Sub label='Body and de-emphasis'>
             <Text variant='body'>
-              Body copy sets at 15px on 1.55 leading, with <em>italics</em> and{' '}
+              Body copy sets at 1rem on 1.5 leading, with <em>italics</em> and{' '}
               <strong>semibold</strong> doing the work a second typeface would.
             </Text>
             <Text variant='small'>
-              Small, 13px — card bodies and help text.
+              Small, 0.875rem — card bodies and help text.
             </Text>
             <Text variant='small' muted>
-              Muted, 13px — 55% ink, for de-emphasised runs.
+              Muted, 0.875rem — 45% ink, for de-emphasised runs.
             </Text>
             <Text variant='caption'>
-              Caption, 11px — figure captions and timestamps.
+              Caption, 0.75rem — figure captions and timestamps.
             </Text>
           </Sub>
           <Sub label='Figures & deltas'>
@@ -930,7 +930,7 @@ export function Gallery() {
 
         <footer className='pt-[34px] border-t border-[var(--color-divider)]'>
           <Text variant='caption'>
-            Twenty components on the Classical tokens. Every interactive element
+            Twenty components on the Ledger tokens. Every interactive element
             carries a themed hover, a pressed state and the 2px accent focus
             ring — tab through the page to see it.
           </Text>
