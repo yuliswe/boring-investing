@@ -37,6 +37,8 @@ src/
   lib/                            Shared helpers (stocks registry, base path)
   companies/
     <SYMBOL>/
+      CLAUDE.md                   Analytical method for this company
+      references.md               External data sources
       components/<Component>.tsx  Helper components used only by this stock
       data/<data>.json            Data for this stock
   app/
