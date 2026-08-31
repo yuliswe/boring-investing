@@ -3,25 +3,15 @@ import { STOCKS } from '@/lib/stocks';
 
 export default function HomePage() {
   return (
-    <main
-      className='ds'
-      style={{ maxWidth: 900, margin: '0 auto', padding: '48px 20px' }}
-    >
-      <header style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <main className='ds mx-auto max-w-[56.25rem] px-5 py-12'>
+      <header className='flex flex-col gap-2'>
         <Text variant='display'>Boring Investing</Text>
         <Text variant='body' muted>
           Plain, static analysis of a few companies worth understanding.
         </Text>
       </header>
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-          gap: 14,
-          marginTop: 28,
-        }}
-      >
+      <div className='mt-7 grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-3.5'>
         {STOCKS.map(stock => (
           <Card
             key={stock.symbol}
@@ -33,22 +23,14 @@ export default function HomePage() {
               <>
                 <span>{stock.name}</span>
                 <span>&middot;</span>
-                <span style={{ color: 'var(--color-accent)' }}>
-                  View analysis &#8594;
-                </span>
+                <span className='text-ds-accent'>View analysis &#8594;</span>
               </>
             }
           />
         ))}
       </div>
 
-      <footer
-        style={{
-          marginTop: 32,
-          paddingTop: 18,
-          borderTop: '1px solid var(--color-divider)',
-        }}
-      >
+      <footer className='mt-8 pt-4.5 border-t border-ds-divider'>
         <Link href='/components' variant='standalone'>
           Component library &#8594;
         </Link>

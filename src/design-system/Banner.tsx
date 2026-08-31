@@ -16,8 +16,7 @@ export function Banner({ tone = 'accent', onDismiss, children }: BannerProps) {
       {onDismiss ? (
         <button
           type='button'
-          className='btn btn-ghost'
-          style={{ fontSize: 12 }}
+          className='btn btn-ghost text-xs'
           onClick={onDismiss}
         >
           Dismiss

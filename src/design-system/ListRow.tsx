@@ -18,13 +18,13 @@ export function ListRow({
 }: ListRowProps) {
   const content = (
     <>
-      <div style={{ flex: 1, minWidth: 0 }}>
+      <div className='min-w-0 flex-1'>
         <div className='list-row-primary'>{primary}</div>
         {secondary ? (
           <div className='list-row-secondary'>{secondary}</div>
         ) : null}
       </div>
-      {trailing ? <div style={{ textAlign: 'right' }}>{trailing}</div> : null}
+      {trailing ? <div className='text-right'>{trailing}</div> : null}
       {href && chevron ? (
         <span className='list-row-chevron' aria-hidden='true'>
           &#8250;

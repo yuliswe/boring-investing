@@ -33,22 +33,12 @@ export function SoftwareTemplate({
   children,
 }: SoftwareTemplateProps) {
   return (
-    <main
-      className='ds'
-      style={{
-        maxWidth: 820,
-        margin: '0 auto',
-        padding: '40px 20px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 32,
-      }}
-    >
-      <header style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        <Text variant='overline' style={{ color: 'var(--color-accent)' }}>
+    <main className='ds mx-auto flex max-w-[51.25rem] flex-col gap-8 px-5 py-10'>
+      <header className='flex flex-col gap-2'>
+        <Text variant='overline' className='text-ds-accent'>
           {stock.sector}
         </Text>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+        <div className='flex items-baseline gap-3'>
           <Text variant='display'>{stock.symbol}</Text>
           <Text variant='h4' as='span' muted>
             {stock.name}
@@ -60,18 +50,9 @@ export function SoftwareTemplate({
       </header>
 
       <Card>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-            gap: 20,
-          }}
-        >
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(8.75rem,1fr))] gap-5'>
           {financials.metrics.map(metric => (
-            <div
-              key={metric.label}
-              style={{ display: 'flex', flexDirection: 'column', gap: 4 }}
-            >
+            <div key={metric.label} className='flex flex-col gap-1'>
               <Text variant='caption' muted>
                 {metric.label}
               </Text>
@@ -82,9 +63,7 @@ export function SoftwareTemplate({
                 <Text
                   variant='small'
                   tabular
-                  style={{
-                    fontStyle: metric.changePct < 0 ? 'italic' : 'normal',
-                  }}
+                  className={metric.changePct < 0 ? 'italic' : ''}
                 >
                   {metric.changePct >= 0 ? '↑' : '↓'}{' '}
                   {metric.changePct.toFixed(1)}%
@@ -122,15 +101,7 @@ export function SoftwareTemplate({
         <Text variant='h4' as='h3'>
           Investment thesis
         </Text>
-        <ul
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-            margin: 0,
-            paddingLeft: 20,
-          }}
-        >
+        <ul className='flex flex-col gap-2 m-0 pl-5'>
           {financials.thesis.map((point, index) => (
             <li key={index}>
               <Text variant='body' as='span'>

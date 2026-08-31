@@ -14,15 +14,14 @@ export function Segmented({
   block = false,
 }: SegmentedProps) {
   return (
-    <div className='seg' style={block ? { width: '100%' } : undefined}>
+    <div className={block ? 'seg w-full' : 'seg'}>
       {options.map(option => (
         <label
           key={option}
-          className='seg-opt'
-          style={
+          className={
             block
-              ? { flex: 1, justifyContent: 'center', minHeight: 'var(--tap)' }
-              : undefined
+              ? 'seg-opt flex-1 justify-center min-h-[var(--tap)]'
+              : 'seg-opt'
           }
         >
           <input

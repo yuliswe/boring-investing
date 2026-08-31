@@ -44,10 +44,7 @@ export function ToggleRow({
   disabled,
 }: ToggleRowProps) {
   return (
-    <div
-      className='toggle-row'
-      style={disabled ? { opacity: 0.45 } : undefined}
-    >
+    <div className={disabled ? 'toggle-row opacity-45' : 'toggle-row'}>
       <div className='toggle-row-label'>
         <div>{label}</div>
         {hint ? <div className='toggle-row-hint'>{hint}</div> : null}

@@ -84,13 +84,15 @@ public/
 
 ## Design system
 
-- The design system is the "Classical" system from Claude Design, configured with
-  Newsreader headings, Lora body, Archivo for interactive labels, Regular (500)
-  heading weight and Default density.
+- The design system is the "Ledger" system from Claude Design, configured with
+  Newsreader headings, Karla body and interactive labels, Regular (500) heading
+  weight and Compact (0.9) density. All sizes use `rem`; spacing is driven by a
+  `--density` multiplier.
 - `src/design-system/classical.css` holds the tokens (`--color-*`, `--font-*`,
-  `--space-*`, `--radius-*`, `--tap`), base type and every component class. It is
-  loaded once from `src/app/layout.tsx`. Take colors, fonts and spacing from the
-  tokens rather than hard-coding values.
+  `--text-*`, `--space-*`, `--radius-*`, `--tap`, `--motion`), semantic aliases
+  (`--text-primary`, `--surface-page`, `--state-hover`, etc.), base type and
+  every component class. It is loaded once from `src/app/layout.tsx`. Take
+  colors, fonts and spacing from the tokens rather than hard-coding values.
 - Components render on the design-system palette when placed inside a `.ds`
   container (the page `<main>` carries it); the component classes themselves are
   global.

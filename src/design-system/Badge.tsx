@@ -27,10 +27,7 @@ export function StatusBadge({ status = 'open', children }: StatusBadgeProps) {
     status === 'open' ? 'status-dot' : 'status-dot status-dot-muted';
   return (
     <span
-      className='status'
-      style={
-        status === 'closed' ? { color: 'var(--color-neutral-600)' } : undefined
-      }
+      className={status === 'closed' ? 'status text-ds-neutral-600' : 'status'}
     >
       <span className={dotClass} />
       {children}
