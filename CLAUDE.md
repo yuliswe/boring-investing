@@ -32,12 +32,13 @@ src/
     classical.css                 Tokens, base type and component classes (see Design system)
     index.ts                      Barrel re-exports
     components/<Component>.tsx    Reusable UI primitives
+  methods/<type>.md               Analytical method per company type (e.g. software.md)
   charts/<Chart>.tsx              Reusable chart components (LineChart, BarChart)
   templates/<template>.tsx        Layout templates, one per company type (software.tsx)
   lib/                            Shared helpers (stocks registry, base path)
   companies/
     <SYMBOL>/
-      CLAUDE.md                   Analytical method for this company
+      CLAUDE.md                   Company-specific notes; references methods/<type>.md
       references.md               External data sources
       components/<Component>.tsx  Helper components used only by this stock
       data/<data>.json            Data for this stock
