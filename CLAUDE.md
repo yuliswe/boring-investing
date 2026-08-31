@@ -28,7 +28,10 @@ colocated and never becomes a route.
 
 ```
 src/
-  design-system/<Component>.tsx   Reusable primitives + classical.css (see Design system)
+  design-system/
+    classical.css                 Tokens, base type and component classes (see Design system)
+    index.ts                      Barrel re-exports
+    components/<Component>.tsx    Reusable UI primitives
   charts/<Chart>.tsx              Reusable chart components (LineChart, BarChart)
   templates/<template>.tsx        Layout templates, one per company type (software.tsx)
   lib/                            Shared helpers (stocks registry, base path)
