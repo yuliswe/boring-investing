@@ -1,6 +1,6 @@
 import { BarChart } from '@/charts';
 import { Card, Text } from '@/design-system';
-import segments from '@/app/MSFT/data/segments.json';
+import segments from '@/companies/MSFT/data/segments.json';
 
 export function SegmentBreakdown() {
   return (

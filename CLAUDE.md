@@ -35,13 +35,15 @@ src/
   charts/<Chart>.tsx              Reusable chart components (LineChart, BarChart)
   templates/<template>.tsx        Layout templates, one per company type (software.tsx)
   lib/                            Shared helpers (stocks registry, base path)
+  companies/
+    <SYMBOL>/
+      components/<Component>.tsx  Helper components used only by this stock
+      data/<data>.json            Data for this stock
   app/
     layout.tsx                    Root layout and global styles
     page.tsx                      Home page: directory of all stocks
     <SYMBOL>/
-      page.tsx                    The stock's page (one per stock)
-      components/<Component>.tsx  Helper components used only by this stock
-      data/<data>.json            Data for this stock
+      page.tsx                    Thin route file; imports from src/companies/<SYMBOL>
 public/
   .nojekyll                       Stops GitHub Pages from processing `_next/`
 ```
@@ -55,17 +57,19 @@ public/
   stock page renders exactly one template. Add a new template (for example
   `bank.tsx`) when a company type needs a different layout, and add its name to
   the `CompanyTemplate` union in `src/lib/stocks.ts`.
-- **Specific to one stock** → `src/app/<SYMBOL>/components/` and
-  `src/app/<SYMBOL>/data/`. These never leave the stock's folder.
+- **Specific to one stock** → `src/companies/<SYMBOL>/components/` and
+  `src/companies/<SYMBOL>/data/`. The route file at `src/app/<SYMBOL>/page.tsx`
+  is a thin wrapper that imports from `src/companies/<SYMBOL>/`.
 
 ## Adding a new stock
 
 1. Register it in `src/lib/stocks.ts` (`STOCKS` array), choosing a `template`.
-2. Create `src/app/<SYMBOL>/data/*.json` matching the template's data type (for
-   the software template, `SoftwareFinancials` in `src/templates/software.tsx`).
+2. Create `src/companies/<SYMBOL>/data/*.json` matching the template's data type
+   (for the software template, `SoftwareFinancials` in
+   `src/templates/software.tsx`).
 3. Create `src/app/<SYMBOL>/page.tsx` that reads the JSON and renders the chosen
    template. Use `MSFT` as the reference implementation.
-4. Add any stock-only sections under `src/app/<SYMBOL>/components/`.
+4. Add any stock-only sections under `src/companies/<SYMBOL>/components/`.
 
 ## Imports and paths
 
