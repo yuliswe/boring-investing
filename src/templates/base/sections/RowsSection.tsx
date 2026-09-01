@@ -10,8 +10,8 @@ export function RowsSection({ entries }: { entries: FilingEntry[] }) {
           className='flex items-center gap-3.5 min-h-14 border-b border-[var(--color-divider)]'
         >
           <Tag tone='outline'>{e.kind}</Tag>
-          <span className='flex-1 min-w-0 text-[0.8125rem]'>{e.note}</span>
-          <span className='text-[0.6875rem] ds-tnum text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+          <span className='flex-1 min-w-0 text-3.25'>{e.note}</span>
+          <span className='text-2.75 ds-tnum text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
             {e.date}
           </span>
         </div>

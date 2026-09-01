@@ -1,9 +1,11 @@
-export { CompanyTemplate } from './CompanyTemplate';
-export type { CompanyTemplateProps } from './CompanyTemplate';
+export { BaseTemplate } from './BaseTemplate';
+export type { BaseTemplateProps } from './BaseTemplate';
 export type {
+  Navbar,
+  NavLink,
   SectionData,
-  CompanyHero,
-  CompanyFooter,
+  Hero,
+  Footer,
   TrendPanel,
   TrendDot,
   MetricRow,

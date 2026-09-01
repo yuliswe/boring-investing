@@ -3,16 +3,16 @@ import type { PeerPanel } from '../types';
 function PeerBar({ panel }: { panel: PeerPanel }) {
   return (
     <div className='flex flex-col gap-1.5'>
-      <div className='flex items-baseline gap-2.5 pb-[0.4375rem] border-b border-[var(--color-divider)]'>
+      <div className='flex items-baseline gap-2.5 pb-1.75 border-b border-[var(--color-divider)]'>
         <span className='flex-1 min-w-0 ds-kicker'>{panel.label}</span>
-        <span className='flex-none text-[0.625rem] text-[color-mix(in_srgb,var(--color-text)_42%,transparent)]'>
+        <span className='flex-none text-2.5 text-[color-mix(in_srgb,var(--color-text)_42%,transparent)]'>
           {panel.hint}
         </span>
       </div>
       {panel.rows.map((r, i) => (
-        <div key={i} className='flex items-center gap-2.5 min-h-[1.625rem]'>
+        <div key={i} className='flex items-center gap-2.5 min-h-6.5'>
           <span
-            className={`flex-none w-[6.5rem] text-[0.6875rem] ${
+            className={`flex-none w-26 text-2.75 ${
               r.self
                 ? 'font-semibold'
                 : 'text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]'
@@ -21,7 +21,7 @@ function PeerBar({ panel }: { panel: PeerPanel }) {
           >
             {r.name}
           </span>
-          <div className='relative flex-1 h-[0.6875rem]'>
+          <div className='relative flex-1 h-2.75'>
             <div
               className='absolute left-0 inset-y-0 rounded-[var(--radius-sm)]'
               style={{
@@ -35,7 +35,7 @@ function PeerBar({ panel }: { panel: PeerPanel }) {
               }}
             />
           </div>
-          <span className='flex-none w-[3.25rem] text-right text-[0.6875rem] ds-tnum'>
+          <span className='flex-none w-13 text-right text-2.75 ds-tnum'>
             {r.value}
           </span>
         </div>
@@ -59,7 +59,7 @@ export function PeersSection({
         ))}
       </div>
       {chartNote && (
-        <p className='mt-4.5 text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+        <p className='mt-4.5 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
           {chartNote}
         </p>
       )}

@@ -9,7 +9,7 @@ export function StackSection({
 }) {
   return (
     <>
-      <div className='relative flex items-end gap-2.5 h-[11.75rem] mt-5.5 border-b border-[var(--color-divider)]'>
+      <div className='relative flex items-end gap-2.5 h-47 mt-5.5 border-b border-[var(--color-divider)]'>
         {bars.map((b, i) => (
           <div key={i} className='relative flex-1 h-full'>
             <div
@@ -30,7 +30,7 @@ export function StackSection({
               />
             </div>
             <div
-              className='absolute left-0 right-0 text-center text-[0.6875rem] ds-tnum'
+              className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
               style={{ bottom: b.labelBottom }}
             >
               {b.value}
@@ -60,7 +60,7 @@ export function StackSection({
         />
       </div>
       {chartNote && (
-        <p className='mt-3 text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+        <p className='mt-3 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
           {chartNote}
         </p>
       )}
@@ -70,7 +70,7 @@ export function StackSection({
 
 function LegendItem({ color, label }: { color: string; label: string }) {
   return (
-    <span className='inline-flex items-center gap-[0.4375rem] text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]'>
+    <span className='inline-flex items-center gap-1.75 text-2.75 text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]'>
       <span
         className='w-2.5 h-2.5 border border-[var(--color-accent)]'
         style={{ background: color }}

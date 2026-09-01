@@ -40,7 +40,7 @@ export function TableSection({
         </table>
       </div>
       {tableNote && (
-        <p className='mt-2.5 text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+        <p className='mt-2.5 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
           {tableNote}
         </p>
       )}

@@ -2,7 +2,7 @@
 
 import { Tag, Text } from '@/design-system';
 import type { ReactNode } from 'react';
-import type { CompanyHero, CompanyFooter, SectionData } from './types';
+import type { Navbar, Hero, Footer, SectionData } from './types';
 import {
   ProseSection,
   TrendsSection,
@@ -55,7 +55,45 @@ function SectionContent({ section }: { section: SectionData }) {
   }
 }
 
-function Hero({ hero }: { hero: CompanyHero }) {
+function Nav({ navbar }: { navbar: Navbar }) {
+  return (
+    <nav className='flex items-center gap-4 min-h-14 px-5 bg-[var(--color-bg)] border-b border-[var(--color-divider)]'>
+      <span className='flex-none font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-5 leading-none'>
+        {navbar.brand}
+      </span>
+      <div className='flex flex-1 min-w-0 gap-4 overflow-x-auto'>
+        {navbar.links.map(l => (
+          <a
+            key={l.href}
+            href={l.href}
+            className={`flex-none text-3.25 no-underline ${
+              l.active
+                ? 'text-[var(--color-accent)]'
+                : 'text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]'
+            }`}
+            style={{ fontFamily: 'var(--font-click, var(--font-body))' }}
+          >
+            {l.label}
+          </a>
+        ))}
+      </div>
+      {navbar.action && (
+        <a
+          href={navbar.action.href}
+          className='btn btn-secondary flex-none text-xs whitespace-nowrap'
+          style={{
+            fontFamily: 'var(--font-click, var(--font-body))',
+            padding: '0.3125rem 0.6875rem',
+          }}
+        >
+          {navbar.action.label}
+        </a>
+      )}
+    </nav>
+  );
+}
+
+function HeroSection({ hero }: { hero: Hero }) {
   const arrow =
     hero.changeDir === 'up' ? '↑' : hero.changeDir === 'down' ? '↓' : '—';
 
@@ -73,15 +111,15 @@ function Hero({ hero }: { hero: CompanyHero }) {
       <div className='flex flex-wrap items-baseline gap-2 gap-x-5 mt-2'>
         <Text variant='h2'>{hero.name}</Text>
         <div className='flex items-baseline gap-2.5'>
-          <span className='font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-[1.75rem] leading-none ds-tnum'>
+          <span className='font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-7 leading-none ds-tnum'>
             {hero.price}
           </span>
           <span className='text-sm ds-tnum'>
             {arrow} {hero.change}
-            {' †'}
+            {' †'}
           </span>
           {hero.priceNote && (
-            <span className='text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+            <span className='text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
               {hero.priceNote}
             </span>
           )}
@@ -94,9 +132,15 @@ function Hero({ hero }: { hero: CompanyHero }) {
   );
 }
 
-function SectionIndex({ sections }: { sections: SectionData[] }) {
+function Header({
+  sections,
+  figuresDate,
+}: {
+  sections: SectionData[];
+  figuresDate?: string;
+}) {
   return (
-    <header className='sticky top-0 z-10 flex flex-wrap items-center gap-2 gap-x-4 py-3 bg-[var(--color-bg)] border-y border-[var(--color-divider)]'>
+    <header className='sticky top-14 z-10 flex flex-wrap items-center gap-2 gap-x-4 py-3 bg-[var(--color-bg)] border-y border-[var(--color-divider)]'>
       <span className='ds-kicker'>On this page</span>
       <div className='flex flex-1 gap-1 gap-x-3.5 overflow-x-auto pb-0.5'>
         {sections.map(s => (
@@ -110,23 +154,25 @@ function SectionIndex({ sections }: { sections: SectionData[] }) {
           </a>
         ))}
       </div>
-      <span className='text-[0.6875rem] ds-tnum text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-        Figures dated 30 June
-      </span>
+      {figuresDate && (
+        <span className='text-2.75 ds-tnum text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+          Figures dated {figuresDate}
+        </span>
+      )}
     </header>
   );
 }
 
-function Footer({ footer }: { footer: CompanyFooter }) {
+function FooterSection({ footer }: { footer: Footer }) {
   return (
     <footer className='flex flex-wrap gap-3.5 gap-x-8 mt-5 py-6.5 pb-11 border-t border-[var(--color-divider)]'>
-      <div className='flex-1 min-w-[13.75rem]'>
-        <div className='font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-[1.25rem]'>
+      <div className='flex-1 min-w-55'>
+        <div className='font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-5'>
           Ledger
         </div>
         <p className='mt-2 max-w-[44ch] text-xs text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]'>
           {footer.disclaimer ||
-            'Figures traced to filed statements and dated where they appear. Delayed data marked †'}
+            'Figures traced to filed statements and dated where they appear. Delayed data marked †'}
         </p>
       </div>
       {footer.links && footer.links.length > 0 && (
@@ -163,32 +209,46 @@ function Footer({ footer }: { footer: CompanyFooter }) {
   );
 }
 
-export type CompanyTemplateProps = {
-  hero: CompanyHero;
+export type BaseTemplateProps = {
+  navbar?: Navbar;
+  hero: Hero;
   sections: SectionData[];
-  footer?: CompanyFooter;
+  childSections?: SectionData[];
+  figuresDate?: string;
+  footer?: Footer;
   children?: ReactNode;
 };
 
-export function CompanyTemplate({
+export function BaseTemplate({
+  navbar,
   hero,
   sections,
+  childSections,
+  figuresDate,
   footer,
   children,
-}: CompanyTemplateProps) {
-  const sorted = [...sections].sort((a, b) => a.rank - b.rank);
+}: BaseTemplateProps) {
+  const merged = [...sections, ...(childSections || [])].sort(
+    (a, b) => a.rank - b.rank
+  );
 
   return (
-    <main className='ds min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]'>
-      <div className='mx-auto max-w-[70rem] px-5'>
-        <Hero hero={hero} />
-        <SectionIndex sections={sorted} />
+    <div className='ds min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]'>
+      {navbar && (
+        <div className='sticky top-0 z-20'>
+          <Nav navbar={navbar} />
+        </div>
+      )}
 
-        {sorted.map(sec => (
+      <div className='mx-auto max-w-280 px-5'>
+        <HeroSection hero={hero} />
+        <Header sections={merged} figuresDate={figuresDate} />
+
+        {merged.map(sec => (
           <section
             key={sec.id}
             id={sec.id}
-            className='pt-7.5 pb-2 border-t border-[var(--color-divider)] scroll-mt-[10.625rem]'
+            className='pt-7.5 pb-2 border-t border-[var(--color-divider)] scroll-mt-42.5'
           >
             <div className='flex flex-wrap items-baseline gap-2 gap-x-3'>
               <span className='ds-tnum text-xs tracking-[0.12em] font-[var(--font-heading)] text-[var(--color-accent)]'>
@@ -199,7 +259,7 @@ export function CompanyTemplate({
                 <Tag tone='accent'>{sec.origin}</Tag>
               )}
             </div>
-            <p className='mt-2 max-w-[62ch] text-[0.8125rem] text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]'>
+            <p className='mt-2 max-w-[62ch] text-3.25 text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]'>
               {sec.kicker}
             </p>
             <div className='py-4.5'>
@@ -210,7 +270,7 @@ export function CompanyTemplate({
 
         {children}
 
-        <Footer
+        <FooterSection
           footer={
             footer || {
               links: [
@@ -225,6 +285,6 @@ export function CompanyTemplate({
           }
         />
       </div>
-    </main>
+    </div>
   );
 }

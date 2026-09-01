@@ -17,7 +17,7 @@ export function ChartSection({
 }) {
   return (
     <>
-      <div className='relative flex items-end h-[11.75rem] mt-5.5 border-b border-[var(--color-divider)]'>
+      <div className='relative flex items-end h-47 mt-5.5 border-b border-[var(--color-divider)]'>
         <svg
           viewBox='0 0 100 100'
           preserveAspectRatio='none'
@@ -37,11 +37,11 @@ export function ChartSection({
         {bars.map((b, i) => (
           <div key={i} className='relative flex-1 h-full'>
             <div
-              className='absolute left-1/2 w-[0.5625rem] h-[0.5625rem] -ml-[0.2813rem] -mb-[0.2813rem] rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
+              className='absolute left-1/2 w-2.25 h-2.25 -ml-1.125 -mb-1.125 rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
               style={{ bottom: b.h }}
             />
             <div
-              className='absolute left-0 right-0 text-center text-[0.6875rem] ds-tnum'
+              className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
               style={{ bottom: b.labelBottom }}
             >
               {b.value}
@@ -54,7 +54,7 @@ export function ChartSection({
             style={{ bottom: refBottom }}
           >
             <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_40%,transparent)]' />
-            <span className='flex-none text-[0.625rem] tracking-[0.06em] uppercase text-[color-mix(in_srgb,var(--color-text)_50%,transparent)]'>
+            <span className='flex-none text-2.5 tracking-[0.06em] uppercase text-[color-mix(in_srgb,var(--color-text)_50%,transparent)]'>
               {refLabel}
             </span>
           </div>
@@ -65,7 +65,7 @@ export function ChartSection({
           <div key={i} className='flex-1 text-center'>
             <div className='text-xs ds-tnum'>{b.label}</div>
             {b.sub && (
-              <div className='text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+              <div className='text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
                 {b.sub}
               </div>
             )}
@@ -73,7 +73,7 @@ export function ChartSection({
         ))}
       </div>
       {chartNote && (
-        <p className='mt-3 text-[0.6875rem] text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
+        <p className='mt-3 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
           {chartNote}
         </p>
       )}

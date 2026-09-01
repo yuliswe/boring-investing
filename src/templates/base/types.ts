@@ -1,3 +1,15 @@
+export type NavLink = {
+  label: string;
+  href: string;
+  active?: boolean;
+};
+
+export type Navbar = {
+  brand: string;
+  links: NavLink[];
+  action?: { label: string; href: string };
+};
+
 export type TrendDot = {
   year: string;
   value: string;
@@ -139,7 +151,7 @@ export type SectionData = {
   | PeersSection
 );
 
-export type CompanyHero = {
+export type Hero = {
   symbol: string;
   name: string;
   sector: string;
@@ -151,7 +163,7 @@ export type CompanyHero = {
   summary: string;
 };
 
-export type CompanyFooter = {
+export type Footer = {
   links?: { label: string; href: string }[];
   externalLinks?: { label: string; href: string }[];
   disclaimer?: string;
