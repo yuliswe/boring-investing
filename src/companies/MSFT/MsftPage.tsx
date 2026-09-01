@@ -2,14 +2,6 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
-import {
-  chartBar,
-  chartPolyline,
-  chartRefBottom,
-  stackBar,
-  tableColumns,
-  tableRow,
-} from '@/templates/base';
 import type { Hero, Footer, SectionData } from '@/templates/base';
 import financials from './data/financials.json';
 import segments from './data/segments.json';
@@ -46,23 +38,9 @@ const msftSections: SectionData[] = [
     title: 'Free Cash Flow',
     kicker: 'Annual free cash flow in billions, with a break-even reference.',
     kind: 'chart',
-    bars: (() => {
-      const lo = 0;
-      const hi = 85;
-      return years.map((y, i) =>
-        chartBar(y, '$' + fcfValues[i].toFixed(0) + 'B', fcfValues[i], lo, hi)
-      );
-    })(),
-    points: (() => {
-      const lo = 0;
-      const hi = 85;
-      const bars = years.map((y, i) =>
-        chartBar(y, '$' + fcfValues[i].toFixed(0) + 'B', fcfValues[i], lo, hi)
-      );
-      return chartPolyline(bars);
-    })(),
-    hasRef: true,
-    refBottom: chartRefBottom(0, 0, 85),
+    bars: years.map((y, i) => ({ label: y, value: fcfValues[i] })),
+    format: { prefix: '$', suffix: 'B', decimals: 0 },
+    refValue: 0,
     refLabel: 'Break-even',
     chartNote: 'FCF = operating cash flow − capital expenditures.',
   },
@@ -73,17 +51,14 @@ const msftSections: SectionData[] = [
     kicker:
       'How cash is deployed across maintenance capex, growth investment, and shareholder returns.',
     kind: 'stack',
-    bars: (() => {
-      const lo = 0;
-      const hi = 90;
-      return [
-        stackBar('FY20', [8.5, 12.1, 33.8], lo, hi),
-        stackBar('FY21', [9.2, 15.3, 38.4], lo, hi),
-        stackBar('FY22', [10.1, 18.7, 40.2], lo, hi),
-        stackBar('FY23', [11.8, 20.9, 35.6], lo, hi),
-        stackBar('FY24', [13.4, 25.7, 38.1], lo, hi),
-      ];
-    })(),
+    bars: [
+      { label: 'FY20', parts: [8.5, 12.1, 33.8] },
+      { label: 'FY21', parts: [9.2, 15.3, 38.4] },
+      { label: 'FY22', parts: [10.1, 18.7, 40.2] },
+      { label: 'FY23', parts: [11.8, 20.9, 35.6] },
+      { label: 'FY24', parts: [13.4, 25.7, 38.1] },
+    ],
+    format: { decimals: 1 },
     chartNote:
       'Maintenance = depreciation-level capex. Growth = capex above maintenance + acquisitions. Returned = dividends + buybacks.',
   },
@@ -95,20 +70,20 @@ const msftSections: SectionData[] = [
       'Revenue by operating segment over the last three fiscal years, in billions.',
     kind: 'table',
     firstColumn: 'Segment',
-    columns: tableColumns(...segments.segments.map(s => s.year)),
+    columns: segments.segments.map(s => s.year),
     rows: [
-      tableRow(
-        'Productivity & Business',
-        ...segments.segments.map(s => '$' + s.productivity + 'B')
-      ),
-      tableRow(
-        'Intelligent Cloud',
-        ...segments.segments.map(s => '$' + s.intelligentCloud + 'B')
-      ),
-      tableRow(
-        'More Personal Computing',
-        ...segments.segments.map(s => '$' + s.morePersonalComputing + 'B')
-      ),
+      {
+        label: 'Productivity & Business',
+        values: segments.segments.map(s => '$' + s.productivity + 'B'),
+      },
+      {
+        label: 'Intelligent Cloud',
+        values: segments.segments.map(s => '$' + s.intelligentCloud + 'B'),
+      },
+      {
+        label: 'More Personal Computing',
+        values: segments.segments.map(s => '$' + s.morePersonalComputing + 'B'),
+      },
     ],
     tableNote: 'Source: 10-K filings.',
   },

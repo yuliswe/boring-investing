@@ -1,6 +1,103 @@
 import type { TrendPanel } from '../types';
+import {
+  METRIC_COLORS,
+  COLOR_GOOD,
+  COLOR_BAD,
+  pct,
+  formatValue,
+} from '../compute';
 
-function Sparkline({ panel }: { panel: TrendPanel }) {
+type ComputedDot = {
+  year: string;
+  value: string;
+  delta: string;
+  deltaColor: string;
+  h: string;
+  x: string;
+};
+
+type ComputedPanel = {
+  label: string;
+  lineColor: string;
+  latest: string;
+  dots: ComputedDot[];
+  points: string;
+  hasMedian: boolean;
+  medianH: string;
+  medianLabel: string;
+};
+
+function computePanel(panel: TrendPanel, colorIndex: number): ComputedPanel {
+  const { label, years, values, format, median10y, invertColor, deltaMode } =
+    panel;
+  const numericVals = values.filter((v): v is number => v !== null);
+  const allVals =
+    median10y != null ? numericVals.concat(median10y) : numericVals;
+  const min = Math.min(...allVals);
+  const max = Math.max(...allVals);
+  const range = max - min || Math.abs(max) || 1;
+  const lo = min - range * 0.25;
+  const hi = max + range * 0.25;
+
+  const dots = values.map((v, i) => {
+    const prev = i > 0 ? values[i - 1] : null;
+    let delta = '';
+    let deltaColor = '';
+
+    if (v !== null && prev !== null) {
+      if (deltaMode === 'add') {
+        const diff = v - prev;
+        if (diff !== 0) {
+          delta = (diff >= 0 ? '↑+' : '↓−') + Math.abs(diff).toFixed(1) + 'pp';
+          const isGood = invertColor ? diff <= 0 : diff >= 0;
+          deltaColor = isGood ? COLOR_GOOD : COLOR_BAD;
+        }
+      } else if (prev !== 0) {
+        const chg = ((v - prev) / Math.abs(prev)) * 100;
+        delta = (chg >= 0 ? '↑' : '↓') + Math.abs(chg).toFixed(1) + '%';
+        const isGood = invertColor ? chg <= 0 : chg >= 0;
+        deltaColor = isGood ? COLOR_GOOD : COLOR_BAD;
+      }
+    }
+
+    const h = v !== null ? pct(v, lo, hi) : 0;
+    return {
+      year: years[i],
+      value: formatValue(v, format),
+      delta,
+      deltaColor,
+      h: h.toFixed(1) + '%',
+      x:
+        values.length > 1
+          ? ((i / (values.length - 1)) * 100).toFixed(1) + '%'
+          : '50%',
+    };
+  });
+
+  const hs = values.map(v => (v !== null ? pct(v, lo, hi) : 0));
+  const hasMedian = median10y != null;
+  const medianH = hasMedian ? pct(median10y!, lo, hi).toFixed(1) + '%' : '0%';
+  const medianLabel = hasMedian ? formatValue(median10y!, format) : '';
+  const lineColor = METRIC_COLORS[colorIndex % METRIC_COLORS.length];
+
+  return {
+    label,
+    lineColor,
+    latest: formatValue(values[values.length - 1], format),
+    dots,
+    points: hs
+      .map(
+        (h, i) =>
+          ((i / (hs.length - 1)) * 100).toFixed(2) + ',' + (100 - h).toFixed(2)
+      )
+      .join(' '),
+    hasMedian,
+    medianH,
+    medianLabel,
+  };
+}
+
+function Sparkline({ panel }: { panel: ComputedPanel }) {
   return (
     <div className='flex flex-col gap-2 pb-3.5 border-b border-[var(--color-divider)] overflow-hidden'>
       <div className='flex items-baseline gap-2.5'>
@@ -83,10 +180,12 @@ export function TrendsSection({
   panels: TrendPanel[];
   chartNote?: string;
 }) {
+  const computed = panels.map((p, i) => computePanel(p, i));
+
   return (
     <>
       <div className='grid grid-cols-[repeat(auto-fit,minmax(14.375rem,1fr))] gap-5.5 gap-x-8'>
-        {panels.map((p, i) => (
+        {computed.map((p, i) => (
           <Sparkline key={i} panel={p} />
         ))}
       </div>

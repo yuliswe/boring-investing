@@ -1,4 +1,4 @@
-import type { TableColumn, TableRow } from '../types';
+import type { TableRow } from '../types';
 
 export function TableSection({
   firstColumn,
@@ -7,7 +7,7 @@ export function TableSection({
   tableNote,
 }: {
   firstColumn: string;
-  columns: TableColumn[];
+  columns: string[];
   rows: TableRow[];
   tableNote?: string;
 }) {
@@ -20,7 +20,7 @@ export function TableSection({
               <th>{firstColumn}</th>
               {columns.map((c, i) => (
                 <th key={i} className='text-right'>
-                  {c.label}
+                  {c}
                 </th>
               ))}
             </tr>
@@ -31,7 +31,7 @@ export function TableSection({
                 <td className='ds-tnum'>{r.label}</td>
                 {r.values.map((v, j) => (
                   <td key={j} className='text-right ds-tnum'>
-                    {v.text}
+                    {v}
                   </td>
                 ))}
               </tr>

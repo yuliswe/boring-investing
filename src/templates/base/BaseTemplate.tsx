@@ -28,15 +28,20 @@ function SectionContent({ section }: { section: SectionData }) {
       return (
         <ChartSection
           bars={section.bars}
-          points={section.points}
-          hasRef={section.hasRef}
-          refBottom={section.refBottom}
+          format={section.format}
+          refValue={section.refValue}
           refLabel={section.refLabel}
           chartNote={section.chartNote}
         />
       );
     case 'stack':
-      return <StackSection bars={section.bars} chartNote={section.chartNote} />;
+      return (
+        <StackSection
+          bars={section.bars}
+          format={section.format}
+          chartNote={section.chartNote}
+        />
+      );
     case 'table':
       return (
         <TableSection

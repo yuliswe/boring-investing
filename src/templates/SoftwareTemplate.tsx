@@ -1,7 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import { BaseTemplate, trend, resetColorIndex } from '@/templates/base';
+import { BaseTemplate } from '@/templates/base';
 import type { Navbar, Hero, Footer, SectionData } from '@/templates/base';
 
 export type SoftwareFinancials = {
@@ -31,8 +31,6 @@ export function SoftwareTemplate({
   footer,
   children,
 }: SoftwareTemplateProps) {
-  resetColorIndex();
-
   const years = financials.revenue.map(r => r.year);
   const revenues = financials.revenue.map(r => r.revenue);
   const opIncomes = financials.revenue.map(r => r.operatingIncome);
@@ -76,21 +74,25 @@ export function SoftwareTemplate({
       origin: 'Software',
       kind: 'trends',
       panels: [
-        trend('Revenue ($B)', years, revenues, v =>
-          v != null ? '$' + v.toFixed(0) + 'B' : 'n/a'
-        ),
-        trend('Operating Income ($B)', years, opIncomes, v =>
-          v != null ? '$' + v.toFixed(0) + 'B' : 'n/a'
-        ),
-        trend(
-          'Operating Margin',
+        {
+          label: 'Revenue ($B)',
           years,
-          opMargins,
-          v => (v != null ? v.toFixed(1) + '%' : 'n/a'),
-          undefined,
-          false,
-          'add'
-        ),
+          values: revenues,
+          format: { prefix: '$', suffix: 'B', decimals: 0 },
+        },
+        {
+          label: 'Operating Income ($B)',
+          years,
+          values: opIncomes,
+          format: { prefix: '$', suffix: 'B', decimals: 0 },
+        },
+        {
+          label: 'Operating Margin',
+          years,
+          values: opMargins,
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+        },
       ],
       chartNote: 'Source: 10-K filings.',
     },

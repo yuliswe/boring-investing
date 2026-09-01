@@ -1,20 +1,37 @@
-import type { ChartBar } from '../types';
+import type { ChartBar, ValueFormat } from '../types';
+import { pct, formatValue } from '../compute';
 
 export function ChartSection({
   bars,
-  points,
-  hasRef,
-  refBottom,
+  format,
+  refValue,
   refLabel,
   chartNote,
 }: {
   bars: ChartBar[];
-  points: string;
-  hasRef?: boolean;
-  refBottom?: string;
+  format?: ValueFormat;
+  refValue?: number;
   refLabel?: string;
   chartNote?: string;
 }) {
+  const values = bars.map(b => b.value);
+  const lo = Math.min(0, refValue ?? 0);
+  const maxVal = Math.max(...values, refValue ?? -Infinity);
+  const range = maxVal - lo || 1;
+  const hi = maxVal + range * 0.15;
+
+  const heights = values.map(v => pct(v, lo, hi));
+  const points = heights
+    .map(
+      (h, i) =>
+        (((i + 0.5) / bars.length) * 100).toFixed(2) +
+        ',' +
+        (100 - h).toFixed(2)
+    )
+    .join(' ');
+  const hasRef = refValue != null;
+  const refBottom = hasRef ? pct(refValue!, lo, hi).toFixed(1) + '%' : '0%';
+
   return (
     <>
       <div className='relative flex items-end h-47 mt-5.5 border-b border-[var(--color-divider)]'>
@@ -34,21 +51,26 @@ export function ChartSection({
             vectorEffect='non-scaling-stroke'
           />
         </svg>
-        {bars.map((b, i) => (
-          <div key={i} className='relative flex-1 h-full'>
-            <div
-              className='absolute left-1/2 w-2.25 h-2.25 -ml-1.125 -mb-1.125 rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
-              style={{ bottom: b.h }}
-            />
-            <div
-              className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
-              style={{ bottom: b.labelBottom }}
-            >
-              {b.value}
+        {bars.map((b, i) => {
+          const h = heights[i].toFixed(1) + '%';
+          const labelBottom =
+            'calc(' + heights[i].toFixed(1) + '% + 0.6875rem)';
+          return (
+            <div key={i} className='relative flex-1 h-full'>
+              <div
+                className='absolute left-1/2 w-2.25 h-2.25 -ml-1.125 -mb-1.125 rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
+                style={{ bottom: h }}
+              />
+              <div
+                className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
+                style={{ bottom: labelBottom }}
+              >
+                {formatValue(b.value, format)}
+              </div>
             </div>
-          </div>
-        ))}
-        {hasRef && refBottom && (
+          );
+        })}
+        {hasRef && (
           <div
             className='absolute left-0 right-0 h-0 flex items-center gap-2 pointer-events-none'
             style={{ bottom: refBottom }}

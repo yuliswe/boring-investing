@@ -10,24 +10,20 @@ export type Navbar = {
   action?: { label: string; href: string };
 };
 
-export type TrendDot = {
-  year: string;
-  value: string;
-  delta: string;
-  deltaColor: string;
-  h: string;
-  x: string;
+export type ValueFormat = {
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
 };
 
 export type TrendPanel = {
   label: string;
-  lineColor: string;
-  latest: string;
-  dots: TrendDot[];
-  points: string;
-  hasMedian: boolean;
-  medianH: string;
-  medianLabel: string;
+  years: string[];
+  values: (number | null)[];
+  format?: ValueFormat;
+  median10y?: number;
+  invertColor?: boolean;
+  deltaMode?: 'pct' | 'add';
 };
 
 export type MetricRow = {
@@ -38,34 +34,26 @@ export type MetricRow = {
 
 export type ChartBar = {
   label: string;
-  value: string;
+  value: number;
   sub?: string;
-  h: string;
-  labelBottom: string;
 };
 
 export type StackBar = {
   label: string;
-  value: string;
-  h: string;
-  labelBottom: string;
-  maintH: string;
-  growthH: string;
-  retH: string;
+  parts: [number, number, number];
 };
 
 export type PeerRow = {
   name: string;
-  value: string;
-  self: boolean;
-  w: string;
-  barColor: string;
+  value: number;
+  self?: boolean;
 };
 
 export type PeerPanel = {
   label: string;
   hint: string;
   rows: PeerRow[];
+  format?: ValueFormat;
 };
 
 export type FilingEntry = {
@@ -74,13 +62,9 @@ export type FilingEntry = {
   date: string;
 };
 
-export type TableColumn = {
-  label: string;
-};
-
 export type TableRow = {
   label: string;
-  values: { text: string }[];
+  values: string[];
 };
 
 type ProseSection = {
@@ -102,9 +86,8 @@ type MetricsSection = {
 type ChartSection = {
   kind: 'chart';
   bars: ChartBar[];
-  points: string;
-  hasRef?: boolean;
-  refBottom?: string;
+  format?: ValueFormat;
+  refValue?: number;
   refLabel?: string;
   chartNote?: string;
 };
@@ -112,13 +95,14 @@ type ChartSection = {
 type StackSection = {
   kind: 'stack';
   bars: StackBar[];
+  format?: ValueFormat;
   chartNote?: string;
 };
 
 type TableSection = {
   kind: 'table';
   firstColumn: string;
-  columns: TableColumn[];
+  columns: string[];
   rows: TableRow[];
   tableNote?: string;
 };

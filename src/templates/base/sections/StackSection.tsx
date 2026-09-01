@@ -1,42 +1,57 @@
-import type { StackBar } from '../types';
+import type { StackBar, ValueFormat } from '../types';
+import { pct, formatValue } from '../compute';
 
 export function StackSection({
   bars,
+  format,
   chartNote,
 }: {
   bars: StackBar[];
+  format?: ValueFormat;
   chartNote?: string;
 }) {
+  const totals = bars.map(b => b.parts[0] + b.parts[1] + b.parts[2]);
+  const maxTotal = Math.max(...totals);
+  const hi = maxTotal + maxTotal * 0.15;
+
   return (
     <>
       <div className='relative flex items-end gap-2.5 h-47 mt-5.5 border-b border-[var(--color-divider)]'>
-        {bars.map((b, i) => (
-          <div key={i} className='relative flex-1 h-full'>
-            <div
-              className='absolute left-0 right-0 bottom-0 mx-auto max-w-16 flex flex-col justify-end border border-[var(--color-accent)] rounded-t-[var(--radius-sm)] overflow-hidden'
-              style={{ height: b.h }}
-            >
+        {bars.map((b, i) => {
+          const total = totals[i];
+          const h = pct(total, 0, hi);
+          const seg = (v: number) =>
+            total ? ((v / total) * 100).toFixed(1) + '%' : '0%';
+          return (
+            <div key={i} className='relative flex-1 h-full'>
               <div
-                className='bg-[color-mix(in_srgb,var(--color-accent)_12%,transparent)]'
-                style={{ height: b.retH }}
-              />
+                className='absolute left-0 right-0 bottom-0 mx-auto max-w-16 flex flex-col justify-end border border-[var(--color-accent)] rounded-t-[var(--radius-sm)] overflow-hidden'
+                style={{ height: h.toFixed(1) + '%' }}
+              >
+                <div
+                  className='bg-[color-mix(in_srgb,var(--color-accent)_12%,transparent)]'
+                  style={{ height: seg(b.parts[2]) }}
+                />
+                <div
+                  className='bg-[color-mix(in_srgb,var(--color-accent)_34%,transparent)]'
+                  style={{ height: seg(b.parts[1]) }}
+                />
+                <div
+                  className='bg-[color-mix(in_srgb,var(--color-accent)_62%,transparent)]'
+                  style={{ height: seg(b.parts[0]) }}
+                />
+              </div>
               <div
-                className='bg-[color-mix(in_srgb,var(--color-accent)_34%,transparent)]'
-                style={{ height: b.growthH }}
-              />
-              <div
-                className='bg-[color-mix(in_srgb,var(--color-accent)_62%,transparent)]'
-                style={{ height: b.maintH }}
-              />
+                className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
+                style={{
+                  bottom: 'calc(' + h.toFixed(1) + '% + 0.3125rem)',
+                }}
+              >
+                {formatValue(total, format)}
+              </div>
             </div>
-            <div
-              className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
-              style={{ bottom: b.labelBottom }}
-            >
-              {b.value}
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className='flex gap-2.5 pt-2'>
         {bars.map((b, i) => (
