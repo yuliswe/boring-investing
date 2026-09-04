@@ -1,4 +1,4 @@
-import type { StackBar, ValueFormat } from '../types';
+import type { StackBarData, ValueFormatData } from '../types';
 import { pct, formatValue } from '../compute';
 
 export function StackSection({
@@ -6,8 +6,8 @@ export function StackSection({
   format,
   chartNote,
 }: {
-  bars: StackBar[];
-  format?: ValueFormat;
+  bars: StackBarData[];
+  format?: ValueFormatData;
   chartNote?: string;
 }) {
   const totals = bars.map(b => b.parts[0] + b.parts[1] + b.parts[2]);

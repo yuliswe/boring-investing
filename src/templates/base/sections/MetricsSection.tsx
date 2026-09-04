@@ -1,6 +1,6 @@
-import type { MetricRow } from '../types';
+import type { MetricRowData } from '../types';
 
-export function MetricsSection({ metrics }: { metrics: MetricRow[] }) {
+export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
   return (
     <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-x-8'>
       {metrics.map((m, i) => (

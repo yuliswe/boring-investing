@@ -1,120 +1,120 @@
-export type NavLink = {
+export type NavLinkData = {
   label: string;
   href: string;
   active?: boolean;
 };
 
-export type Navbar = {
+export type NavbarData = {
   brand: string;
-  links: NavLink[];
+  links: NavLinkData[];
   action?: { label: string; href: string };
 };
 
-export type ValueFormat = {
+export type ValueFormatData = {
   prefix?: string;
   suffix?: string;
   decimals?: number;
 };
 
-export type TrendPanel = {
+export type TrendPanelData = {
   label: string;
   years: string[];
   values: (number | null)[];
-  format?: ValueFormat;
+  format?: ValueFormatData;
   median10y?: number;
   invertColor?: boolean;
   deltaMode?: 'pct' | 'add';
 };
 
-export type MetricRow = {
+export type MetricRowData = {
   label: string;
   value: string;
   note?: string;
 };
 
-export type ChartBar = {
+export type ChartBarData = {
   label: string;
   value: number;
   sub?: string;
 };
 
-export type StackBar = {
+export type StackBarData = {
   label: string;
   parts: [number, number, number];
 };
 
-export type PeerRow = {
+export type PeerRowData = {
   name: string;
   value: number;
   self?: boolean;
 };
 
-export type PeerPanel = {
+export type PeerPanelData = {
   label: string;
   hint: string;
-  rows: PeerRow[];
-  format?: ValueFormat;
+  rows: PeerRowData[];
+  format?: ValueFormatData;
 };
 
-export type FilingEntry = {
+export type FilingEntryData = {
   kind: string;
   note: string;
   date: string;
 };
 
-export type TableRow = {
+export type TableRowData = {
   label: string;
   values: string[];
 };
 
-type ProseSection = {
+type ProseSectionData = {
   kind: 'prose';
   paragraphs: string[];
 };
 
-type TrendsSection = {
+type TrendsSectionData = {
   kind: 'trends';
-  panels: TrendPanel[];
+  panels: TrendPanelData[];
   chartNote?: string;
 };
 
-type MetricsSection = {
+type MetricsSectionData = {
   kind: 'metrics';
-  metrics: MetricRow[];
+  metrics: MetricRowData[];
 };
 
-type ChartSection = {
+type ChartSectionData = {
   kind: 'chart';
-  bars: ChartBar[];
-  format?: ValueFormat;
+  bars: ChartBarData[];
+  format?: ValueFormatData;
   refValue?: number;
   refLabel?: string;
   chartNote?: string;
 };
 
-type StackSection = {
+type StackSectionData = {
   kind: 'stack';
-  bars: StackBar[];
-  format?: ValueFormat;
+  bars: StackBarData[];
+  format?: ValueFormatData;
   chartNote?: string;
 };
 
-type TableSection = {
+type TableSectionData = {
   kind: 'table';
   firstColumn: string;
   columns: string[];
-  rows: TableRow[];
+  rows: TableRowData[];
   tableNote?: string;
 };
 
-type RowsSection = {
+type RowsSectionData = {
   kind: 'rows';
-  entries: FilingEntry[];
+  entries: FilingEntryData[];
 };
 
-type PeersSection = {
+type PeersSectionData = {
   kind: 'peers';
-  panels: PeerPanel[];
+  panels: PeerPanelData[];
   chartNote?: string;
 };
 
@@ -125,17 +125,17 @@ export type SectionData = {
   kicker: string;
   origin?: string;
 } & (
-  | ProseSection
-  | TrendsSection
-  | MetricsSection
-  | ChartSection
-  | StackSection
-  | TableSection
-  | RowsSection
-  | PeersSection
+  | ProseSectionData
+  | TrendsSectionData
+  | MetricsSectionData
+  | ChartSectionData
+  | StackSectionData
+  | TableSectionData
+  | RowsSectionData
+  | PeersSectionData
 );
 
-export type Hero = {
+export type HeroData = {
   symbol: string;
   name: string;
   sector: string;
@@ -147,7 +147,7 @@ export type Hero = {
   summary: string;
 };
 
-export type Footer = {
+export type FooterData = {
   links?: { label: string; href: string }[];
   externalLinks?: { label: string; href: string }[];
   disclaimer?: string;

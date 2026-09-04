@@ -2,7 +2,12 @@
 
 import type { ReactNode } from 'react';
 import { BaseTemplate } from '@/templates/base';
-import type { Navbar, Hero, Footer, SectionData } from '@/templates/base';
+import type {
+  NavbarData,
+  HeroData,
+  FooterData,
+  SectionData,
+} from '@/templates/base';
 
 export type SoftwareFinancials = {
   metrics: { label: string; value: string; changePct?: number }[];
@@ -11,13 +16,13 @@ export type SoftwareFinancials = {
 };
 
 export type SoftwareTemplateProps = {
-  navbar?: Navbar;
-  hero: Hero;
+  navbar?: NavbarData;
+  hero: HeroData;
   financials: SoftwareFinancials;
   baseSections?: SectionData[];
   extraSections?: SectionData[];
   figuresDate?: string;
-  footer?: Footer;
+  footer?: FooterData;
   children?: ReactNode;
 };
 

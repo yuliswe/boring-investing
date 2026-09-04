@@ -1,4 +1,4 @@
-import type { ValueFormat } from './types';
+import type { ValueFormatData } from './types';
 
 export const METRIC_COLORS = [
   'oklch(0.72 0.14 210)',
@@ -30,7 +30,7 @@ export function pct(v: number, lo: number, hi: number): number {
   return Math.max(0, Math.min(100, ((v - lo) / (hi - lo)) * 100));
 }
 
-export function formatValue(v: number | null, fmt?: ValueFormat): string {
+export function formatValue(v: number | null, fmt?: ValueFormatData): string {
   if (v == null) return 'n/a';
   const decimals = fmt?.decimals ?? 1;
   return (fmt?.prefix ?? '') + v.toFixed(decimals) + (fmt?.suffix ?? '');

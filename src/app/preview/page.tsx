@@ -1,9 +1,14 @@
 'use client';
 
 import { BaseTemplate } from '@/templates/base';
-import type { Navbar, Hero, Footer, SectionData } from '@/templates/base';
+import type {
+  NavbarData,
+  HeroData,
+  FooterData,
+  SectionData,
+} from '@/templates/base';
 
-const navbar: Navbar = {
+const navbar: NavbarData = {
   brand: 'Ledger',
   links: [
     { label: 'Companies', href: '#', active: true },
@@ -13,7 +18,7 @@ const navbar: Navbar = {
   action: { label: 'Sign in', href: '#' },
 };
 
-const hero: Hero = {
+const hero: HeroData = {
   symbol: 'MSFT',
   name: 'Microsoft Corporation',
   sector: 'Technology',
@@ -344,7 +349,7 @@ const childSections: SectionData[] = [
   },
 ];
 
-const footer: Footer = {
+const footer: FooterData = {
   links: [
     {
       label: 'Investor Relations',

@@ -1,7 +1,7 @@
 import { Tag } from '@/design-system';
-import type { FilingEntry } from '../types';
+import type { FilingEntryData } from '../types';
 
-export function RowsSection({ entries }: { entries: FilingEntry[] }) {
+export function RowsSection({ entries }: { entries: FilingEntryData[] }) {
   return (
     <div>
       {entries.map((e, i) => (

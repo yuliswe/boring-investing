@@ -1,4 +1,4 @@
-import type { ChartBar, ValueFormat } from '../types';
+import type { ChartBarData, ValueFormatData } from '../types';
 import { pct, formatValue } from '../compute';
 
 export function ChartSection({
@@ -8,8 +8,8 @@ export function ChartSection({
   refLabel,
   chartNote,
 }: {
-  bars: ChartBar[];
-  format?: ValueFormat;
+  bars: ChartBarData[];
+  format?: ValueFormatData;
   refValue?: number;
   refLabel?: string;
   chartNote?: string;

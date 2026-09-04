@@ -1,7 +1,7 @@
-import type { PeerPanel } from '../types';
+import type { PeerPanelData } from '../types';
 import { PEER_COLORS, formatValue } from '../compute';
 
-function PeerBar({ panel }: { panel: PeerPanel }) {
+function PeerBar({ panel }: { panel: PeerPanelData }) {
   const max = Math.max(...panel.rows.map(r => Math.abs(r.value)));
   const lower = /lower|less|fewer/i.test(panel.hint);
   const sorted = panel.rows
@@ -67,7 +67,7 @@ export function PeersSection({
   panels,
   chartNote,
 }: {
-  panels: PeerPanel[];
+  panels: PeerPanelData[];
   chartNote?: string;
 }) {
   return (

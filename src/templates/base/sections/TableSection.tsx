@@ -1,4 +1,4 @@
-import type { TableRow } from '../types';
+import type { TableRowData } from '../types';
 
 export function TableSection({
   firstColumn,
@@ -8,7 +8,7 @@ export function TableSection({
 }: {
   firstColumn: string;
   columns: string[];
-  rows: TableRow[];
+  rows: TableRowData[];
   tableNote?: string;
 }) {
   return (

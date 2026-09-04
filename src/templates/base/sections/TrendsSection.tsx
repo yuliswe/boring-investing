@@ -1,4 +1,4 @@
-import type { TrendPanel } from '../types';
+import type { TrendPanelData } from '../types';
 import {
   METRIC_COLORS,
   COLOR_GOOD,
@@ -27,7 +27,10 @@ type ComputedPanel = {
   medianLabel: string;
 };
 
-function computePanel(panel: TrendPanel, colorIndex: number): ComputedPanel {
+function computePanel(
+  panel: TrendPanelData,
+  colorIndex: number
+): ComputedPanel {
   const { label, years, values, format, median10y, invertColor, deltaMode } =
     panel;
   const numericVals = values.filter((v): v is number => v !== null);
@@ -177,7 +180,7 @@ export function TrendsSection({
   panels,
   chartNote,
 }: {
-  panels: TrendPanel[];
+  panels: TrendPanelData[];
   chartNote?: string;
 }) {
   const computed = panels.map((p, i) => computePanel(p, i));

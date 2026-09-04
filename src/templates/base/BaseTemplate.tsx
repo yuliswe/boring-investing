@@ -2,7 +2,7 @@
 
 import { Tag, Text } from '@/design-system';
 import type { ReactNode } from 'react';
-import type { Navbar, Hero, Footer, SectionData } from './types';
+import type { NavbarData, HeroData, FooterData, SectionData } from './types';
 import {
   ProseSection,
   TrendsSection,
@@ -60,7 +60,7 @@ function SectionContent({ section }: { section: SectionData }) {
   }
 }
 
-function Nav({ navbar }: { navbar: Navbar }) {
+function Nav({ navbar }: { navbar: NavbarData }) {
   return (
     <nav className='flex items-center gap-4 min-h-14 px-5 bg-[var(--color-bg)] border-b border-[var(--color-divider)]'>
       <span className='flex-none font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-5 leading-none'>
@@ -98,7 +98,7 @@ function Nav({ navbar }: { navbar: Navbar }) {
   );
 }
 
-function HeroSection({ hero }: { hero: Hero }) {
+function HeroSection({ hero }: { hero: HeroData }) {
   const arrow =
     hero.changeDir === 'up' ? '↑' : hero.changeDir === 'down' ? '↓' : '—';
 
@@ -168,7 +168,7 @@ function Header({
   );
 }
 
-function FooterSection({ footer }: { footer: Footer }) {
+function FooterSection({ footer }: { footer: FooterData }) {
   return (
     <footer className='flex flex-wrap gap-3.5 gap-x-8 mt-5 py-6.5 pb-11 border-t border-[var(--color-divider)]'>
       <div className='flex-1 min-w-55'>
@@ -215,12 +215,12 @@ function FooterSection({ footer }: { footer: Footer }) {
 }
 
 export type BaseTemplateProps = {
-  navbar?: Navbar;
-  hero: Hero;
+  navbar?: NavbarData;
+  hero: HeroData;
   sections: SectionData[];
   childSections?: SectionData[];
   figuresDate?: string;
-  footer?: Footer;
+  footer?: FooterData;
   children?: ReactNode;
 };
 

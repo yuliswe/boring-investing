@@ -2,7 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
-import type { Hero, Footer, SectionData } from '@/templates/base';
+import type { HeroData, FooterData, SectionData } from '@/templates/base';
 import financials from './data/financials.json';
 import segments from './data/segments.json';
 
@@ -15,7 +15,7 @@ const navbar = {
   ],
 };
 
-const hero: Hero = {
+const hero: HeroData = {
   symbol: 'MSFT',
   name: 'Microsoft Corporation',
   sector: 'Software',
@@ -118,7 +118,7 @@ const msftSections: SectionData[] = [
   },
 ];
 
-const footer: Footer = {
+const footer: FooterData = {
   links: [
     {
       label: 'Investor Relations',
