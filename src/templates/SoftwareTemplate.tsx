@@ -1,0 +1,118 @@
+'use client';
+
+import type { ReactNode } from 'react';
+import { BaseTemplate } from '@/templates/base';
+import type {
+  NavbarData,
+  HeroData,
+  FooterData,
+  SectionData,
+} from '@/templates/base';
+
+export type SoftwareFinancials = {
+  metrics: { label: string; value: string; changePct?: number }[];
+  revenue: { year: string; revenue: number; operatingIncome: number }[];
+  thesis: string[];
+};
+
+export type SoftwareTemplateProps = {
+  navbar?: NavbarData;
+  hero: HeroData;
+  financials: SoftwareFinancials;
+  baseSections?: SectionData[];
+  extraSections?: SectionData[];
+  figuresDate?: string;
+  footer?: FooterData;
+  children?: ReactNode;
+};
+
+export function SoftwareTemplate({
+  navbar,
+  hero,
+  financials,
+  baseSections = [],
+  extraSections = [],
+  figuresDate,
+  footer,
+  children,
+}: SoftwareTemplateProps) {
+  const years = financials.revenue.map(r => r.year);
+  const revenues = financials.revenue.map(r => r.revenue);
+  const opIncomes = financials.revenue.map(r => r.operatingIncome);
+  const opMargins = revenues.map((rev, i) => (opIncomes[i] / rev) * 100);
+
+  const softwareSections: SectionData[] = [
+    {
+      rank: 100,
+      id: 'thesis',
+      title: 'Investment Thesis',
+      kicker:
+        'The case for owning this business, drawn from the filed record rather than the stock price.',
+      kind: 'prose',
+      paragraphs: financials.thesis,
+    },
+    {
+      rank: 200,
+      id: 'key-metrics',
+      title: 'Key Metrics',
+      kicker:
+        'Snapshot of fundamental metrics for the most recent fiscal year.',
+      kind: 'metrics',
+      metrics: financials.metrics.map(m => ({
+        label: m.label,
+        value: m.value,
+        note:
+          m.changePct != null
+            ? (m.changePct >= 0 ? '↑' : '↓') +
+              ' ' +
+              Math.abs(m.changePct).toFixed(1) +
+              '%'
+            : undefined,
+      })),
+    },
+    {
+      rank: 300,
+      id: 'revenue',
+      title: 'Revenue & Profitability',
+      kicker:
+        'Total revenue, operating income, and margin trend over the trailing fiscal years.',
+      origin: 'Software',
+      kind: 'trends',
+      panels: [
+        {
+          label: 'Revenue ($B)',
+          years,
+          values: revenues,
+          format: { prefix: '$', suffix: 'B', decimals: 0 },
+        },
+        {
+          label: 'Operating Income ($B)',
+          years,
+          values: opIncomes,
+          format: { prefix: '$', suffix: 'B', decimals: 0 },
+        },
+        {
+          label: 'Operating Margin',
+          years,
+          values: opMargins,
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+        },
+      ],
+      chartNote: 'Source: 10-K filings.',
+    },
+  ];
+
+  return (
+    <BaseTemplate
+      navbar={navbar}
+      hero={hero}
+      sections={[...softwareSections, ...baseSections]}
+      childSections={extraSections}
+      figuresDate={figuresDate}
+      footer={footer}
+    >
+      {children}
+    </BaseTemplate>
+  );
+}
