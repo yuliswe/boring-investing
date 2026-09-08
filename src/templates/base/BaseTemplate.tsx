@@ -69,7 +69,7 @@ function Nav({ navbar }: { navbar: NavbarData }) {
       <div className='flex flex-1 min-w-0 gap-4 overflow-x-auto'>
         {navbar.links.map(l => (
           <a
-            key={l.href}
+            key={l.label}
             href={l.href}
             className={`flex-none text-3.25 no-underline ${
               l.active
