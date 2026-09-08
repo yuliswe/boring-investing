@@ -27,52 +27,21 @@ const hero: HeroData = {
     'Cloud, productivity, and platform franchises with durable recurring revenue. Microsoft derives the majority of its revenue from recurring commercial subscriptions and cloud services across three segments.',
 };
 
-const years = financials.revenue.map(r => r.year);
+const fcfYears = financials.revenue.map(r => r.year);
 const fcfValues = [56.1, 65.1, 59.5, 74.1, 80.9];
 
 const msftSections: SectionData[] = [
   {
     rank: 400,
-    id: 'fcf',
-    title: 'Free Cash Flow',
-    kicker: 'Annual free cash flow in billions, with a break-even reference.',
-    kind: 'chart',
-    bars: years.map((y, i) => ({ label: y, value: fcfValues[i] })),
-    format: { prefix: '$', suffix: 'B', decimals: 0 },
-    refValue: 0,
-    refLabel: 'Break-even',
-    chartNote: 'FCF = operating cash flow − capital expenditures.',
-  },
-  {
-    rank: 450,
-    id: 'capital',
-    title: 'Capital Allocation',
+    id: 'revenue-breakdown',
+    title: 'Revenue breakdown',
     kicker:
-      'How cash is deployed across maintenance capex, growth investment, and shareholder returns.',
-    kind: 'stack',
-    bars: [
-      { label: 'FY21', parts: [9.2, 15.3, 38.4] },
-      { label: 'FY22', parts: [10.1, 18.7, 40.2] },
-      { label: 'FY23', parts: [11.8, 20.9, 35.6] },
-      { label: 'FY24', parts: [13.4, 25.7, 38.1] },
-      { label: 'FY25', parts: [15.2, 30.4, 39.6] },
-    ],
-    format: { decimals: 1 },
-    chartNote:
-      'Maintenance = depreciation-level capex. Growth = capex above maintenance + acquisitions. Returned = dividends + buybacks.',
-  },
-  {
-    rank: 500,
-    id: 'segments',
-    title: 'Segment Breakdown',
-    kicker:
-      'Revenue by operating segment indexed to FY21, so relative growth is visible regardless of absolute scale.',
-    origin: 'Software',
+      'Each segment’s growth from FY22 on one chart, indexed to 100, so scale does not hide the trend.',
     kind: 'multi',
     years: segments.segments.map(s => s.year),
     series: [
       {
-        label: 'Total',
+        label: 'Total revenue',
         values: segments.segments.map(
           s => s.productivity + s.intelligentCloud + s.morePersonalComputing
         ),
@@ -96,13 +65,43 @@ const msftSections: SectionData[] = [
       },
     ],
     chartNote:
-      'Lines are indexed to the first year shown = 100; the dashed rule is the base. Share of total shown beneath each value.',
+      'Lines are indexed to FY22 = 100; the dashed rule is the base. Year-on-year change per segment is shown beneath.',
+  },
+  {
+    rank: 500,
+    id: 'fcf',
+    title: 'Free Cash Flow',
+    kicker: 'Annual free cash flow in billions, with a break-even reference.',
+    kind: 'chart',
+    bars: fcfYears.map((y, i) => ({ label: y, value: fcfValues[i] })),
+    format: { prefix: '$', suffix: 'B', decimals: 0 },
+    refValue: 0,
+    refLabel: 'Break-even',
+    chartNote: 'FCF = operating cash flow − capital expenditures.',
+  },
+  {
+    rank: 550,
+    id: 'capital',
+    title: 'Capital Allocation',
+    kicker:
+      'How cash is deployed across maintenance capex, growth investment, and shareholder returns.',
+    kind: 'stack',
+    bars: [
+      { label: 'FY21', parts: [9.2, 15.3, 38.4] },
+      { label: 'FY22', parts: [10.1, 18.7, 40.2] },
+      { label: 'FY23', parts: [11.8, 20.9, 35.6] },
+      { label: 'FY24', parts: [13.4, 25.7, 38.1] },
+      { label: 'FY25', parts: [15.2, 30.4, 39.6] },
+    ],
+    format: { decimals: 1 },
+    chartNote:
+      'Maintenance = depreciation-level capex. Growth = capex above maintenance + acquisitions. Returned = dividends + buybacks.',
   },
   {
     rank: 600,
     id: 'filings',
     title: 'Filings',
-    kicker: 'Key regulatory filings in the last twelve months.',
+    kicker: 'Everything filed in the last twelve months, newest first.',
     kind: 'rows',
     entries: [
       {
