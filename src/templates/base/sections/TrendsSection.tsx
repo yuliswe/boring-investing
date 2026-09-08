@@ -117,22 +117,24 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
       </div>
 
       <div className='relative h-16 py-1 px-1.25 overflow-hidden'>
-        <svg
-          viewBox='0 0 100 100'
-          preserveAspectRatio='none'
-          aria-hidden='true'
-          className='absolute inset-y-0 left-1.25 right-1.25 w-auto h-full pointer-events-none'
-        >
-          <polyline
-            points={panel.points}
-            fill='none'
-            stroke={panel.lineColor}
-            strokeWidth='1.5'
-            strokeLinejoin='round'
-            strokeLinecap='round'
-            vectorEffect='non-scaling-stroke'
-          />
-        </svg>
+        <div className='absolute inset-y-0 left-1.25 right-1.25 pointer-events-none'>
+          <svg
+            viewBox='0 0 100 100'
+            preserveAspectRatio='none'
+            aria-hidden='true'
+            className='block w-full h-full overflow-visible'
+          >
+            <polyline
+              points={panel.points}
+              fill='none'
+              stroke={panel.lineColor}
+              strokeWidth='1.5'
+              strokeLinejoin='round'
+              strokeLinecap='round'
+              vectorEffect='non-scaling-stroke'
+            />
+          </svg>
+        </div>
         <div className='absolute inset-y-0 left-1.25 right-1.25'>
           {panel.hasMedian && (
             <div
