@@ -10,7 +10,15 @@ import type {
 } from '@/templates/base';
 
 export type SoftwareFinancials = {
-  metrics: { label: string; value: string; changePct?: number }[];
+  metrics?: { label: string; value: string; changePct?: number }[];
+  keyMetrics?: {
+    label: string;
+    values: (number | null)[];
+    format?: { prefix?: string; suffix?: string; decimals?: number };
+    invertColor?: boolean;
+    deltaMode?: 'pct' | 'add';
+    median10y?: number;
+  }[];
   revenue: { year: string; revenue: number; operatingIncome: number }[];
   expenses?: {
     year: string;
@@ -57,19 +65,45 @@ export function SoftwareTemplate({
       kind: 'prose',
       paragraphs: financials.thesis,
     },
-    {
-      rank: 200,
-      id: 'key-metrics',
-      title: 'Key Metrics',
-      kicker:
-        'Snapshot of fundamental metrics for the most recent fiscal year.',
-      kind: 'metrics',
-      metrics: financials.metrics.map(m => ({
-        label: m.label,
-        value: m.value,
-        changePct: m.changePct,
-      })),
-    },
+    ...(financials.keyMetrics
+      ? [
+          {
+            rank: 200,
+            id: 'key-metrics',
+            title: 'Key Metrics',
+            kicker:
+              'Valuation, returns and leverage with five-year trend and 10Y median.',
+            kind: 'trends' as const,
+            panels: financials.keyMetrics.map(m => ({
+              label: m.label,
+              years,
+              values: m.values,
+              format: m.format,
+              invertColor: m.invertColor,
+              deltaMode: m.deltaMode,
+              median10y: m.median10y,
+            })),
+            chartNote:
+              'Source: filed annual statements. Percentage deltas are additive (pp).',
+          },
+        ]
+      : financials.metrics
+        ? [
+            {
+              rank: 200,
+              id: 'key-metrics',
+              title: 'Key Metrics',
+              kicker:
+                'Snapshot of fundamental metrics for the most recent fiscal year.',
+              kind: 'metrics' as const,
+              metrics: financials.metrics.map(m => ({
+                label: m.label,
+                value: m.value,
+                changePct: m.changePct,
+              })),
+            },
+          ]
+        : []),
     {
       rank: 300,
       id: 'revenue',

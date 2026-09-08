@@ -5,6 +5,49 @@
     { "label": "Operating margin", "value": "46%", "changePct": 1.4 },
     { "label": "Free cash flow", "value": "$81B", "changePct": 9.3 }
   ],
+  "keyMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [36.2, 28.7, 32.1, 36.2, 34.8],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 30.5
+    },
+    {
+      "label": "Diluted EPS",
+      "values": [8.05, 9.21, 9.68, 11.86, 13.15],
+      "format": { "prefix": "$", "decimals": 2 },
+      "median10y": 8.0
+    },
+    {
+      "label": "ROE",
+      "values": [47.1, 47.2, 38.6, 39.2, 40.8],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 42.0
+    },
+    {
+      "label": "ROIC",
+      "values": [29.3, 30.1, 27.6, 31.4, 33.0],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 28.0
+    },
+    {
+      "label": "D/E ratio",
+      "values": [0.5, 0.39, 0.32, 0.29, 0.26],
+      "format": { "decimals": 2 },
+      "invertColor": true,
+      "median10y": 0.45
+    },
+    {
+      "label": "Net margin",
+      "values": [36.4, 36.7, 34.1, 35.6, 36.8],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 34.7
+    }
+  ],
   "revenue": [
     { "year": "FY21", "revenue": 168, "operatingIncome": 70 },
     { "year": "FY22", "revenue": 198, "operatingIncome": 83 },
