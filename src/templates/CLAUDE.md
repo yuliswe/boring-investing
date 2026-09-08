@@ -24,8 +24,15 @@ colors) at render time from the raw values. Data types are in `base/types.ts`
 and follow the `*Data` naming convention.
 
 `SectionData` is a discriminated union on `kind`: prose, trends, metrics, chart,
-stack, table, rows, peers. Each section carries a `rank` that controls its
-display order.
+stack, multi, table, rows, peers. Each section carries a `rank` that controls
+its display order.
+
+The `multi` kind renders several series on one chart. In `index` mode (the
+default) each series is rebased to its first value = 100 so the lines show
+relative growth regardless of absolute scale; in `share` mode values plot
+as-is (typically percentages) with pp deltas. A series marked `total: true`
+draws in the text color and serves as the denominator for share-of-total
+readouts beneath each non-total line.
 
 ## Adding a child template
 
