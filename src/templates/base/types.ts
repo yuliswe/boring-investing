@@ -29,6 +29,7 @@ export type TrendPanelData = {
 export type MetricRowData = {
   label: string;
   value: string;
+  changePct?: number;
   note?: string;
 };
 
@@ -141,8 +142,7 @@ export type HeroData = {
   sector: string;
   tags?: string[];
   price: string;
-  change: string;
-  changeDir: 'up' | 'down' | 'flat';
+  changePct: number;
   priceNote?: string;
   summary: string;
 };

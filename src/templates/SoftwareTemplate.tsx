@@ -61,13 +61,7 @@ export function SoftwareTemplate({
       metrics: financials.metrics.map(m => ({
         label: m.label,
         value: m.value,
-        note:
-          m.changePct != null
-            ? (m.changePct >= 0 ? '↑' : '↓') +
-              ' ' +
-              Math.abs(m.changePct).toFixed(1) +
-              '%'
-            : undefined,
+        changePct: m.changePct,
       })),
     },
     {

@@ -21,8 +21,7 @@ const hero: HeroData = {
   sector: 'Software',
   tags: ['Large Cap', 'Dividend'],
   price: '$442.57',
-  change: '1.24%',
-  changeDir: 'up',
+  changePct: 1.24,
   priceNote: 'close, 30 June',
   summary:
     'Cloud, productivity, and platform franchises with durable recurring revenue. Microsoft derives the majority of its revenue from recurring commercial subscriptions and cloud services across three segments.',

@@ -99,8 +99,7 @@ function Nav({ navbar }: { navbar: NavbarData }) {
 }
 
 function HeroSection({ hero }: { hero: HeroData }) {
-  const arrow =
-    hero.changeDir === 'up' ? '↑' : hero.changeDir === 'down' ? '↓' : '—';
+  const arrow = hero.changePct > 0 ? '↑' : hero.changePct < 0 ? '↓' : '—';
 
   return (
     <section className='py-7 pb-5.5'>
@@ -120,8 +119,7 @@ function HeroSection({ hero }: { hero: HeroData }) {
             {hero.price}
           </span>
           <span className='text-sm ds-tnum'>
-            {arrow} {hero.change}
-            {' †'}
+            {arrow} {Math.abs(hero.changePct).toFixed(2)}%{' †'}
           </span>
           {hero.priceNote && (
             <span className='text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>

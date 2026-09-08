@@ -1,4 +1,5 @@
 import type { MetricRowData } from '../types';
+import { COLOR_GOOD, COLOR_BAD } from '../compute';
 
 export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
   return (
@@ -11,6 +12,16 @@ export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
           <span className='flex-1 text-3.25 text-[color-mix(in_srgb,var(--color-text)_65%,transparent)]'>
             {m.label}
           </span>
+          {m.changePct != null && (
+            <span
+              className='text-2.75'
+              style={{
+                color: m.changePct >= 0 ? COLOR_GOOD : COLOR_BAD,
+              }}
+            >
+              {m.changePct >= 0 ? '↑' : '↓'} {Math.abs(m.changePct).toFixed(1)}%
+            </span>
+          )}
           {m.note && (
             <span className='text-2.75 text-[color-mix(in_srgb,var(--color-text)_42%,transparent)]'>
               {m.note}

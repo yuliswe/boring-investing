@@ -24,8 +24,7 @@ const hero: HeroData = {
   sector: 'Technology',
   tags: ['Large Cap', 'Dividend'],
   price: '$442.57',
-  change: '1.24%',
-  changeDir: 'up',
+  changePct: 1.24,
   priceNote: 'as of close Jun 30 2025',
   summary:
     "Microsoft is the world's largest software company by revenue, operating across three segments: Productivity & Business Processes, Intelligent Cloud, and More Personal Computing. The company derives the majority of its revenue from recurring commercial subscriptions and cloud services.",
