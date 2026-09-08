@@ -12,6 +12,38 @@
     { "year": "FY24", "revenue": 245, "operatingIncome": 109 },
     { "year": "FY25", "revenue": 277, "operatingIncome": 127 }
   ],
+  "expenses": [
+    {
+      "year": "FY21",
+      "costOfRevenue": 52,
+      "researchAndDev": 21,
+      "salesAndMarketing": 20
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 63,
+      "researchAndDev": 25,
+      "salesAndMarketing": 22
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 66,
+      "researchAndDev": 27,
+      "salesAndMarketing": 23
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 74,
+      "researchAndDev": 30,
+      "salesAndMarketing": 25
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 82,
+      "researchAndDev": 33,
+      "salesAndMarketing": 27
+    }
+  ],
   "thesis": [
     "Azure keeps compounding as enterprises migrate workloads to the cloud, and it now anchors the fastest-growing segment.",
     "Microsoft 365 and the Copilot add-ons turn a large installed base into expanding per-seat revenue.",
