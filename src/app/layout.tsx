@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
-import '@/design-system/classical.css';
+import '@/design-system/styles.css';
+import '@/design-system/components.css';
 
 export const metadata: Metadata = {
   title: 'Boring Investing',

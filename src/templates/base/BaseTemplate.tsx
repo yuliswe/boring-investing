@@ -249,7 +249,7 @@ export function BaseTemplate({
   );
 
   return (
-    <div className='ds min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]'>
+    <div className='min-h-screen'>
       {navbar && (
         <div className='sticky top-0 z-20'>
           <Nav navbar={navbar} />

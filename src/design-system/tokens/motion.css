@@ -1,0 +1,58 @@
+/* Motion — every duration is a base multiplied by --motion, so one token
+   collapses the whole system for reduced-motion users. */
+
+:root {
+  --motion: 1; /* @kind other */
+  --duration-fade: calc(0.18s * var(--motion));
+  --duration-rise: calc(0.22s * var(--motion));
+  --duration-sheet: calc(0.24s * var(--motion));
+  --duration-shimmer: calc(1.5s * var(--motion));
+  --easing: ease; /* @kind other */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion: 0.001; /* @kind other */
+  }
+}
+
+@keyframes ledger-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ledger-rise {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes ledger-sheet {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes ledger-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes ledger-shimmer {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}

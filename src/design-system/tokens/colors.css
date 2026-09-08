@@ -1,0 +1,81 @@
+/* Colour — two themes on one perceptual ramp.
+   Light is the default; dark is scoped to [data-theme="dark"] on <html>.
+   Steps 100-300 are tinted fills and subtle borders, 500 is the role's
+   base, 700-900 are text on those fills and pressed states. In dark the
+   ramps invert: 100 becomes the dark tint, 800 the readable light step.
+   --color-neutral-900 stays dark in BOTH themes: it is the modal scrim. */
+
+:root {
+  --color-bg: #f3f2f2;
+  --color-surface: #eae9e9;
+  --color-text: #201f1d;
+  --color-accent: #b68235;
+  --color-divider: color-mix(in srgb, #201f1d 16%, transparent);
+
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  --color-accent-100: #fff3e4;
+  --color-accent-200: #ffe3bf;
+  --color-accent-300: #facb8d;
+  --color-accent-400: #e1ad66;
+  --color-accent-500: #c28d41;
+  --color-accent-600: #a06f24;
+  --color-accent-700: #7d5411;
+  --color-accent-800: #5a3b0a;
+  --color-accent-900: #3a270d;
+
+  /* Semantic aliases — prefer these in component code. */
+  --text-primary: var(--color-text);
+  --text-secondary: color-mix(in srgb, var(--color-text) 65%, transparent);
+  --text-muted: color-mix(in srgb, var(--color-text) 45%, transparent);
+  --text-accent: var(--color-accent-700);
+  --surface-page: var(--color-bg);
+  --surface-raised: var(--color-surface);
+  --surface-tint: color-mix(in srgb, var(--color-accent) 7%, transparent);
+  --border-hairline: var(--color-divider);
+  --border-strong: var(--color-accent);
+  --state-hover: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  --state-pressed: color-mix(in srgb, var(--color-accent) 22%, transparent);
+  --state-row-hover: color-mix(in srgb, var(--color-text) 4%, transparent);
+  --focus-ring: var(--color-accent);
+  --scrim: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+  --disabled-opacity: 0.45; /* @kind other */
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #1a1917;
+  --color-surface: #232120;
+  --color-text: #ece7e1;
+  --color-accent: #d9a862;
+  --color-divider: color-mix(in srgb, #ece7e1 20%, transparent);
+
+  --color-neutral-100: #211f1e;
+  --color-neutral-200: #2a2827;
+  --color-neutral-300: #363331;
+  --color-neutral-400: #57534f;
+  --color-neutral-500: #6c6763;
+  --color-neutral-600: #8f8985;
+  --color-neutral-700: #b3aca6;
+  --color-neutral-800: #d3ccc5;
+  --color-neutral-900: #0d0c0b;
+
+  --color-accent-100: #2a2017;
+  --color-accent-200: #3a2c1c;
+  --color-accent-300: #56401f;
+  --color-accent-400: #7d5f2e;
+  --color-accent-500: #a37c3e;
+  --color-accent-600: #c79a54;
+  --color-accent-700: #e0b573;
+  --color-accent-800: #f0cd97;
+  --color-accent-900: #f8e2c0;
+}
