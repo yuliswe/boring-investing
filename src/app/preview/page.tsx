@@ -30,7 +30,7 @@ const hero: HeroData = {
     "Microsoft is the world's largest software company by revenue, operating across three segments: Productivity & Business Processes, Intelligent Cloud, and More Personal Computing. The company derives the majority of its revenue from recurring commercial subscriptions and cloud services.",
 };
 
-const years = ['FY20', 'FY21', 'FY22', 'FY23', 'FY24'];
+const years = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
 
 const baseSections: SectionData[] = [
   {
@@ -57,7 +57,7 @@ const baseSections: SectionData[] = [
       {
         label: 'P/E ratio',
         years,
-        values: [34.5, 36.2, 28.7, 32.1, 36.2],
+        values: [36.2, 28.7, 32.1, 36.2, 34.8],
         format: { decimals: 1 },
         median10y: 30.5,
         invertColor: true,
@@ -65,7 +65,7 @@ const baseSections: SectionData[] = [
       {
         label: 'P/FCF ratio',
         years,
-        values: [30.8, 28.4, 26.1, 33.6, 31.2],
+        values: [28.4, 26.1, 33.6, 31.2, 32.5],
         format: { decimals: 1 },
         median10y: 28.0,
         invertColor: true,
@@ -73,7 +73,7 @@ const baseSections: SectionData[] = [
       {
         label: 'EV/EBITDA',
         years,
-        values: [24.1, 25.8, 22.0, 24.5, 27.8],
+        values: [25.8, 22.0, 24.5, 27.8, 26.4],
         format: { decimals: 1 },
         median10y: 24.0,
         invertColor: true,
@@ -93,14 +93,14 @@ const baseSections: SectionData[] = [
       {
         label: 'Diluted EPS',
         years,
-        values: [5.76, 8.05, 9.21, 9.68, 11.86],
+        values: [8.05, 9.21, 9.68, 11.86, 13.15],
         format: { prefix: '$', decimals: 2 },
         median10y: 8.0,
       },
       {
         label: 'ROE %',
         years,
-        values: [40.1, 47.1, 47.2, 38.6, 39.2],
+        values: [47.1, 47.2, 38.6, 39.2, 40.8],
         format: { suffix: '%', decimals: 1 },
         median10y: 42.0,
         deltaMode: 'add',
@@ -108,7 +108,7 @@ const baseSections: SectionData[] = [
       {
         label: 'ROIC %',
         years,
-        values: [24.8, 29.3, 30.1, 27.6, 31.4],
+        values: [29.3, 30.1, 27.6, 31.4, 33.0],
         format: { suffix: '%', decimals: 1 },
         median10y: 28.0,
         deltaMode: 'add',
@@ -116,7 +116,7 @@ const baseSections: SectionData[] = [
       {
         label: 'D/E ratio',
         years,
-        values: [0.61, 0.5, 0.39, 0.32, 0.29],
+        values: [0.5, 0.39, 0.32, 0.29, 0.26],
         format: { decimals: 2 },
         median10y: 0.45,
         invertColor: true,
@@ -124,7 +124,7 @@ const baseSections: SectionData[] = [
       {
         label: 'Net margin %',
         years,
-        values: [30.9, 36.4, 36.7, 34.1, 35.6],
+        values: [36.4, 36.7, 34.1, 35.6, 36.8],
         format: { suffix: '%', decimals: 1 },
         median10y: 34.7,
         deltaMode: 'add',
@@ -132,7 +132,7 @@ const baseSections: SectionData[] = [
       {
         label: 'FCF margin %',
         years,
-        values: [33.2, 35.8, 30.2, 31.9, 29.4],
+        values: [35.8, 30.2, 31.9, 29.4, 29.2],
         format: { suffix: '%', decimals: 1 },
         median10y: 32.1,
         deltaMode: 'add',
@@ -190,14 +190,14 @@ const childSections: SectionData[] = [
       {
         label: 'Revenue ($B)',
         years,
-        values: [143.0, 168.1, 198.3, 211.9, 245.1],
+        values: [168.1, 198.3, 211.9, 245.1, 277.0],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
-        median10y: 190.0,
+        median10y: 210.0,
       },
       {
         label: 'Revenue Growth',
         years,
-        values: [13.6, 17.5, 17.9, 6.9, 15.7],
+        values: [17.5, 17.9, 6.9, 15.7, 13.1],
         format: { suffix: '%', decimals: 1 },
         median10y: 14.3,
         deltaMode: 'add',
@@ -205,7 +205,7 @@ const childSections: SectionData[] = [
       {
         label: 'Cloud Revenue ($B)',
         years,
-        values: [59.5, 77.4, 91.2, 111.6, 135.3],
+        values: [77.4, 91.2, 111.6, 135.3, 158.0],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
     ],
@@ -219,11 +219,11 @@ const childSections: SectionData[] = [
     origin: 'Software',
     kind: 'metrics',
     metrics: [
-      { label: 'Market Cap', value: '$3.29T' },
-      { label: 'Dividend Yield', value: '0.68%' },
-      { label: 'Payout Ratio', value: '24.7%' },
-      { label: 'Interest Coverage', value: '46.7x' },
-      { label: 'Recurring Revenue %', value: '~78%', note: 'estimated' },
+      { label: 'Market Cap', value: '$3.42T' },
+      { label: 'Dividend Yield', value: '0.72%' },
+      { label: 'Payout Ratio', value: '23.8%' },
+      { label: 'Interest Coverage', value: '49.2x' },
+      { label: 'Recurring Revenue %', value: '~80%', note: 'estimated' },
     ],
   },
   {
@@ -235,7 +235,7 @@ const childSections: SectionData[] = [
     kind: 'chart',
     bars: years.map((y, i) => ({
       label: y,
-      value: [45.2, 56.1, 65.1, 59.5, 74.1][i],
+      value: [56.1, 65.1, 59.5, 74.1, 80.9][i],
     })),
     format: { prefix: '$', suffix: 'B', decimals: 0 },
     refValue: 0,
@@ -251,11 +251,11 @@ const childSections: SectionData[] = [
     origin: 'Software',
     kind: 'stack',
     bars: [
-      { label: 'FY20', parts: [8.5, 12.1, 33.8] },
       { label: 'FY21', parts: [9.2, 15.3, 38.4] },
       { label: 'FY22', parts: [10.1, 18.7, 40.2] },
       { label: 'FY23', parts: [11.8, 20.9, 35.6] },
       { label: 'FY24', parts: [13.4, 25.7, 38.1] },
+      { label: 'FY25', parts: [15.2, 30.4, 39.6] },
     ],
     format: { decimals: 1 },
     chartNote:
@@ -265,26 +265,36 @@ const childSections: SectionData[] = [
     rank: 500,
     id: 'segments',
     title: 'Segment Breakdown',
-    kicker: 'Revenue by operating segment for the most recent fiscal year.',
+    kicker:
+      'Revenue by operating segment indexed to FY22, so relative growth is visible regardless of absolute scale.',
     origin: 'Software',
-    kind: 'table',
-    firstColumn: 'Segment',
-    columns: ['Revenue', '% of Total', 'YoY Growth'],
-    rows: [
+    kind: 'multi',
+    years: ['FY22', 'FY23', 'FY24', 'FY25'],
+    series: [
+      {
+        label: 'Total',
+        values: [198, 212, 245, 277],
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
+        total: true,
+      },
       {
         label: 'Intelligent Cloud',
-        values: ['$96.8B', '39.5%', '+19.9%'],
+        values: [75, 88, 105, 124],
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
-        label: 'Productivity & Business',
-        values: ['$80.8B', '33.0%', '+12.6%'],
+        label: 'Productivity',
+        values: [63, 69, 78, 86],
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
-        label: 'More Personal Computing',
-        values: ['$67.5B', '27.5%', '+14.0%'],
+        label: 'Personal Computing',
+        values: [60, 55, 62, 67],
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
     ],
-    tableNote: 'Source: FY24 10-K filing.',
+    chartNote:
+      'Lines are indexed to FY22 = 100; the dashed rule is the base. Share of total shown beneath each value.',
   },
   {
     rank: 550,

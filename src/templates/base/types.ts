@@ -96,6 +96,7 @@ type ChartSectionData = {
 type StackSectionData = {
   kind: 'stack';
   bars: StackBarData[];
+  legend?: [string, string, string];
   format?: ValueFormatData;
   chartNote?: string;
 };
@@ -111,6 +112,24 @@ type TableSectionData = {
 type RowsSectionData = {
   kind: 'rows';
   entries: FilingEntryData[];
+};
+
+export type MultiSeriesData = {
+  label: string;
+  values: number[];
+  format?: ValueFormatData;
+  total?: boolean;
+  invert?: boolean;
+};
+
+type MultiSectionData = {
+  kind: 'multi';
+  series: MultiSeriesData[];
+  years: string[];
+  mode?: 'index' | 'share';
+  invert?: boolean;
+  baseLabel?: string;
+  chartNote?: string;
 };
 
 type PeersSectionData = {
@@ -131,6 +150,7 @@ export type SectionData = {
   | MetricsSectionData
   | ChartSectionData
   | StackSectionData
+  | MultiSectionData
   | TableSectionData
   | RowsSectionData
   | PeersSectionData

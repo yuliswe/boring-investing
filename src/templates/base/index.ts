@@ -11,6 +11,7 @@ export type {
   MetricRowData,
   ChartBarData,
   StackBarData,
+  MultiSeriesData,
   PeerPanelData,
   PeerRowData,
   FilingEntryData,

@@ -26,6 +26,18 @@ export const PEER_COLORS = [
 export const COLOR_GOOD = 'oklch(0.62 0.19 145)';
 export const COLOR_BAD = 'oklch(0.58 0.19 25)';
 
+export const CHART_COLORS = [
+  'oklch(0.62 0.20 250)',
+  'oklch(0.72 0.18 55)',
+  'oklch(0.60 0.17 145)',
+  'oklch(0.62 0.22 350)',
+  'oklch(0.80 0.16 100)',
+  'oklch(0.66 0.13 190)',
+  'oklch(0.58 0.20 300)',
+  'oklch(0.60 0.19 25)',
+  'oklch(0.75 0.10 160)',
+];
+
 export function pct(v: number, lo: number, hi: number): number {
   return Math.max(0, Math.min(100, ((v - lo) / (hi - lo)) * 100));
 }

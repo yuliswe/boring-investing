@@ -20,15 +20,15 @@ const hero: HeroData = {
   name: 'Microsoft Corporation',
   sector: 'Software',
   tags: ['Large Cap', 'Dividend'],
-  price: '$442.57',
-  changePct: 1.24,
+  price: '$468.80',
+  changePct: 0.87,
   priceNote: 'close, 30 June',
   summary:
     'Cloud, productivity, and platform franchises with durable recurring revenue. Microsoft derives the majority of its revenue from recurring commercial subscriptions and cloud services across three segments.',
 };
 
 const years = financials.revenue.map(r => r.year);
-const fcfValues = [45.2, 56.1, 65.1, 59.5, 74.1];
+const fcfValues = [56.1, 65.1, 59.5, 74.1, 80.9];
 
 const msftSections: SectionData[] = [
   {
@@ -51,11 +51,11 @@ const msftSections: SectionData[] = [
       'How cash is deployed across maintenance capex, growth investment, and shareholder returns.',
     kind: 'stack',
     bars: [
-      { label: 'FY20', parts: [8.5, 12.1, 33.8] },
       { label: 'FY21', parts: [9.2, 15.3, 38.4] },
       { label: 'FY22', parts: [10.1, 18.7, 40.2] },
       { label: 'FY23', parts: [11.8, 20.9, 35.6] },
       { label: 'FY24', parts: [13.4, 25.7, 38.1] },
+      { label: 'FY25', parts: [15.2, 30.4, 39.6] },
     ],
     format: { decimals: 1 },
     chartNote:
@@ -66,25 +66,37 @@ const msftSections: SectionData[] = [
     id: 'segments',
     title: 'Segment Breakdown',
     kicker:
-      'Revenue by operating segment over the last three fiscal years, in billions.',
-    kind: 'table',
-    firstColumn: 'Segment',
-    columns: segments.segments.map(s => s.year),
-    rows: [
+      'Revenue by operating segment indexed to FY21, so relative growth is visible regardless of absolute scale.',
+    origin: 'Software',
+    kind: 'multi',
+    years: segments.segments.map(s => s.year),
+    series: [
       {
-        label: 'Productivity & Business',
-        values: segments.segments.map(s => '$' + s.productivity + 'B'),
+        label: 'Total',
+        values: segments.segments.map(
+          s => s.productivity + s.intelligentCloud + s.morePersonalComputing
+        ),
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
+        total: true,
       },
       {
         label: 'Intelligent Cloud',
-        values: segments.segments.map(s => '$' + s.intelligentCloud + 'B'),
+        values: segments.segments.map(s => s.intelligentCloud),
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
-        label: 'More Personal Computing',
-        values: segments.segments.map(s => '$' + s.morePersonalComputing + 'B'),
+        label: 'Productivity',
+        values: segments.segments.map(s => s.productivity),
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
+      },
+      {
+        label: 'Personal Computing',
+        values: segments.segments.map(s => s.morePersonalComputing),
+        format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
     ],
-    tableNote: 'Source: 10-K filings.',
+    chartNote:
+      'Lines are indexed to the first year shown = 100; the dashed rule is the base. Share of total shown beneath each value.',
   },
   {
     rank: 600,
@@ -95,23 +107,23 @@ const msftSections: SectionData[] = [
     entries: [
       {
         kind: '10-K',
-        note: 'Annual report for fiscal year 2024',
-        date: 'Jul 30 2024',
+        note: 'Annual report for fiscal year 2025',
+        date: 'Jul 29 2025',
       },
       {
         kind: '10-Q',
-        note: 'Quarterly report Q1 FY25',
-        date: 'Oct 23 2024',
+        note: 'Quarterly report Q1 FY26',
+        date: 'Oct 28 2025',
       },
       {
         kind: '10-Q',
-        note: 'Quarterly report Q2 FY25',
-        date: 'Jan 28 2025',
+        note: 'Quarterly report Q2 FY26',
+        date: 'Jan 27 2026',
       },
       {
         kind: '8-K',
-        note: 'Q3 FY25 earnings release',
-        date: 'Apr 30 2025',
+        note: 'Q3 FY26 earnings release',
+        date: 'Apr 29 2026',
       },
     ],
   },

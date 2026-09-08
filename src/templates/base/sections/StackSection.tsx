@@ -1,12 +1,20 @@
 import type { StackBarData, ValueFormatData } from '../types';
 import { pct, formatValue } from '../compute';
 
+const DEFAULT_LEGEND: [string, string, string] = [
+  'Maintenance',
+  'Growth',
+  'Returned to owners',
+];
+
 export function StackSection({
   bars,
+  legend = DEFAULT_LEGEND,
   format,
   chartNote,
 }: {
   bars: StackBarData[];
+  legend?: [string, string, string];
   format?: ValueFormatData;
   chartNote?: string;
 }) {
@@ -63,15 +71,15 @@ export function StackSection({
       <div className='flex flex-wrap gap-2 gap-x-5 pt-3.5'>
         <LegendItem
           color='color-mix(in srgb, var(--color-accent) 62%, transparent)'
-          label='Maintenance'
+          label={legend[0]}
         />
         <LegendItem
           color='color-mix(in srgb, var(--color-accent) 34%, transparent)'
-          label='Growth'
+          label={legend[1]}
         />
         <LegendItem
           color='color-mix(in srgb, var(--color-accent) 12%, transparent)'
-          label='Returned to owners'
+          label={legend[2]}
         />
       </div>
       {chartNote && (

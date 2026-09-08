@@ -70,10 +70,7 @@ function computePanel(
       delta,
       deltaColor,
       h: h.toFixed(1) + '%',
-      x:
-        values.length > 1
-          ? ((i / (values.length - 1)) * 100).toFixed(1) + '%'
-          : '50%',
+      x: (((i + 0.5) / values.length) * 100).toFixed(1) + '%',
     };
   });
 
@@ -91,7 +88,9 @@ function computePanel(
     points: hs
       .map(
         (h, i) =>
-          ((i / (hs.length - 1)) * 100).toFixed(2) + ',' + (100 - h).toFixed(2)
+          (((i + 0.5) / hs.length) * 100).toFixed(2) +
+          ',' +
+          (100 - h).toFixed(2)
       )
       .join(' '),
     hasMedian,

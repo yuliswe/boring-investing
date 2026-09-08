@@ -9,6 +9,7 @@ import {
   MetricsSection,
   ChartSection,
   StackSection,
+  MultiSection,
   TableSection,
   RowsSection,
   PeersSection,
@@ -38,7 +39,19 @@ function SectionContent({ section }: { section: SectionData }) {
       return (
         <StackSection
           bars={section.bars}
+          legend={section.legend}
           format={section.format}
+          chartNote={section.chartNote}
+        />
+      );
+    case 'multi':
+      return (
+        <MultiSection
+          series={section.series}
+          years={section.years}
+          mode={section.mode}
+          invert={section.invert}
+          baseLabel={section.baseLabel}
           chartNote={section.chartNote}
         />
       );
