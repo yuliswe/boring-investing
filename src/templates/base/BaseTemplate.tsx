@@ -292,6 +292,7 @@ export function BaseTemplate({
               links: [
                 { label: 'Method', href: '#method' },
                 { label: 'Sources', href: '#' },
+                { label: 'Corrections', href: '#' },
               ],
               externalLinks: [
                 { label: 'SEC EDGAR', href: '#' },

@@ -142,6 +142,43 @@ const baseSections: SectionData[] = [
       'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
   },
   {
+    rank: 475,
+    id: 'expenses',
+    title: 'Expenses Breakdown',
+    kicker:
+      'Each line of the income statement as a share of revenue. A falling line means the cost is being outgrown.',
+    kind: 'multi',
+    years,
+    mode: 'share',
+    invert: true,
+    baseLabel: '0%',
+    series: [
+      {
+        label: 'Total OpEx',
+        values: [58.3, 58.1, 58.0, 55.5, 54.2],
+        format: { suffix: '%', decimals: 1 },
+        total: true,
+      },
+      {
+        label: 'Cost of Revenue',
+        values: [36.9, 37.4, 37.3, 35.9, 35.0],
+        format: { suffix: '%', decimals: 1 },
+      },
+      {
+        label: 'Research & Dev.',
+        values: [12.5, 12.6, 12.7, 12.2, 11.9],
+        format: { suffix: '%', decimals: 1 },
+      },
+      {
+        label: 'Sales & Marketing',
+        values: [8.9, 8.1, 8.0, 7.4, 7.3],
+        format: { suffix: '%', decimals: 1 },
+      },
+    ],
+    chartNote:
+      'Shares of revenue from the filed income statement. Deltas are additive (pp); lower is better on every line, so a fall shows green.',
+  },
+  {
     rank: 600,
     id: 'filings',
     title: 'Filings',
