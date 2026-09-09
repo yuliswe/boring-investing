@@ -34,7 +34,7 @@ export function ChartSection({
 
   return (
     <>
-      <div className='relative flex items-end h-47 mt-5.5 border-b border-[var(--color-divider)]'>
+      <div className='relative flex items-end h-47 mt-[var(--space-5)] border-b border-[var(--color-divider)]'>
         <svg
           viewBox='0 0 100 100'
           preserveAspectRatio='none'
@@ -46,7 +46,7 @@ export function ChartSection({
             fill='none'
             stroke='var(--color-accent)'
             strokeWidth='1.5'
-            strokeLinejoin='round'
+            strokeLinejoin='bevel'
             strokeLinecap='round'
             vectorEffect='non-scaling-stroke'
           />
@@ -58,7 +58,7 @@ export function ChartSection({
           return (
             <div key={i} className='relative flex-1 h-full'>
               <div
-                className='absolute left-1/2 w-2.25 h-2.25 -ml-1.125 -mb-1.125 rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
+                className='absolute left-1/2 w-2.25 h-2.25 -ml-0.75 -mb-0.75 rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
                 style={{ bottom: h }}
               />
               <div
@@ -72,7 +72,7 @@ export function ChartSection({
         })}
         {hasRef && (
           <div
-            className='absolute left-0 right-0 h-0 flex items-center gap-2 pointer-events-none'
+            className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-2)] pointer-events-none'
             style={{ bottom: refBottom }}
           >
             <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_40%,transparent)]' />
@@ -82,7 +82,7 @@ export function ChartSection({
           </div>
         )}
       </div>
-      <div className='flex pt-2'>
+      <div className='flex pt-[var(--space-2)]'>
         {bars.map((b, i) => (
           <div key={i} className='flex-1 text-center'>
             <div className='text-xs ds-tnum'>{b.label}</div>
@@ -93,7 +93,9 @@ export function ChartSection({
         ))}
       </div>
       {chartNote && (
-        <p className='mt-3 text-xs text-[var(--text-muted)]'>{chartNote}</p>
+        <p className='mt-[var(--space-3)] text-xs text-[var(--text-muted)]'>
+          {chartNote}
+        </p>
       )}
     </>
   );

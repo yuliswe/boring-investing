@@ -98,7 +98,7 @@ export function SoftwareTemplate({
       id: 'key',
       title: 'Key Metrics',
       kicker:
-        'Profitability, returns, leverage and margins with five-year trend and 10Y median.',
+        'Profitability, returns, leverage and margins with ten-year trend and 10Y median.',
       kind: 'trends',
       panels: financials.keyMetrics.map(m => ({
         label: m.label,

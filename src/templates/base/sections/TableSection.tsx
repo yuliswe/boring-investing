@@ -40,7 +40,9 @@ export function TableSection({
         </table>
       </div>
       {tableNote && (
-        <p className='mt-2.5 text-xs text-[var(--text-muted)]'>{tableNote}</p>
+        <p className='mt-[var(--space-2)] text-xs text-[var(--text-muted)]'>
+          {tableNote}
+        </p>
       )}
     </>
   );

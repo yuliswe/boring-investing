@@ -1,6 +1,6 @@
 export function ProseSection({ paragraphs }: { paragraphs: string[] }) {
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='flex flex-col gap-[var(--space-3)]'>
       {paragraphs.map((text, i) => (
         <p
           key={i}

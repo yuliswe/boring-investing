@@ -28,7 +28,7 @@ const hero: HeroData = {
 };
 
 const fcfYears = financials.revenue.map(r => r.year);
-const fcfValues = [56.1, 65.1, 59.5, 74.1, 80.9];
+const fcfValues = [25.0, 31.4, 32.3, 38.3, 45.2, 56.1, 65.1, 59.5, 74.1, 80.9];
 
 const msftSections: SectionData[] = [
   {

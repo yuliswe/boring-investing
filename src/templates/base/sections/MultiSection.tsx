@@ -185,9 +185,12 @@ export function MultiSection({
 
   return (
     <>
-      <div className='flex flex-wrap gap-2 gap-x-6 mt-1'>
+      <div className='flex flex-wrap gap-[var(--space-2)] gap-x-[var(--space-6)] mt-[var(--space-1)]'>
         {multi.lines.map((l, i) => (
-          <div key={i} className='inline-flex items-baseline gap-2 text-xs'>
+          <div
+            key={i}
+            className='inline-flex items-baseline gap-[var(--space-2)] text-xs'
+          >
             <span
               className='inline-block w-3 h-0.75 flex-none rounded-[var(--radius-sm)]'
               style={{ background: l.color }}
@@ -203,11 +206,11 @@ export function MultiSection({
         ))}
       </div>
 
-      <div className='relative h-44 mt-4 ml-26 py-1 px-1.25 overflow-hidden border-b border-[var(--color-divider)]'>
+      <div className='relative h-44 mt-[var(--space-4)] ml-[var(--space-8)] p-[var(--space-1)] overflow-hidden border-b border-[var(--color-divider)]'>
         {multi.ticks.map((t, i) => (
           <div
             key={i}
-            className='absolute left-1.25 right-1.25 h-0 flex items-center gap-1.5 pointer-events-none'
+            className='absolute left-1.25 right-1.25 h-0 flex items-center gap-[var(--space-1)] pointer-events-none'
             style={{ bottom: t.bottom }}
           >
             <span className='flex-1 border-t border-[color-mix(in_srgb,var(--color-text)_8%,transparent)]' />
@@ -218,7 +221,7 @@ export function MultiSection({
         ))}
 
         <div
-          className='absolute left-1.25 right-1.25 h-0 flex items-center gap-1.5'
+          className='absolute left-1.25 right-1.25 h-0 flex items-center gap-[var(--space-1)]'
           style={{ bottom: multi.baseH }}
         >
           <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
@@ -241,7 +244,7 @@ export function MultiSection({
                   fill='none'
                   stroke={l.color}
                   strokeWidth={l.width}
-                  strokeLinejoin='round'
+                  strokeLinejoin='bevel'
                   strokeLinecap='round'
                   vectorEffect='non-scaling-stroke'
                 />
@@ -265,7 +268,7 @@ export function MultiSection({
         ))}
       </div>
 
-      <div className='flex items-center gap-2 pt-2 text-xs ds-tnum'>
+      <div className='flex items-center gap-[var(--space-2)] pt-[var(--space-2)] text-xs ds-tnum'>
         <span className='flex-none w-2' />
         <span className='flex-none w-22' />
         <div className='flex-1 flex justify-between'>
@@ -277,9 +280,9 @@ export function MultiSection({
         </div>
       </div>
 
-      <div className='flex flex-col gap-1 pt-2'>
+      <div className='flex flex-col gap-[var(--space-1)] pt-[var(--space-2)]'>
         {multi.lines.map((l, li) => (
-          <div key={li} className='flex items-center gap-2'>
+          <div key={li} className='flex items-center gap-[var(--space-2)]'>
             <span
               className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
               style={{ background: l.color }}
@@ -291,7 +294,7 @@ export function MultiSection({
               {l.dots.map((d, di) => (
                 <div
                   key={di}
-                  className='flex-1 text-center flex flex-col gap-0.5 py-0.5 whitespace-nowrap'
+                  className='flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap'
                 >
                   <span>
                     <span className='text-[var(--text-secondary)]'>
@@ -317,7 +320,9 @@ export function MultiSection({
       </div>
 
       {chartNote && (
-        <p className='mt-3 text-xs text-[var(--text-muted)]'>{chartNote}</p>
+        <p className='mt-[var(--space-3)] text-xs text-[var(--text-muted)]'>
+          {chartNote}
+        </p>
       )}
     </>
   );

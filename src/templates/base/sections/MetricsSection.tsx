@@ -3,11 +3,11 @@ import { COLOR_GOOD, COLOR_BAD } from '../compute';
 
 export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
   return (
-    <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-x-8'>
+    <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-x-[var(--space-8)]'>
       {metrics.map((m, i) => (
         <div
           key={i}
-          className='flex items-baseline gap-3.5 min-h-11 border-b border-[var(--color-divider)]'
+          className='flex items-baseline gap-[var(--space-3)] min-h-11 border-b border-[var(--color-divider)]'
         >
           <span className='flex-1 text-xs text-[var(--text-secondary)]'>
             {m.label}

@@ -57,7 +57,10 @@ function computePanel(
         }
       } else if (prev !== 0) {
         const chg = ((v - prev) / Math.abs(prev)) * 100;
-        delta = (chg >= 0 ? '↑' : '↓') + Math.abs(chg).toFixed(1) + '%';
+        const absChg = Math.abs(chg);
+        delta =
+          (chg >= 0 ? '↑' : '↓') +
+          (absChg > 999 ? '>999%' : absChg.toFixed(1) + '%');
         const isGood = invertColor ? chg <= 0 : chg >= 0;
         deltaColor = isGood ? COLOR_GOOD : COLOR_BAD;
       }
@@ -101,8 +104,8 @@ function computePanel(
 
 function Sparkline({ panel }: { panel: ComputedPanel }) {
   return (
-    <div className='flex flex-col gap-2 pb-3.5 border-b border-[var(--color-divider)] overflow-hidden'>
-      <div className='flex items-baseline gap-2.5'>
+    <div className='flex flex-col gap-[var(--space-2)] pb-[var(--space-3)] border-b border-[var(--color-divider)]'>
+      <div className='flex items-baseline gap-[var(--space-2)]'>
         <span
           className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
           style={{ background: panel.lineColor }}
@@ -115,8 +118,8 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
         </span>
       </div>
 
-      <div className='relative h-16 py-1 px-1.25 overflow-hidden'>
-        <div className='absolute inset-y-0 left-1.25 right-1.25 pointer-events-none'>
+      <div className='relative h-16 overflow-hidden'>
+        <div className='absolute inset-0 pointer-events-none'>
           <svg
             viewBox='0 0 100 100'
             preserveAspectRatio='none'
@@ -128,16 +131,16 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
               fill='none'
               stroke={panel.lineColor}
               strokeWidth='1.5'
-              strokeLinejoin='round'
+              strokeLinejoin='bevel'
               strokeLinecap='round'
               vectorEffect='non-scaling-stroke'
             />
           </svg>
         </div>
-        <div className='absolute inset-y-0 left-1.25 right-1.25'>
+        <div className='absolute inset-0'>
           {panel.hasMedian && (
             <div
-              className='absolute left-0 right-0 h-0 flex items-center gap-1.5'
+              className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)]'
               style={{ bottom: panel.medianH }}
             >
               <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
@@ -161,12 +164,20 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
         </div>
       </div>
 
-      <div className='flex justify-between text-xs ds-tnum text-[var(--text-secondary)]'>
+      <div className='flex justify-between text-[0.6875rem] ds-tnum text-[var(--text-secondary)]'>
         {panel.dots.map((d, i) => (
-          <div key={i} className='flex-1 text-center flex flex-col gap-0.5'>
-            <span>{d.value}</span>
+          <div
+            key={i}
+            className='flex-1 min-w-0 text-center flex flex-col gap-0'
+          >
+            <span className='whitespace-nowrap overflow-hidden text-ellipsis'>
+              {d.value}
+            </span>
             {d.delta && (
-              <span className='text-xs' style={{ color: d.deltaColor }}>
+              <span
+                className='text-[0.625rem] whitespace-nowrap overflow-hidden text-ellipsis'
+                style={{ color: d.deltaColor }}
+              >
                 {d.delta}
               </span>
             )}
@@ -188,13 +199,15 @@ export function TrendsSection({
 
   return (
     <>
-      <div className='grid grid-cols-[repeat(auto-fit,minmax(14.375rem,1fr))] gap-5.5 gap-x-8'>
+      <div className='grid grid-cols-2 gap-[var(--space-5)] gap-x-[var(--space-8)]'>
         {computed.map((p, i) => (
           <Sparkline key={i} panel={p} />
         ))}
       </div>
       {chartNote && (
-        <p className='mt-4 text-xs text-[var(--text-muted)]'>{chartNote}</p>
+        <p className='mt-[var(--space-4)] text-xs text-[var(--text-muted)]'>
+          {chartNote}
+        </p>
       )}
     </>
   );
