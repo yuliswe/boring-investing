@@ -50,7 +50,7 @@ export function StackSection({
                 />
               </div>
               <div
-                className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
+                className='absolute left-0 right-0 text-center text-xs ds-tnum'
                 style={{
                   bottom: 'calc(' + h.toFixed(1) + '% + 0.3125rem)',
                 }}
@@ -83,9 +83,7 @@ export function StackSection({
         />
       </div>
       {chartNote && (
-        <p className='mt-3 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-          {chartNote}
-        </p>
+        <p className='mt-3 text-xs text-[var(--text-muted)]'>{chartNote}</p>
       )}
     </>
   );
@@ -93,7 +91,7 @@ export function StackSection({
 
 function LegendItem({ color, label }: { color: string; label: string }) {
   return (
-    <span className='inline-flex items-center gap-1.75 text-2.75 text-[color-mix(in_srgb,var(--color-text)_60%,transparent)]'>
+    <span className='inline-flex items-center gap-1.75 text-xs text-[var(--text-secondary)]'>
       <span
         className='w-2.5 h-2.5 border border-[var(--color-accent)]'
         style={{ background: color }}

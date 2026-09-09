@@ -192,16 +192,11 @@ export function MultiSection({
               className='inline-block w-3 h-0.75 flex-none rounded-sm'
               style={{ background: l.color }}
             />
-            <span className='text-[color-mix(in_srgb,var(--color-text)_62%,transparent)]'>
-              {l.label}
-            </span>
-            <span className='font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-4 ds-tnum'>
+            <span className='text-[var(--text-secondary)]'>{l.label}</span>
+            <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-base ds-tnum'>
               {l.latest}
             </span>
-            <span
-              className='text-2.75 ds-tnum'
-              style={{ color: l.changeColor }}
-            >
+            <span className='text-xs ds-tnum' style={{ color: l.changeColor }}>
               {l.change}
             </span>
           </div>
@@ -216,7 +211,7 @@ export function MultiSection({
             style={{ bottom: t.bottom }}
           >
             <span className='flex-1 border-t border-[color-mix(in_srgb,var(--color-text)_8%,transparent)]' />
-            <span className='flex-none text-2 ds-tnum text-[color-mix(in_srgb,var(--color-text)_42%,transparent)]'>
+            <span className='flex-none text-xs ds-tnum text-[var(--text-muted)]'>
               {t.label}
             </span>
           </div>
@@ -227,7 +222,7 @@ export function MultiSection({
           style={{ bottom: multi.baseH }}
         >
           <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
-          <span className='flex-none text-2 tracking-[0.04em] text-[color-mix(in_srgb,var(--color-text)_42%,transparent)]'>
+          <span className='flex-none text-xs tracking-[0.04em] text-[var(--text-muted)]'>
             {multi.baseLabel}
           </span>
         </div>
@@ -289,24 +284,24 @@ export function MultiSection({
               className='inline-block w-2 h-0.75 flex-none rounded-sm'
               style={{ background: l.color }}
             />
-            <span className='flex-none w-22 text-2.5 whitespace-nowrap overflow-hidden text-ellipsis text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]'>
+            <span className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'>
               {l.label}
             </span>
-            <div className='flex-1 flex justify-between text-2.5 ds-tnum'>
+            <div className='flex-1 flex justify-between text-xs ds-tnum'>
               {l.dots.map((d, di) => (
                 <div
                   key={di}
                   className='flex-1 text-center flex flex-col gap-0.5 py-0.5 whitespace-nowrap'
                 >
                   <span>
-                    <span className='text-[color-mix(in_srgb,var(--color-text)_62%,transparent)]'>
+                    <span className='text-[var(--text-secondary)]'>
                       {d.value}
                     </span>{' '}
                     <span style={{ color: d.deltaColor }}>{d.delta}</span>
                   </span>
                   {d.shareLabel && (
                     <span>
-                      <span className='text-[color-mix(in_srgb,var(--color-text)_62%,transparent)]'>
+                      <span className='text-[var(--text-secondary)]'>
                         {d.shareLabel}
                       </span>{' '}
                       <span style={{ color: d.shareDeltaColor }}>
@@ -322,9 +317,7 @@ export function MultiSection({
       </div>
 
       {chartNote && (
-        <p className='mt-3 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-          {chartNote}
-        </p>
+        <p className='mt-3 text-xs text-[var(--text-muted)]'>{chartNote}</p>
       )}
     </>
   );

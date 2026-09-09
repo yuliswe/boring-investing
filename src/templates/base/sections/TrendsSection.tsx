@@ -107,10 +107,10 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
           className='inline-block w-2 h-0.75 flex-none rounded-sm'
           style={{ background: panel.lineColor }}
         />
-        <span className='flex-1 min-w-0 text-xs text-[color-mix(in_srgb,var(--color-text)_62%,transparent)]'>
+        <span className='flex-1 min-w-0 text-xs text-[var(--text-secondary)]'>
           {panel.label}
         </span>
-        <span className='font-[var(--font-heading)] font-[var(--font-heading-weight,500)] text-4.5 ds-tnum'>
+        <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-lg ds-tnum'>
           {panel.latest}
         </span>
       </div>
@@ -141,7 +141,7 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
               style={{ bottom: panel.medianH }}
             >
               <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
-              <span className='flex-none text-2 tracking-[0.04em] text-[color-mix(in_srgb,var(--color-text)_42%,transparent)] whitespace-nowrap'>
+              <span className='flex-none text-xs tracking-[0.04em] text-[var(--text-muted)] whitespace-nowrap'>
                 10Y {panel.medianLabel}
               </span>
             </div>
@@ -161,12 +161,12 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
         </div>
       </div>
 
-      <div className='flex justify-between text-2.75 ds-tnum text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]'>
+      <div className='flex justify-between text-xs ds-tnum text-[var(--text-secondary)]'>
         {panel.dots.map((d, i) => (
           <div key={i} className='flex-1 text-center flex flex-col gap-0.5'>
             <span>{d.value}</span>
             {d.delta && (
-              <span className='text-2.5' style={{ color: d.deltaColor }}>
+              <span className='text-xs' style={{ color: d.deltaColor }}>
                 {d.delta}
               </span>
             )}
@@ -194,9 +194,7 @@ export function TrendsSection({
         ))}
       </div>
       {chartNote && (
-        <p className='mt-4 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-          {chartNote}
-        </p>
+        <p className='mt-4 text-xs text-[var(--text-muted)]'>{chartNote}</p>
       )}
     </>
   );

@@ -62,7 +62,7 @@ export function ChartSection({
                 style={{ bottom: h }}
               />
               <div
-                className='absolute left-0 right-0 text-center text-2.75 ds-tnum'
+                className='absolute left-0 right-0 text-center text-xs ds-tnum'
                 style={{ bottom: labelBottom }}
               >
                 {formatValue(b.value, format)}
@@ -76,7 +76,7 @@ export function ChartSection({
             style={{ bottom: refBottom }}
           >
             <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_40%,transparent)]' />
-            <span className='flex-none text-2.5 tracking-[0.06em] uppercase text-[color-mix(in_srgb,var(--color-text)_50%,transparent)]'>
+            <span className='flex-none text-xs tracking-[0.06em] uppercase text-[var(--text-muted)]'>
               {refLabel}
             </span>
           </div>
@@ -87,17 +87,13 @@ export function ChartSection({
           <div key={i} className='flex-1 text-center'>
             <div className='text-xs ds-tnum'>{b.label}</div>
             {b.sub && (
-              <div className='text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-                {b.sub}
-              </div>
+              <div className='text-xs text-[var(--text-muted)]'>{b.sub}</div>
             )}
           </div>
         ))}
       </div>
       {chartNote && (
-        <p className='mt-3 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-          {chartNote}
-        </p>
+        <p className='mt-3 text-xs text-[var(--text-muted)]'>{chartNote}</p>
       )}
     </>
   );

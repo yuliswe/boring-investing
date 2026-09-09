@@ -18,7 +18,7 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
     <div className='flex flex-col gap-1.5'>
       <div className='flex items-baseline gap-2.5 pb-1.75 border-b border-[var(--color-divider)]'>
         <span className='flex-1 min-w-0 ds-kicker'>{panel.label}</span>
-        <span className='flex-none text-2.5 text-[color-mix(in_srgb,var(--color-text)_42%,transparent)]'>
+        <span className='flex-none text-xs text-[var(--text-muted)]'>
           {panel.hint}
         </span>
       </div>
@@ -30,10 +30,8 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
         return (
           <div key={i} className='flex items-center gap-2.5 min-h-6.5'>
             <span
-              className={`flex-none w-26 text-2.75 ${
-                r.self
-                  ? 'font-semibold'
-                  : 'text-[color-mix(in_srgb,var(--color-text)_55%,transparent)]'
+              className={`flex-none w-26 text-xs ${
+                r.self ? 'font-semibold' : 'text-[var(--text-secondary)]'
               }`}
               style={r.self ? { color: barColor } : undefined}
             >
@@ -53,7 +51,7 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
                 }}
               />
             </div>
-            <span className='flex-none w-13 text-right text-2.75 ds-tnum'>
+            <span className='flex-none w-13 text-right text-xs ds-tnum'>
               {formatValue(r.value, panel.format)}
             </span>
           </div>
@@ -78,9 +76,7 @@ export function PeersSection({
         ))}
       </div>
       {chartNote && (
-        <p className='mt-4.5 text-2.75 text-[color-mix(in_srgb,var(--color-text)_45%,transparent)]'>
-          {chartNote}
-        </p>
+        <p className='mt-4.5 text-xs text-[var(--text-muted)]'>{chartNote}</p>
       )}
     </>
   );
