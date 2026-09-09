@@ -3,6 +3,7 @@ import {
   METRIC_COLORS,
   COLOR_GOOD,
   COLOR_BAD,
+  COLOR_FLAT,
   pct,
   formatValue,
 } from '../compute';
@@ -50,7 +51,10 @@ function computePanel(
     if (v !== null && prev !== null) {
       if (deltaMode === 'add') {
         const diff = v - prev;
-        if (diff !== 0) {
+        if (Math.abs(diff) < 0.05) {
+          delta = '−0.0pp';
+          deltaColor = COLOR_FLAT;
+        } else {
           delta = (diff >= 0 ? '↑+' : '↓−') + Math.abs(diff).toFixed(1) + 'pp';
           const isGood = invertColor ? diff <= 0 : diff >= 0;
           deltaColor = isGood ? COLOR_GOOD : COLOR_BAD;
@@ -58,11 +62,16 @@ function computePanel(
       } else if (prev !== 0) {
         const chg = ((v - prev) / Math.abs(prev)) * 100;
         const absChg = Math.abs(chg);
-        delta =
-          (chg >= 0 ? '↑' : '↓') +
-          (absChg > 999 ? '>999%' : absChg.toFixed(1) + '%');
-        const isGood = invertColor ? chg <= 0 : chg >= 0;
-        deltaColor = isGood ? COLOR_GOOD : COLOR_BAD;
+        if (absChg < 0.05) {
+          delta = '−0.0%';
+          deltaColor = COLOR_FLAT;
+        } else {
+          delta =
+            (chg >= 0 ? '↑' : '↓') +
+            (absChg > 999 ? '>999%' : absChg.toFixed(1) + '%');
+          const isGood = invertColor ? chg <= 0 : chg >= 0;
+          deltaColor = isGood ? COLOR_GOOD : COLOR_BAD;
+        }
       }
     }
 

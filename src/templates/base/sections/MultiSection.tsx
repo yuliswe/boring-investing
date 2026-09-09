@@ -3,6 +3,7 @@ import {
   CHART_COLORS,
   COLOR_GOOD,
   COLOR_BAD,
+  COLOR_FLAT,
   pct,
   formatValue,
 } from '../compute';
@@ -80,7 +81,10 @@ function computeMulti(
           : prev
             ? ((s.values[i] - prev) / Math.abs(prev)) * 100
             : 0;
-        if (chg !== 0) {
+        if (Math.abs(chg) < 0.05) {
+          delta = share ? '−0.0pp' : '−0.0%';
+          deltaColor = COLOR_FLAT;
+        } else {
           delta =
             (chg >= 0 ? '↑' : '↓') +
             Math.abs(chg).toFixed(1) +
@@ -104,7 +108,10 @@ function computeMulti(
         shareLabel = sh.toFixed(1) + '%';
         if (prevSh !== null) {
           const d = sh - prevSh;
-          if (Math.abs(d) >= 0.05) {
+          if (Math.abs(d) < 0.05) {
+            shareDelta = '−0.0pp';
+            shareDeltaColor = COLOR_FLAT;
+          } else {
             shareDelta = (d >= 0 ? '↑' : '↓') + Math.abs(d).toFixed(1) + 'pp';
             shareDeltaColor = (inv ? d <= 0 : d >= 0) ? COLOR_GOOD : COLOR_BAD;
           }

@@ -25,6 +25,7 @@ export const PEER_COLORS = [
 
 export const COLOR_GOOD = 'oklch(0.62 0.19 145)';
 export const COLOR_BAD = 'oklch(0.58 0.19 25)';
+export const COLOR_FLAT = 'var(--text-muted)';
 
 export const CHART_COLORS = [
   'oklch(0.62 0.20 250)',
