@@ -189,7 +189,7 @@ export function MultiSection({
         {multi.lines.map((l, i) => (
           <div key={i} className='inline-flex items-baseline gap-2 text-xs'>
             <span
-              className='inline-block w-3 h-0.75 flex-none rounded-sm'
+              className='inline-block w-3 h-0.75 flex-none rounded-[var(--radius-sm)]'
               style={{ background: l.color }}
             />
             <span className='text-[var(--text-secondary)]'>{l.label}</span>
@@ -281,7 +281,7 @@ export function MultiSection({
         {multi.lines.map((l, li) => (
           <div key={li} className='flex items-center gap-2'>
             <span
-              className='inline-block w-2 h-0.75 flex-none rounded-sm'
+              className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
               style={{ background: l.color }}
             />
             <span className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'>

@@ -32,16 +32,16 @@ export function BarChart<T extends object>({
         data={data as readonly T[] as unknown[]}
         margin={{ top: 8, right: 16, bottom: 8, left: 8 }}
       >
-        <CartesianGrid strokeDasharray='3 3' stroke='#e2e8f0' />
-        <XAxis dataKey={xKey} stroke='#64748b' fontSize={12} />
-        <YAxis stroke='#64748b' fontSize={12} width={48} />
+        <CartesianGrid strokeDasharray='3 3' stroke='var(--color-divider)' />
+        <XAxis dataKey={xKey} stroke='var(--text-muted)' fontSize={12} />
+        <YAxis stroke='var(--text-muted)' fontSize={12} width={48} />
         <Tooltip />
         {series.map(item => (
           <Bar
             key={item.dataKey}
             dataKey={item.dataKey}
             name={item.label}
-            fill={item.color ?? '#2563eb'}
+            fill={item.color ?? 'var(--color-accent)'}
             radius={[4, 4, 0, 0]}
             stackId={stacked ? 'stack' : undefined}
           />

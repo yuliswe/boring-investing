@@ -1,16 +1,10 @@
 @import 'tailwindcss';
 
-/* Tailwind v4 is configured from CSS: `@theme` values become utility classes. */
+/* Tailwind v4 is configured from CSS: `@theme` entries become utility
+   classes. These aliases bridge Tailwind utilities to the Ledger design
+   tokens (defined in src/design-system/tokens/) so classes like
+   `text-ds-accent` and `border-ds-divider` resolve to token values. */
 @theme {
-  --color-brand: #2563eb;
-  --color-brand-muted: #93c5fd;
-  --color-surface: #ffffff;
-  --color-surface-muted: #f8fafc;
-  --color-ink: #0f172a;
-  --color-ink-muted: #64748b;
-  --color-positive: #16a34a;
-  --color-negative: #dc2626;
-
   --color-ds-accent: var(--color-accent);
   --color-ds-neutral-500: var(--color-neutral-500);
   --color-ds-neutral-600: var(--color-neutral-600);
@@ -21,13 +15,4 @@
     transparent
   );
   --font-ds-heading: var(--font-heading);
-}
-
-html {
-  color-scheme: light;
-}
-
-body {
-  background-color: var(--color-surface-muted);
-  color: var(--color-ink);
 }

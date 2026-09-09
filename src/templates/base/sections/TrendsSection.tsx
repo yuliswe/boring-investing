@@ -104,7 +104,7 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
     <div className='flex flex-col gap-2 pb-3.5 border-b border-[var(--color-divider)] overflow-hidden'>
       <div className='flex items-baseline gap-2.5'>
         <span
-          className='inline-block w-2 h-0.75 flex-none rounded-sm'
+          className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
           style={{ background: panel.lineColor }}
         />
         <span className='flex-1 min-w-0 text-xs text-[var(--text-secondary)]'>

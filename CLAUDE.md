@@ -98,14 +98,22 @@ public/
   Newsreader headings, Karla body and interactive labels, Regular (500) heading
   weight and Compact (0.9) density. All sizes use `rem`; spacing is driven by a
   `--density` multiplier.
-- `src/design-system/classical.css` holds the tokens (`--color-*`, `--font-*`,
-  `--text-*`, `--space-*`, `--radius-*`, `--tap`, `--motion`), semantic aliases
-  (`--text-primary`, `--surface-page`, `--state-hover`, etc.), base type and
-  every component class. It is loaded once from `src/app/layout.tsx`. Take
-  colors, fonts and spacing from the tokens rather than hard-coding values.
-- Components render on the design-system palette when placed inside a `.ds`
-  container (the page `<main>` carries it); the component classes themselves are
-  global.
+- `src/design-system/tokens/` holds one file per concern (`fonts.css`,
+  `colors.css`, `typography.css`, `spacing.css`, `elevation.css`, `motion.css`,
+  `base.css`), mirroring the upstream Claude Design project. `styles.css` is the
+  import-only entry point that loads them all, and `components.css` carries the
+  component classes (`.btn`, `.card`, `.nav`, …) used by the React components.
+  Both are loaded once from `src/app/layout.tsx`.
+- Base resets and element defaults apply globally from `tokens/base.css`; there
+  is no wrapper class. Style through the token names the way the upstream
+  template does — sizes from the `--text-*` scale (Tailwind's `text-xs`…
+  `text-3xl` utilities carry the same names and values), de-emphasized text via
+  `var(--text-secondary)` / `var(--text-muted)`, widths via `var(--page-max)`
+  and `var(--measure)`, radii via `var(--radius-*)` — rather than hard-coding
+  values. In Tailwind arbitrary values, a font family needs the hint form
+  `font-[family-name:var(--font-heading)]` (`font-[var(...)]` compiles to
+  font-weight), and off-scale numeric sizes like `text-2.75` generate no CSS at
+  all.
 - `/components` (`src/app/components/`) is a living gallery that demos every
   component and its variations; update it when adding or changing a component.
 

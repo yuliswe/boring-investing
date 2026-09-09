@@ -136,7 +136,7 @@ function HeroSection({ hero }: { hero: HeroData }) {
           )}
         </div>
       </div>
-      <p className='mt-2.5 max-w-[64ch] text-sm leading-[1.55] text-[var(--text-secondary)]'>
+      <p className='mt-2.5 max-w-[var(--measure)] text-sm leading-[1.55] text-[var(--text-secondary)]'>
         {hero.summary}
       </p>
     </section>
@@ -248,7 +248,7 @@ export function BaseTemplate({
         </div>
       )}
 
-      <div className='mx-auto max-w-280 px-5'>
+      <div className='mx-auto max-w-[var(--page-max)] px-5'>
         <HeroSection hero={hero} />
         <Header sections={merged} figuresDate={figuresDate} />
 
