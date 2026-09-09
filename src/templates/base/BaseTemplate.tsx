@@ -190,7 +190,7 @@ function FooterSection({ footer }: { footer: FooterData }) {
           <span className='ds-kicker'>Company</span>
           {footer.links.map(l => (
             <a
-              key={l.href}
+              key={l.label}
               href={l.href}
               className='font-[family-name:var(--font-interactable)] text-xs no-underline text-[var(--text-secondary)]'
             >
@@ -204,7 +204,7 @@ function FooterSection({ footer }: { footer: FooterData }) {
           <span className='ds-kicker'>Elsewhere</span>
           {footer.externalLinks.map(l => (
             <a
-              key={l.href}
+              key={l.label}
               href={l.href}
               className='font-[family-name:var(--font-interactable)] text-xs no-underline text-[var(--text-secondary)]'
             >

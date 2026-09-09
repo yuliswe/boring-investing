@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useSyncExternalStore } from 'react';
 import type { ReactNode } from 'react';
 import {
   Accordion,
@@ -123,18 +123,30 @@ function Sub({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
+function subscribeToThemeAttribute(callback: () => void) {
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme'],
+  });
+  return () => observer.disconnect();
+}
+
 const Wrap = ({ children }: { children: ReactNode }) => (
   <div className='flex flex-wrap gap-3 items-center'>{children}</div>
 );
 
 export function Gallery() {
-  const [theme, setTheme] = useState(() =>
-    typeof document !== 'undefined'
-      ? document.documentElement.getAttribute('data-theme') || 'light'
-      : 'light'
+  // The theme lives on <html data-theme>, set by the layout.tsx head script
+  // before hydration. Reading it into useState desyncs the control, because
+  // React does not reconcile a radio's server-rendered checked state, so the
+  // attribute itself is the store and the control subscribes to it.
+  const theme = useSyncExternalStore(
+    subscribeToThemeAttribute,
+    () => document.documentElement.getAttribute('data-theme') || 'light',
+    () => 'light'
   );
   const pickTheme = (t: string) => {
-    setTheme(t);
     document.documentElement.setAttribute('data-theme', t);
     try {
       localStorage.setItem('boring-investing.theme', t);
