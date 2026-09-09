@@ -68,7 +68,7 @@ const msftSections: SectionData[] = [
       'Lines are indexed to FY22 = 100; the dashed rule is the base. Year-on-year change per segment is shown beneath.',
   },
   {
-    rank: 500,
+    rank: 510,
     id: 'fcf',
     title: 'Free Cash Flow',
     kicker: 'Annual free cash flow in billions, with a break-even reference.',

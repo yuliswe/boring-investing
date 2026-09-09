@@ -159,10 +159,14 @@ export type SectionData = {
 export type ExpensesRowData = {
   year: string;
   revenue: number;
-  operatingIncome: number;
   costOfRevenue: number;
+  sellingGeneralAndAdmin: number;
   researchAndDev: number;
-  salesAndMarketing: number;
+  depreciationAndAmortization: number;
+  otherOperating: number;
+  nonOperating: number;
+  taxes: number;
+  dilutionAdjustment: number;
 };
 
 export type HeroData = {

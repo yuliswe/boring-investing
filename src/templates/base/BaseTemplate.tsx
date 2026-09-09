@@ -223,13 +223,25 @@ function FooterSection({ footer }: { footer: FooterData }) {
   );
 }
 
+const EXPENSE_LINES: [string, (r: ExpensesRowData) => number][] = [
+  ['COGS', r => r.costOfRevenue],
+  ['SG&A', r => r.sellingGeneralAndAdmin],
+  ['R&D', r => r.researchAndDev],
+  ['D&A', r => r.depreciationAndAmortization],
+  ['Other Ops.', r => r.otherOperating],
+  ['Non-op.', r => r.nonOperating],
+  ['Taxes', r => r.taxes],
+  ['Dilution Adj.', r => r.dilutionAdjustment],
+];
+
 function buildExpensesSection(rows: ExpensesRowData[]): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const shares = (line: (r: ExpensesRowData) => number) =>
     rows.map(r => (r.revenue ? +((line(r) / r.revenue) * 100).toFixed(1) : 0));
+  const lineShares = EXPENSE_LINES.map(([, line]) => shares(line));
 
   return {
-    rank: 450,
+    rank: 500,
     id: 'expenses',
     title: 'Expenses',
     kicker:
@@ -241,33 +253,22 @@ function buildExpensesSection(rows: ExpensesRowData[]): SectionData {
     baseLabel: '0%',
     series: [
       {
-        label: 'Total OpEx',
-        values: rows.map(r =>
-          r.revenue
-            ? +((1 - r.operatingIncome / r.revenue) * 100).toFixed(1)
-            : 0
+        label: 'Total',
+        values: rows.map(
+          (_, i) =>
+            +lineShares.reduce((sum, vals) => sum + vals[i], 0).toFixed(1)
         ),
         format: pctFormat,
         total: true,
       },
-      {
-        label: 'Cost of Revenue',
-        values: shares(r => r.costOfRevenue),
+      ...EXPENSE_LINES.map(([label], li) => ({
+        label,
+        values: lineShares[li],
         format: pctFormat,
-      },
-      {
-        label: 'Research & Dev.',
-        values: shares(r => r.researchAndDev),
-        format: pctFormat,
-      },
-      {
-        label: 'Sales & Marketing',
-        values: shares(r => r.salesAndMarketing),
-        format: pctFormat,
-      },
+      })),
     ],
     chartNote:
-      'Shares of revenue from the filed income statement. Deltas are additive (pp); lower is better on every line, so a fall shows green.',
+      'Shares of revenue from the filed income statement. Dilution adjustment is the value of shares issued to employees, treated as a cash cost. Deltas are additive (pp); lower is better on every line, so a fall shows green.',
   };
 }
 

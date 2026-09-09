@@ -25,8 +25,13 @@ export type SoftwareFinancials = {
   expenses?: {
     year: string;
     costOfRevenue: number;
+    sellingGeneralAndAdmin: number;
     researchAndDev: number;
-    salesAndMarketing: number;
+    depreciationAndAmortization: number;
+    otherOperating: number;
+    nonOperating: number;
+    taxes: number;
+    dilutionAdjustment: number;
   }[];
   thesis: string[];
 };
@@ -114,14 +119,10 @@ export function SoftwareTemplate({
     });
   }
 
-  const expenses = financials.expenses?.map(e => {
-    const rev = financials.revenue.find(r => r.year === e.year);
-    return {
-      ...e,
-      revenue: rev?.revenue ?? 0,
-      operatingIncome: rev?.operatingIncome ?? 0,
-    };
-  });
+  const expenses = financials.expenses?.map(e => ({
+    ...e,
+    revenue: financials.revenue.find(r => r.year === e.year)?.revenue ?? 0,
+  }));
 
   return (
     <BaseTemplate

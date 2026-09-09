@@ -15,11 +15,11 @@
       "median10y": 28.0
     },
     {
-      "label": "EV/EBITDA",
-      "values": [12.1, 14.3, 17.2, 19.4, 23.1, 25.8, 22.0, 24.5, 27.8, 26.4],
-      "format": { "decimals": 1 },
+      "label": "PEG ratio",
+      "values": [1.85, 1.62, 2.48, 1.35, 2.44, 2.05, 1.88, 2.31, 2.12, 2.57],
+      "format": { "decimals": 2 },
       "invertColor": true,
-      "median10y": 24.0
+      "median10y": 2.1
     }
   ],
   "keyMetrics": [
@@ -30,37 +30,50 @@
       "median10y": 8.0
     },
     {
+      "label": "Free cash flow per share",
+      "values": [3.21, 4.05, 4.2, 4.99, 5.94, 7.44, 8.68, 7.99, 9.97, 10.88],
+      "format": { "prefix": "$", "decimals": 2 },
+      "median10y": 7.0
+    },
+    {
       "label": "ROE %",
       "values": [22.1, 29.4, 19.4, 42.4, 40.1, 47.1, 47.2, 38.6, 39.2, 40.8],
-      "format": { "suffix": "%", "decimals": 1 },
+      "format": { "suffix": "%", "decimals": 2 },
       "deltaMode": "add",
       "median10y": 42.0
     },
     {
       "label": "ROIC %",
       "values": [14.4, 17.2, 12.9, 26.1, 27.4, 29.3, 30.1, 27.6, 31.4, 33.0],
-      "format": { "suffix": "%", "decimals": 1 },
+      "format": { "suffix": "%", "decimals": 2 },
       "deltaMode": "add",
       "median10y": 28.0
     },
     {
-      "label": "D/E ratio",
+      "label": "Debt to equity ratio",
       "values": [0.75, 0.97, 0.92, 0.77, 0.62, 0.5, 0.39, 0.32, 0.29, 0.26],
       "format": { "decimals": 2 },
       "invertColor": true,
       "median10y": 0.45
     },
     {
+      "label": "Sustainable growth rate %",
+      "values": [15.5, 20.6, 13.6, 29.7, 28.1, 33.0, 33.1, 27.0, 27.4, 28.6],
+      "format": { "suffix": "%", "decimals": 2 },
+      "deltaMode": "add",
+      "median10y": 27.5
+    },
+    {
       "label": "Net margin %",
       "values": [22.1, 26.0, 15.0, 31.2, 31.0, 36.4, 36.7, 34.1, 35.6, 36.8],
-      "format": { "suffix": "%", "decimals": 1 },
+      "format": { "suffix": "%", "decimals": 2 },
       "deltaMode": "add",
       "median10y": 34.7
     },
     {
-      "label": "FCF margin %",
+      "label": "Free cash flow margin %",
       "values": [27.4, 32.2, 29.1, 30.4, 31.7, 35.8, 30.2, 31.9, 29.4, 29.2],
-      "format": { "suffix": "%", "decimals": 1 },
+      "format": { "suffix": "%", "decimals": 2 },
       "deltaMode": "add",
       "median10y": 32.1
     }
@@ -80,63 +93,113 @@
   "expenses": [
     {
       "year": "FY16",
-      "costOfRevenue": 33,
+      "costOfRevenue": 28,
+      "sellingGeneralAndAdmin": 19,
       "researchAndDev": 12,
-      "salesAndMarketing": 15
+      "depreciationAndAmortization": 6,
+      "otherOperating": 1.5,
+      "nonOperating": 0.9,
+      "taxes": 2.5,
+      "dilutionAdjustment": 1.0
     },
     {
       "year": "FY17",
-      "costOfRevenue": 34,
+      "costOfRevenue": 28,
+      "sellingGeneralAndAdmin": 20,
       "researchAndDev": 13,
-      "salesAndMarketing": 16
+      "depreciationAndAmortization": 7,
+      "otherOperating": 0.8,
+      "nonOperating": 0.5,
+      "taxes": 1.5,
+      "dilutionAdjustment": 1.0
     },
     {
       "year": "FY18",
-      "costOfRevenue": 38,
+      "costOfRevenue": 30,
+      "sellingGeneralAndAdmin": 21,
       "researchAndDev": 15,
-      "salesAndMarketing": 17
+      "depreciationAndAmortization": 8,
+      "otherOperating": 1.0,
+      "nonOperating": 0.7,
+      "taxes": 16.5,
+      "dilutionAdjustment": 1.3
     },
     {
       "year": "FY19",
-      "costOfRevenue": 43,
+      "costOfRevenue": 33,
+      "sellingGeneralAndAdmin": 22,
       "researchAndDev": 17,
-      "salesAndMarketing": 18
+      "depreciationAndAmortization": 9,
+      "otherOperating": 0.6,
+      "nonOperating": 0.3,
+      "taxes": 3.4,
+      "dilutionAdjustment": 1.4
     },
     {
       "year": "FY20",
-      "costOfRevenue": 46,
+      "costOfRevenue": 36,
+      "sellingGeneralAndAdmin": 24,
       "researchAndDev": 19,
-      "salesAndMarketing": 20
+      "depreciationAndAmortization": 10,
+      "otherOperating": 0.5,
+      "nonOperating": 0.2,
+      "taxes": 7.4,
+      "dilutionAdjustment": 1.6
     },
     {
       "year": "FY21",
-      "costOfRevenue": 52,
+      "costOfRevenue": 40,
+      "sellingGeneralAndAdmin": 25,
       "researchAndDev": 21,
-      "salesAndMarketing": 20
+      "depreciationAndAmortization": 10,
+      "otherOperating": 0.4,
+      "nonOperating": 0.3,
+      "taxes": 8.3,
+      "dilutionAdjustment": 1.8
     },
     {
       "year": "FY22",
-      "costOfRevenue": 63,
+      "costOfRevenue": 48,
+      "sellingGeneralAndAdmin": 27,
       "researchAndDev": 25,
-      "salesAndMarketing": 22
+      "depreciationAndAmortization": 11,
+      "otherOperating": 0.3,
+      "nonOperating": 0.3,
+      "taxes": 11.0,
+      "dilutionAdjustment": 2.7
     },
     {
       "year": "FY23",
-      "costOfRevenue": 66,
+      "costOfRevenue": 51,
+      "sellingGeneralAndAdmin": 28,
       "researchAndDev": 27,
-      "salesAndMarketing": 23
+      "depreciationAndAmortization": 12,
+      "otherOperating": 0.7,
+      "nonOperating": 0.8,
+      "taxes": 17.0,
+      "dilutionAdjustment": 3.2
     },
     {
       "year": "FY24",
-      "costOfRevenue": 74,
+      "costOfRevenue": 52,
+      "sellingGeneralAndAdmin": 30,
       "researchAndDev": 30,
-      "salesAndMarketing": 25
+      "depreciationAndAmortization": 20,
+      "otherOperating": 0.9,
+      "nonOperating": 1.2,
+      "taxes": 19.7,
+      "dilutionAdjustment": 4.0
     },
     {
       "year": "FY25",
-      "costOfRevenue": 82,
+      "costOfRevenue": 52,
+      "sellingGeneralAndAdmin": 32,
       "researchAndDev": 33,
-      "salesAndMarketing": 27
+      "depreciationAndAmortization": 30,
+      "otherOperating": 1.0,
+      "nonOperating": 1.5,
+      "taxes": 21.0,
+      "dilutionAdjustment": 4.6
     }
   ],
   "thesis": [
