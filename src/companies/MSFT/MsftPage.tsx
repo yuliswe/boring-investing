@@ -33,8 +33,8 @@ const fcfValues = [25.0, 31.4, 32.3, 38.3, 45.2, 56.1, 65.1, 59.5, 74.1, 80.9];
 const msftSections: SectionData[] = [
   {
     rank: 400,
-    id: 'revenue-breakdown',
-    title: 'Revenue breakdown',
+    id: 'revenue',
+    title: 'Revenue',
     kicker:
       'Each segment’s growth from FY22 on one chart, indexed to 100, so scale does not hide the trend.',
     kind: 'multi',

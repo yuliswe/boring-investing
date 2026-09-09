@@ -16,4 +16,5 @@ export type {
   PeerRowData,
   FilingEntryData,
   TableRowData,
+  ExpensesRowData,
 } from './types';

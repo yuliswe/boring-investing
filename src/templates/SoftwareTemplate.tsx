@@ -114,66 +114,14 @@ export function SoftwareTemplate({
     });
   }
 
-  if (financials.expenses) {
-    const expYears = financials.expenses.map(e => e.year);
-    const totalOpEx = financials.expenses.map((e, i) => {
-      const rev = financials.revenue[i]?.revenue;
-      return rev
-        ? +((1 - financials.revenue[i].operatingIncome / rev) * 100).toFixed(1)
-        : 0;
-    });
-    const cogs = financials.expenses.map((e, i) => {
-      const rev = financials.revenue[i]?.revenue;
-      return rev ? +((e.costOfRevenue / rev) * 100).toFixed(1) : 0;
-    });
-    const rd = financials.expenses.map((e, i) => {
-      const rev = financials.revenue[i]?.revenue;
-      return rev ? +((e.researchAndDev / rev) * 100).toFixed(1) : 0;
-    });
-    const sm = financials.expenses.map((e, i) => {
-      const rev = financials.revenue[i]?.revenue;
-      return rev ? +((e.salesAndMarketing / rev) * 100).toFixed(1) : 0;
-    });
-
-    softwareSections.push({
-      rank: 450,
-      id: 'expenses',
-      title: 'Expenses breakdown',
-      kicker:
-        'Each line of the income statement as a share of revenue. A falling line means the cost is being outgrown.',
-      origin: 'Software',
-      kind: 'multi',
-      years: expYears,
-      mode: 'share',
-      invert: true,
-      baseLabel: '0%',
-      series: [
-        {
-          label: 'Total OpEx',
-          values: totalOpEx,
-          format: { suffix: '%', decimals: 1 },
-          total: true,
-        },
-        {
-          label: 'Cost of Revenue',
-          values: cogs,
-          format: { suffix: '%', decimals: 1 },
-        },
-        {
-          label: 'Research & Dev.',
-          values: rd,
-          format: { suffix: '%', decimals: 1 },
-        },
-        {
-          label: 'Sales & Marketing',
-          values: sm,
-          format: { suffix: '%', decimals: 1 },
-        },
-      ],
-      chartNote:
-        'Shares of revenue from the filed income statement. Deltas are additive (pp); lower is better on every line, so a fall shows green.',
-    });
-  }
+  const expenses = financials.expenses?.map(e => {
+    const rev = financials.revenue.find(r => r.year === e.year);
+    return {
+      ...e,
+      revenue: rev?.revenue ?? 0,
+      operatingIncome: rev?.operatingIncome ?? 0,
+    };
+  });
 
   return (
     <BaseTemplate
@@ -181,6 +129,7 @@ export function SoftwareTemplate({
       hero={hero}
       sections={[...softwareSections, ...baseSections]}
       childSections={extraSections}
+      expenses={expenses}
       figuresDate={figuresDate}
       footer={footer}
     >

@@ -2,7 +2,13 @@
 
 import { Tag, Text } from '@/design-system';
 import type { ReactNode } from 'react';
-import type { NavbarData, HeroData, FooterData, SectionData } from './types';
+import type {
+  NavbarData,
+  HeroData,
+  FooterData,
+  SectionData,
+  ExpensesRowData,
+} from './types';
 import {
   ProseSection,
   TrendsSection,
@@ -217,11 +223,60 @@ function FooterSection({ footer }: { footer: FooterData }) {
   );
 }
 
+function buildExpensesSection(rows: ExpensesRowData[]): SectionData {
+  const pctFormat = { suffix: '%', decimals: 1 };
+  const shares = (line: (r: ExpensesRowData) => number) =>
+    rows.map(r => (r.revenue ? +((line(r) / r.revenue) * 100).toFixed(1) : 0));
+
+  return {
+    rank: 450,
+    id: 'expenses',
+    title: 'Expenses',
+    kicker:
+      'Each line of the income statement as a share of revenue. A falling line means the cost is being outgrown.',
+    kind: 'multi',
+    years: rows.map(r => r.year),
+    mode: 'share',
+    invert: true,
+    baseLabel: '0%',
+    series: [
+      {
+        label: 'Total OpEx',
+        values: rows.map(r =>
+          r.revenue
+            ? +((1 - r.operatingIncome / r.revenue) * 100).toFixed(1)
+            : 0
+        ),
+        format: pctFormat,
+        total: true,
+      },
+      {
+        label: 'Cost of Revenue',
+        values: shares(r => r.costOfRevenue),
+        format: pctFormat,
+      },
+      {
+        label: 'Research & Dev.',
+        values: shares(r => r.researchAndDev),
+        format: pctFormat,
+      },
+      {
+        label: 'Sales & Marketing',
+        values: shares(r => r.salesAndMarketing),
+        format: pctFormat,
+      },
+    ],
+    chartNote:
+      'Shares of revenue from the filed income statement. Deltas are additive (pp); lower is better on every line, so a fall shows green.',
+  };
+}
+
 export type BaseTemplateProps = {
   navbar?: NavbarData;
   hero: HeroData;
   sections: SectionData[];
   childSections?: SectionData[];
+  expenses?: ExpensesRowData[];
   figuresDate?: string;
   footer?: FooterData;
   children?: ReactNode;
@@ -232,13 +287,16 @@ export function BaseTemplate({
   hero,
   sections,
   childSections,
+  expenses,
   figuresDate,
   footer,
   children,
 }: BaseTemplateProps) {
-  const merged = [...sections, ...(childSections || [])].sort(
-    (a, b) => a.rank - b.rank
-  );
+  const merged = [
+    ...sections,
+    ...(expenses && expenses.length ? [buildExpensesSection(expenses)] : []),
+    ...(childSections || []),
+  ].sort((a, b) => a.rank - b.rank);
 
   return (
     <div className='min-h-screen'>

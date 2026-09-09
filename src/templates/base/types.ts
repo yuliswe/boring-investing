@@ -156,6 +156,15 @@ export type SectionData = {
   | PeersSectionData
 );
 
+export type ExpensesRowData = {
+  year: string;
+  revenue: number;
+  operatingIncome: number;
+  costOfRevenue: number;
+  researchAndDev: number;
+  salesAndMarketing: number;
+};
+
 export type HeroData = {
   symbol: string;
   name: string;

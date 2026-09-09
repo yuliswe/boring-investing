@@ -9,7 +9,9 @@ BaseTemplate  →  SoftwareTemplate  →  MsftPage
 
 `BaseTemplate` renders navbar → hero → header → sections → footer. It accepts
 `sections` and `childSections` separately, merges them by `rank`, and renders
-the sorted result.
+the sorted result. It also accepts an optional `expenses` array
+(`ExpensesRowData[]`) and builds the base "Expenses" section (rank 450) from
+it, computing each income-statement line as a share of revenue.
 
 A child template (e.g. `SoftwareTemplate`) builds its own sections from typed
 financial data and passes them as `sections` to `BaseTemplate`. Any
