@@ -13,10 +13,12 @@
   taking precedence.
 - [SEC EDGAR — MSFT filings](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000789019&type=10-K&dateb=&owner=include&count=10) —
   filing dates for the Filings section come from the EDGAR submissions feed.
-- [Microsoft Investor Relations](https://www.microsoft.com/en-us/investor) —
-  the FY25 Q4 and FY26 Q4 press releases are the source for segment revenue
-  on the recast segment structure adopted in FY25 (`data/segments.json`,
-  FY24–FY26).
+- Segment revenue in `data/segments.json` (FY17–FY26) is taken from the
+  XBRL "Segment Revenue (Detail)" tables in the individual 10-K filings:
+  FY17 from the FY19 10-K (restated under ASC 606), FY18–FY20 from the
+  FY20 10-K, FY21–FY23 from the FY23 10-K, and FY24–FY26 from the FY26
+  10-K. FY24 onward uses the recast segment structure adopted in FY25;
+  earlier years use the pre-recast definitions.
 
 ## Market data
 

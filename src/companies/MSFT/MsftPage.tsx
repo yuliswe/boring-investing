@@ -33,7 +33,7 @@ const msftSections: SectionData[] = [
     id: 'revenue',
     title: 'Revenue',
     kicker:
-      'Each segment’s growth from FY24 on one chart, indexed to 100, so scale does not hide the trend. Figures use the recast segment structure adopted in FY25.',
+      'Each segment’s growth on one chart, indexed to 100, so scale does not hide the trend. FY24 onward uses the recast segment structure adopted in FY25.',
     kind: 'multi',
     years: segments.segments.map(s => s.year),
     series: [
@@ -62,7 +62,7 @@ const msftSections: SectionData[] = [
       },
     ],
     chartNote:
-      'Lines are indexed to FY24 = 100; the dashed rule is the base. Year-on-year change per segment is shown beneath.',
+      'Lines are indexed to FY17 = 100; the dashed rule is the base. FY17–FY23 use the pre-recast segment definitions; FY24 onward uses the recast structure adopted in FY25.',
   },
   {
     rank: 560,
