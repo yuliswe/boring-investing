@@ -350,7 +350,14 @@ export function MultiSection({
                   className='flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap'
                 >
                   {mode === 'absolute' && !l.total ? (
-                    <span style={{ color: d.deltaColor }}>{d.delta}</span>
+                    <span>
+                      <span className='text-[var(--text-secondary)]'>
+                        {d.shareLabel}
+                      </span>{' '}
+                      <span style={{ color: d.shareDeltaColor }}>
+                        {d.shareDelta}
+                      </span>
+                    </span>
                   ) : (
                     <>
                       <span>
