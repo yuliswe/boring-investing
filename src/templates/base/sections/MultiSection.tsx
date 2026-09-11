@@ -1,4 +1,4 @@
-import type { MultiSeriesData } from '../types';
+import type { MultiSeriesData, ValueFormatData } from '../types';
 import {
   CHART_COLORS,
   COLOR_GOOD,
@@ -43,15 +43,27 @@ type ComputedMulti = {
   years: string[];
 };
 
+function niceStep(range: number): number {
+  const rough = range / 5;
+  const mag = Math.pow(10, Math.floor(Math.log10(rough)));
+  const frac = rough / mag;
+  const nice = frac <= 1.5 ? 1 : frac <= 3 ? 2 : frac <= 7 ? 5 : 10;
+  return nice * mag;
+}
+
 function computeMulti(
   series: MultiSeriesData[],
   years: string[],
-  mode: 'index' | 'share',
+  mode: 'index' | 'share' | 'absolute',
   invertAll: boolean,
   baseLabel?: string
 ): ComputedMulti {
   const share = mode === 'share';
-  const idx = share
+  const abs = mode === 'absolute';
+  const plotRaw = share || abs;
+  const pctDeltas = !share;
+
+  const idx = plotRaw
     ? series.map(s => s.values.slice())
     : series.map(s => s.values.map(v => (v / s.values[0]) * 100));
 
@@ -61,26 +73,32 @@ function computeMulti(
   const min = Math.min(...all);
   const max = Math.max(...all);
   const range = max - min || 1;
-  const lo = share ? 0 : min - range * 0.15;
+  const lo = plotRaw ? 0 : min - range * 0.15;
   const hi = max + range * 0.15;
   const n = series[0].values.length;
-  const baseH = pct(share ? 0 : 100, lo, hi);
+  const baseH = pct(plotRaw ? 0 : 100, lo, hi);
 
   const lines: ComputedLine[] = series.map((s, si) => {
     const hs = idx[si].map(v => pct(v, lo, hi));
     const inv = !!(s.invert ?? invertAll);
-    const last = share ? s.values[n - 1] - s.values[0] : idx[si][n - 1] - 100;
+    const last = share
+      ? s.values[n - 1] - s.values[0]
+      : abs
+        ? s.values[0]
+          ? (s.values[n - 1] / s.values[0] - 1) * 100
+          : 0
+        : idx[si][n - 1] - 100;
 
     const dots: ComputedDot[] = hs.map((h, i) => {
       const prev = i > 0 ? s.values[i - 1] : null;
       let delta = '';
       let deltaColor = '';
       if (prev !== null) {
-        const chg = share
-          ? s.values[i] - prev
-          : prev
+        const chg = pctDeltas
+          ? prev
             ? ((s.values[i] - prev) / Math.abs(prev)) * 100
-            : 0;
+            : 0
+          : s.values[i] - prev;
         if (Math.abs(chg) < 0.05) {
           delta = share ? '−0.0pp' : '−0.0%';
           deltaColor = COLOR_FLAT;
@@ -162,12 +180,33 @@ function computeMulti(
         bottom: pct(t, lo, hi).toFixed(1) + '%',
       });
     }
+  } else if (abs) {
+    const tickFmt: ValueFormatData = {
+      ...(totalSeries?.format ?? series[0].format),
+      decimals: 0,
+    };
+    const step = niceStep(max);
+    for (let t = step; t <= hi; t += step) {
+      ticks.push({
+        label: formatValue(t, tickFmt),
+        bottom: pct(t, lo, hi).toFixed(1) + '%',
+      });
+    }
   }
 
   return {
     lines,
     baseH: baseH.toFixed(1) + '%',
-    baseLabel: baseLabel || (share ? '0%' : years[0] + ' = 100'),
+    baseLabel:
+      baseLabel ||
+      (share
+        ? '0%'
+        : abs
+          ? formatValue(0, {
+              ...(totalSeries?.format ?? series[0].format),
+              decimals: 0,
+            })
+          : years[0] + ' = 100'),
     ticks,
     years,
   };
@@ -183,7 +222,7 @@ export function MultiSection({
 }: {
   series: MultiSeriesData[];
   years: string[];
-  mode?: 'index' | 'share';
+  mode?: 'index' | 'share' | 'absolute';
   invert?: boolean;
   baseLabel?: string;
   chartNote?: string;

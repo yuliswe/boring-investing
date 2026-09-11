@@ -36,9 +36,12 @@ its display order.
 The `multi` kind renders several series on one chart. In `index` mode (the
 default) each series is rebased to its first value = 100 so the lines show
 relative growth regardless of absolute scale; in `share` mode values plot
-as-is (typically percentages) with pp deltas. A series marked `total: true`
-draws in the text color and serves as the denominator for share-of-total
-readouts beneath each non-total line.
+as-is (typically percentages) with pp deltas; in `absolute` mode values plot
+as-is with the y-axis showing formatted amounts (using the series format)
+and YoY % deltas, which is suited to revenue or other dollar-denominated
+series where the reader wants to see the actual scale. A series marked
+`total: true` draws in the text color and serves as the denominator for
+share-of-total readouts beneath each non-total line.
 
 ## Adding a child template
 

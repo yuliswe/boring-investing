@@ -126,7 +126,7 @@ type MultiSectionData = {
   kind: 'multi';
   series: MultiSeriesData[];
   years: string[];
-  mode?: 'index' | 'share';
+  mode?: 'index' | 'share' | 'absolute';
   invert?: boolean;
   baseLabel?: string;
   chartNote?: string;
