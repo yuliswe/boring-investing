@@ -28,6 +28,7 @@ type ComputedLine = {
   changeColor: string;
   points: string;
   dots: ComputedDot[];
+  total: boolean;
 };
 
 type ComputedTick = {
@@ -151,6 +152,7 @@ function computeMulti(
     const totalOffset = totalSeries ? 1 : 0;
     return {
       label: s.label,
+      total: !!s.total,
       color: s.total
         ? 'var(--color-text)'
         : CHART_COLORS[(si - totalOffset) % CHART_COLORS.length],
@@ -347,21 +349,27 @@ export function MultiSection({
                   key={di}
                   className='flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap'
                 >
-                  <span>
-                    <span className='text-[var(--text-secondary)]'>
-                      {d.value}
-                    </span>{' '}
+                  {mode === 'absolute' && !l.total ? (
                     <span style={{ color: d.deltaColor }}>{d.delta}</span>
-                  </span>
-                  {d.shareLabel && (
-                    <span>
-                      <span className='text-[var(--text-secondary)]'>
-                        {d.shareLabel}
-                      </span>{' '}
-                      <span style={{ color: d.shareDeltaColor }}>
-                        {d.shareDelta}
+                  ) : (
+                    <>
+                      <span>
+                        <span className='text-[var(--text-secondary)]'>
+                          {d.value}
+                        </span>{' '}
+                        <span style={{ color: d.deltaColor }}>{d.delta}</span>
                       </span>
-                    </span>
+                      {d.shareLabel && (
+                        <span>
+                          <span className='text-[var(--text-secondary)]'>
+                            {d.shareLabel}
+                          </span>{' '}
+                          <span style={{ color: d.shareDeltaColor }}>
+                            {d.shareDelta}
+                          </span>
+                        </span>
+                      )}
+                    </>
                   )}
                 </div>
               ))}
