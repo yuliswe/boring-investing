@@ -25,7 +25,7 @@ export function NavBar({ brand, links, action }: NavBarProps) {
         <div className='nav-links'>
           {links.map(link => (
             <NextLink
-              key={link.href}
+              key={link.label}
               href={link.href}
               aria-current={link.current ? 'page' : undefined}
             >
@@ -48,7 +48,7 @@ export function NavBar({ brand, links, action }: NavBarProps) {
         <div className='nav-menu'>
           {links.map(link => (
             <NextLink
-              key={link.href}
+              key={link.label}
               href={link.href}
               aria-current={link.current ? 'page' : undefined}
               onClick={() => setOpen(false)}

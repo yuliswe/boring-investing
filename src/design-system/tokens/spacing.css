@@ -1,0 +1,27 @@
+/* Spacing — one density multiplier drives the whole scale.
+   0.9 compact / 1.15 default / 1.4 airy. Tap target is the mobile floor
+   and never goes below 2.75rem. */
+
+:root {
+  --density: 0.9; /* @kind other */
+
+  --space-1: calc(0.25rem * var(--density));
+  --space-2: calc(0.5rem * var(--density));
+  --space-3: calc(0.75rem * var(--density));
+  --space-4: calc(1rem * var(--density));
+  --space-5: calc(1.25rem * var(--density));
+  --space-6: calc(1.5rem * var(--density));
+  --space-7: calc(1.75rem * var(--density));
+  --space-8: calc(2rem * var(--density));
+
+  --tap: 2.75rem; /* 44px — mobile floor */
+  --row-height: 3.5rem; /* 56px */
+  --measure: 64ch;
+  --page-max: 70rem;
+
+  --radius-sm: 2px;
+  --radius-md: 0.25rem; /* 4px */
+  --radius-lg: 0.5rem;
+  --hairline: 1px;
+  --hairline-strong: 1.5px;
+}

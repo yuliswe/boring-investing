@@ -1,0 +1,15 @@
+export function ProseSection({ paragraphs }: { paragraphs: string[] }) {
+  return (
+    <div className='flex flex-col gap-[var(--space-3)]'>
+      {paragraphs.map((text, i) => (
+        <p
+          key={i}
+          className='m-0 max-w-[var(--measure)] text-sm leading-[1.55] text-justify hyphens-auto'
+          style={{ textWrap: 'pretty' }}
+        >
+          {text}
+        </p>
+      ))}
+    </div>
+  );
+}

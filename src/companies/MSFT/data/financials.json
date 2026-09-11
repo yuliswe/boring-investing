@@ -1,16 +1,348 @@
 {
-  "metrics": [
-    { "label": "Market cap", "value": "$3.1T" },
-    { "label": "Revenue (FY)", "value": "$245B", "changePct": 16.0 },
-    { "label": "Operating margin", "value": "44%", "changePct": 1.8 },
-    { "label": "Free cash flow", "value": "$74B", "changePct": 9.5 }
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [21.2, 46.3, 26.5, 35.3, 33.7, 26.6, 35.2, 37.9, 36.5, 20.8],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 34.5
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [17.2, 23.8, 27.2, 34.6, 36.7, 29.7, 42.8, 45.1, 51.9, 41.5],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 35.7
+    },
+    {
+      "label": "PEG ratio",
+      "values": [2.08, null, 1.89, 1.13, 1.31, 1.09, 0.99, 2.05, 1.94, 1.2],
+      "format": {
+        "decimals": 2
+      },
+      "invertColor": true,
+      "median10y": 1.31
+    }
+  ],
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [3.25, 2.13, 5.06, 5.76, 8.05, 9.65, 9.68, 11.8, 13.64, 17.95],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 8.85
+    },
+    {
+      "label": "Free cash flow per share",
+      "values": [4.01, 4.14, 4.93, 5.89, 7.38, 8.64, 7.96, 9.92, 9.59, 8.99],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 7.67
+    },
+    {
+      "label": "ROE %",
+      "values": [
+        29.06, 20.03, 38.35, 37.43, 43.15, 43.68, 35.09, 32.83, 29.65, 30.23
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 33.96
+    },
+    {
+      "label": "ROIC %",
+      "values": [
+        15.0, 10.01, 22.11, 24.35, 30.11, 33.5, 28.29, 28.56, 27.39, 25.92
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 26.66
+    },
+    {
+      "label": "Debt to equity ratio",
+      "values": [0.88, 0.92, 0.71, 0.54, 0.41, 0.3, 0.23, 0.17, 0.13, 0.09],
+      "format": {
+        "decimals": 2
+      },
+      "invertColor": true,
+      "median10y": 0.36
+    },
+    {
+      "label": "Sustainable growth rate %",
+      "values": [
+        15.55, 4.69, 24.85, 24.63, 31.5, 32.8, 25.47, 24.72, 22.65, 24.25
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 24.68
+    },
+    {
+      "label": "Net margin %",
+      "values": [
+        26.39, 15.02, 31.18, 30.96, 36.45, 36.69, 34.15, 35.96, 36.15, 40.31
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 35.06
+    },
+    {
+      "label": "Free cash flow margin %",
+      "values": [
+        32.49, 29.23, 30.4, 31.63, 33.39, 32.86, 28.07, 30.22, 25.42, 20.19
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 30.31
+    }
   ],
   "revenue": [
-    { "year": "FY20", "revenue": 143, "operatingIncome": 53 },
-    { "year": "FY21", "revenue": 168, "operatingIncome": 70 },
-    { "year": "FY22", "revenue": 198, "operatingIncome": 83 },
-    { "year": "FY23", "revenue": 212, "operatingIncome": 89 },
-    { "year": "FY24", "revenue": 245, "operatingIncome": 109 }
+    {
+      "year": "FY17",
+      "revenue": 96.6,
+      "operatingIncome": 29.0
+    },
+    {
+      "year": "FY18",
+      "revenue": 110.4,
+      "operatingIncome": 35.1
+    },
+    {
+      "year": "FY19",
+      "revenue": 125.8,
+      "operatingIncome": 43.0
+    },
+    {
+      "year": "FY20",
+      "revenue": 143.0,
+      "operatingIncome": 53.0
+    },
+    {
+      "year": "FY21",
+      "revenue": 168.1,
+      "operatingIncome": 69.9
+    },
+    {
+      "year": "FY22",
+      "revenue": 198.3,
+      "operatingIncome": 83.4
+    },
+    {
+      "year": "FY23",
+      "revenue": 211.9,
+      "operatingIncome": 88.5
+    },
+    {
+      "year": "FY24",
+      "revenue": 245.1,
+      "operatingIncome": 109.4
+    },
+    {
+      "year": "FY25",
+      "revenue": 281.7,
+      "operatingIncome": 128.5
+    },
+    {
+      "year": "FY26",
+      "revenue": 331.8,
+      "operatingIncome": 155.2
+    }
+  ],
+  "expenses": [
+    {
+      "year": "FY17",
+      "costOfRevenue": 34.3,
+      "sellingGeneralAndAdmin": 19.9,
+      "researchAndDev": 13.0,
+      "depreciationAndAmortization": 7.8,
+      "otherOperating": 0.3,
+      "nonOperating": -0.9,
+      "taxes": 4.4,
+      "dilutionAdjustment": 3.3
+    },
+    {
+      "year": "FY18",
+      "costOfRevenue": 38.4,
+      "sellingGeneralAndAdmin": 22.2,
+      "researchAndDev": 14.7,
+      "depreciationAndAmortization": 9.9,
+      "otherOperating": 0,
+      "nonOperating": -1.4,
+      "taxes": 19.9,
+      "dilutionAdjustment": 3.9
+    },
+    {
+      "year": "FY19",
+      "costOfRevenue": 42.9,
+      "sellingGeneralAndAdmin": 23.1,
+      "researchAndDev": 16.9,
+      "depreciationAndAmortization": 11.6,
+      "otherOperating": 0,
+      "nonOperating": -0.7,
+      "taxes": 4.4,
+      "dilutionAdjustment": 4.7
+    },
+    {
+      "year": "FY20",
+      "costOfRevenue": 46.1,
+      "sellingGeneralAndAdmin": 24.7,
+      "researchAndDev": 19.3,
+      "depreciationAndAmortization": 12.3,
+      "otherOperating": 0,
+      "nonOperating": -0.1,
+      "taxes": 8.8,
+      "dilutionAdjustment": 5.3
+    },
+    {
+      "year": "FY21",
+      "costOfRevenue": 52.2,
+      "sellingGeneralAndAdmin": 25.2,
+      "researchAndDev": 20.7,
+      "depreciationAndAmortization": 10.9,
+      "otherOperating": 0,
+      "nonOperating": -1.2,
+      "taxes": 9.8,
+      "dilutionAdjustment": 6.1
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 62.7,
+      "sellingGeneralAndAdmin": 27.7,
+      "researchAndDev": 24.5,
+      "depreciationAndAmortization": 14.6,
+      "otherOperating": 0,
+      "nonOperating": -0.3,
+      "taxes": 11.0,
+      "dilutionAdjustment": 7.5
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 65.9,
+      "sellingGeneralAndAdmin": 30.3,
+      "researchAndDev": 27.2,
+      "depreciationAndAmortization": 13.5,
+      "otherOperating": 0,
+      "nonOperating": -0.8,
+      "taxes": 17.0,
+      "dilutionAdjustment": 9.6
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 74.1,
+      "sellingGeneralAndAdmin": 32.1,
+      "researchAndDev": 29.5,
+      "depreciationAndAmortization": 20.0,
+      "otherOperating": 0,
+      "nonOperating": 1.6,
+      "taxes": 19.7,
+      "dilutionAdjustment": 10.7
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 87.8,
+      "sellingGeneralAndAdmin": 32.9,
+      "researchAndDev": 32.5,
+      "depreciationAndAmortization": 28.0,
+      "otherOperating": 0,
+      "nonOperating": 4.9,
+      "taxes": 21.8,
+      "dilutionAdjustment": 12.0
+    },
+    {
+      "year": "FY26",
+      "costOfRevenue": 106.4,
+      "sellingGeneralAndAdmin": 34.7,
+      "researchAndDev": 35.6,
+      "depreciationAndAmortization": 39.0,
+      "otherOperating": 0,
+      "nonOperating": -10.7,
+      "taxes": 32.2,
+      "dilutionAdjustment": 12.4
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
+  "cashFlow": [
+    {
+      "year": "FY17",
+      "cashTaxesPaid": 2.4,
+      "workingCapitalChange": 3.1,
+      "capitalExpenditures": 8.1
+    },
+    {
+      "year": "FY18",
+      "cashTaxesPaid": 5.5,
+      "workingCapitalChange": 2.3,
+      "capitalExpenditures": 11.6
+    },
+    {
+      "year": "FY19",
+      "cashTaxesPaid": 8.4,
+      "workingCapitalChange": 0.9,
+      "capitalExpenditures": 13.9
+    },
+    {
+      "year": "FY20",
+      "cashTaxesPaid": 12.5,
+      "workingCapitalChange": 2.1,
+      "capitalExpenditures": 15.4
+    },
+    {
+      "year": "FY21",
+      "cashTaxesPaid": 13.4,
+      "workingCapitalChange": 1.4,
+      "capitalExpenditures": 20.6
+    },
+    {
+      "year": "FY22",
+      "cashTaxesPaid": 16.0,
+      "workingCapitalChange": -0.2,
+      "capitalExpenditures": 23.9
+    },
+    {
+      "year": "FY23",
+      "cashTaxesPaid": 23.1,
+      "workingCapitalChange": -2.0,
+      "capitalExpenditures": 28.1
+    },
+    {
+      "year": "FY24",
+      "cashTaxesPaid": 23.4,
+      "workingCapitalChange": 0.1,
+      "capitalExpenditures": 44.5
+    },
+    {
+      "year": "FY25",
+      "cashTaxesPaid": 28.7,
+      "workingCapitalChange": -5.3,
+      "capitalExpenditures": 64.6
+    },
+    {
+      "year": "FY26",
+      "cashTaxesPaid": 21.2,
+      "workingCapitalChange": -3.0,
+      "capitalExpenditures": 115.9
+    }
   ],
   "thesis": [
     "Azure keeps compounding as enterprises migrate workloads to the cloud, and it now anchors the fastest-growing segment.",

@@ -1,0 +1,104 @@
+/* Base — resets and element defaults only. Components carry their own
+   styling; nothing here is a utility class. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+h1 {
+  font-size: var(--text-display);
+  font-weight: 400;
+  letter-spacing: var(--tracking-display);
+}
+h2 {
+  font-size: var(--text-h2);
+  font-weight: 400;
+  letter-spacing: -0.018em;
+}
+h3 {
+  font-size: var(--text-h3);
+}
+h4 {
+  font-size: var(--text-h4);
+}
+h5 {
+  font-size: var(--text-h5);
+}
+
+/* The overline is the one small-uppercase role, and it sets in the body
+   face: a display serif's hairlines disappear at this size. */
+h6 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-emphasis);
+  font-size: var(--text-overline);
+  letter-spacing: var(--tracking-overline);
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--color-accent);
+  font-family: var(--font-interactable);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.1875rem;
+}
+a:hover {
+  color: var(--color-accent-700);
+  text-decoration-thickness: 2px;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-interactable);
+  font-size: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 25%, transparent);
+}
+
+[disabled],
+[aria-disabled='true'] {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
