@@ -1,0 +1,64 @@
+{
+  "segments": [
+    {
+      "year": "FY16",
+      "digitalMedia": 3.9,
+      "digitalExperience": 1.7,
+      "publishing": 0.2
+    },
+    {
+      "year": "FY17",
+      "digitalMedia": 5.0,
+      "digitalExperience": 2.1,
+      "publishing": 0.2
+    },
+    {
+      "year": "FY18",
+      "digitalMedia": 6.3,
+      "digitalExperience": 2.4,
+      "publishing": 0.3
+    },
+    {
+      "year": "FY19",
+      "digitalMedia": 7.7,
+      "digitalExperience": 3.2,
+      "publishing": 0.3
+    },
+    {
+      "year": "FY20",
+      "digitalMedia": 9.2,
+      "digitalExperience": 3.1,
+      "publishing": 0.5
+    },
+    {
+      "year": "FY21",
+      "digitalMedia": 11.5,
+      "digitalExperience": 3.9,
+      "publishing": 0.4
+    },
+    {
+      "year": "FY22",
+      "digitalMedia": 12.8,
+      "digitalExperience": 4.4,
+      "publishing": 0.3
+    },
+    {
+      "year": "FY23",
+      "digitalMedia": 14.2,
+      "digitalExperience": 4.9,
+      "publishing": 0.3
+    },
+    {
+      "year": "FY24",
+      "digitalMedia": 15.9,
+      "digitalExperience": 5.4,
+      "publishing": 0.3
+    },
+    {
+      "year": "FY25",
+      "digitalMedia": 17.6,
+      "digitalExperience": 5.9,
+      "publishing": 0.3
+    }
+  ]
+}
