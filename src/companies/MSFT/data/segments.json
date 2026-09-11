@@ -1,28 +1,22 @@
 {
   "segments": [
     {
-      "year": "FY22",
-      "productivity": 63,
-      "intelligentCloud": 75,
-      "morePersonalComputing": 60
-    },
-    {
-      "year": "FY23",
-      "productivity": 69,
-      "intelligentCloud": 88,
-      "morePersonalComputing": 55
-    },
-    {
       "year": "FY24",
-      "productivity": 78,
-      "intelligentCloud": 105,
-      "morePersonalComputing": 62
+      "productivity": 106.8,
+      "intelligentCloud": 87.5,
+      "morePersonalComputing": 50.8
     },
     {
       "year": "FY25",
-      "productivity": 86,
-      "intelligentCloud": 124,
-      "morePersonalComputing": 67
+      "productivity": 120.8,
+      "intelligentCloud": 106.3,
+      "morePersonalComputing": 54.6
+    },
+    {
+      "year": "FY26",
+      "productivity": 140.0,
+      "intelligentCloud": 137.8,
+      "morePersonalComputing": 54.1
     }
   ]
 }

@@ -33,6 +33,7 @@ export type SoftwareFinancials = {
     taxes: number;
     dilutionAdjustment: number;
   }[];
+  expensesDeducedLines?: string[];
   thesis: string[];
 };
 
@@ -131,6 +132,7 @@ export function SoftwareTemplate({
       sections={[...softwareSections, ...baseSections]}
       childSections={extraSections}
       expenses={expenses}
+      deducedExpenseLines={financials.expensesDeducedLines}
       figuresDate={figuresDate}
       footer={footer}
     >

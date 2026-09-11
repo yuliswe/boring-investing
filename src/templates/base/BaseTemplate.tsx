@@ -234,8 +234,13 @@ const EXPENSE_LINES: [string, (r: ExpensesRowData) => number][] = [
   ['Dilution Adj.', r => r.dilutionAdjustment],
 ];
 
-function buildExpensesSection(rows: ExpensesRowData[]): SectionData {
+function buildExpensesSection(
+  rows: ExpensesRowData[],
+  deducedLines: string[]
+): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
+  const mark = (label: string) =>
+    deducedLines.includes(label) ? `${label} ⚠️` : label;
   const shares = (line: (r: ExpensesRowData) => number) =>
     rows.map(r => (r.revenue ? +((line(r) / r.revenue) * 100).toFixed(1) : 0));
   const lineShares = EXPENSE_LINES.map(([, line]) => shares(line));
@@ -253,7 +258,7 @@ function buildExpensesSection(rows: ExpensesRowData[]): SectionData {
     baseLabel: '0%',
     series: [
       {
-        label: 'Total',
+        label: mark('Total'),
         values: rows.map(
           (_, i) =>
             +lineShares.reduce((sum, vals) => sum + vals[i], 0).toFixed(1)
@@ -262,7 +267,7 @@ function buildExpensesSection(rows: ExpensesRowData[]): SectionData {
         total: true,
       },
       ...EXPENSE_LINES.map(([label], li) => ({
-        label,
+        label: mark(label),
         values: lineShares[li],
         format: pctFormat,
       })),
@@ -278,6 +283,9 @@ export type BaseTemplateProps = {
   sections: SectionData[];
   childSections?: SectionData[];
   expenses?: ExpensesRowData[];
+  /** Labels of expense lines whose values are modeled rather than extracted
+      from filings; they render with a warning mark. */
+  deducedExpenseLines?: string[];
   figuresDate?: string;
   footer?: FooterData;
   children?: ReactNode;
@@ -289,13 +297,16 @@ export function BaseTemplate({
   sections,
   childSections,
   expenses,
+  deducedExpenseLines = [],
   figuresDate,
   footer,
   children,
 }: BaseTemplateProps) {
   const merged = [
     ...sections,
-    ...(expenses && expenses.length ? [buildExpensesSection(expenses)] : []),
+    ...(expenses && expenses.length
+      ? [buildExpensesSection(expenses, deducedExpenseLines)]
+      : []),
     ...(childSections || []),
   ].sort((a, b) => a.rank - b.rank);
 
