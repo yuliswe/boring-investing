@@ -169,6 +169,14 @@ export type ExpensesRowData = {
   dilutionAdjustment: number;
 };
 
+export type CashFlowRowData = {
+  year: string;
+  cashTaxesPaid: number;
+  /** Positive = cash freed; negative = cash consumed. */
+  workingCapitalChange: number;
+  capitalExpenditures: number;
+};
+
 export type HeroData = {
   symbol: string;
   name: string;

@@ -17,4 +17,5 @@ export type {
   FilingEntryData,
   TableRowData,
   ExpensesRowData,
+  CashFlowRowData,
 } from './types';

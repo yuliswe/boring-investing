@@ -10,8 +10,12 @@ BaseTemplate  →  SoftwareTemplate  →  MsftPage
 `BaseTemplate` renders navbar → hero → header → sections → footer. It accepts
 `sections` and `childSections` separately, merges them by `rank`, and renders
 the sorted result. It also accepts an optional `expenses` array
-(`ExpensesRowData[]`) and builds the base "Expenses" section (rank 450) from
-it, computing each income-statement line as a share of revenue.
+(`ExpensesRowData[]`) and builds the base "Expenses" section (rank 500) from
+it, computing each income-statement line as a share of revenue. When both
+`expenses` and `cashFlow` (`CashFlowRowData[]`) are provided, it also builds a
+"Free Cash Flow" section (rank 550) that shows the same costs on a cash basis:
+D&A and SBC are stripped from the operating lines proportionally, and cash
+taxes paid, working-capital changes, and capital expenditures are added.
 
 A child template (e.g. `SoftwareTemplate`) builds its own sections from typed
 financial data and passes them as `sections` to `BaseTemplate`. Any

@@ -8,6 +8,7 @@ import type {
   FooterData,
   SectionData,
   ExpensesRowData,
+  CashFlowRowData,
 } from './types';
 import {
   ProseSection,
@@ -277,15 +278,97 @@ function buildExpensesSection(
   };
 }
 
+function buildCashFlowSection(
+  expenses: ExpensesRowData[],
+  cashFlow: CashFlowRowData[]
+): SectionData {
+  const pctFormat = { suffix: '%', decimals: 1 };
+  const byYear = new Map(cashFlow.map(cf => [cf.year, cf]));
+
+  const rows = expenses
+    .filter(e => byYear.has(e.year))
+    .map(e => ({ exp: e, cf: byYear.get(e.year)! }));
+
+  const totalAccrualOps = rows.map(
+    r =>
+      r.exp.costOfRevenue + r.exp.sellingGeneralAndAdmin + r.exp.researchAndDev
+  );
+  const cashOps = totalAccrualOps.map(
+    (t, i) =>
+      t -
+      rows[i].exp.depreciationAndAmortization -
+      rows[i].exp.dilutionAdjustment
+  );
+
+  const share = (vals: number[]) =>
+    vals.map((v, i) =>
+      rows[i].exp.revenue ? +((v / rows[i].exp.revenue) * 100).toFixed(1) : 0
+    );
+
+  const cashCogsB = cashOps.map(
+    (c, i) => c * (rows[i].exp.costOfRevenue / totalAccrualOps[i])
+  );
+  const cashSgaB = cashOps.map(
+    (c, i) => c * (rows[i].exp.sellingGeneralAndAdmin / totalAccrualOps[i])
+  );
+  const cashRdB = cashOps.map(
+    (c, i) => c * (rows[i].exp.researchAndDev / totalAccrualOps[i])
+  );
+  const cashTaxesB = rows.map(r => r.cf.cashTaxesPaid);
+  const dwcB = rows.map(r => r.cf.workingCapitalChange);
+  const capexB = rows.map(r => r.cf.capitalExpenditures);
+
+  const cogsPct = share(cashCogsB);
+  const sgaPct = share(cashSgaB);
+  const rdPct = share(cashRdB);
+  const taxesPct = share(cashTaxesB);
+  const dwcPct = share(dwcB);
+  const capexPct = share(capexB);
+  const totalPct = cogsPct.map(
+    (_, i) =>
+      +(
+        cogsPct[i] +
+        sgaPct[i] +
+        rdPct[i] +
+        taxesPct[i] +
+        dwcPct[i] +
+        capexPct[i]
+      ).toFixed(1)
+  );
+
+  return {
+    rank: 550,
+    id: 'cashflow',
+    title: 'Free Cash Flow',
+    kicker:
+      'The same costs on a cash basis: D&A and stock comp drop out, replaced by the actual cash movements — working capital swings, real CapEx, and cash taxes paid. Everything as a share of revenue.',
+    kind: 'multi',
+    years: rows.map(r => r.exp.year),
+    mode: 'share',
+    invert: true,
+    baseLabel: '0%',
+    series: [
+      { label: 'Total', values: totalPct, format: pctFormat, total: true },
+      { label: 'Cash COGS', values: cogsPct, format: pctFormat },
+      { label: 'Cash SG&A', values: sgaPct, format: pctFormat },
+      { label: 'Cash R&D', values: rdPct, format: pctFormat },
+      { label: 'Cash Taxes Paid', values: taxesPct, format: pctFormat },
+      { label: 'Δ Working Capital', values: dwcPct, format: pctFormat },
+      { label: 'CapEx', values: capexPct, format: pctFormat },
+    ],
+    chartNote:
+      'All lines as a share of revenue. Δ Working capital: negative means cash was consumed (receivables or inventory grew). SBC excluded as non-cash — subtract it from the residual for true owner earnings.',
+  };
+}
+
 export type BaseTemplateProps = {
   navbar?: NavbarData;
   hero: HeroData;
   sections: SectionData[];
   childSections?: SectionData[];
   expenses?: ExpensesRowData[];
-  /** Labels of expense lines whose values are modeled rather than extracted
-      from filings; they render with a warning mark. */
   deducedExpenseLines?: string[];
+  cashFlow?: CashFlowRowData[];
   figuresDate?: string;
   footer?: FooterData;
   children?: ReactNode;
@@ -298,17 +381,22 @@ export function BaseTemplate({
   childSections,
   expenses,
   deducedExpenseLines = [],
+  cashFlow,
   figuresDate,
   footer,
   children,
 }: BaseTemplateProps) {
-  const merged = [
-    ...sections,
-    ...(expenses && expenses.length
-      ? [buildExpensesSection(expenses, deducedExpenseLines)]
-      : []),
-    ...(childSections || []),
-  ].sort((a, b) => a.rank - b.rank);
+  const baseSections: SectionData[] = [];
+  if (expenses && expenses.length) {
+    baseSections.push(buildExpensesSection(expenses, deducedExpenseLines));
+    if (cashFlow && cashFlow.length) {
+      baseSections.push(buildCashFlowSection(expenses, cashFlow));
+    }
+  }
+
+  const merged = [...sections, ...baseSections, ...(childSections || [])].sort(
+    (a, b) => a.rank - b.rank
+  );
 
   return (
     <div className='min-h-screen'>

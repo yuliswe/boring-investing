@@ -34,6 +34,12 @@ export type SoftwareFinancials = {
     dilutionAdjustment: number;
   }[];
   expensesDeducedLines?: string[];
+  cashFlow?: {
+    year: string;
+    cashTaxesPaid: number;
+    workingCapitalChange: number;
+    capitalExpenditures: number;
+  }[];
   thesis: string[];
 };
 
@@ -133,6 +139,7 @@ export function SoftwareTemplate({
       childSections={extraSections}
       expenses={expenses}
       deducedExpenseLines={financials.expensesDeducedLines}
+      cashFlow={financials.cashFlow}
       figuresDate={figuresDate}
       footer={footer}
     >

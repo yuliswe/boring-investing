@@ -282,6 +282,68 @@
     }
   ],
   "expensesDeducedLines": ["Total"],
+  "cashFlow": [
+    {
+      "year": "FY17",
+      "cashTaxesPaid": 2.4,
+      "workingCapitalChange": 3.1,
+      "capitalExpenditures": 8.1
+    },
+    {
+      "year": "FY18",
+      "cashTaxesPaid": 5.5,
+      "workingCapitalChange": 2.3,
+      "capitalExpenditures": 11.6
+    },
+    {
+      "year": "FY19",
+      "cashTaxesPaid": 8.4,
+      "workingCapitalChange": 0.9,
+      "capitalExpenditures": 13.9
+    },
+    {
+      "year": "FY20",
+      "cashTaxesPaid": 12.5,
+      "workingCapitalChange": 2.1,
+      "capitalExpenditures": 15.4
+    },
+    {
+      "year": "FY21",
+      "cashTaxesPaid": 13.4,
+      "workingCapitalChange": 1.4,
+      "capitalExpenditures": 20.6
+    },
+    {
+      "year": "FY22",
+      "cashTaxesPaid": 16.0,
+      "workingCapitalChange": -0.2,
+      "capitalExpenditures": 23.9
+    },
+    {
+      "year": "FY23",
+      "cashTaxesPaid": 23.1,
+      "workingCapitalChange": -2.0,
+      "capitalExpenditures": 28.1
+    },
+    {
+      "year": "FY24",
+      "cashTaxesPaid": 23.4,
+      "workingCapitalChange": 0.1,
+      "capitalExpenditures": 44.5
+    },
+    {
+      "year": "FY25",
+      "cashTaxesPaid": 28.7,
+      "workingCapitalChange": -5.3,
+      "capitalExpenditures": 64.6
+    },
+    {
+      "year": "FY26",
+      "cashTaxesPaid": 21.2,
+      "workingCapitalChange": -3.0,
+      "capitalExpenditures": 115.9
+    }
+  ],
   "thesis": [
     "Azure keeps compounding as enterprises migrate workloads to the cloud, and it now anchors the fastest-growing segment.",
     "Microsoft 365 and the Copilot add-ons turn a large installed base into expanding per-seat revenue.",

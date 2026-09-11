@@ -27,9 +27,6 @@ const hero: HeroData = {
     'Cloud, productivity, and platform franchises with durable recurring revenue. Microsoft derives the majority of its revenue from recurring commercial subscriptions and cloud services across three segments.',
 };
 
-const fcfYears = financials.revenue.map(r => r.year);
-const fcfValues = [31.4, 32.3, 38.3, 45.2, 56.1, 65.1, 59.5, 74.1, 71.6, 67.0];
-
 const msftSections: SectionData[] = [
   {
     rank: 400,
@@ -68,19 +65,7 @@ const msftSections: SectionData[] = [
       'Lines are indexed to FY24 = 100; the dashed rule is the base. Year-on-year change per segment is shown beneath.',
   },
   {
-    rank: 510,
-    id: 'fcf',
-    title: 'Free Cash Flow',
-    kicker: 'Annual free cash flow in billions, with a break-even reference.',
-    kind: 'chart',
-    bars: fcfYears.map((y, i) => ({ label: y, value: fcfValues[i] })),
-    format: { prefix: '$', suffix: 'B', decimals: 0 },
-    refValue: 0,
-    refLabel: 'Break-even',
-    chartNote: 'FCF = operating cash flow − capital expenditures.',
-  },
-  {
-    rank: 550,
+    rank: 560,
     id: 'capital',
     title: 'Capital Allocation',
     kicker:

@@ -36,6 +36,20 @@ rate) ÷ (equity + long-term debt); sustainable growth rate = ROE ×
 displayed lines and is marked ⚠️ because D&A and the dilution adjustment
 overlap the reported cost lines.
 
+## Free Cash Flow section
+
+The cash-basis cost breakdown in `data/financials.json` under `cashFlow`
+uses three filed values per year: cash taxes paid
+(`IncomeTaxesPaidNet`), capital expenditures
+(`PaymentsToAcquirePropertyPlantAndEquipment`), and working-capital change
+(the net of `IncreaseDecreaseInAccountsReceivable`,
+`IncreaseDecreaseInInventories`, `IncreaseDecreaseInAccountsPayable`,
+`IncreaseDecreaseInContractWithCustomerLiability`, and the four
+`IncreaseDecreaseInOther*` current/non-current asset/liability concepts),
+all from the XBRL 10-K filings. "Cash COGS", "Cash SG&A", and "Cash R&D"
+are derived by stripping D&A and SBC from the accrual operating lines
+proportionally, so they represent the cash portion of each cost category.
+
 ## Notes
 
 - All dollar figures in `data/financials.json` and `data/segments.json` are
