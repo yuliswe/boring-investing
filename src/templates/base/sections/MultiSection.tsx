@@ -254,119 +254,105 @@ export function MultiSection({
         ))}
       </div>
 
-      <div className='flex mt-[var(--space-4)] border-b border-[var(--color-divider)]'>
-        <div
-          className='flex-none'
-          style={{
-            width: 'calc(0.5rem + var(--space-2) + 5.5rem + var(--space-2))',
-          }}
-        />
-        <div className='relative flex-1 min-w-0 h-44 overflow-hidden'>
-          {multi.ticks.map((t, i) => (
+      <div className='overflow-x-auto'>
+        <div style={{ minWidth: '48rem' }}>
+          <div className='flex mt-[var(--space-4)] border-b border-[var(--color-divider)]'>
             <div
-              key={i}
-              className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)] pointer-events-none'
-              style={{ bottom: t.bottom }}
-            >
-              <span className='flex-1 border-t border-[color-mix(in_srgb,var(--color-text)_8%,transparent)]' />
-              <span className='flex-none text-xs ds-tnum text-[var(--text-muted)]'>
-                {t.label}
-              </span>
-            </div>
-          ))}
+              className='flex-none'
+              style={{
+                width:
+                  'calc(0.5rem + var(--space-2) + 5.5rem + var(--space-2))',
+              }}
+            />
+            <div className='relative flex-1 min-w-0 h-44 overflow-hidden'>
+              {multi.ticks.map((t, i) => (
+                <div
+                  key={i}
+                  className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)] pointer-events-none'
+                  style={{ bottom: t.bottom }}
+                >
+                  <span className='flex-1 border-t border-[color-mix(in_srgb,var(--color-text)_8%,transparent)]' />
+                  <span className='flex-none text-xs ds-tnum text-[var(--text-muted)]'>
+                    {t.label}
+                  </span>
+                </div>
+              ))}
 
-          <div
-            className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)]'
-            style={{ bottom: multi.baseH }}
-          >
-            <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
-            <span className='flex-none text-xs tracking-[0.04em] text-[var(--text-muted)]'>
-              {multi.baseLabel}
-            </span>
+              <div
+                className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)]'
+                style={{ bottom: multi.baseH }}
+              >
+                <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
+                <span className='flex-none text-xs tracking-[0.04em] text-[var(--text-muted)]'>
+                  {multi.baseLabel}
+                </span>
+              </div>
+
+              <svg
+                viewBox='0 0 100 100'
+                preserveAspectRatio='none'
+                aria-hidden='true'
+                className='absolute inset-0 w-full h-full overflow-visible pointer-events-none'
+              >
+                {multi.lines.map((l, li) => (
+                  <polyline
+                    key={li}
+                    points={l.points}
+                    fill='none'
+                    stroke={l.color}
+                    strokeWidth={l.width}
+                    strokeLinejoin='bevel'
+                    strokeLinecap='round'
+                    vectorEffect='non-scaling-stroke'
+                  />
+                ))}
+              </svg>
+              {multi.lines.map((l, li) =>
+                l.dots.map((d, di) => (
+                  <div
+                    key={`${li}-${di}`}
+                    className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full'
+                    style={{
+                      bottom: d.h,
+                      left: d.x,
+                      border: `1.5px solid ${l.color}`,
+                      background: 'var(--color-bg)',
+                    }}
+                  />
+                ))
+              )}
+            </div>
           </div>
 
-          <svg
-            viewBox='0 0 100 100'
-            preserveAspectRatio='none'
-            aria-hidden='true'
-            className='absolute inset-0 w-full h-full overflow-visible pointer-events-none'
-          >
-            {multi.lines.map((l, li) => (
-              <polyline
-                key={li}
-                points={l.points}
-                fill='none'
-                stroke={l.color}
-                strokeWidth={l.width}
-                strokeLinejoin='bevel'
-                strokeLinecap='round'
-                vectorEffect='non-scaling-stroke'
-              />
-            ))}
-          </svg>
-          {multi.lines.map((l, li) =>
-            l.dots.map((d, di) => (
-              <div
-                key={`${li}-${di}`}
-                className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full'
-                style={{
-                  bottom: d.h,
-                  left: d.x,
-                  border: `1.5px solid ${l.color}`,
-                  background: 'var(--color-bg)',
-                }}
-              />
-            ))
-          )}
-        </div>
-      </div>
-
-      <div className='flex items-center gap-[var(--space-2)] pt-[var(--space-2)] text-xs ds-tnum'>
-        <span className='flex-none w-2' />
-        <span className='flex-none w-22' />
-        <div className='flex-1 flex justify-between'>
-          {multi.years.map(y => (
-            <div key={y} className='flex-1 text-center'>
-              {y}
+          <div className='flex items-center gap-[var(--space-2)] pt-[var(--space-2)] text-xs ds-tnum'>
+            <span className='flex-none w-2' />
+            <span className='flex-none w-22' />
+            <div className='flex-1 flex justify-between'>
+              {multi.years.map(y => (
+                <div key={y} className='flex-1 text-center'>
+                  {y}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <div className='flex flex-col gap-[var(--space-1)] pt-[var(--space-2)]'>
-        {multi.lines.map((l, li) => (
-          <div key={li} className='flex items-center gap-[var(--space-2)]'>
-            <span
-              className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
-              style={{ background: l.color }}
-            />
-            <span className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'>
-              {l.label}
-            </span>
-            <div className='flex-1 flex justify-between text-xs ds-tnum'>
-              {l.dots.map((d, di) => (
-                <div
-                  key={di}
-                  className='flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap'
-                >
-                  {mode === 'absolute' && !l.total ? (
-                    <span>
-                      <span className='text-[var(--text-secondary)]'>
-                        {d.shareLabel}
-                      </span>{' '}
-                      <span style={{ color: d.shareDeltaColor }}>
-                        {d.shareDelta}
-                      </span>
-                    </span>
-                  ) : (
-                    <>
-                      <span>
-                        <span className='text-[var(--text-secondary)]'>
-                          {d.value}
-                        </span>{' '}
-                        <span style={{ color: d.deltaColor }}>{d.delta}</span>
-                      </span>
-                      {d.shareLabel && (
+          <div className='flex flex-col gap-[var(--space-1)] pt-[var(--space-2)]'>
+            {multi.lines.map((l, li) => (
+              <div key={li} className='flex items-center gap-[var(--space-2)]'>
+                <span
+                  className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
+                  style={{ background: l.color }}
+                />
+                <span className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'>
+                  {l.label}
+                </span>
+                <div className='flex-1 flex justify-between text-xs ds-tnum'>
+                  {l.dots.map((d, di) => (
+                    <div
+                      key={di}
+                      className='flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap'
+                    >
+                      {mode === 'absolute' && !l.total ? (
                         <span>
                           <span className='text-[var(--text-secondary)]'>
                             {d.shareLabel}
@@ -375,14 +361,35 @@ export function MultiSection({
                             {d.shareDelta}
                           </span>
                         </span>
+                      ) : (
+                        <>
+                          <span>
+                            <span className='text-[var(--text-secondary)]'>
+                              {d.value}
+                            </span>{' '}
+                            <span style={{ color: d.deltaColor }}>
+                              {d.delta}
+                            </span>
+                          </span>
+                          {d.shareLabel && (
+                            <span>
+                              <span className='text-[var(--text-secondary)]'>
+                                {d.shareLabel}
+                              </span>{' '}
+                              <span style={{ color: d.shareDeltaColor }}>
+                                {d.shareDelta}
+                              </span>
+                            </span>
+                          )}
+                        </>
                       )}
-                    </>
-                  )}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
       {chartNote && (

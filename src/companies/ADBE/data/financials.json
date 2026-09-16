@@ -1,0 +1,314 @@
+{
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [43.0, 53.1, 48.2, 51.6, 44.1, 61.5, 33.8, 51.8, 41.7, 19.2],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 46.2
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [25.2, 32.9, 33.2, 37.8, 43.6, 43.1, 21.7, 40.5, 29.5, 13.9],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 33.0
+    },
+    {
+      "label": "PEG ratio",
+      "values": [null, 1.16, 0.9, 3.35, 0.55, null, null, 3.04, 9.13, 0.55],
+      "format": {
+        "decimals": 2
+      },
+      "invertColor": true,
+      "median10y": 1.16
+    }
+  ],
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [2.32, 3.38, 5.2, 6.0, 10.83, 10.02, 10.1, 11.82, 12.36, 16.7],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 10.06
+    },
+    {
+      "label": "Free cash flow per share",
+      "values": [
+        3.96, 5.46, 7.56, 8.19, 10.93, 14.31, 15.71, 15.12, 17.51, 23.07
+      ],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 12.62
+    },
+    {
+      "label": "ROE %",
+      "values": [
+        15.74, 20.03, 27.67, 28.03, 39.66, 32.59, 33.85, 32.86, 39.42, 61.34
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 33.22
+    },
+    {
+      "label": "ROIC %",
+      "values": [
+        12.54, 16.38, 19.21, 20.11, 30.21, 25.45, 26.13, 26.91, 28.14, 40.12
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 25.79
+    },
+    {
+      "label": "Debt to equity ratio",
+      "values": [0.25, 0.22, 0.44, 0.39, 0.31, 0.28, 0.3, 0.22, 0.4, 0.53],
+      "format": {
+        "decimals": 2
+      },
+      "invertColor": true,
+      "median10y": 0.31
+    },
+    {
+      "label": "Sustainable growth rate %",
+      "values": [
+        15.74, 20.03, 27.67, 28.03, 39.66, 32.59, 33.85, 32.86, 39.42, 61.34
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 33.22
+    },
+    {
+      "label": "Net margin %",
+      "values": [
+        19.96, 23.2, 28.69, 26.42, 40.88, 30.55, 27.01, 27.97, 25.85, 30.0
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 27.49
+    },
+    {
+      "label": "Free cash flow margin %",
+      "values": [
+        34.09, 37.45, 41.66, 36.05, 41.25, 43.6, 42.01, 35.77, 36.61, 41.45
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 39.35
+    }
+  ],
+  "revenue": [
+    { "year": "FY16", "revenue": 5.9, "operatingIncome": 1.5 },
+    { "year": "FY17", "revenue": 7.3, "operatingIncome": 2.2 },
+    { "year": "FY18", "revenue": 9.0, "operatingIncome": 2.8 },
+    { "year": "FY19", "revenue": 11.2, "operatingIncome": 3.3 },
+    { "year": "FY20", "revenue": 12.9, "operatingIncome": 4.2 },
+    { "year": "FY21", "revenue": 15.8, "operatingIncome": 5.8 },
+    { "year": "FY22", "revenue": 17.6, "operatingIncome": 6.1 },
+    { "year": "FY23", "revenue": 19.4, "operatingIncome": 6.7 },
+    { "year": "FY24", "revenue": 21.5, "operatingIncome": 6.7 },
+    { "year": "FY25", "revenue": 23.8, "operatingIncome": 8.7 }
+  ],
+  "expenses": [
+    {
+      "year": "FY16",
+      "costOfRevenue": 0.8,
+      "sellingGeneralAndAdmin": 2.5,
+      "researchAndDev": 1.0,
+      "depreciationAndAmortization": 0.3,
+      "otherOperating": 0.1,
+      "nonOperating": -0.1,
+      "taxes": 0.3,
+      "dilutionAdjustment": 0.3
+    },
+    {
+      "year": "FY17",
+      "costOfRevenue": 1.0,
+      "sellingGeneralAndAdmin": 2.8,
+      "researchAndDev": 1.2,
+      "depreciationAndAmortization": 0.3,
+      "otherOperating": 0.1,
+      "nonOperating": 0.0,
+      "taxes": 0.4,
+      "dilutionAdjustment": 0.5
+    },
+    {
+      "year": "FY18",
+      "costOfRevenue": 1.2,
+      "sellingGeneralAndAdmin": 3.4,
+      "researchAndDev": 1.5,
+      "depreciationAndAmortization": 0.3,
+      "otherOperating": 0.1,
+      "nonOperating": 0.0,
+      "taxes": 0.2,
+      "dilutionAdjustment": 0.6
+    },
+    {
+      "year": "FY19",
+      "costOfRevenue": 1.7,
+      "sellingGeneralAndAdmin": 4.1,
+      "researchAndDev": 1.9,
+      "depreciationAndAmortization": 0.8,
+      "otherOperating": 0.2,
+      "nonOperating": -0.1,
+      "taxes": 0.3,
+      "dilutionAdjustment": 0.8
+    },
+    {
+      "year": "FY20",
+      "costOfRevenue": 1.7,
+      "sellingGeneralAndAdmin": 4.6,
+      "researchAndDev": 2.2,
+      "depreciationAndAmortization": 0.8,
+      "otherOperating": 0.2,
+      "nonOperating": -0.1,
+      "taxes": -1.1,
+      "dilutionAdjustment": 0.9
+    },
+    {
+      "year": "FY21",
+      "costOfRevenue": 1.9,
+      "sellingGeneralAndAdmin": 5.4,
+      "researchAndDev": 2.5,
+      "depreciationAndAmortization": 0.8,
+      "otherOperating": 0.2,
+      "nonOperating": -0.1,
+      "taxes": 0.9,
+      "dilutionAdjustment": 1.1
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 2.2,
+      "sellingGeneralAndAdmin": 6.2,
+      "researchAndDev": 3.0,
+      "depreciationAndAmortization": 0.9,
+      "otherOperating": 0.2,
+      "nonOperating": -0.1,
+      "taxes": 1.3,
+      "dilutionAdjustment": 1.4
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 2.4,
+      "sellingGeneralAndAdmin": 6.8,
+      "researchAndDev": 3.5,
+      "depreciationAndAmortization": 0.9,
+      "otherOperating": 0.2,
+      "nonOperating": 0.1,
+      "taxes": 1.4,
+      "dilutionAdjustment": 1.7
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 2.4,
+      "sellingGeneralAndAdmin": 7.3,
+      "researchAndDev": 3.9,
+      "depreciationAndAmortization": 0.9,
+      "otherOperating": 1.2,
+      "nonOperating": 0.2,
+      "taxes": 1.4,
+      "dilutionAdjustment": 1.8
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 2.6,
+      "sellingGeneralAndAdmin": 8.1,
+      "researchAndDev": 4.3,
+      "depreciationAndAmortization": 0.8,
+      "otherOperating": 0.2,
+      "nonOperating": 0.0,
+      "taxes": 1.6,
+      "dilutionAdjustment": 1.9
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
+  "cashFlow": [
+    {
+      "year": "FY16",
+      "cashTaxesPaid": 0.2,
+      "workingCapitalChange": 0.4,
+      "capitalExpenditures": 0.2
+    },
+    {
+      "year": "FY17",
+      "cashTaxesPaid": 0.4,
+      "workingCapitalChange": 0.4,
+      "capitalExpenditures": 0.2
+    },
+    {
+      "year": "FY18",
+      "cashTaxesPaid": 0.2,
+      "workingCapitalChange": 0.5,
+      "capitalExpenditures": 0.3
+    },
+    {
+      "year": "FY19",
+      "cashTaxesPaid": 0.4,
+      "workingCapitalChange": 0.0,
+      "capitalExpenditures": 0.4
+    },
+    {
+      "year": "FY20",
+      "cashTaxesPaid": 0.5,
+      "workingCapitalChange": 0.3,
+      "capitalExpenditures": 0.4
+    },
+    {
+      "year": "FY21",
+      "cashTaxesPaid": 0.8,
+      "workingCapitalChange": 0.3,
+      "capitalExpenditures": 0.3
+    },
+    {
+      "year": "FY22",
+      "cashTaxesPaid": 0.8,
+      "workingCapitalChange": 0.3,
+      "capitalExpenditures": 0.4
+    },
+    {
+      "year": "FY23",
+      "cashTaxesPaid": 1.9,
+      "workingCapitalChange": -0.3,
+      "capitalExpenditures": 0.4
+    },
+    {
+      "year": "FY24",
+      "cashTaxesPaid": 1.7,
+      "workingCapitalChange": 0.1,
+      "capitalExpenditures": 0.2
+    },
+    {
+      "year": "FY25",
+      "cashTaxesPaid": 2.2,
+      "workingCapitalChange": 0.7,
+      "capitalExpenditures": 0.2
+    }
+  ],
+  "thesis": [
+    "Creative Cloud dominates creative-professional tooling with minimal substitution risk, and the AI-native features in Firefly and Acrobat broaden the addressable market into non-specialist users.",
+    "The subscription model, now fully converted from perpetual licences, produces highly predictable revenue with low churn and expanding average revenue per user.",
+    "Capital-light operations translate most incremental revenue into free cash flow, which funds aggressive buybacks that have steadily reduced the share count."
+  ]
+}

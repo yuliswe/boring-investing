@@ -10,6 +10,14 @@ export type Stock = {
 
 export const STOCKS: Stock[] = [
   {
+    symbol: 'ADBE',
+    name: 'Adobe Inc.',
+    sector: 'Software',
+    summary:
+      'Creative and document software leader with subscription-based cloud offerings.',
+    template: 'software',
+  },
+  {
     symbol: 'MSFT',
     name: 'Microsoft Corporation',
     sector: 'Software',
