@@ -273,8 +273,10 @@ function buildExpensesSection(
   deducedLines: string[]
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
-  const mark = (label: string) =>
-    deducedLines.includes(label) ? `${label} ⚠️` : label;
+  const isDeduced = (label: string) => deducedLines.includes(label);
+  const mark = (label: string) => (isDeduced(label) ? `${label} ⚠️` : label);
+  const warnPrefix =
+    '⚠️ This line was not reported directly in the filing and has been deduced from the other lines.\n';
   const shares = (line: (r: ExpensesRowData) => number) =>
     rows.map(r => (r.revenue ? +((line(r) / r.revenue) * 100).toFixed(1) : 0));
   const lineShares = EXPENSE_LINES.map(([, , line]) => shares(line));
@@ -293,7 +295,9 @@ function buildExpensesSection(
     series: [
       {
         label: mark('Total'),
-        desc: 'Sum of all expense lines below.\nShown as a percentage of total revenue.',
+        desc:
+          (isDeduced('Total') ? warnPrefix : '') +
+          'Sum of all expense lines below.\nShown as a percentage of total revenue.',
         values: rows.map(
           (_, i) =>
             +lineShares.reduce((sum, vals) => sum + vals[i], 0).toFixed(1)
@@ -303,7 +307,10 @@ function buildExpensesSection(
       },
       ...EXPENSE_LINES.map(([label, desc], li) => ({
         label: mark(label),
-        desc: desc + '\nShown as a percentage of total revenue.',
+        desc:
+          (isDeduced(label) ? warnPrefix : '') +
+          desc +
+          '\nShown as a percentage of total revenue.',
         values: lineShares[li],
         format: pctFormat,
       })),
