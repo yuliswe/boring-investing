@@ -25,6 +25,7 @@ export type TrendPanelData = {
   median10y?: number;
   invertColor?: boolean;
   deltaMode?: 'pct' | 'add';
+  guidanceCount?: number;
 };
 
 export type MetricRowData = {
@@ -120,7 +121,7 @@ type RowsSectionData = {
 export type MultiSeriesData = {
   label: string;
   desc?: string;
-  values: number[];
+  values: (number | null)[];
   format?: ValueFormatData;
   total?: boolean;
   invert?: boolean;
@@ -134,6 +135,7 @@ type MultiSectionData = {
   invert?: boolean;
   baseLabel?: string;
   chartNote?: string;
+  guidanceCount?: number;
 };
 
 type PeersSectionData = {

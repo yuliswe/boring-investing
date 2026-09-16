@@ -59,6 +59,7 @@ function SectionContent({ section }: { section: SectionData }) {
           years={section.years}
           mode={section.mode}
           invert={section.invert}
+          guidanceCount={section.guidanceCount}
           baseLabel={section.baseLabel}
           chartNote={section.chartNote}
         />

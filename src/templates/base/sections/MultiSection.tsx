@@ -10,7 +10,7 @@ import {
 import { DescribedLabel } from '../LabelPopover';
 
 type ComputedDot = {
-  h: string;
+  h: string | null;
   x: string;
   value: string;
   delta: string;
@@ -18,6 +18,7 @@ type ComputedDot = {
   shareLabel: string;
   shareDelta: string;
   shareDeltaColor: string;
+  isGuidance: boolean;
 };
 
 type ComputedLine = {
@@ -28,7 +29,8 @@ type ComputedLine = {
   latest: string;
   change: string;
   changeColor: string;
-  points: string;
+  historicalPoints: string;
+  guidancePoints: string;
   dots: ComputedDot[];
   total: boolean;
 };
@@ -44,6 +46,7 @@ type ComputedMulti = {
   baseLabel: string;
   ticks: ComputedTick[];
   years: string[];
+  guidanceCount: number;
 };
 
 function niceStep(range: number): number {
@@ -59,6 +62,7 @@ function computeMulti(
   years: string[],
   mode: 'index' | 'share' | 'absolute',
   invertAll: boolean,
+  guidanceCount: number,
   baseLabel?: string
 ): ComputedMulti {
   const share = mode === 'share';
@@ -68,11 +72,16 @@ function computeMulti(
 
   const idx = plotRaw
     ? series.map(s => s.values.slice())
-    : series.map(s => s.values.map(v => (v / s.values[0]) * 100));
+    : series.map(s => {
+        const base = s.values[0];
+        return s.values.map(v =>
+          v !== null && base !== null ? (v / base) * 100 : null
+        );
+      });
 
   const totalSeries = series.find(s => s.total);
 
-  const all = idx.flat();
+  const all = idx.flat().filter((v): v is number => v !== null);
   const min = Math.min(...all);
   const max = Math.max(...all);
   const range = max - min || 1;
@@ -80,28 +89,37 @@ function computeMulti(
   const hi = max + range * 0.15;
   const n = series[0].values.length;
   const baseH = pct(plotRaw ? 0 : 100, lo, hi);
+  const historicalEnd = n - guidanceCount;
 
   const lines: ComputedLine[] = series.map((s, si) => {
-    const hs = idx[si].map(v => pct(v, lo, hi));
+    const hs = idx[si].map(v => (v !== null ? pct(v, lo, hi) : null));
     const inv = !!(s.invert ?? invertAll);
-    const last = share
-      ? s.values[n - 1] - s.values[0]
-      : abs
-        ? s.values[0]
-          ? (s.values[n - 1] / s.values[0] - 1) * 100
-          : 0
-        : idx[si][n - 1] - 100;
+
+    const lastNonNull = [...s.values].reverse().find(v => v !== null) ?? null;
+    const firstVal = s.values[0];
+    const lastIdx = s.values.lastIndexOf(lastNonNull as number);
+    const last =
+      lastNonNull !== null && firstVal !== null
+        ? share
+          ? lastNonNull - firstVal
+          : abs
+            ? firstVal
+              ? (lastNonNull / firstVal - 1) * 100
+              : 0
+            : (idx[si][lastIdx] as number) - 100
+        : 0;
 
     const dots: ComputedDot[] = hs.map((h, i) => {
+      const cur = s.values[i];
       const prev = i > 0 ? s.values[i - 1] : null;
       let delta = '';
       let deltaColor = '';
-      if (prev !== null) {
+      if (cur !== null && prev !== null) {
         const chg = pctDeltas
           ? prev
-            ? ((s.values[i] - prev) / Math.abs(prev)) * 100
+            ? ((cur - prev) / Math.abs(prev)) * 100
             : 0
-          : s.values[i] - prev;
+          : cur - prev;
         if (Math.abs(chg) < 0.05) {
           delta = share ? '−0.0pp' : '−0.0%';
           deltaColor = COLOR_FLAT;
@@ -114,13 +132,20 @@ function computeMulti(
         }
       }
 
+      const totalVal = totalSeries?.values[i] ?? null;
+      const prevTotalVal = i > 0 ? (totalSeries?.values[i - 1] ?? null) : null;
       const sh =
-        totalSeries && !s.total && !share
-          ? (s.values[i] / totalSeries.values[i]) * 100
+        totalSeries && !s.total && !share && cur !== null && totalVal !== null
+          ? (cur / totalVal) * 100
           : null;
       const prevSh =
-        i > 0 && totalSeries && !s.total && !share
-          ? (s.values[i - 1] / totalSeries.values[i - 1]) * 100
+        i > 0 &&
+        totalSeries &&
+        !s.total &&
+        !share &&
+        prev !== null &&
+        prevTotalVal !== null
+          ? (prev / prevTotalVal) * 100
           : null;
       let shareLabel = '';
       let shareDelta = '';
@@ -140,16 +165,44 @@ function computeMulti(
       }
 
       return {
-        h: h.toFixed(1) + '%',
+        h: h !== null ? h.toFixed(1) + '%' : null,
         x: (((i + 0.5) / n) * 100).toFixed(1) + '%',
-        value: formatValue(s.values[i], s.format),
+        value: formatValue(cur, s.format),
         delta,
         deltaColor,
         shareLabel,
         shareDelta,
         shareDeltaColor,
+        isGuidance: i >= historicalEnd,
       };
     });
+
+    const toSvg = (h: number | null, i: number) =>
+      h !== null
+        ? (((i + 0.5) / n) * 100).toFixed(2) + ',' + (100 - h).toFixed(2)
+        : null;
+
+    const historicalPts = hs
+      .slice(0, historicalEnd)
+      .map((h, i) => toSvg(h, i))
+      .filter(Boolean)
+      .join(' ');
+
+    let guidancePts = '';
+    if (guidanceCount > 0) {
+      const bridgeIdx = historicalEnd - 1;
+      const bridgePt =
+        bridgeIdx >= 0 && hs[bridgeIdx] !== null
+          ? toSvg(hs[bridgeIdx], bridgeIdx)
+          : null;
+      const tail = hs
+        .slice(historicalEnd)
+        .map((h, i) => toSvg(h, historicalEnd + i))
+        .filter(Boolean);
+      if (bridgePt && tail.length > 0) {
+        guidancePts = [bridgePt, ...tail].join(' ');
+      }
+    }
 
     const totalOffset = totalSeries ? 1 : 0;
     return {
@@ -160,18 +213,14 @@ function computeMulti(
         ? 'var(--color-text)'
         : CHART_COLORS[(si - totalOffset) % CHART_COLORS.length],
       width: s.total ? '1.5' : '1',
-      latest: formatValue(s.values[n - 1], s.format),
+      latest: formatValue(lastNonNull, s.format),
       change:
         (last >= 0 ? '+' : '−') +
         Math.abs(last).toFixed(1) +
         (share ? 'pp' : '%'),
       changeColor: (inv ? last <= 0 : last >= 0) ? COLOR_GOOD : COLOR_BAD,
-      points: hs
-        .map(
-          (h, i) =>
-            (((i + 0.5) / n) * 100).toFixed(2) + ',' + (100 - h).toFixed(2)
-        )
-        .join(' '),
+      historicalPoints: historicalPts,
+      guidancePoints: guidancePts,
       dots,
     };
   });
@@ -214,6 +263,7 @@ function computeMulti(
           : years[0] + ' = 100'),
     ticks,
     years,
+    guidanceCount,
   };
 }
 
@@ -222,6 +272,7 @@ export function MultiSection({
   years,
   mode = 'index',
   invert = false,
+  guidanceCount = 0,
   baseLabel,
   chartNote,
 }: {
@@ -229,10 +280,18 @@ export function MultiSection({
   years: string[];
   mode?: 'index' | 'share' | 'absolute';
   invert?: boolean;
+  guidanceCount?: number;
   baseLabel?: string;
   chartNote?: string;
 }) {
-  const multi = computeMulti(series, years, mode, invert, baseLabel);
+  const multi = computeMulti(
+    series,
+    years,
+    mode,
+    invert,
+    guidanceCount,
+    baseLabel
+  );
 
   return (
     <>
@@ -302,31 +361,49 @@ export function MultiSection({
                 className='absolute inset-0 w-full h-full overflow-visible pointer-events-none'
               >
                 {multi.lines.map((l, li) => (
-                  <polyline
-                    key={li}
-                    points={l.points}
-                    fill='none'
-                    stroke={l.color}
-                    strokeWidth={l.width}
-                    strokeLinejoin='bevel'
-                    strokeLinecap='round'
-                    vectorEffect='non-scaling-stroke'
-                  />
+                  <g key={li}>
+                    {l.historicalPoints && (
+                      <polyline
+                        points={l.historicalPoints}
+                        fill='none'
+                        stroke={l.color}
+                        strokeWidth={l.width}
+                        strokeLinejoin='bevel'
+                        strokeLinecap='round'
+                        vectorEffect='non-scaling-stroke'
+                      />
+                    )}
+                    {l.guidancePoints && (
+                      <polyline
+                        points={l.guidancePoints}
+                        fill='none'
+                        stroke={l.color}
+                        strokeWidth={l.width}
+                        strokeLinejoin='bevel'
+                        strokeLinecap='round'
+                        strokeDasharray='4 3'
+                        vectorEffect='non-scaling-stroke'
+                      />
+                    )}
+                  </g>
                 ))}
               </svg>
               {multi.lines.map((l, li) =>
-                l.dots.map((d, di) => (
-                  <div
-                    key={`${li}-${di}`}
-                    className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full'
-                    style={{
-                      bottom: d.h,
-                      left: d.x,
-                      border: `1.5px solid ${l.color}`,
-                      background: 'var(--color-bg)',
-                    }}
-                  />
-                ))
+                l.dots.map(
+                  (d, di) =>
+                    d.h !== null && (
+                      <div
+                        key={`${li}-${di}`}
+                        className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full'
+                        style={{
+                          bottom: d.h,
+                          left: d.x,
+                          border: `1.5px ${d.isGuidance ? 'dashed' : 'solid'} ${l.color}`,
+                          background: 'var(--color-bg)',
+                        }}
+                      />
+                    )
+                )
               )}
             </div>
           </div>
@@ -359,12 +436,12 @@ export function MultiSection({
                   {l.dots.map((d, di) => (
                     <div
                       key={di}
-                      className='flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap'
+                      className={`flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap${d.h === null ? ' opacity-30' : ''}`}
                     >
                       {mode === 'absolute' && !l.total ? (
                         <span>
                           <span className='text-[var(--text-secondary)]'>
-                            {d.shareLabel}
+                            {d.shareLabel || '—'}
                           </span>{' '}
                           <span style={{ color: d.shareDeltaColor }}>
                             {d.shareDelta}
@@ -374,7 +451,7 @@ export function MultiSection({
                         <>
                           <span>
                             <span className='text-[var(--text-secondary)]'>
-                              {d.value}
+                              {d.h !== null ? d.value : '—'}
                             </span>{' '}
                             <span style={{ color: d.deltaColor }}>
                               {d.delta}
