@@ -21,6 +21,7 @@ export {
   BottomSheet,
   SheetOption,
 } from '@/design-system/components/BottomSheet';
+export { Popover, PopoverMenuItem } from '@/design-system/components/Popover';
 export { Toast, ToastViewport } from '@/design-system/components/Toast';
 export { Banner } from '@/design-system/components/Banner';
 export { NavBar } from '@/design-system/components/NavBar';

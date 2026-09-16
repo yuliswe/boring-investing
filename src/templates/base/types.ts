@@ -18,6 +18,7 @@ export type ValueFormatData = {
 
 export type TrendPanelData = {
   label: string;
+  desc?: string;
   years: string[];
   values: (number | null)[];
   format?: ValueFormatData;
@@ -28,6 +29,7 @@ export type TrendPanelData = {
 
 export type MetricRowData = {
   label: string;
+  desc?: string;
   value: string;
   changePct?: number;
   note?: string;
@@ -52,6 +54,7 @@ export type PeerRowData = {
 
 export type PeerPanelData = {
   label: string;
+  desc?: string;
   hint: string;
   rows: PeerRowData[];
   format?: ValueFormatData;
@@ -116,6 +119,7 @@ type RowsSectionData = {
 
 export type MultiSeriesData = {
   label: string;
+  desc?: string;
   values: number[];
   format?: ValueFormatData;
   total?: boolean;

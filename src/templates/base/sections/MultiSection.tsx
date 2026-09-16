@@ -7,6 +7,7 @@ import {
   pct,
   formatValue,
 } from '../compute';
+import { DescribedLabel } from '../LabelPopover';
 
 type ComputedDot = {
   h: string;
@@ -21,6 +22,7 @@ type ComputedDot = {
 
 type ComputedLine = {
   label: string;
+  desc?: string;
   color: string;
   width: string;
   latest: string;
@@ -152,6 +154,7 @@ function computeMulti(
     const totalOffset = totalSeries ? 1 : 0;
     return {
       label: s.label,
+      desc: s.desc,
       total: !!s.total,
       color: s.total
         ? 'var(--color-text)'
@@ -243,7 +246,11 @@ export function MultiSection({
               className='inline-block w-3 h-0.75 flex-none rounded-[var(--radius-sm)]'
               style={{ background: l.color }}
             />
-            <span className='text-[var(--text-secondary)]'>{l.label}</span>
+            <DescribedLabel
+              label={l.label}
+              desc={l.desc}
+              className='text-[var(--text-secondary)]'
+            />
             <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-base ds-tnum'>
               {l.latest}
             </span>
@@ -343,9 +350,11 @@ export function MultiSection({
                   className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
                   style={{ background: l.color }}
                 />
-                <span className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'>
-                  {l.label}
-                </span>
+                <DescribedLabel
+                  label={l.label}
+                  desc={l.desc}
+                  className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'
+                />
                 <div className='flex-1 flex justify-between text-xs ds-tnum'>
                   {l.dots.map((d, di) => (
                     <div
