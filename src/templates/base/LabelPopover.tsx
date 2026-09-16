@@ -138,7 +138,11 @@ function PopoverOverlay({
             ×
           </button>
         </div>
-        <p className='label-popover-body'>{state.desc}</p>
+        {state.desc.split('\n').map((line, i) => (
+          <p key={i} className='label-popover-body'>
+            {line}
+          </p>
+        ))}
       </div>
     </>
   );
