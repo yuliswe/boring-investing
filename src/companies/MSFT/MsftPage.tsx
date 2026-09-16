@@ -40,6 +40,7 @@ const msftSections: SectionData[] = [
     series: [
       {
         label: 'Total revenue',
+        desc: 'Sum of all three reporting segments.',
         values: segments.segments.map(
           s => s.productivity + s.intelligentCloud + s.morePersonalComputing
         ),
@@ -48,16 +49,19 @@ const msftSections: SectionData[] = [
       },
       {
         label: 'Intelligent Cloud',
+        desc: 'Azure cloud services, SQL Server, Windows Server, Visual Studio, GitHub, Nuance, and enterprise support services.\nShown as a percentage of total revenue.',
         values: segments.segments.map(s => s.intelligentCloud),
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Productivity',
+        desc: 'Microsoft 365 commercial and consumer subscriptions, Office on-premises, LinkedIn, and Dynamics 365.\nShown as a percentage of total revenue.',
         values: segments.segments.map(s => s.productivity),
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Personal Computing',
+        desc: 'Windows OEM and commercial licensing, Xbox and gaming, Surface devices, and search and news advertising.\nShown as a percentage of total revenue.',
         values: segments.segments.map(s => s.morePersonalComputing),
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
