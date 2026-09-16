@@ -16,6 +16,8 @@ import {
   Link,
   ListRow,
   NavBar,
+  Popover,
+  PopoverMenuItem,
   Radio,
   Segmented,
   Select,
@@ -173,6 +175,8 @@ export function Gallery() {
   });
   const [dialogOpen, setDialogOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [toasts, setToasts] = useState<
     { id: number; mark: string; msg: string }[]
@@ -846,9 +850,68 @@ export function Gallery() {
           </BottomSheet>
         </Section>
 
-        {/* 18 Toast & banner */}
+        {/* 18 Popover */}
         <Section
           n='18'
+          title='Popover'
+          blurb='A small floating surface anchored below its trigger. Dismiss on Escape or outside click. Use position: relative on the parent.'
+        >
+          <div className='py-4.5 border-t border-ds-divider-faint flex flex-wrap gap-[var(--space-4)]'>
+            <div className='relative inline-block'>
+              <Button
+                variant='secondary'
+                onClick={() => {
+                  setPopoverOpen(v => !v);
+                  setMenuOpen(false);
+                }}
+              >
+                Company info ▾
+              </Button>
+              <Popover open={popoverOpen} onClose={() => setPopoverOpen(false)}>
+                <Text variant='h5'>Arcadia Mills</Text>
+                <div className='mt-[var(--space-1)] text-sm text-[var(--text-secondary)]'>
+                  ARC · Textiles · Held 4y
+                </div>
+                <div className='mt-[var(--space-3)] pt-[var(--space-3)] border-t border-[var(--border-hairline)] text-xs text-[var(--text-muted)] ds-tnum'>
+                  P/E 11.4 · ROE 13.9% · Yield 2.1%
+                </div>
+              </Popover>
+            </div>
+
+            <div className='relative inline-block'>
+              <Button
+                variant='ghost'
+                onClick={() => {
+                  setMenuOpen(v => !v);
+                  setPopoverOpen(false);
+                }}
+              >
+                ⋯ Actions
+              </Button>
+              <Popover
+                open={menuOpen}
+                onClose={() => setMenuOpen(false)}
+                anchor='right'
+              >
+                <div className='popover-menu -mx-[var(--space-4)] -my-[var(--space-4)]'>
+                  <PopoverMenuItem onClick={() => setMenuOpen(false)}>
+                    Add to watchlist
+                  </PopoverMenuItem>
+                  <PopoverMenuItem onClick={() => setMenuOpen(false)}>
+                    Compare peers
+                  </PopoverMenuItem>
+                  <PopoverMenuItem onClick={() => setMenuOpen(false)}>
+                    Export figures
+                  </PopoverMenuItem>
+                </div>
+              </Popover>
+            </div>
+          </div>
+        </Section>
+
+        {/* 19 Toast & banner */}
+        <Section
+          n='19'
           title='Toast & banner'
           blurb='Toasts rise from the bottom edge and dismiss themselves; banners sit in the flow and stay until acted on.'
         >
@@ -879,9 +942,9 @@ export function Gallery() {
           </Sub>
         </Section>
 
-        {/* 19 Nav bar */}
+        {/* 20 Nav bar */}
         <Section
-          n='19'
+          n='20'
           title='Nav bar'
           blurb='Brand left, links right, one hairline beneath. Below 768px the links collapse behind a menu button.'
         >
@@ -902,9 +965,9 @@ export function Gallery() {
           </div>
         </Section>
 
-        {/* 20 Skeleton */}
+        {/* 21 Skeleton */}
         <Section
-          n='20'
+          n='21'
           title='Skeleton'
           blurb='Placeholders mirror the shape of what is loading, at the same heights, so nothing jumps when content lands.'
         >
@@ -942,9 +1005,9 @@ export function Gallery() {
 
         <footer className='pt-8.5 border-t border-ds-divider'>
           <Text variant='caption'>
-            Twenty components on the Ledger tokens. Every interactive element
-            carries a themed hover, a pressed state and the 2px accent focus
-            ring — tab through the page to see it.
+            Twenty-one components on the Ledger tokens. Every interactive
+            element carries a themed hover, a pressed state and the 2px accent
+            focus ring — tab through the page to see it.
           </Text>
         </footer>
       </div>

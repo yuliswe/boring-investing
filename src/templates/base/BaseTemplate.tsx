@@ -2,6 +2,7 @@
 
 import { Tag, Text } from '@/design-system';
 import type { ReactNode } from 'react';
+import { LabelPopoverProvider } from './LabelPopover';
 import type {
   NavbarData,
   HeroData,
@@ -399,61 +400,63 @@ export function BaseTemplate({
   );
 
   return (
-    <div className='min-h-screen'>
-      {navbar && (
-        <div className='sticky top-0 z-20'>
-          <Nav navbar={navbar} />
-        </div>
-      )}
+    <LabelPopoverProvider>
+      <div className='min-h-screen'>
+        {navbar && (
+          <div className='sticky top-0 z-20'>
+            <Nav navbar={navbar} />
+          </div>
+        )}
 
-      <div className='mx-auto max-w-[var(--page-max)] px-[var(--space-5)]'>
-        <HeroSection hero={hero} />
-        <Header sections={merged} figuresDate={figuresDate} />
+        <div className='mx-auto max-w-[var(--page-max)] px-[var(--space-5)]'>
+          <HeroSection hero={hero} />
+          <Header sections={merged} figuresDate={figuresDate} />
 
-        {merged.map(sec => (
-          <section
-            key={sec.id}
-            id={sec.id}
-            className='pt-[var(--space-7)] pb-[var(--space-2)] border-t border-[var(--color-divider)] scroll-mt-42.5'
-          >
-            <div className='flex flex-wrap items-baseline gap-[var(--space-2)] gap-x-[var(--space-3)]'>
-              <span className='ds-tnum text-xs tracking-[0.12em] font-[family-name:var(--font-heading)] text-[var(--color-accent)]'>
-                {sec.rank}
-              </span>
-              <Text variant='h3' className='text-3xl'>
-                {sec.title}
-              </Text>
-              {sec.origin && sec.origin !== 'Base' && (
-                <Tag tone='accent'>{sec.origin}</Tag>
-              )}
-            </div>
-            <p className='mt-[var(--space-2)] max-w-[62ch] text-xs text-[var(--text-secondary)]'>
-              {sec.kicker}
-            </p>
-            <div className='py-[var(--space-4)]'>
-              <SectionContent section={sec} />
-            </div>
-          </section>
-        ))}
+          {merged.map(sec => (
+            <section
+              key={sec.id}
+              id={sec.id}
+              className='pt-[var(--space-7)] pb-[var(--space-2)] border-t border-[var(--color-divider)] scroll-mt-42.5'
+            >
+              <div className='flex flex-wrap items-baseline gap-[var(--space-2)] gap-x-[var(--space-3)]'>
+                <span className='ds-tnum text-xs tracking-[0.12em] font-[family-name:var(--font-heading)] text-[var(--color-accent)]'>
+                  {sec.rank}
+                </span>
+                <Text variant='h3' className='text-3xl'>
+                  {sec.title}
+                </Text>
+                {sec.origin && sec.origin !== 'Base' && (
+                  <Tag tone='accent'>{sec.origin}</Tag>
+                )}
+              </div>
+              <p className='mt-[var(--space-2)] max-w-[62ch] text-xs text-[var(--text-secondary)]'>
+                {sec.kicker}
+              </p>
+              <div className='py-[var(--space-4)]'>
+                <SectionContent section={sec} />
+              </div>
+            </section>
+          ))}
 
-        {children}
+          {children}
 
-        <FooterSection
-          footer={
-            footer || {
-              links: [
-                { label: 'Method', href: '#method' },
-                { label: 'Sources', href: '#' },
-                { label: 'Corrections', href: '#' },
-              ],
-              externalLinks: [
-                { label: 'SEC EDGAR', href: '#' },
-                { label: 'Annual letters', href: '#' },
-              ],
+          <FooterSection
+            footer={
+              footer || {
+                links: [
+                  { label: 'Method', href: '#method' },
+                  { label: 'Sources', href: '#' },
+                  { label: 'Corrections', href: '#' },
+                ],
+                externalLinks: [
+                  { label: 'SEC EDGAR', href: '#' },
+                  { label: 'Annual letters', href: '#' },
+                ],
+              }
             }
-          }
-        />
+          />
+        </div>
       </div>
-    </div>
+    </LabelPopoverProvider>
   );
 }

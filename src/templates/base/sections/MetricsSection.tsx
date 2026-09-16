@@ -1,5 +1,6 @@
 import type { MetricRowData } from '../types';
 import { COLOR_GOOD, COLOR_BAD } from '../compute';
+import { DescribedLabel } from '../LabelPopover';
 
 export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
   return (
@@ -9,9 +10,11 @@ export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
           key={i}
           className='flex items-baseline gap-[var(--space-3)] min-h-11 border-b border-[var(--color-divider)]'
         >
-          <span className='flex-1 text-xs text-[var(--text-secondary)]'>
-            {m.label}
-          </span>
+          <DescribedLabel
+            label={m.label}
+            desc={m.desc}
+            className='flex-1 text-xs text-[var(--text-secondary)]'
+          />
           {m.changePct != null && (
             <span
               className='text-xs'

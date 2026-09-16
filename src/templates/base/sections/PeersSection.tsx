@@ -1,5 +1,6 @@
 import type { PeerPanelData } from '../types';
 import { PEER_COLORS, formatValue } from '../compute';
+import { DescribedLabel } from '../LabelPopover';
 
 function PeerBar({ panel }: { panel: PeerPanelData }) {
   const max = Math.max(...panel.rows.map(r => Math.abs(r.value)));
@@ -17,7 +18,11 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
   return (
     <div className='flex flex-col gap-[var(--space-1)]'>
       <div className='flex items-baseline gap-[var(--space-2)] pb-[var(--space-2)] border-b border-[var(--color-divider)]'>
-        <span className='flex-1 min-w-0 ds-kicker'>{panel.label}</span>
+        <DescribedLabel
+          label={panel.label}
+          desc={panel.desc}
+          className='flex-1 min-w-0 ds-kicker'
+        />
         <span className='flex-none text-xs text-[var(--text-muted)]'>
           {panel.hint}
         </span>

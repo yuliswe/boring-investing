@@ -1023,3 +1023,142 @@ a.list-row:hover {
   border: 0.375rem solid var(--surface-raised);
   outline: var(--hairline) solid var(--border-hairline);
 }
+
+/* — popover — */
+.popover {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  z-index: 50;
+  min-width: 11rem;
+  padding: var(--space-4);
+  background: var(--surface-raised);
+  border: var(--hairline) solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  animation: ledger-fade var(--duration-fade) var(--easing);
+}
+.popover-right {
+  left: auto;
+  right: 0;
+}
+.popover-menu {
+  padding: var(--space-1) 0;
+}
+.popover-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 var(--space-4);
+  background: transparent;
+  border: 0;
+  font-family: var(--font-interactable);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+.popover-menu-item:hover {
+  background: var(--state-row-hover);
+}
+
+/* — label popover (template-level, builds on popover + sheet patterns) — */
+.label-described {
+  all: unset;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.1875rem;
+  text-decoration-thickness: var(--hairline);
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+.label-described:hover {
+  text-decoration-color: currentColor;
+}
+.label-described:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+.label-popover-scrim {
+  display: none;
+}
+.label-popover-card {
+  position: fixed;
+  z-index: 50;
+  left: var(--lp-left);
+  top: var(--lp-top);
+  width: 18rem;
+  max-height: 14rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--surface-raised);
+  border: var(--hairline) solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  animation: ledger-rise var(--duration-rise) var(--easing);
+}
+.label-popover-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.label-popover-title {
+  flex: 1;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--text-sm);
+}
+.label-popover-close {
+  display: none;
+}
+.label-popover-body {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  line-height: var(--leading-body);
+}
+@media (max-width: 640px) {
+  .label-popover-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: var(--scrim);
+    animation: ledger-fade var(--duration-fade) var(--easing);
+  }
+  .label-popover-card {
+    left: var(--space-4);
+    right: var(--space-4);
+    bottom: var(--space-4);
+    top: auto;
+    width: auto;
+    max-height: 60vh;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    animation: ledger-sheet var(--duration-sheet) var(--easing);
+  }
+  .label-popover-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 1.625rem;
+    height: 1.625rem;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    transition: background var(--duration-fade) var(--easing);
+  }
+  .label-popover-close:hover {
+    background: color-mix(in srgb, var(--color-text) 10%, transparent);
+  }
+}

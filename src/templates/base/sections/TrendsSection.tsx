@@ -7,6 +7,7 @@ import {
   pct,
   formatValue,
 } from '../compute';
+import { DescribedLabel } from '../LabelPopover';
 
 type ComputedDot = {
   year: string;
@@ -19,6 +20,7 @@ type ComputedDot = {
 
 type ComputedPanel = {
   label: string;
+  desc?: string;
   lineColor: string;
   latest: string;
   dots: ComputedDot[];
@@ -94,6 +96,7 @@ function computePanel(
 
   return {
     label,
+    desc: panel.desc,
     lineColor,
     latest: formatValue(values[values.length - 1], format),
     dots,
@@ -119,9 +122,11 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
           className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
           style={{ background: panel.lineColor }}
         />
-        <span className='flex-1 min-w-0 text-xs text-[var(--text-secondary)]'>
-          {panel.label}
-        </span>
+        <DescribedLabel
+          label={panel.label}
+          desc={panel.desc}
+          className='flex-1 min-w-0 text-xs text-[var(--text-secondary)]'
+        />
         <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-lg ds-tnum'>
           {panel.latest}
         </span>
