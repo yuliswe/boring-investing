@@ -40,6 +40,7 @@ const msftSections: SectionData[] = [
     series: [
       {
         label: 'Total revenue',
+        desc: 'Sum of all three reporting segments.',
         values: segments.segments.map(
           s => s.productivity + s.intelligentCloud + s.morePersonalComputing
         ),

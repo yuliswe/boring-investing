@@ -40,6 +40,7 @@ const adbeSections: SectionData[] = [
     series: [
       {
         label: 'Total revenue',
+        desc: 'Sum of all three reporting segments.',
         values: segments.segments.map(
           s => s.digitalMedia + s.digitalExperience + s.publishing
         ),

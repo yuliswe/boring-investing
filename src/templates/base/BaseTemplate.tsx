@@ -293,6 +293,7 @@ function buildExpensesSection(
     series: [
       {
         label: mark('Total'),
+        desc: 'Sum of all expense lines below.\nShown as a percentage of total revenue.',
         values: rows.map(
           (_, i) =>
             +lineShares.reduce((sum, vals) => sum + vals[i], 0).toFixed(1)
@@ -382,7 +383,13 @@ function buildCashFlowSection(
     invert: true,
     baseLabel: '0%',
     series: [
-      { label: 'Total', values: totalPct, format: pctFormat, total: true },
+      {
+        label: 'Total',
+        desc: 'Sum of all cash-flow lines below.\nShown as a percentage of total revenue.',
+        values: totalPct,
+        format: pctFormat,
+        total: true,
+      },
       {
         label: 'Cash COGS',
         desc: 'Cost of revenue on a cash basis, after removing the depreciation and stock-based compensation components.\nShown as a percentage of total revenue.',
