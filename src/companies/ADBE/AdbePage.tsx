@@ -48,16 +48,19 @@ const adbeSections: SectionData[] = [
       },
       {
         label: 'Digital Media',
+        desc: 'Creative Cloud (Photoshop, Illustrator, Premiere Pro, After Effects, Lightroom) and Document Cloud (Acrobat, Adobe Sign).',
         values: segments.segments.map(s => s.digitalMedia),
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Digital Experience',
+        desc: 'Experience Cloud analytics, marketing automation, commerce, content management, and customer data platform solutions.',
         values: segments.segments.map(s => s.digitalExperience),
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Publishing',
+        desc: 'Legacy print publishing products (FrameMaker, RoboHelp) and advertising-related revenue. Declining segment.',
         values: segments.segments.map(s => s.publishing),
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },

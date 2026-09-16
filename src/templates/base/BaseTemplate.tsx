@@ -225,15 +225,47 @@ function FooterSection({ footer }: { footer: FooterData }) {
   );
 }
 
-const EXPENSE_LINES: [string, (r: ExpensesRowData) => number][] = [
-  ['COGS', r => r.costOfRevenue],
-  ['SG&A', r => r.sellingGeneralAndAdmin],
-  ['R&D', r => r.researchAndDev],
-  ['D&A', r => r.depreciationAndAmortization],
-  ['Other Ops.', r => r.otherOperating],
-  ['Non-op.', r => r.nonOperating],
-  ['Taxes', r => r.taxes],
-  ['Dilution Adj.', r => r.dilutionAdjustment],
+const EXPENSE_LINES: [string, string, (r: ExpensesRowData) => number][] = [
+  [
+    'COGS',
+    'Cost of revenue — direct costs of delivering products and services, including data center operations, content costs, and manufacturing.',
+    r => r.costOfRevenue,
+  ],
+  [
+    'SG&A',
+    'Selling, general and administrative — sales force compensation, marketing, legal, finance, and corporate overhead.',
+    r => r.sellingGeneralAndAdmin,
+  ],
+  [
+    'R&D',
+    'Research and development — engineering salaries, contractor costs, and tools for building new products and features.',
+    r => r.researchAndDev,
+  ],
+  [
+    'D&A',
+    'Depreciation and amortization — the non-cash expensing of capital equipment, buildings, and acquired intangible assets over their useful life.',
+    r => r.depreciationAndAmortization,
+  ],
+  [
+    'Other Ops.',
+    'Other operating income and expenses — items outside the core operating lines, such as restructuring charges or acquisition-related costs.',
+    r => r.otherOperating,
+  ],
+  [
+    'Non-op.',
+    'Non-operating income and expenses — interest income, interest expense, and gains or losses on investments and foreign exchange.',
+    r => r.nonOperating,
+  ],
+  [
+    'Taxes',
+    'Income tax provision — federal, state, and foreign income taxes owed on pre-tax income for the period.',
+    r => r.taxes,
+  ],
+  [
+    'Dilution Adj.',
+    'Stock-based compensation issued to employees, treated here as a cash-equivalent cost to show the full economic expense borne by shareholders.',
+    r => r.dilutionAdjustment,
+  ],
 ];
 
 function buildExpensesSection(
@@ -245,7 +277,7 @@ function buildExpensesSection(
     deducedLines.includes(label) ? `${label} ⚠️` : label;
   const shares = (line: (r: ExpensesRowData) => number) =>
     rows.map(r => (r.revenue ? +((line(r) / r.revenue) * 100).toFixed(1) : 0));
-  const lineShares = EXPENSE_LINES.map(([, line]) => shares(line));
+  const lineShares = EXPENSE_LINES.map(([, , line]) => shares(line));
 
   return {
     rank: 500,
@@ -268,8 +300,9 @@ function buildExpensesSection(
         format: pctFormat,
         total: true,
       },
-      ...EXPENSE_LINES.map(([label], li) => ({
+      ...EXPENSE_LINES.map(([label, desc], li) => ({
         label: mark(label),
+        desc,
         values: lineShares[li],
         format: pctFormat,
       })),
@@ -350,12 +383,42 @@ function buildCashFlowSection(
     baseLabel: '0%',
     series: [
       { label: 'Total', values: totalPct, format: pctFormat, total: true },
-      { label: 'Cash COGS', values: cogsPct, format: pctFormat },
-      { label: 'Cash SG&A', values: sgaPct, format: pctFormat },
-      { label: 'Cash R&D', values: rdPct, format: pctFormat },
-      { label: 'Cash Taxes Paid', values: taxesPct, format: pctFormat },
-      { label: 'Δ Working Capital', values: dwcPct, format: pctFormat },
-      { label: 'CapEx', values: capexPct, format: pctFormat },
+      {
+        label: 'Cash COGS',
+        desc: 'Cost of revenue on a cash basis, after removing the depreciation and stock-based compensation components.',
+        values: cogsPct,
+        format: pctFormat,
+      },
+      {
+        label: 'Cash SG&A',
+        desc: 'Selling, general and administrative costs on a cash basis, after removing non-cash charges.',
+        values: sgaPct,
+        format: pctFormat,
+      },
+      {
+        label: 'Cash R&D',
+        desc: 'Research and development costs on a cash basis, after removing non-cash charges.',
+        values: rdPct,
+        format: pctFormat,
+      },
+      {
+        label: 'Cash Taxes Paid',
+        desc: 'Income taxes actually paid in cash during the period, which may differ from the accrual-basis tax provision.',
+        values: taxesPct,
+        format: pctFormat,
+      },
+      {
+        label: 'Δ Working Capital',
+        desc: 'Change in net working capital — a negative value means cash was consumed as receivables or inventory grew faster than payables.',
+        values: dwcPct,
+        format: pctFormat,
+      },
+      {
+        label: 'CapEx',
+        desc: 'Capital expenditures — cash spent on property, equipment, data centers, and other long-lived assets.',
+        values: capexPct,
+        format: pctFormat,
+      },
     ],
     chartNote:
       'All lines as a share of revenue. Δ Working capital: negative means cash was consumed (receivables or inventory grew). SBC excluded as non-cash — subtract it from the residual for true owner earnings.',
