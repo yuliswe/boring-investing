@@ -213,7 +213,7 @@ export function TrendsSection({
 
   return (
     <>
-      <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-[var(--space-5)] gap-x-[var(--space-8)]'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-[var(--space-5)] gap-x-[var(--space-8)]'>
         {computed.map((p, i) => (
           <Sparkline key={i} panel={p} />
         ))}
