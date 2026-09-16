@@ -34,6 +34,7 @@ import {
   ToggleRow,
   RemovableTag,
   Text,
+  NoteBubble,
 } from '@/design-system';
 
 type Row = {
@@ -178,6 +179,7 @@ export function Gallery() {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [noteText, setNoteText] = useState<string | null>(null);
   const [toasts, setToasts] = useState<
     { id: number; mark: string; msg: string }[]
   >([]);
@@ -1003,9 +1005,38 @@ export function Gallery() {
           </div>
         </Section>
 
+        {/* 22 Note bubble */}
+        <Section
+          n='22'
+          title='Note bubble'
+          blurb='A floating pin anchored to any point on the page. Click to attach a single editable note.'
+        >
+          <div className='relative mt-3 h-56 rounded-[var(--radius-md)] border border-ds-divider-faint bg-[color-mix(in_srgb,var(--color-text)_3%,transparent)]'>
+            <div className='p-[var(--space-4)]'>
+              <div className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-xl text-[var(--text-primary)]'>
+                Arcadia Mills
+              </div>
+              <p className='mt-1 text-xs text-[var(--text-muted)] max-w-[28ch] leading-[var(--leading-body)]'>
+                Twelve straight years of rising book value per share, funded
+                without new equity.
+              </p>
+            </div>
+            <NoteBubble
+              className='absolute bottom-14 right-24'
+              note={
+                noteText
+                  ? { text: noteText, author: 'A. Rowe', time: '2h ago' }
+                  : undefined
+              }
+              onSave={setNoteText}
+              onDelete={() => setNoteText(null)}
+            />
+          </div>
+        </Section>
+
         <footer className='pt-8.5 border-t border-ds-divider'>
           <Text variant='caption'>
-            Twenty-one components on the Ledger tokens. Every interactive
+            Twenty-two components on the Ledger tokens. Every interactive
             element carries a themed hover, a pressed state and the 2px accent
             focus ring — tab through the page to see it.
           </Text>
