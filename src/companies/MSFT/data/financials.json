@@ -173,6 +173,11 @@
       "year": "FY26",
       "revenue": 331.8,
       "operatingIncome": 155.2
+    },
+    {
+      "year": "FY27E",
+      "revenue": 365,
+      "operatingIncome": null
     }
   ],
   "expenses": [
@@ -285,6 +290,17 @@
       "nonOperating": -10.7,
       "taxes": 32.2,
       "dilutionAdjustment": 12.4
+    },
+    {
+      "year": "FY27E",
+      "costOfRevenue": null,
+      "sellingGeneralAndAdmin": null,
+      "researchAndDev": null,
+      "depreciationAndAmortization": null,
+      "otherOperating": null,
+      "nonOperating": null,
+      "taxes": null,
+      "dilutionAdjustment": null
     }
   ],
   "expensesDeducedLines": ["Total"],
@@ -348,6 +364,12 @@
       "cashTaxesPaid": 21.2,
       "workingCapitalChange": -3.0,
       "capitalExpenditures": 115.9
+    },
+    {
+      "year": "FY27E",
+      "cashTaxesPaid": null,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 175
     }
   ],
   "thesis": [

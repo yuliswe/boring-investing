@@ -23,24 +23,24 @@ export type SoftwareFinancials = {
   guidanceYears?: string[];
   criticalMetrics?: TrendMetric[];
   keyMetrics?: TrendMetric[];
-  revenue: { year: string; revenue: number; operatingIncome: number }[];
+  revenue: { year: string; revenue: number; operatingIncome: number | null }[];
   expenses?: {
     year: string;
-    costOfRevenue: number;
-    sellingGeneralAndAdmin: number;
-    researchAndDev: number;
-    depreciationAndAmortization: number;
-    otherOperating: number;
-    nonOperating: number;
-    taxes: number;
-    dilutionAdjustment: number;
+    costOfRevenue: number | null;
+    sellingGeneralAndAdmin: number | null;
+    researchAndDev: number | null;
+    depreciationAndAmortization: number | null;
+    otherOperating: number | null;
+    nonOperating: number | null;
+    taxes: number | null;
+    dilutionAdjustment: number | null;
   }[];
   expensesDeducedLines?: string[];
   cashFlow?: {
     year: string;
-    cashTaxesPaid: number;
-    workingCapitalChange: number;
-    capitalExpenditures: number;
+    cashTaxesPaid: number | null;
+    workingCapitalChange: number | null;
+    capitalExpenditures: number | null;
   }[];
   thesis: string[];
 };
@@ -66,9 +66,15 @@ export function SoftwareTemplate({
   footer,
   children,
 }: SoftwareTemplateProps) {
-  const years = financials.revenue.map(r => r.year);
   const guidanceYears = financials.guidanceYears ?? [];
+  const guidanceSet = new Set(guidanceYears);
+  const years = financials.revenue
+    .map(r => r.year)
+    .filter(y => !guidanceSet.has(y));
   const allYears = [...years, ...guidanceYears];
+  const expensesGuidanceCount = financials.expenses
+    ? financials.expenses.filter(e => guidanceSet.has(e.year)).length
+    : 0;
 
   const softwareSections: SectionData[] = [
     {
@@ -145,6 +151,7 @@ export function SoftwareTemplate({
       childSections={extraSections}
       expenses={expenses}
       deducedExpenseLines={financials.expensesDeducedLines}
+      expensesGuidanceCount={expensesGuidanceCount}
       cashFlow={financials.cashFlow}
       figuresDate={figuresDate}
       footer={footer}
