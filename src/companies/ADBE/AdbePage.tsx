@@ -115,8 +115,8 @@ const adbeSections: SectionData[] = [
         format: { prefix: '$', decimals: 2 },
       },
       {
-        label: 'Single app',
-        desc: 'US individual single-app list price (annual plan, billed monthly) at each fiscal year-end. Applies to Photoshop, Illustrator, Premiere Pro, After Effects, and InDesign, which all share the same price. Increased from $19.99 to $20.99 in April 2018 and from $20.99 to $22.99 in early 2024.',
+        label: 'Photoshop',
+        desc: 'US individual single-app list price (annual plan, billed monthly) at each fiscal year-end. Illustrator, Premiere Pro, After Effects, and InDesign share the same price. Increased from $19.99 to $20.99 in April 2018 and from $20.99 to $22.99 in early 2024.',
         values: [
           19.99, 19.99, 20.99, 20.99, 20.99, 20.99, 20.99, 20.99, 22.99, 22.99,
           22.99,
