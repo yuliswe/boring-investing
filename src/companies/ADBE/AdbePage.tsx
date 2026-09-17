@@ -160,7 +160,7 @@ const adbeSections: SectionData[] = [
       },
     ],
     chartNote:
-      'Prices are the published US individual list price at each fiscal year-end, sourced from archived Adobe pricing pages (Wayback Machine) and press releases. Illustrator, Premiere Pro, After Effects, and InDesign share the single-app price shown.',
+      'Prices are the published US individual list price at each fiscal year-end, sourced from archived Adobe pricing pages (Wayback Machine) and press releases. Illustrator, Premiere Pro, After Effects, and InDesign share the Photoshop price.',
   },
   {
     rank: 600,
