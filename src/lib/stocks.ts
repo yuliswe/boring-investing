@@ -1,4 +1,4 @@
-export type CompanyTemplate = 'software';
+export type CompanyTemplate = 'software' | 'retail';
 
 export type Stock = {
   symbol: string;
@@ -24,6 +24,14 @@ export const STOCKS: Stock[] = [
     summary:
       'Serial acquirer of vertical market software businesses with durable recurring revenue and disciplined capital allocation.',
     template: 'software',
+  },
+  {
+    symbol: 'LULU',
+    name: 'Lululemon Athletica Inc.',
+    sector: 'Retail',
+    summary:
+      'Technical athletic apparel retailer with premium brand positioning and a direct-to-consumer model.',
+    template: 'retail',
   },
   {
     symbol: 'MSFT',

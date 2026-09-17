@@ -1,0 +1,283 @@
+{
+  "guidanceYears": ["FY25E"],
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [37.2, 48.5, 36.1, 45.6, 70.2, 39.8, 29.0, 47.1, 23.8],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 39.8
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [42.0, 55.0, 40.5, 52.0, 58.0, 35.0, 26.5, 40.0, 25.0],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 40.5
+    }
+  ],
+  "operationalMetrics": [
+    {
+      "label": "Comp store sales growth",
+      "values": [5, 7, 8, 9, -1, 32, 19, 12, 2],
+      "format": { "suffix": "%", "decimals": 0 },
+      "deltaMode": "add",
+      "median10y": 8
+    },
+    {
+      "label": "Store count",
+      "values": [406, 440, 479, 515, 521, 574, 655, 711, 749],
+      "format": { "decimals": 0 }
+    },
+    {
+      "label": "Gross margin",
+      "values": [51.3, 52.8, 55.2, 55.8, 56.8, 57.7, 56.5, 58.3, 58.5],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 56.5
+    },
+    {
+      "label": "Inventory turnover",
+      "values": [3.8, 3.9, 3.8, 3.5, 3.2, 4.2, 3.5, 3.8, 3.6],
+      "format": { "suffix": "×", "decimals": 1 },
+      "median10y": 3.8
+    }
+  ],
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [2.21, 2.68, 3.84, 4.93, 4.5, 9.27, 11.45, 14.64, 14.64, 15.65],
+      "format": { "prefix": "$", "decimals": 2 },
+      "median10y": 4.72,
+      "guidanceCount": 1
+    },
+    {
+      "label": "ROE %",
+      "values": [28.5, 31.2, 41.0, 49.2, 38.6, 64.5, 55.8, 57.2, 46.5],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 46.5
+    },
+    {
+      "label": "ROIC %",
+      "values": [25.0, 26.5, 33.0, 35.5, 24.0, 46.8, 42.0, 40.5, 32.0],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 33.0
+    },
+    {
+      "label": "Debt to equity",
+      "values": [0.0, 0.0, 0.0, 0.0, 0.58, 0.46, 0.35, 0.28, 0.21],
+      "format": { "decimals": 2 },
+      "invertColor": true,
+      "median10y": 0.0
+    },
+    {
+      "label": "Net margin",
+      "values": [12.3, 13.5, 14.4, 14.9, 12.0, 17.6, 16.7, 18.6, 15.7, 16.8],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 14.9,
+      "guidanceCount": 1
+    },
+    {
+      "label": "Free cash flow margin",
+      "values": [12.0, 11.0, 13.0, 12.0, 16.0, 18.0, 17.0, 17.0, 14.0],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add",
+      "median10y": 14.0
+    }
+  ],
+  "revenue": [
+    { "year": "FY16", "revenue": 2.34, "operatingIncome": 0.41 },
+    { "year": "FY17", "revenue": 2.65, "operatingIncome": 0.43 },
+    { "year": "FY18", "revenue": 3.29, "operatingIncome": 0.6 },
+    { "year": "FY19", "revenue": 3.98, "operatingIncome": 0.72 },
+    { "year": "FY20", "revenue": 4.4, "operatingIncome": 0.66 },
+    { "year": "FY21", "revenue": 6.26, "operatingIncome": 1.37 },
+    { "year": "FY22", "revenue": 8.11, "operatingIncome": 1.63 },
+    { "year": "FY23", "revenue": 9.62, "operatingIncome": 1.97 },
+    { "year": "FY24", "revenue": 10.59, "operatingIncome": 2.0 },
+    { "year": "FY25E", "revenue": 11.3, "operatingIncome": null }
+  ],
+  "expenses": [
+    {
+      "year": "FY16",
+      "costOfRevenue": 1.14,
+      "sellingGeneralAndAdmin": 0.79,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.11,
+      "otherOperating": null,
+      "nonOperating": 0.005,
+      "taxes": 0.1,
+      "dilutionAdjustment": 0.02
+    },
+    {
+      "year": "FY17",
+      "costOfRevenue": 1.25,
+      "sellingGeneralAndAdmin": 0.97,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.12,
+      "otherOperating": null,
+      "nonOperating": 0.01,
+      "taxes": 0.08,
+      "dilutionAdjustment": 0.02
+    },
+    {
+      "year": "FY18",
+      "costOfRevenue": 1.47,
+      "sellingGeneralAndAdmin": 1.22,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.15,
+      "otherOperating": null,
+      "nonOperating": 0.01,
+      "taxes": 0.13,
+      "dilutionAdjustment": 0.03
+    },
+    {
+      "year": "FY19",
+      "costOfRevenue": 1.76,
+      "sellingGeneralAndAdmin": 1.5,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.18,
+      "otherOperating": null,
+      "nonOperating": 0.01,
+      "taxes": 0.14,
+      "dilutionAdjustment": 0.03
+    },
+    {
+      "year": "FY20",
+      "costOfRevenue": 1.9,
+      "sellingGeneralAndAdmin": 1.79,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.24,
+      "otherOperating": 0.05,
+      "nonOperating": -0.01,
+      "taxes": 0.15,
+      "dilutionAdjustment": 0.04
+    },
+    {
+      "year": "FY21",
+      "costOfRevenue": 2.65,
+      "sellingGeneralAndAdmin": 2.24,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.28,
+      "otherOperating": null,
+      "nonOperating": 0.01,
+      "taxes": 0.29,
+      "dilutionAdjustment": 0.06
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 3.53,
+      "sellingGeneralAndAdmin": 2.95,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.33,
+      "otherOperating": null,
+      "nonOperating": 0.02,
+      "taxes": 0.35,
+      "dilutionAdjustment": 0.08
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 4.01,
+      "sellingGeneralAndAdmin": 3.64,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.42,
+      "otherOperating": null,
+      "nonOperating": 0.05,
+      "taxes": 0.48,
+      "dilutionAdjustment": 0.1
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 4.39,
+      "sellingGeneralAndAdmin": 4.2,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.5,
+      "otherOperating": null,
+      "nonOperating": 0.07,
+      "taxes": 0.46,
+      "dilutionAdjustment": 0.12
+    },
+    {
+      "year": "FY25E",
+      "costOfRevenue": null,
+      "sellingGeneralAndAdmin": null,
+      "researchAndDev": null,
+      "depreciationAndAmortization": null,
+      "otherOperating": null,
+      "nonOperating": null,
+      "taxes": null,
+      "dilutionAdjustment": null
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
+  "cashFlow": [
+    {
+      "year": "FY16",
+      "cashTaxesPaid": 0.08,
+      "workingCapitalChange": 0.03,
+      "capitalExpenditures": 0.15
+    },
+    {
+      "year": "FY17",
+      "cashTaxesPaid": 0.07,
+      "workingCapitalChange": -0.04,
+      "capitalExpenditures": 0.14
+    },
+    {
+      "year": "FY18",
+      "cashTaxesPaid": 0.11,
+      "workingCapitalChange": -0.06,
+      "capitalExpenditures": 0.21
+    },
+    {
+      "year": "FY19",
+      "cashTaxesPaid": 0.12,
+      "workingCapitalChange": -0.08,
+      "capitalExpenditures": 0.3
+    },
+    {
+      "year": "FY20",
+      "cashTaxesPaid": 0.1,
+      "workingCapitalChange": 0.12,
+      "capitalExpenditures": 0.15
+    },
+    {
+      "year": "FY21",
+      "cashTaxesPaid": 0.24,
+      "workingCapitalChange": -0.2,
+      "capitalExpenditures": 0.35
+    },
+    {
+      "year": "FY22",
+      "cashTaxesPaid": 0.3,
+      "workingCapitalChange": -0.05,
+      "capitalExpenditures": 0.55
+    },
+    {
+      "year": "FY23",
+      "cashTaxesPaid": 0.4,
+      "workingCapitalChange": -0.1,
+      "capitalExpenditures": 0.63
+    },
+    {
+      "year": "FY24",
+      "cashTaxesPaid": 0.38,
+      "workingCapitalChange": 0.05,
+      "capitalExpenditures": 0.65
+    },
+    {
+      "year": "FY25E",
+      "cashTaxesPaid": null,
+      "workingCapitalChange": null,
+      "capitalExpenditures": null
+    }
+  ],
+  "thesis": [
+    "Lululemon's brand strength in technical athletic apparel commands premium pricing and sustains gross margins above 55%, which is well above the specialty retail average.",
+    "International expansion, particularly in China and Europe, provides a long runway for store growth beyond the mature North American market.",
+    "The direct-to-consumer model, both company-operated stores and e-commerce, gives Lululemon control over the customer experience and captures the full retail margin without wholesale intermediaries."
+  ]
+}
