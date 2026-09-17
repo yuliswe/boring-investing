@@ -18,6 +18,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'CSU',
+    name: 'Constellation Software Inc.',
+    sector: 'Software',
+    summary:
+      'Serial acquirer of vertical market software businesses with durable recurring revenue and disciplined capital allocation.',
+    template: 'software',
+  },
+  {
     symbol: 'MSFT',
     name: 'Microsoft Corporation',
     sector: 'Software',

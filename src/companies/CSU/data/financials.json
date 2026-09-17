@@ -1,0 +1,85 @@
+{
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [40.2, 50.1, 31.3, 55.4, 61.2, 123.7, 62.7, 93.0, 89.3, 98.9],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 62.0
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [17.5, 21.8, 18.6, 24.9, 23.0, 30.2, 25.6, 30.3, 30.7, 19.0],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 24.0
+    }
+  ],
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [
+        9.76, 10.47, 17.91, 15.73, 20.59, 14.63, 24.16, 26.67, 34.48, 24.15
+      ],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 19.25
+    },
+    {
+      "label": "Free cash flow per share",
+      "values": [
+        22.45, 24.06, 30.19, 35.0, 54.76, 59.95, 59.25, 81.93, 100.42, 125.66
+      ],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 57.01
+    },
+    {
+      "label": "Net margin %",
+      "values": [9.72, 8.95, 12.39, 9.54, 10.98, 6.07, 7.73, 6.72, 7.26, 4.41],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 8.34
+    },
+    {
+      "label": "Free cash flow margin %",
+      "values": [
+        22.35, 20.56, 20.92, 21.26, 29.25, 24.89, 18.97, 20.66, 21.15, 22.92
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 2
+      },
+      "deltaMode": "add",
+      "median10y": 21.21
+    }
+  ],
+  "revenue": [
+    { "year": "FY16", "revenue": 2.13, "operatingIncome": 0.34 },
+    { "year": "FY17", "revenue": 2.48, "operatingIncome": 0.39 },
+    { "year": "FY18", "revenue": 3.06, "operatingIncome": 0.48 },
+    { "year": "FY19", "revenue": 3.49, "operatingIncome": 0.51 },
+    { "year": "FY20", "revenue": 3.97, "operatingIncome": 0.63 },
+    { "year": "FY21", "revenue": 5.11, "operatingIncome": 0.87 },
+    { "year": "FY22", "revenue": 6.62, "operatingIncome": 0.92 },
+    { "year": "FY23", "revenue": 8.41, "operatingIncome": 1.18 },
+    { "year": "FY24", "revenue": 10.07, "operatingIncome": 1.47 },
+    { "year": "FY25", "revenue": 11.62, "operatingIncome": 1.93 }
+  ],
+  "thesis": [
+    "Serial acquisition model compounds capital at high returns across hundreds of vertical market software businesses, with annual deployment consistently exceeding $1 billion.",
+    "Recurring maintenance and subscription revenue provides durable, predictable cash flows that fund continued acquisitions without requiring equity issuance.",
+    "Decentralized operating model with autonomous business units allows efficient integration of acquisitions while preserving domain expertise and founder cultures."
+  ]
+}
