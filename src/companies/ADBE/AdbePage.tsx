@@ -83,25 +83,36 @@ const adbeSections: SectionData[] = [
     panels: [
       {
         label: 'Digital Media ARR',
-        desc: 'Sum of Creative Cloud ARR and Document Cloud ARR exiting the fiscal year, as reported in the quarterly earnings press release. Not a GAAP line item.',
-        years: segments.segments.map(s => s.year),
+        desc: 'Sum of Creative Cloud ARR and Document Cloud ARR exiting the fiscal year, as reported in the quarterly earnings press release. Not a GAAP line item. Adobe stopped reporting segment-level ARR in FY26.',
+        years: [...segments.segments.map(s => s.year), 'FY26'],
         values: [
-          4.01, 5.39, 6.83, 8.33, 10.18, 12.24, 13.97, 15.33, 17.33, 19.2,
+          4.01,
+          5.39,
+          6.83,
+          8.33,
+          10.18,
+          12.24,
+          13.97,
+          15.33,
+          17.33,
+          19.2,
+          null,
         ],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
       },
       {
-        label: 'Creative Cloud All Apps',
+        label: 'CC All Apps price $/mo',
         desc: 'US individual list price (annual plan, billed monthly) at each fiscal year-end. Renamed Creative Cloud Pro in June 2025. Sourced from Adobe press releases and archived pricing pages.',
-        years: segments.segments.map(s => s.year),
+        years: [...segments.segments.map(s => s.year), 'FY26'],
         values: [
           49.99, 49.99, 52.99, 52.99, 52.99, 52.99, 54.99, 59.99, 59.99, 69.99,
+          69.99,
         ],
-        format: { prefix: '$', suffix: '/mo', decimals: 2 },
+        format: { prefix: '$', decimals: 2 },
       },
     ],
     chartNote:
-      'ARR sourced from earnings press releases, not SEC filings; Adobe revalues to year-end exchange rates. Creative Cloud pricing is the published US individual All Apps list price at each fiscal year-end.',
+      'ARR sourced from earnings press releases, not SEC filings; Adobe revalues to year-end exchange rates. Adobe stopped reporting segment-level ARR in FY26, replacing it with total Adobe ARR. Creative Cloud pricing is the published US individual All Apps list price at each fiscal year-end.',
   },
   {
     rank: 600,
