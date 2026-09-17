@@ -1,10 +1,9 @@
 'use client';
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
-import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
-import financials from './data/financials.json';
-import segments from './data/segments.json';
+import financials from './data/financials';
+import segments from './data/segments';
 
 const navbar = {
   brand: 'Ledger',
@@ -172,7 +171,7 @@ export function NflxPage() {
     <SoftwareTemplate
       navbar={navbar}
       hero={hero}
-      financials={financials as SoftwareFinancials}
+      financials={financials}
       extraSections={nflxSections}
       figuresDate='31 December'
       footer={footer}

@@ -1,0 +1,73 @@
+export type MsftSegmentRow = {
+  year: string;
+  productivity: number;
+  intelligentCloud: number;
+  morePersonalComputing: number;
+};
+
+const segments: { segments: MsftSegmentRow[] } = {
+  segments: [
+    {
+      year: 'FY17',
+      productivity: 29.9,
+      intelligentCloud: 27.4,
+      morePersonalComputing: 39.3,
+    },
+    {
+      year: 'FY18',
+      productivity: 35.9,
+      intelligentCloud: 32.2,
+      morePersonalComputing: 42.3,
+    },
+    {
+      year: 'FY19',
+      productivity: 41.2,
+      intelligentCloud: 39.0,
+      morePersonalComputing: 45.7,
+    },
+    {
+      year: 'FY20',
+      productivity: 46.4,
+      intelligentCloud: 48.4,
+      morePersonalComputing: 48.3,
+    },
+    {
+      year: 'FY21',
+      productivity: 53.9,
+      intelligentCloud: 59.7,
+      morePersonalComputing: 54.4,
+    },
+    {
+      year: 'FY22',
+      productivity: 63.4,
+      intelligentCloud: 75.0,
+      morePersonalComputing: 59.9,
+    },
+    {
+      year: 'FY23',
+      productivity: 69.3,
+      intelligentCloud: 87.9,
+      morePersonalComputing: 54.7,
+    },
+    {
+      year: 'FY24',
+      productivity: 106.8,
+      intelligentCloud: 87.5,
+      morePersonalComputing: 50.8,
+    },
+    {
+      year: 'FY25',
+      productivity: 120.8,
+      intelligentCloud: 106.3,
+      morePersonalComputing: 54.6,
+    },
+    {
+      year: 'FY26',
+      productivity: 140.0,
+      intelligentCloud: 137.8,
+      morePersonalComputing: 54.1,
+    },
+  ],
+};
+
+export default segments;
