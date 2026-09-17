@@ -230,6 +230,68 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
+  cashFlow: [
+    {
+      year: 'FY16',
+      cashTaxesPaid: 0.03,
+      workingCapitalChange: 0.19,
+      capitalExpenditures: 0.11,
+    },
+    {
+      year: 'FY17',
+      cashTaxesPaid: 0.11,
+      workingCapitalChange: 0.06,
+      capitalExpenditures: 0.17,
+    },
+    {
+      year: 'FY18',
+      cashTaxesPaid: 0.13,
+      workingCapitalChange: 0.29,
+      capitalExpenditures: 0.17,
+    },
+    {
+      year: 'FY19',
+      cashTaxesPaid: 0.4,
+      workingCapitalChange: 0.04,
+      capitalExpenditures: 0.25,
+    },
+    {
+      year: 'FY20',
+      cashTaxesPaid: 0.29,
+      workingCapitalChange: -0.03,
+      capitalExpenditures: 0.5,
+    },
+    {
+      year: 'FY21',
+      cashTaxesPaid: 0.51,
+      workingCapitalChange: -0.24,
+      capitalExpenditures: 0.52,
+    },
+    {
+      year: 'FY22',
+      cashTaxesPaid: 0.81,
+      workingCapitalChange: -0.76,
+      capitalExpenditures: 0.41,
+    },
+    {
+      year: 'FY23',
+      cashTaxesPaid: 1.16,
+      workingCapitalChange: -0.12,
+      capitalExpenditures: 0.35,
+    },
+    {
+      year: 'FY24',
+      cashTaxesPaid: 1.64,
+      workingCapitalChange: -0.03,
+      capitalExpenditures: 0.44,
+    },
+    {
+      year: 'FY25',
+      cashTaxesPaid: 2.22,
+      workingCapitalChange: -0.46,
+      capitalExpenditures: 0.69,
+    },
+  ],
   thesis: [
     'Netflix is the dominant global streaming platform with more than 300 million paid members, and its ad-supported tier opens a second revenue layer that roughly doubles each year, so the addressable market continues to expand even as subscriber penetration matures.',
     'The content flywheel, in which higher membership funds more original production that in turn attracts and retains members, now generates substantial free cash flow, ending the long era of cash burn and funding aggressive share buybacks.',
