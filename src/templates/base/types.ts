@@ -79,6 +79,7 @@ type ProseSectionData = {
 type TrendsSectionData = {
   kind: 'trends';
   panels: TrendPanelData[];
+  chartSize?: 'large' | 'small';
   chartNote?: string;
 };
 

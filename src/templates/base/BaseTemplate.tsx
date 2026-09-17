@@ -29,7 +29,11 @@ function SectionContent({ section }: { section: SectionData }) {
       return <ProseSection paragraphs={section.paragraphs} />;
     case 'trends':
       return (
-        <TrendsSection panels={section.panels} chartNote={section.chartNote} />
+        <TrendsSection
+          panels={section.panels}
+          chartSize={section.chartSize}
+          chartNote={section.chartNote}
+        />
       );
     case 'metrics':
       return <MetricsSection metrics={section.metrics} />;

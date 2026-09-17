@@ -76,6 +76,7 @@ const adbeSections: SectionData[] = [
     kicker:
       'Annualized recurring revenue for the Digital Media segment (Creative Cloud and Document Cloud), a management metric disclosed in earnings press releases. Revalued to year-end currency rates each fiscal year.',
     kind: 'trends',
+    chartSize: 'large',
     panels: [
       {
         label: 'Digital Media ARR',
