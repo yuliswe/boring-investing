@@ -1,3 +1,5 @@
+import type { SegmentData } from '@/templates/SoftwareTemplate';
+
 export type MsftSegmentRow = {
   year: string;
   productivity: number;
@@ -5,7 +7,7 @@ export type MsftSegmentRow = {
   morePersonalComputing: number;
 };
 
-const segments: { segments: MsftSegmentRow[] } = {
+const segments: SegmentData<MsftSegmentRow> = {
   segments: [
     {
       year: 'FY17',

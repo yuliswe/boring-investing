@@ -19,6 +19,10 @@ type TrendMetric = {
   guidanceCount?: number;
 };
 
+export type SegmentData<T extends { year: string }> = {
+  segments: T[];
+};
+
 export type SoftwareFinancials = {
   guidanceYears?: string[];
   criticalMetrics?: TrendMetric[];

@@ -1,3 +1,5 @@
+import type { SegmentData } from '@/templates/SoftwareTemplate';
+
 export type AdbeSegmentRow = {
   year: string;
   digitalMedia: number;
@@ -5,7 +7,7 @@ export type AdbeSegmentRow = {
   publishing: number;
 };
 
-const segments: { segments: AdbeSegmentRow[] } = {
+const segments: SegmentData<AdbeSegmentRow> = {
   segments: [
     {
       year: 'FY16',

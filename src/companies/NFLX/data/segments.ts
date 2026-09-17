@@ -1,3 +1,5 @@
+import type { SegmentData } from '@/templates/SoftwareTemplate';
+
 export type NflxSegmentRow = {
   year: string;
   ucan: number;
@@ -6,7 +8,7 @@ export type NflxSegmentRow = {
   apac: number;
 };
 
-const segments: { segments: NflxSegmentRow[] } = {
+const segments: SegmentData<NflxSegmentRow> = {
   segments: [
     { year: 'FY17', ucan: 6.66, emea: 2.36, latam: 1.64, apac: 0.58 },
     { year: 'FY18', ucan: 8.28, emea: 3.96, latam: 2.24, apac: 0.95 },
