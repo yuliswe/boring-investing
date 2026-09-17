@@ -1,0 +1,325 @@
+{
+  "guidanceYears": ["CY26E"],
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [28.0, 57.0, 23.5, 27.5, 30.0, 25.5, 19.5, 24.0, 24.5, 19.0],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 25.0
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [20.0, 29.5, 31.0, 29.0, 27.5, 28.5, 19.0, 25.5, 39.5, 43.0],
+      "format": {
+        "decimals": 1
+      },
+      "invertColor": true,
+      "median10y": 28.8
+    },
+    {
+      "label": "PEG ratio",
+      "values": [null, null, 1.5, 1.8, 1.7, 0.7, 1.5, 1.9, 1.0, 0.9],
+      "format": {
+        "decimals": 2
+      },
+      "invertColor": true,
+      "median10y": 1.5
+    }
+  ],
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [1.4, 0.92, 2.21, 2.46, 2.93, 5.61, 4.56, 5.8, 8.1, 9.8, 11.0],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 3.75,
+      "guidanceCount": 1
+    },
+    {
+      "label": "Free cash flow per share",
+      "values": [1.93, 1.77, 1.69, 2.3, 3.17, 5.08, 4.62, 5.51, 4.88, 4.17],
+      "format": {
+        "prefix": "$",
+        "decimals": 2
+      },
+      "median10y": 3.67
+    },
+    {
+      "label": "ROE %",
+      "values": [14.0, 8.3, 17.3, 17.0, 18.1, 30.2, 23.4, 28.2, 34.2, 40.0],
+      "format": {
+        "suffix": "%",
+        "decimals": 1
+      },
+      "deltaMode": "add",
+      "median10y": 20.75
+    },
+    {
+      "label": "ROIC %",
+      "values": [12.4, 7.1, 14.5, 14.8, 16.0, 27.5, 21.2, 25.4, 30.8, 36.2],
+      "format": {
+        "suffix": "%",
+        "decimals": 1
+      },
+      "deltaMode": "add",
+      "median10y": 18.6
+    },
+    {
+      "label": "Debt to equity ratio",
+      "values": [0.02, 0.02, 0.02, 0.07, 0.06, 0.06, 0.05, 0.05, 0.04, 0.04],
+      "format": {
+        "decimals": 2
+      },
+      "invertColor": true,
+      "median10y": 0.05
+    },
+    {
+      "label": "Sustainable growth rate %",
+      "values": [14.0, 8.3, 17.3, 17.0, 18.1, 30.2, 23.4, 28.2, 32.5, 36.8],
+      "format": {
+        "suffix": "%",
+        "decimals": 1
+      },
+      "deltaMode": "add",
+      "median10y": 20.75
+    },
+    {
+      "label": "Net margin %",
+      "values": [
+        21.6, 11.5, 22.4, 21.2, 22.1, 29.5, 21.2, 24.0, 28.6, 29.6, 30.0
+      ],
+      "format": {
+        "suffix": "%",
+        "decimals": 1
+      },
+      "deltaMode": "add",
+      "median10y": 22.25,
+      "guidanceCount": 1
+    },
+    {
+      "label": "Free cash flow margin %",
+      "values": [28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 17.0, 12.3],
+      "format": {
+        "suffix": "%",
+        "decimals": 1
+      },
+      "deltaMode": "add",
+      "median10y": 21.4
+    }
+  ],
+  "revenue": [
+    { "year": "CY16", "revenue": 90.3, "operatingIncome": 23.7 },
+    { "year": "CY17", "revenue": 110.9, "operatingIncome": 26.1 },
+    { "year": "CY18", "revenue": 136.8, "operatingIncome": 27.5 },
+    { "year": "CY19", "revenue": 161.9, "operatingIncome": 34.2 },
+    { "year": "CY20", "revenue": 182.5, "operatingIncome": 41.2 },
+    { "year": "CY21", "revenue": 257.6, "operatingIncome": 78.7 },
+    { "year": "CY22", "revenue": 282.8, "operatingIncome": 74.8 },
+    { "year": "CY23", "revenue": 307.4, "operatingIncome": 84.3 },
+    { "year": "CY24", "revenue": 350.0, "operatingIncome": 112.0 },
+    { "year": "CY25", "revenue": 405.0, "operatingIncome": 135.0 },
+    { "year": "CY26E", "revenue": 450, "operatingIncome": null }
+  ],
+  "expenses": [
+    {
+      "year": "CY16",
+      "costOfRevenue": 43.5,
+      "sellingGeneralAndAdmin": 10.8,
+      "researchAndDev": 12.3,
+      "depreciationAndAmortization": 5.3,
+      "otherOperating": 0,
+      "nonOperating": 1.2,
+      "taxes": 4.7,
+      "dilutionAdjustment": 7.7
+    },
+    {
+      "year": "CY17",
+      "costOfRevenue": 52.2,
+      "sellingGeneralAndAdmin": 13.3,
+      "researchAndDev": 16.6,
+      "depreciationAndAmortization": 6.1,
+      "otherOperating": 2.7,
+      "nonOperating": 0.3,
+      "taxes": 14.5,
+      "dilutionAdjustment": 8.0
+    },
+    {
+      "year": "CY18",
+      "costOfRevenue": 66.4,
+      "sellingGeneralAndAdmin": 16.4,
+      "researchAndDev": 21.4,
+      "depreciationAndAmortization": 7.6,
+      "otherOperating": 5.1,
+      "nonOperating": 6.9,
+      "taxes": 4.2,
+      "dilutionAdjustment": 10.5
+    },
+    {
+      "year": "CY19",
+      "costOfRevenue": 80.6,
+      "sellingGeneralAndAdmin": 19.4,
+      "researchAndDev": 26.0,
+      "depreciationAndAmortization": 9.7,
+      "otherOperating": 1.7,
+      "nonOperating": 5.4,
+      "taxes": 5.3,
+      "dilutionAdjustment": 11.6
+    },
+    {
+      "year": "CY20",
+      "costOfRevenue": 93.6,
+      "sellingGeneralAndAdmin": 20.1,
+      "researchAndDev": 27.6,
+      "depreciationAndAmortization": 11.6,
+      "otherOperating": 0,
+      "nonOperating": 6.9,
+      "taxes": 7.8,
+      "dilutionAdjustment": 13.4
+    },
+    {
+      "year": "CY21",
+      "costOfRevenue": 121.5,
+      "sellingGeneralAndAdmin": 25.8,
+      "researchAndDev": 31.6,
+      "depreciationAndAmortization": 12.4,
+      "otherOperating": 0,
+      "nonOperating": 12.0,
+      "taxes": 14.7,
+      "dilutionAdjustment": 15.4
+    },
+    {
+      "year": "CY22",
+      "costOfRevenue": 135.3,
+      "sellingGeneralAndAdmin": 31.1,
+      "researchAndDev": 39.5,
+      "depreciationAndAmortization": 13.9,
+      "otherOperating": 2.1,
+      "nonOperating": -3.5,
+      "taxes": 11.4,
+      "dilutionAdjustment": 19.5
+    },
+    {
+      "year": "CY23",
+      "costOfRevenue": 144.9,
+      "sellingGeneralAndAdmin": 30.7,
+      "researchAndDev": 45.4,
+      "depreciationAndAmortization": 14.5,
+      "otherOperating": 2.1,
+      "nonOperating": 1.5,
+      "taxes": 11.9,
+      "dilutionAdjustment": 22.5
+    },
+    {
+      "year": "CY24",
+      "costOfRevenue": 157.7,
+      "sellingGeneralAndAdmin": 33.3,
+      "researchAndDev": 47.0,
+      "depreciationAndAmortization": 16.0,
+      "otherOperating": 0,
+      "nonOperating": 7.5,
+      "taxes": 17.5,
+      "dilutionAdjustment": 25.0
+    },
+    {
+      "year": "CY25",
+      "costOfRevenue": 179.5,
+      "sellingGeneralAndAdmin": 38.5,
+      "researchAndDev": 52.0,
+      "depreciationAndAmortization": 19.0,
+      "otherOperating": 0,
+      "nonOperating": 8.5,
+      "taxes": 22.0,
+      "dilutionAdjustment": 28.0
+    },
+    {
+      "year": "CY26E",
+      "costOfRevenue": null,
+      "sellingGeneralAndAdmin": null,
+      "researchAndDev": null,
+      "depreciationAndAmortization": null,
+      "otherOperating": null,
+      "nonOperating": null,
+      "taxes": null,
+      "dilutionAdjustment": null
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
+  "cashFlow": [
+    {
+      "year": "CY16",
+      "cashTaxesPaid": 5.2,
+      "workingCapitalChange": 0.5,
+      "capitalExpenditures": 10.2
+    },
+    {
+      "year": "CY17",
+      "cashTaxesPaid": 5.6,
+      "workingCapitalChange": -1.3,
+      "capitalExpenditures": 13.2
+    },
+    {
+      "year": "CY18",
+      "cashTaxesPaid": 8.2,
+      "workingCapitalChange": 2.8,
+      "capitalExpenditures": 25.1
+    },
+    {
+      "year": "CY19",
+      "cashTaxesPaid": 10.4,
+      "workingCapitalChange": 3.5,
+      "capitalExpenditures": 23.5
+    },
+    {
+      "year": "CY20",
+      "cashTaxesPaid": 8.0,
+      "workingCapitalChange": -0.8,
+      "capitalExpenditures": 22.3
+    },
+    {
+      "year": "CY21",
+      "cashTaxesPaid": 13.4,
+      "workingCapitalChange": 3.7,
+      "capitalExpenditures": 24.6
+    },
+    {
+      "year": "CY22",
+      "cashTaxesPaid": 15.8,
+      "workingCapitalChange": -2.4,
+      "capitalExpenditures": 31.5
+    },
+    {
+      "year": "CY23",
+      "cashTaxesPaid": 12.3,
+      "workingCapitalChange": -1.1,
+      "capitalExpenditures": 32.3
+    },
+    {
+      "year": "CY24",
+      "cashTaxesPaid": 18.5,
+      "workingCapitalChange": 2.5,
+      "capitalExpenditures": 52.5
+    },
+    {
+      "year": "CY25",
+      "cashTaxesPaid": 22.0,
+      "workingCapitalChange": 1.0,
+      "capitalExpenditures": 75.0
+    },
+    {
+      "year": "CY26E",
+      "cashTaxesPaid": null,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 100
+    }
+  ],
+  "thesis": [
+    "Google Search dominates online advertising with a self-reinforcing data and AI moat that has resisted competitive challenges for two decades.",
+    "Google Cloud crossed into sustained profitability and is compounding revenue as enterprises adopt its AI platform alongside traditional cloud infrastructure.",
+    "YouTube is the largest video platform by watch time, monetising through advertising, Premium subscriptions, and a growing connected-TV footprint."
+  ]
+}
