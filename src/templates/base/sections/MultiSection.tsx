@@ -438,7 +438,9 @@ export function MultiSection({
                       key={di}
                       className={`flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap${d.h === null ? ' opacity-30' : ''}`}
                     >
-                      {mode === 'absolute' && !l.total ? (
+                      {mode === 'absolute' &&
+                      !l.total &&
+                      multi.lines.some(x => x.total) ? (
                         <span>
                           <span className='text-[var(--text-secondary)]'>
                             {d.shareLabel || '—'}

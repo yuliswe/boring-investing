@@ -27,6 +27,74 @@ const hero: HeroData = {
     'Creative and document software leader whose subscription-based Creative Cloud, Document Cloud, and Experience Cloud serve creative professionals, enterprises, and marketers worldwide.',
 };
 
+const pricingPlans: {
+  label: string;
+  desc: string;
+  values: (number | null)[];
+}[] = [
+  {
+    label: 'CC All Apps',
+    desc: 'US individual All Apps list price (annual plan, billed monthly) at each fiscal year-end. Renamed Creative Cloud Pro in June 2025.',
+    values: [
+      49.99, 49.99, 52.99, 52.99, 52.99, 52.99, 54.99, 59.99, 59.99, 69.99,
+      69.99,
+    ],
+  },
+  {
+    label: 'Photoshop',
+    desc: 'US individual single-app list price (annual plan, billed monthly) at each fiscal year-end. Illustrator, Premiere Pro, After Effects, and InDesign share the same price. Increased from $19.99 to $20.99 in April 2018 and from $20.99 to $22.99 in early 2024.',
+    values: [
+      19.99, 19.99, 20.99, 20.99, 20.99, 20.99, 20.99, 20.99, 22.99, 22.99,
+      22.99,
+    ],
+  },
+  {
+    label: 'Acrobat Pro',
+    desc: 'US individual Acrobat Pro list price (annual plan, billed monthly) at each fiscal year-end. Priced separately from other single apps. Launched at $14.99 in April 2015 and increased to $19.99 in August 2022.',
+    values: [
+      14.99, 14.99, 14.99, 14.99, 14.99, 14.99, 19.99, 19.99, 19.99, 19.99,
+      19.99,
+    ],
+  },
+  {
+    label: 'Photography',
+    desc: 'US individual Photography plan (Photoshop + Lightroom + Lightroom Classic, 20 GB storage, annual plan billed monthly) at each fiscal year-end. Priced at $9.99 from launch in September 2013 until January 2025, when it increased to $14.99 and was discontinued for new subscribers.',
+    values: [
+      9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 14.99, 14.99,
+    ],
+  },
+  {
+    label: 'Lightroom',
+    desc: 'US individual standalone Lightroom plan (1 TB cloud storage, annual plan billed monthly) at each fiscal year-end. Launched in October 2017 at $9.99 and increased to $11.99 in January 2025.',
+    values: [
+      null,
+      9.99,
+      9.99,
+      9.99,
+      9.99,
+      9.99,
+      9.99,
+      9.99,
+      9.99,
+      11.99,
+      11.99,
+    ],
+  },
+];
+
+const avgPrice = pricingPlans[0].values.map((_, i) => {
+  const nums = pricingPlans
+    .map(p => p.values[i])
+    .filter((v): v is number => v !== null);
+  return (
+    Math.round((nums.reduce((a, b) => a + b, 0) / nums.length) * 100) / 100
+  );
+});
+
+const arrValues = [
+  4.01, 5.39, 6.83, 8.33, 10.18, 12.24, 13.97, 15.33, 17.33, 19.2,
+];
+
 const adbeSections: SectionData[] = [
   {
     rank: 400,
@@ -74,26 +142,57 @@ const adbeSections: SectionData[] = [
       'FY16–FY17 segment names were Digital Media, Digital Marketing, and Print and Publishing; the segments were renamed but not restated. FY26E is management guidance.',
   },
   {
+    rank: 425,
+    id: 'pricing',
+    title: 'Subscription Pricing',
+    kicker:
+      'Published US individual list prices (annual plan, billed monthly) for Creative Cloud plans at each fiscal year-end.',
+    kind: 'multi',
+    mode: 'absolute',
+    years: [...segments.segments.map(s => s.year), 'FY26'],
+    series: [
+      ...pricingPlans.map(p => ({
+        ...p,
+        format: { prefix: '$', decimals: 2 },
+      })),
+      {
+        label: 'Average',
+        desc: 'Simple average of all plan prices shown, computed at each fiscal year-end.',
+        values: avgPrice,
+        format: { prefix: '$', decimals: 2 },
+      },
+    ],
+    chartNote:
+      'Prices are the published US individual list price at each fiscal year-end, sourced from archived Adobe pricing pages (Wayback Machine) and press releases. Illustrator, Premiere Pro, After Effects, and InDesign share the Photoshop price.',
+  },
+  {
     rank: 450,
     id: 'arr',
     title: 'Digital Media ARR',
     kicker:
-      'Annualized recurring revenue for the Digital Media segment (Creative Cloud and Document Cloud), a management metric disclosed in earnings press releases. Revalued to year-end currency rates each fiscal year.',
+      'Annualized recurring revenue for the Digital Media segment alongside an estimated subscriber count derived by dividing ARR by the average annual list price. Adobe stopped reporting segment-level ARR after FY25, replacing it with total Adobe ARR.',
     kind: 'trends',
-    chartSize: 'large',
     panels: [
       {
         label: 'Digital Media ARR',
         desc: 'Sum of Creative Cloud ARR and Document Cloud ARR exiting the fiscal year, as reported in the quarterly earnings press release. Not a GAAP line item.',
         years: segments.segments.map(s => s.year),
-        values: [
-          4.01, 5.39, 6.83, 8.33, 10.18, 12.24, 13.97, 15.33, 17.33, 19.2,
-        ],
+        values: arrValues,
         format: { prefix: '$', suffix: 'B', decimals: 2 },
+      },
+      {
+        label: 'Estimated subscribers',
+        desc: 'Digital Media ARR divided by the average annual subscription price (average monthly price × 12). This is a rough estimate because the actual subscriber mix, discounting, and enterprise pricing differ from published individual list prices.',
+        years: segments.segments.map(s => s.year),
+        values: arrValues.map(
+          (arr, i) =>
+            Math.round(((arr * 1e9) / (avgPrice[i] * 12) / 1e6) * 10) / 10
+        ),
+        format: { suffix: 'M', decimals: 1 },
       },
     ],
     chartNote:
-      'Sourced from earnings press releases, not SEC filings. Adobe revalues ARR to the most recent December exchange rates, so year-end figures are not strictly comparable across currency regimes.',
+      'ARR sourced from earnings press releases, not SEC filings. Subscriber count is a divide-through estimate; actual counts are not disclosed.',
   },
   {
     rank: 600,
