@@ -16,6 +16,7 @@ type ComputedDot = {
   deltaColor: string;
   h: string;
   x: string;
+  isGuidance: boolean;
 };
 
 type ComputedPanel = {
@@ -24,7 +25,8 @@ type ComputedPanel = {
   lineColor: string;
   latest: string;
   dots: ComputedDot[];
-  points: string;
+  historicalPoints: string;
+  guidancePoints: string;
   hasMedian: boolean;
   medianH: string;
   medianLabel: string;
@@ -34,8 +36,16 @@ function computePanel(
   panel: TrendPanelData,
   colorIndex: number
 ): ComputedPanel {
-  const { label, years, values, format, median10y, invertColor, deltaMode } =
-    panel;
+  const {
+    label,
+    years,
+    values,
+    format,
+    median10y,
+    invertColor,
+    deltaMode,
+    guidanceCount = 0,
+  } = panel;
   const numericVals = values.filter((v): v is number => v !== null);
   const allVals =
     median10y != null ? numericVals.concat(median10y) : numericVals;
@@ -44,6 +54,8 @@ function computePanel(
   const range = max - min || Math.abs(max) || 1;
   const lo = min - range * 0.25;
   const hi = max + range * 0.25;
+
+  const historicalEnd = values.length - guidanceCount;
 
   const dots = values.map((v, i) => {
     const prev = i > 0 ? values[i - 1] : null;
@@ -85,14 +97,42 @@ function computePanel(
       deltaColor,
       h: h.toFixed(1) + '%',
       x: (((i + 0.5) / values.length) * 100).toFixed(1) + '%',
+      isGuidance: i >= historicalEnd,
     };
   });
 
-  const hs = values.map(v => (v !== null ? pct(v, lo, hi) : 0));
+  const hs = values.map(v => (v !== null ? pct(v, lo, hi) : null));
   const hasMedian = median10y != null;
   const medianH = hasMedian ? pct(median10y!, lo, hi).toFixed(1) + '%' : '0%';
   const medianLabel = hasMedian ? formatValue(median10y!, format) : '';
   const lineColor = METRIC_COLORS[colorIndex % METRIC_COLORS.length];
+
+  const toSvg = (h: number | null, i: number) =>
+    h !== null
+      ? (((i + 0.5) / hs.length) * 100).toFixed(2) + ',' + (100 - h).toFixed(2)
+      : null;
+
+  const historicalPts = hs
+    .slice(0, historicalEnd)
+    .map((h, i) => toSvg(h, i))
+    .filter(Boolean)
+    .join(' ');
+
+  let guidancePts = '';
+  if (guidanceCount > 0) {
+    const bridgeIdx = historicalEnd - 1;
+    const bridgePt =
+      bridgeIdx >= 0 && hs[bridgeIdx] !== null
+        ? toSvg(hs[bridgeIdx], bridgeIdx)
+        : null;
+    const tail = hs
+      .slice(historicalEnd)
+      .map((h, i) => toSvg(h, historicalEnd + i))
+      .filter(Boolean);
+    if (bridgePt && tail.length > 0) {
+      guidancePts = [bridgePt, ...tail].join(' ');
+    }
+  }
 
   return {
     label,
@@ -100,14 +140,8 @@ function computePanel(
     lineColor,
     latest: formatValue(values[values.length - 1], format),
     dots,
-    points: hs
-      .map(
-        (h, i) =>
-          (((i + 0.5) / hs.length) * 100).toFixed(2) +
-          ',' +
-          (100 - h).toFixed(2)
-      )
-      .join(' '),
+    historicalPoints: historicalPts,
+    guidancePoints: guidancePts,
     hasMedian,
     medianH,
     medianLabel,
@@ -140,15 +174,29 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
             aria-hidden='true'
             className='block w-full h-full overflow-visible'
           >
-            <polyline
-              points={panel.points}
-              fill='none'
-              stroke={panel.lineColor}
-              strokeWidth='1.5'
-              strokeLinejoin='bevel'
-              strokeLinecap='round'
-              vectorEffect='non-scaling-stroke'
-            />
+            {panel.historicalPoints && (
+              <polyline
+                points={panel.historicalPoints}
+                fill='none'
+                stroke={panel.lineColor}
+                strokeWidth='1.5'
+                strokeLinejoin='bevel'
+                strokeLinecap='round'
+                vectorEffect='non-scaling-stroke'
+              />
+            )}
+            {panel.guidancePoints && (
+              <polyline
+                points={panel.guidancePoints}
+                fill='none'
+                stroke={panel.lineColor}
+                strokeWidth='1.5'
+                strokeLinejoin='bevel'
+                strokeLinecap='round'
+                strokeDasharray='4 3'
+                vectorEffect='non-scaling-stroke'
+              />
+            )}
           </svg>
         </div>
         <div className='absolute inset-0'>
@@ -170,7 +218,7 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
               style={{
                 bottom: d.h,
                 left: d.x,
-                border: `1.5px solid ${panel.lineColor}`,
+                border: `1.5px ${d.isGuidance ? 'dashed' : 'solid'} ${panel.lineColor}`,
                 background: 'var(--color-bg)',
               }}
             />

@@ -25,6 +25,7 @@ export type TrendPanelData = {
   median10y?: number;
   invertColor?: boolean;
   deltaMode?: 'pct' | 'add';
+  guidanceCount?: number;
 };
 
 export type MetricRowData = {
@@ -120,7 +121,7 @@ type RowsSectionData = {
 export type MultiSeriesData = {
   label: string;
   desc?: string;
-  values: number[];
+  values: (number | null)[];
   format?: ValueFormatData;
   total?: boolean;
   invert?: boolean;
@@ -134,6 +135,7 @@ type MultiSectionData = {
   invert?: boolean;
   baseLabel?: string;
   chartNote?: string;
+  guidanceCount?: number;
 };
 
 type PeersSectionData = {
@@ -163,22 +165,22 @@ export type SectionData = {
 export type ExpensesRowData = {
   year: string;
   revenue: number;
-  costOfRevenue: number;
-  sellingGeneralAndAdmin: number;
-  researchAndDev: number;
-  depreciationAndAmortization: number;
-  otherOperating: number;
-  nonOperating: number;
-  taxes: number;
-  dilutionAdjustment: number;
+  costOfRevenue: number | null;
+  sellingGeneralAndAdmin: number | null;
+  researchAndDev: number | null;
+  depreciationAndAmortization: number | null;
+  otherOperating: number | null;
+  nonOperating: number | null;
+  taxes: number | null;
+  dilutionAdjustment: number | null;
 };
 
 export type CashFlowRowData = {
   year: string;
-  cashTaxesPaid: number;
+  cashTaxesPaid: number | null;
   /** Positive = cash freed; negative = cash consumed. */
-  workingCapitalChange: number;
-  capitalExpenditures: number;
+  workingCapitalChange: number | null;
+  capitalExpenditures: number | null;
 };
 
 export type HeroData = {

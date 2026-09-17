@@ -36,38 +36,42 @@ const msftSections: SectionData[] = [
       'Revenue by segment in billions, with year-on-year growth rates. FY24 onward uses the recast segment structure adopted in FY25.',
     kind: 'multi',
     mode: 'absolute',
-    years: segments.segments.map(s => s.year),
+    years: [...segments.segments.map(s => s.year), 'FY27E'],
+    guidanceCount: 1,
     series: [
       {
         label: 'Total revenue',
         desc: 'Sum of all three reporting segments.',
-        values: segments.segments.map(
-          s => s.productivity + s.intelligentCloud + s.morePersonalComputing
-        ),
+        values: [
+          ...segments.segments.map(
+            s => s.productivity + s.intelligentCloud + s.morePersonalComputing
+          ),
+          365,
+        ],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
         total: true,
       },
       {
         label: 'Intelligent Cloud',
         desc: 'Azure cloud services, SQL Server, Windows Server, Visual Studio, GitHub, Nuance, and enterprise support services.\nShown as a percentage of total revenue.',
-        values: segments.segments.map(s => s.intelligentCloud),
+        values: [...segments.segments.map(s => s.intelligentCloud), 160],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Productivity',
         desc: 'Microsoft 365 commercial and consumer subscriptions, Office on-premises, LinkedIn, and Dynamics 365.\nShown as a percentage of total revenue.',
-        values: segments.segments.map(s => s.productivity),
+        values: [...segments.segments.map(s => s.productivity), 152],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Personal Computing',
         desc: 'Windows OEM and commercial licensing, Xbox and gaming, Surface devices, and search and news advertising.\nShown as a percentage of total revenue.',
-        values: segments.segments.map(s => s.morePersonalComputing),
+        values: [...segments.segments.map(s => s.morePersonalComputing), 53],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
     ],
     chartNote:
-      'FY17–FY23 use the pre-recast segment definitions; FY24 onward uses the recast structure adopted in FY25.',
+      'FY17–FY23 use the pre-recast segment definitions; FY24 onward uses the recast structure adopted in FY25. FY27E is management guidance.',
   },
   {
     rank: 560,

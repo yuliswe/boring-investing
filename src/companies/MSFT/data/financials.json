@@ -1,4 +1,5 @@
 {
+  "guidanceYears": ["FY27E"],
   "criticalMetrics": [
     {
       "label": "P/E ratio",
@@ -31,12 +32,15 @@
   "keyMetrics": [
     {
       "label": "Diluted EPS",
-      "values": [3.25, 2.13, 5.06, 5.76, 8.05, 9.65, 9.68, 11.8, 13.64, 17.95],
+      "values": [
+        3.25, 2.13, 5.06, 5.76, 8.05, 9.65, 9.68, 11.8, 13.64, 17.95, 20.5
+      ],
       "format": {
         "prefix": "$",
         "decimals": 2
       },
-      "median10y": 8.85
+      "median10y": 8.85,
+      "guidanceCount": 1
     },
     {
       "label": "Free cash flow per share",
@@ -95,14 +99,16 @@
     {
       "label": "Net margin %",
       "values": [
-        26.39, 15.02, 31.18, 30.96, 36.45, 36.69, 34.15, 35.96, 36.15, 40.31
+        26.39, 15.02, 31.18, 30.96, 36.45, 36.69, 34.15, 35.96, 36.15, 40.31,
+        41.5
       ],
       "format": {
         "suffix": "%",
         "decimals": 2
       },
       "deltaMode": "add",
-      "median10y": 35.06
+      "median10y": 35.06,
+      "guidanceCount": 1
     },
     {
       "label": "Free cash flow margin %",
@@ -167,6 +173,11 @@
       "year": "FY26",
       "revenue": 331.8,
       "operatingIncome": 155.2
+    },
+    {
+      "year": "FY27E",
+      "revenue": 365,
+      "operatingIncome": null
     }
   ],
   "expenses": [
@@ -279,6 +290,17 @@
       "nonOperating": -10.7,
       "taxes": 32.2,
       "dilutionAdjustment": 12.4
+    },
+    {
+      "year": "FY27E",
+      "costOfRevenue": null,
+      "sellingGeneralAndAdmin": null,
+      "researchAndDev": null,
+      "depreciationAndAmortization": null,
+      "otherOperating": null,
+      "nonOperating": null,
+      "taxes": null,
+      "dilutionAdjustment": null
     }
   ],
   "expensesDeducedLines": ["Total"],
@@ -342,6 +364,12 @@
       "cashTaxesPaid": 21.2,
       "workingCapitalChange": -3.0,
       "capitalExpenditures": 115.9
+    },
+    {
+      "year": "FY27E",
+      "cashTaxesPaid": null,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 175
     }
   ],
   "thesis": [

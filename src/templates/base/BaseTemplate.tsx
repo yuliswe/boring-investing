@@ -59,6 +59,7 @@ function SectionContent({ section }: { section: SectionData }) {
           years={section.years}
           mode={section.mode}
           invert={section.invert}
+          guidanceCount={section.guidanceCount}
           baseLabel={section.baseLabel}
           chartNote={section.chartNote}
         />
@@ -225,60 +226,67 @@ function FooterSection({ footer }: { footer: FooterData }) {
   );
 }
 
-const EXPENSE_LINES: [string, string, (r: ExpensesRowData) => number][] = [
+const EXPENSE_LINES: [string, string, (r: ExpensesRowData) => number | null][] =
   [
-    'COGS',
-    'Cost of revenue — direct costs of delivering products and services, including data center operations, content costs, and manufacturing.',
-    r => r.costOfRevenue,
-  ],
-  [
-    'SG&A',
-    'Selling, general and administrative — sales force compensation, marketing, legal, finance, and corporate overhead.',
-    r => r.sellingGeneralAndAdmin,
-  ],
-  [
-    'R&D',
-    'Research and development — engineering salaries, contractor costs, and tools for building new products and features.',
-    r => r.researchAndDev,
-  ],
-  [
-    'D&A',
-    'Depreciation and amortization — the non-cash expensing of capital equipment, buildings, and acquired intangible assets over their useful life.',
-    r => r.depreciationAndAmortization,
-  ],
-  [
-    'Other Ops.',
-    'Other operating income and expenses — items outside the core operating lines, such as restructuring charges or acquisition-related costs.',
-    r => r.otherOperating,
-  ],
-  [
-    'Non-op.',
-    'Non-operating income and expenses — interest income, interest expense, and gains or losses on investments and foreign exchange.',
-    r => r.nonOperating,
-  ],
-  [
-    'Taxes',
-    'Income tax provision — federal, state, and foreign income taxes owed on pre-tax income for the period.',
-    r => r.taxes,
-  ],
-  [
-    'Dilution Adj.',
-    'Stock-based compensation issued to employees, treated here as a cash-equivalent cost to show the full economic expense borne by shareholders.',
-    r => r.dilutionAdjustment,
-  ],
-];
+    [
+      'COGS',
+      'Cost of revenue — direct costs of delivering products and services, including data center operations, content costs, and manufacturing.',
+      r => r.costOfRevenue,
+    ],
+    [
+      'SG&A',
+      'Selling, general and administrative — sales force compensation, marketing, legal, finance, and corporate overhead.',
+      r => r.sellingGeneralAndAdmin,
+    ],
+    [
+      'R&D',
+      'Research and development — engineering salaries, contractor costs, and tools for building new products and features.',
+      r => r.researchAndDev,
+    ],
+    [
+      'D&A',
+      'Depreciation and amortization — the non-cash expensing of capital equipment, buildings, and acquired intangible assets over their useful life.',
+      r => r.depreciationAndAmortization,
+    ],
+    [
+      'Other Ops.',
+      'Other operating income and expenses — items outside the core operating lines, such as restructuring charges or acquisition-related costs.',
+      r => r.otherOperating,
+    ],
+    [
+      'Non-op.',
+      'Non-operating income and expenses — interest income, interest expense, and gains or losses on investments and foreign exchange.',
+      r => r.nonOperating,
+    ],
+    [
+      'Taxes',
+      'Income tax provision — federal, state, and foreign income taxes owed on pre-tax income for the period.',
+      r => r.taxes,
+    ],
+    [
+      'Dilution Adj.',
+      'Stock-based compensation issued to employees, treated here as a cash-equivalent cost to show the full economic expense borne by shareholders.',
+      r => r.dilutionAdjustment,
+    ],
+  ];
 
 function buildExpensesSection(
   rows: ExpensesRowData[],
-  deducedLines: string[]
+  deducedLines: string[],
+  guidanceCount: number
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const isDeduced = (label: string) => deducedLines.includes(label);
   const mark = (label: string) => (isDeduced(label) ? `${label} ⚠️` : label);
   const warnPrefix =
     '⚠️ This line was not reported directly in the filing and has been deduced from the other lines.\n';
-  const shares = (line: (r: ExpensesRowData) => number) =>
-    rows.map(r => (r.revenue ? +((line(r) / r.revenue) * 100).toFixed(1) : 0));
+  const shares = (line: (r: ExpensesRowData) => number | null) =>
+    rows.map(r => {
+      const val = line(r);
+      return val !== null && r.revenue
+        ? +((val / r.revenue) * 100).toFixed(1)
+        : null;
+    });
   const lineShares = EXPENSE_LINES.map(([, , line]) => shares(line));
 
   return {
@@ -292,16 +300,19 @@ function buildExpensesSection(
     mode: 'share',
     invert: true,
     baseLabel: '0%',
+    guidanceCount,
     series: [
       {
         label: mark('Total'),
         desc:
           (isDeduced('Total') ? warnPrefix : '') +
           'Sum of all expense lines below.\nShown as a percentage of total revenue.',
-        values: rows.map(
-          (_, i) =>
-            +lineShares.reduce((sum, vals) => sum + vals[i], 0).toFixed(1)
-        ),
+        values: rows.map((_, i) => {
+          const vals = lineShares.map(ls => ls[i]);
+          return vals.every(v => v !== null)
+            ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
+            : null;
+        }),
         format: pctFormat,
         total: true,
       },
@@ -322,7 +333,8 @@ function buildExpensesSection(
 
 function buildCashFlowSection(
   expenses: ExpensesRowData[],
-  cashFlow: CashFlowRowData[]
+  cashFlow: CashFlowRowData[],
+  guidanceCount: number
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const byYear = new Map(cashFlow.map(cf => [cf.year, cf]));
@@ -331,34 +343,48 @@ function buildCashFlowSection(
     .filter(e => byYear.has(e.year))
     .map(e => ({ exp: e, cf: byYear.get(e.year)! }));
 
-  const totalAccrualOps = rows.map(
-    r =>
-      r.exp.costOfRevenue + r.exp.sellingGeneralAndAdmin + r.exp.researchAndDev
-  );
-  const cashOps = totalAccrualOps.map(
-    (t, i) =>
-      t -
-      rows[i].exp.depreciationAndAmortization -
-      rows[i].exp.dilutionAdjustment
-  );
+  const totalAccrualOps: (number | null)[] = rows.map(r => {
+    const {
+      costOfRevenue: c,
+      sellingGeneralAndAdmin: s,
+      researchAndDev: rd,
+    } = r.exp;
+    return c !== null && s !== null && rd !== null ? c + s + rd : null;
+  });
+  const cashOps: (number | null)[] = totalAccrualOps.map((t, i) => {
+    const da = rows[i].exp.depreciationAndAmortization;
+    const sbc = rows[i].exp.dilutionAdjustment;
+    return t !== null && da !== null && sbc !== null ? t - da - sbc : null;
+  });
 
-  const share = (vals: number[]) =>
+  const share = (vals: (number | null)[]) =>
     vals.map((v, i) =>
-      rows[i].exp.revenue ? +((v / rows[i].exp.revenue) * 100).toFixed(1) : 0
+      v !== null && rows[i].exp.revenue
+        ? +((v / rows[i].exp.revenue) * 100).toFixed(1)
+        : null
     );
 
-  const cashCogsB = cashOps.map(
-    (c, i) => c * (rows[i].exp.costOfRevenue / totalAccrualOps[i])
+  const nullSafe = (
+    c: number | null,
+    num: number | null,
+    denom: number | null
+  ) =>
+    c !== null && num !== null && denom !== null && denom !== 0
+      ? c * (num / denom)
+      : null;
+
+  const cashCogsB = cashOps.map((c, i) =>
+    nullSafe(c, rows[i].exp.costOfRevenue, totalAccrualOps[i])
   );
-  const cashSgaB = cashOps.map(
-    (c, i) => c * (rows[i].exp.sellingGeneralAndAdmin / totalAccrualOps[i])
+  const cashSgaB = cashOps.map((c, i) =>
+    nullSafe(c, rows[i].exp.sellingGeneralAndAdmin, totalAccrualOps[i])
   );
-  const cashRdB = cashOps.map(
-    (c, i) => c * (rows[i].exp.researchAndDev / totalAccrualOps[i])
+  const cashRdB = cashOps.map((c, i) =>
+    nullSafe(c, rows[i].exp.researchAndDev, totalAccrualOps[i])
   );
-  const cashTaxesB = rows.map(r => r.cf.cashTaxesPaid);
-  const dwcB = rows.map(r => r.cf.workingCapitalChange);
-  const capexB = rows.map(r => r.cf.capitalExpenditures);
+  const cashTaxesB: (number | null)[] = rows.map(r => r.cf.cashTaxesPaid);
+  const dwcB: (number | null)[] = rows.map(r => r.cf.workingCapitalChange);
+  const capexB: (number | null)[] = rows.map(r => r.cf.capitalExpenditures);
 
   const cogsPct = share(cashCogsB);
   const sgaPct = share(cashSgaB);
@@ -366,17 +392,19 @@ function buildCashFlowSection(
   const taxesPct = share(cashTaxesB);
   const dwcPct = share(dwcB);
   const capexPct = share(capexB);
-  const totalPct = cogsPct.map(
-    (_, i) =>
-      +(
-        cogsPct[i] +
-        sgaPct[i] +
-        rdPct[i] +
-        taxesPct[i] +
-        dwcPct[i] +
-        capexPct[i]
-      ).toFixed(1)
-  );
+  const totalPct = cogsPct.map((_, i) => {
+    const vals = [
+      cogsPct[i],
+      sgaPct[i],
+      rdPct[i],
+      taxesPct[i],
+      dwcPct[i],
+      capexPct[i],
+    ];
+    return vals.every(v => v !== null)
+      ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
+      : null;
+  });
 
   return {
     rank: 550,
@@ -389,6 +417,7 @@ function buildCashFlowSection(
     mode: 'share',
     invert: true,
     baseLabel: '0%',
+    guidanceCount,
     series: [
       {
         label: 'Total',
@@ -446,6 +475,7 @@ export type BaseTemplateProps = {
   childSections?: SectionData[];
   expenses?: ExpensesRowData[];
   deducedExpenseLines?: string[];
+  expensesGuidanceCount?: number;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
   footer?: FooterData;
@@ -459,6 +489,7 @@ export function BaseTemplate({
   childSections,
   expenses,
   deducedExpenseLines = [],
+  expensesGuidanceCount = 0,
   cashFlow,
   figuresDate,
   footer,
@@ -466,9 +497,13 @@ export function BaseTemplate({
 }: BaseTemplateProps) {
   const baseSections: SectionData[] = [];
   if (expenses && expenses.length) {
-    baseSections.push(buildExpensesSection(expenses, deducedExpenseLines));
+    baseSections.push(
+      buildExpensesSection(expenses, deducedExpenseLines, expensesGuidanceCount)
+    );
     if (cashFlow && cashFlow.length) {
-      baseSections.push(buildCashFlowSection(expenses, cashFlow));
+      baseSections.push(
+        buildCashFlowSection(expenses, cashFlow, expensesGuidanceCount)
+      );
     }
   }
 
