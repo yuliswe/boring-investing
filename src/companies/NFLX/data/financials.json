@@ -1,0 +1,236 @@
+{
+  "guidanceYears": ["FY26E"],
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [309, 148, 96, 77, 89, 54, 30, 41, 45, 40],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 65.5
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [null, null, null, null, null, null, 82, 32, 56, 46],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 51.0
+    },
+    {
+      "label": "PEG ratio",
+      "values": [null, 0.66, 0.89, 1.48, 1.82, 0.64, null, 2.05, 0.69, 1.36],
+      "format": { "decimals": 2 },
+      "invertColor": true,
+      "median10y": 1.13
+    }
+  ],
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [0.04, 0.13, 0.27, 0.41, 0.61, 1.12, 1.0, 1.2, 1.98, 2.53],
+      "format": { "prefix": "$", "decimals": 2 },
+      "median10y": 0.81
+    },
+    {
+      "label": "Free cash flow per share",
+      "values": [
+        -0.36, -0.46, -0.65, -0.74, -0.43, -0.03, 0.36, 1.54, 1.58, 2.18
+      ],
+      "format": { "prefix": "$", "decimals": 2 },
+      "median10y": -0.2
+    },
+    {
+      "label": "ROE %",
+      "values": [
+        9.33, 17.86, 27.46, 29.13, 29.61, 38.01, 24.53, 26.14, 38.44, 41.59
+      ],
+      "format": { "suffix": "%", "decimals": 2 },
+      "deltaMode": "add",
+      "median10y": 28.3
+    },
+    {
+      "label": "ROIC %",
+      "values": [
+        5.35, 7.08, 8.77, 9.89, 14.19, 15.49, 12.69, 15.73, 20.72, 25.75
+      ],
+      "format": { "suffix": "%", "decimals": 2 },
+      "deltaMode": "add",
+      "median10y": 13.44
+    },
+    {
+      "label": "Debt to equity ratio",
+      "values": [1.26, 1.82, 1.98, 1.95, 1.47, 1.14, 0.81, 0.82, 0.73, 0.58],
+      "format": { "decimals": 2 },
+      "invertColor": true,
+      "median10y": 1.2
+    },
+    {
+      "label": "Sustainable growth rate %",
+      "values": [
+        9.33, 17.86, 27.46, 29.13, 29.61, 38.01, 24.53, 26.14, 38.44, 41.59
+      ],
+      "format": { "suffix": "%", "decimals": 2 },
+      "deltaMode": "add",
+      "median10y": 28.3
+    },
+    {
+      "label": "Net margin %",
+      "values": [
+        2.11, 4.78, 7.67, 9.26, 11.05, 17.23, 14.21, 16.04, 22.34, 24.31
+      ],
+      "format": { "suffix": "%", "decimals": 2 },
+      "deltaMode": "add",
+      "median10y": 12.63
+    },
+    {
+      "label": "Free cash flow margin %",
+      "values": [
+        -17.67, -17.29, -18.07, -16.24, -7.74, -0.44, 5.12, 20.54, 17.75, 20.94
+      ],
+      "format": { "suffix": "%", "decimals": 2 },
+      "deltaMode": "add",
+      "median10y": -4.09
+    }
+  ],
+  "revenue": [
+    { "year": "FY16", "revenue": 8.83, "operatingIncome": 0.38 },
+    { "year": "FY17", "revenue": 11.69, "operatingIncome": 0.84 },
+    { "year": "FY18", "revenue": 15.79, "operatingIncome": 1.61 },
+    { "year": "FY19", "revenue": 20.16, "operatingIncome": 2.6 },
+    { "year": "FY20", "revenue": 25.0, "operatingIncome": 4.59 },
+    { "year": "FY21", "revenue": 29.7, "operatingIncome": 6.19 },
+    { "year": "FY22", "revenue": 31.62, "operatingIncome": 5.63 },
+    { "year": "FY23", "revenue": 33.72, "operatingIncome": 6.95 },
+    { "year": "FY24", "revenue": 39.0, "operatingIncome": 10.42 },
+    { "year": "FY25", "revenue": 45.18, "operatingIncome": 13.33 },
+    { "year": "FY26E", "revenue": 51.2, "operatingIncome": null }
+  ],
+  "expenses": [
+    {
+      "year": "FY16",
+      "costOfRevenue": 6.03,
+      "sellingGeneralAndAdmin": 1.57,
+      "researchAndDev": 0.85,
+      "depreciationAndAmortization": 0.06,
+      "otherOperating": 0,
+      "nonOperating": -0.12,
+      "taxes": 0.07,
+      "dilutionAdjustment": 0.07
+    },
+    {
+      "year": "FY17",
+      "costOfRevenue": 7.66,
+      "sellingGeneralAndAdmin": 2.14,
+      "researchAndDev": 1.05,
+      "depreciationAndAmortization": 0.07,
+      "otherOperating": 0,
+      "nonOperating": -0.35,
+      "taxes": -0.07,
+      "dilutionAdjustment": 0.18
+    },
+    {
+      "year": "FY18",
+      "costOfRevenue": 9.97,
+      "sellingGeneralAndAdmin": 3.0,
+      "researchAndDev": 1.22,
+      "depreciationAndAmortization": 0.08,
+      "otherOperating": 0,
+      "nonOperating": -0.38,
+      "taxes": 0.02,
+      "dilutionAdjustment": 0.32
+    },
+    {
+      "year": "FY19",
+      "costOfRevenue": 12.44,
+      "sellingGeneralAndAdmin": 3.57,
+      "researchAndDev": 1.55,
+      "depreciationAndAmortization": 0.1,
+      "otherOperating": 0,
+      "nonOperating": -0.54,
+      "taxes": 0.2,
+      "dilutionAdjustment": 0.41
+    },
+    {
+      "year": "FY20",
+      "costOfRevenue": 15.28,
+      "sellingGeneralAndAdmin": 3.3,
+      "researchAndDev": 1.83,
+      "depreciationAndAmortization": 0.12,
+      "otherOperating": 0,
+      "nonOperating": -1.39,
+      "taxes": 0.44,
+      "dilutionAdjustment": 0.42
+    },
+    {
+      "year": "FY21",
+      "costOfRevenue": 17.33,
+      "sellingGeneralAndAdmin": 3.9,
+      "researchAndDev": 2.27,
+      "depreciationAndAmortization": 0.21,
+      "otherOperating": 0,
+      "nonOperating": -0.35,
+      "taxes": 0.72,
+      "dilutionAdjustment": 0.4
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 19.17,
+      "sellingGeneralAndAdmin": 4.1,
+      "researchAndDev": 2.71,
+      "depreciationAndAmortization": 0.27,
+      "otherOperating": 0,
+      "nonOperating": -0.37,
+      "taxes": 0.77,
+      "dilutionAdjustment": 0.58
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 19.72,
+      "sellingGeneralAndAdmin": 4.38,
+      "researchAndDev": 2.68,
+      "depreciationAndAmortization": 0.29,
+      "otherOperating": 0,
+      "nonOperating": -0.75,
+      "taxes": 0.8,
+      "dilutionAdjustment": 0.34
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 21.04,
+      "sellingGeneralAndAdmin": 4.62,
+      "researchAndDev": 2.93,
+      "depreciationAndAmortization": 0.31,
+      "otherOperating": 0,
+      "nonOperating": -0.45,
+      "taxes": 1.25,
+      "dilutionAdjustment": 0.27
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 23.6,
+      "sellingGeneralAndAdmin": 5.1,
+      "researchAndDev": 3.15,
+      "depreciationAndAmortization": 0.36,
+      "otherOperating": 0,
+      "nonOperating": -0.71,
+      "taxes": 1.64,
+      "dilutionAdjustment": 0.37
+    },
+    {
+      "year": "FY26E",
+      "costOfRevenue": null,
+      "sellingGeneralAndAdmin": null,
+      "researchAndDev": null,
+      "depreciationAndAmortization": null,
+      "otherOperating": null,
+      "nonOperating": null,
+      "taxes": null,
+      "dilutionAdjustment": null
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
+  "thesis": [
+    "Netflix is the dominant global streaming platform with more than 300 million paid members, and its ad-supported tier opens a second revenue layer that roughly doubles each year, so the addressable market continues to expand even as subscriber penetration matures.",
+    "The content flywheel, in which higher membership funds more original production that in turn attracts and retains members, now generates substantial free cash flow, ending the long era of cash burn and funding aggressive share buybacks.",
+    "Pricing power is demonstrated by successive rate increases across regions that do not materially dent retention, reflecting the service's low per-hour entertainment cost relative to alternatives and supporting durable margin expansion toward management's target of 30% or higher operating margin."
+  ]
+}
