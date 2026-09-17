@@ -170,7 +170,7 @@ const adbeSections: SectionData[] = [
     id: 'arr',
     title: 'Digital Media ARR',
     kicker:
-      'Annualized recurring revenue for the Digital Media segment, a management metric disclosed in earnings press releases. Adobe stopped reporting segment-level ARR after FY25, replacing it with total Adobe ARR.',
+      'Annualized recurring revenue for the Digital Media segment alongside an estimated subscriber count derived by dividing ARR by the average annual list price. Adobe stopped reporting segment-level ARR after FY25, replacing it with total Adobe ARR.',
     kind: 'trends',
     panels: [
       {
@@ -180,18 +180,6 @@ const adbeSections: SectionData[] = [
         values: arrValues,
         format: { prefix: '$', suffix: 'B', decimals: 2 },
       },
-    ],
-    chartNote:
-      'Sourced from earnings press releases, not SEC filings. Adobe revalues ARR to the most recent December exchange rates, so year-end figures are not strictly comparable across currency regimes.',
-  },
-  {
-    rank: 451,
-    id: 'user-count',
-    title: 'User Count Estimate',
-    kicker:
-      'Back-of-envelope subscriber count derived by dividing Digital Media ARR by the average annual list price across all plans shown in the pricing chart.',
-    kind: 'trends',
-    panels: [
       {
         label: 'Estimated subscribers',
         desc: 'Digital Media ARR divided by the average annual subscription price (average monthly price × 12). This is a rough estimate because the actual subscriber mix, discounting, and enterprise pricing differ from published individual list prices.',
@@ -204,7 +192,7 @@ const adbeSections: SectionData[] = [
       },
     ],
     chartNote:
-      'Divide-through estimate only. Actual subscriber counts are not disclosed. The average price used is the simple mean of the five plan prices in the pricing chart, which understates enterprise and team pricing and overstates discounting.',
+      'ARR sourced from earnings press releases, not SEC filings. Subscriber count is a divide-through estimate; actual counts are not disclosed.',
   },
   {
     rank: 600,
