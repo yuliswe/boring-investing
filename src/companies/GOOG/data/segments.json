@@ -1,0 +1,64 @@
+{
+  "segments": [
+    {
+      "year": "CY16",
+      "googleServices": 87.4,
+      "googleCloud": 2.5,
+      "otherBets": 0.4
+    },
+    {
+      "year": "CY17",
+      "googleServices": 106.3,
+      "googleCloud": 4.1,
+      "otherBets": 0.5
+    },
+    {
+      "year": "CY18",
+      "googleServices": 130.4,
+      "googleCloud": 5.8,
+      "otherBets": 0.6
+    },
+    {
+      "year": "CY19",
+      "googleServices": 152.3,
+      "googleCloud": 8.9,
+      "otherBets": 0.7
+    },
+    {
+      "year": "CY20",
+      "googleServices": 168.6,
+      "googleCloud": 13.1,
+      "otherBets": 0.8
+    },
+    {
+      "year": "CY21",
+      "googleServices": 237.5,
+      "googleCloud": 19.2,
+      "otherBets": 0.9
+    },
+    {
+      "year": "CY22",
+      "googleServices": 255.4,
+      "googleCloud": 26.3,
+      "otherBets": 1.1
+    },
+    {
+      "year": "CY23",
+      "googleServices": 272.5,
+      "googleCloud": 33.1,
+      "otherBets": 1.8
+    },
+    {
+      "year": "CY24",
+      "googleServices": 305.0,
+      "googleCloud": 43.2,
+      "otherBets": 1.8
+    },
+    {
+      "year": "CY25",
+      "googleServices": 345.0,
+      "googleCloud": 57.0,
+      "otherBets": 3.0
+    }
+  ]
+}
