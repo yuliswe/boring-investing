@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import './globals.css';
+import { NoteLayer } from './NoteLayer';
 
 export const metadata: Metadata = {
   title: 'Boring Investing',
@@ -29,7 +30,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           rel='stylesheet'
         />
       </head>
-      <body className='min-h-screen antialiased'>{children}</body>
+      <body className='min-h-screen antialiased'>
+        {children}
+        <NoteLayer />
+      </body>
     </html>
   );
 }

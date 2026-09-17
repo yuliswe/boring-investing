@@ -123,7 +123,7 @@ function HeroSection({ hero }: { hero: HeroData }) {
   const arrow = hero.changePct > 0 ? '↑' : hero.changePct < 0 ? '↓' : '—';
 
   return (
-    <section className='pt-[var(--space-7)] pb-[var(--space-5)]'>
+    <section id='hero' className='pt-[var(--space-7)] pb-[var(--space-5)]'>
       <div className='flex items-center gap-[var(--space-2)] flex-wrap'>
         <span className='ds-kicker'>{hero.symbol}</span>
         <Tag tone='neutral'>{hero.sector}</Tag>
@@ -188,7 +188,10 @@ function Header({
 
 function FooterSection({ footer }: { footer: FooterData }) {
   return (
-    <footer className='flex flex-wrap gap-[var(--space-3)] gap-x-[var(--space-8)] mt-[var(--space-5)] pt-[var(--space-6)] pb-[var(--space-8)] border-t border-[var(--color-divider)]'>
+    <footer
+      id='footer'
+      className='flex flex-wrap gap-[var(--space-3)] gap-x-[var(--space-8)] mt-[var(--space-5)] pt-[var(--space-6)] pb-[var(--space-8)] border-t border-[var(--color-divider)]'
+    >
       <div className='flex-1 min-w-55'>
         <div className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-xl'>
           Ledger

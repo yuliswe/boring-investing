@@ -1163,6 +1163,71 @@ a.list-row:hover {
   }
 }
 
+/* — note mode — */
+.note-mode-active,
+.note-mode-active * {
+  cursor: crosshair !important;
+}
+.note-mode-active .note-bubble-pin,
+.note-mode-active .note-mode-bar,
+.note-mode-active .note-mode-bar * {
+  cursor: pointer !important;
+}
+.note-mode-bar {
+  position: fixed;
+  bottom: var(--space-5);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-raised);
+  border: var(--hairline) solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  animation: ledger-rise var(--duration-rise) var(--easing);
+  white-space: nowrap;
+  user-select: none;
+}
+.note-mode-bar-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+}
+.note-mode-bar-text {
+  font-family: var(--font-interactable);
+  font-size: var(--text-sm);
+}
+.note-mode-bar-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 50%;
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  transition: background var(--duration-fade) var(--easing);
+}
+.note-mode-bar-close:hover {
+  background: color-mix(in srgb, var(--color-text) 10%, transparent);
+}
+.note-mode-bar-hint {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+.note-anchor-wrapper {
+  position: absolute;
+  z-index: 40;
+  pointer-events: auto;
+}
+
 /* — note bubble — */
 .note-bubble {
   position: relative;
