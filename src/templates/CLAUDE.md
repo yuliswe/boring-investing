@@ -45,7 +45,12 @@ share-of-total readouts beneath each non-total line.
 
 ## Adding a child template
 
+Every template must extend `BaseTemplate` — render it as the root element and
+delegate layout to it. No template should implement its own navbar, hero, section
+ordering, or footer; those belong to `BaseTemplate`.
+
 1. Create `src/templates/<Type>Template.tsx`.
 2. Accept typed financial data and build sections from it.
-3. Pass those sections plus any caller-provided extras to `BaseTemplate`.
+3. Render `BaseTemplate` as the root, passing those sections plus any
+   caller-provided extras through its props.
 4. Register the template name in `CompanyTemplate` in `src/lib/stocks.ts`.
