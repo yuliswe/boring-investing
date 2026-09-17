@@ -57,6 +57,14 @@ export const STOCKS: Stock[] = [
       'AI-powered information services and workflow software for legal, tax, and compliance professionals, with high recurring revenue and disciplined capital allocation.',
     template: 'software',
   },
+  {
+    symbol: 'UBER',
+    name: 'Uber Technologies, Inc.',
+    sector: 'Technology',
+    summary:
+      'Global ride-hailing, delivery, and freight platform with expanding margins and network-effect moats.',
+    template: 'software',
+  },
 ];
 
 export function getStock(symbol: string): Stock | undefined {
