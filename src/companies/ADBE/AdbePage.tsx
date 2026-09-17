@@ -100,7 +100,7 @@ const adbeSections: SectionData[] = [
     id: 'pricing',
     title: 'Subscription Pricing',
     kicker:
-      'Published US individual list prices (annual plan, billed monthly) for Creative Cloud All Apps and two flagship single-app plans at each fiscal year-end.',
+      'Published US individual list prices (annual plan, billed monthly) for Creative Cloud plans at each fiscal year-end.',
     kind: 'multi',
     mode: 'absolute',
     years: [...segments.segments.map(s => s.year), 'FY26'],
@@ -115,8 +115,8 @@ const adbeSections: SectionData[] = [
         format: { prefix: '$', decimals: 2 },
       },
       {
-        label: 'Photoshop',
-        desc: 'US individual single-app list price (annual plan, billed monthly) at each fiscal year-end. Increased from $19.99 to $20.99 in April 2018 and from $20.99 to $22.99 in early 2024.',
+        label: 'Single app',
+        desc: 'US individual single-app list price (annual plan, billed monthly) at each fiscal year-end. Applies to Photoshop, Illustrator, Premiere Pro, After Effects, and InDesign, which all share the same price. Increased from $19.99 to $20.99 in April 2018 and from $20.99 to $22.99 in early 2024.',
         values: [
           19.99, 19.99, 20.99, 20.99, 20.99, 20.99, 20.99, 20.99, 22.99, 22.99,
           22.99,
@@ -125,16 +125,42 @@ const adbeSections: SectionData[] = [
       },
       {
         label: 'Acrobat Pro',
-        desc: 'US individual Acrobat Pro list price (annual plan, billed monthly) at each fiscal year-end. Launched with Acrobat Pro DC in April 2015 at $14.99. Increased to $19.99 in August 2022.',
+        desc: 'US individual Acrobat Pro list price (annual plan, billed monthly) at each fiscal year-end. Priced separately from other single apps. Launched at $14.99 in April 2015 and increased to $19.99 in August 2022.',
         values: [
           14.99, 14.99, 14.99, 14.99, 14.99, 14.99, 19.99, 19.99, 19.99, 19.99,
           19.99,
         ],
         format: { prefix: '$', decimals: 2 },
       },
+      {
+        label: 'Photography',
+        desc: 'US individual Photography plan (Photoshop + Lightroom + Lightroom Classic, 20 GB storage, annual plan billed monthly) at each fiscal year-end. Priced at $9.99 from launch in September 2013 until January 2025, when it increased to $14.99 and was discontinued for new subscribers.',
+        values: [
+          9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 9.99, 14.99, 14.99,
+        ],
+        format: { prefix: '$', decimals: 2 },
+      },
+      {
+        label: 'Lightroom',
+        desc: 'US individual standalone Lightroom plan (1 TB cloud storage, annual plan billed monthly) at each fiscal year-end. Launched in October 2017 at $9.99 and increased to $11.99 in January 2025.',
+        values: [
+          null,
+          9.99,
+          9.99,
+          9.99,
+          9.99,
+          9.99,
+          9.99,
+          9.99,
+          9.99,
+          11.99,
+          11.99,
+        ],
+        format: { prefix: '$', decimals: 2 },
+      },
     ],
     chartNote:
-      'Pricing is the published US individual list price at each fiscal year-end, sourced from archived Adobe pricing pages (Wayback Machine) and press releases.',
+      'Prices are the published US individual list price at each fiscal year-end, sourced from archived Adobe pricing pages (Wayback Machine) and press releases. Illustrator, Premiere Pro, After Effects, and InDesign share the single-app price shown.',
   },
   {
     rank: 600,
