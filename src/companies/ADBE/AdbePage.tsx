@@ -74,6 +74,28 @@ const adbeSections: SectionData[] = [
       'FY16–FY17 segment names were Digital Media, Digital Marketing, and Print and Publishing; the segments were renamed but not restated. FY26E is management guidance.',
   },
   {
+    rank: 450,
+    id: 'arr',
+    title: 'Digital Media ARR',
+    kicker:
+      'Annualized recurring revenue for the Digital Media segment (Creative Cloud and Document Cloud), a management metric disclosed in earnings press releases. Revalued to year-end currency rates each fiscal year.',
+    kind: 'trends',
+    chartSize: 'large',
+    panels: [
+      {
+        label: 'Digital Media ARR',
+        desc: 'Sum of Creative Cloud ARR and Document Cloud ARR exiting the fiscal year, as reported in the quarterly earnings press release. Not a GAAP line item.',
+        years: segments.segments.map(s => s.year),
+        values: [
+          4.01, 5.39, 6.83, 8.33, 10.18, 12.24, 13.97, 15.33, 17.33, 19.2,
+        ],
+        format: { prefix: '$', suffix: 'B', decimals: 2 },
+      },
+    ],
+    chartNote:
+      'Sourced from earnings press releases, not SEC filings. Adobe revalues ARR to the most recent December exchange rates, so year-end figures are not strictly comparable across currency regimes.',
+  },
+  {
     rank: 600,
     id: 'filings',
     title: 'Filings',

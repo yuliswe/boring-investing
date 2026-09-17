@@ -148,7 +148,13 @@ function computePanel(
   };
 }
 
-function Sparkline({ panel }: { panel: ComputedPanel }) {
+function Sparkline({
+  panel,
+  large,
+}: {
+  panel: ComputedPanel;
+  large?: boolean;
+}) {
   return (
     <div className='flex flex-col gap-[var(--space-2)] pb-[var(--space-3)] border-b border-[var(--color-divider)]'>
       <div className='flex items-baseline gap-[var(--space-2)]'>
@@ -161,12 +167,14 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
           desc={panel.desc}
           className='flex-1 min-w-0 text-xs text-[var(--text-secondary)]'
         />
-        <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-lg ds-tnum'>
+        <span
+          className={`font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] ds-tnum ${large ? 'text-2xl' : 'text-lg'}`}
+        >
           {panel.latest}
         </span>
       </div>
 
-      <div className='relative h-16 overflow-hidden'>
+      <div className={`relative overflow-hidden ${large ? 'h-40' : 'h-16'}`}>
         <div className='absolute inset-0 pointer-events-none'>
           <svg
             viewBox='0 0 100 100'
@@ -252,18 +260,27 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
 
 export function TrendsSection({
   panels,
+  chartSize,
   chartNote,
 }: {
   panels: TrendPanelData[];
+  chartSize?: 'large' | 'small';
   chartNote?: string;
 }) {
+  const large = chartSize === 'large';
   const computed = panels.map((p, i) => computePanel(p, i));
 
   return (
     <>
-      <div className='grid grid-cols-1 sm:grid-cols-2 gap-[var(--space-5)] gap-x-[var(--space-8)]'>
+      <div
+        className={
+          large
+            ? 'grid grid-cols-1 gap-[var(--space-5)]'
+            : 'grid grid-cols-1 sm:grid-cols-2 gap-[var(--space-5)] gap-x-[var(--space-8)]'
+        }
+      >
         {computed.map((p, i) => (
-          <Sparkline key={i} panel={p} />
+          <Sparkline key={i} panel={p} large={large} />
         ))}
       </div>
       {chartNote && (

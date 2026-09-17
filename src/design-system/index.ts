@@ -26,3 +26,4 @@ export { Toast, ToastViewport } from '@/design-system/components/Toast';
 export { Banner } from '@/design-system/components/Banner';
 export { NavBar } from '@/design-system/components/NavBar';
 export { Skeleton, SkeletonRow } from '@/design-system/components/Skeleton';
+export { NoteBubble } from '@/design-system/components/NoteBubble';
