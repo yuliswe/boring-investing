@@ -78,9 +78,8 @@ const adbeSections: SectionData[] = [
     id: 'arr',
     title: 'Digital Media ARR',
     kicker:
-      'Annualized recurring revenue for the Digital Media segment (Creative Cloud and Document Cloud), a management metric disclosed in earnings press releases. Revalued to year-end currency rates each fiscal year.',
+      'Annualized recurring revenue for the Digital Media segment alongside the published US list price for the Creative Cloud All Apps plan (renamed Creative Cloud Pro in June 2025).',
     kind: 'trends',
-    chartSize: 'large',
     panels: [
       {
         label: 'Digital Media ARR',
@@ -91,9 +90,18 @@ const adbeSections: SectionData[] = [
         ],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
       },
+      {
+        label: 'Creative Cloud All Apps',
+        desc: 'US individual list price (annual plan, billed monthly) at each fiscal year-end. Renamed Creative Cloud Pro in June 2025. Sourced from Adobe press releases and archived pricing pages.',
+        years: segments.segments.map(s => s.year),
+        values: [
+          49.99, 49.99, 52.99, 52.99, 52.99, 52.99, 54.99, 59.99, 59.99, 69.99,
+        ],
+        format: { prefix: '$', suffix: '/mo', decimals: 2 },
+      },
     ],
     chartNote:
-      'Sourced from earnings press releases, not SEC filings. Adobe revalues ARR to the most recent December exchange rates, so year-end figures are not strictly comparable across currency regimes.',
+      'ARR sourced from earnings press releases, not SEC filings; Adobe revalues to year-end exchange rates. Creative Cloud pricing is the published US individual All Apps list price at each fiscal year-end.',
   },
   {
     rank: 600,
