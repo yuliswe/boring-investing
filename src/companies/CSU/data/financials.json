@@ -77,6 +77,119 @@
     { "year": "FY24", "revenue": 10.07, "operatingIncome": 1.47 },
     { "year": "FY25", "revenue": 11.62, "operatingIncome": 1.93 }
   ],
+  "expenses": [
+    {
+      "year": "FY16",
+      "costOfRevenue": 0.727,
+      "sellingGeneralAndAdmin": 0.552,
+      "researchAndDev": 0.294,
+      "depreciationAndAmortization": 0.213,
+      "otherOperating": 0,
+      "nonOperating": 0.053,
+      "taxes": 0.08,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY17",
+      "costOfRevenue": 0.827,
+      "sellingGeneralAndAdmin": 0.667,
+      "researchAndDev": 0.341,
+      "depreciationAndAmortization": 0.253,
+      "otherOperating": 0,
+      "nonOperating": 0.07,
+      "taxes": 0.099,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY18",
+      "costOfRevenue": 1.028,
+      "sellingGeneralAndAdmin": 0.827,
+      "researchAndDev": 0.421,
+      "depreciationAndAmortization": 0.306,
+      "otherOperating": 0,
+      "nonOperating": -0.008,
+      "taxes": 0.106,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY19",
+      "costOfRevenue": 1.157,
+      "sellingGeneralAndAdmin": 0.909,
+      "researchAndDev": 0.491,
+      "depreciationAndAmortization": 0.423,
+      "otherOperating": 0,
+      "nonOperating": 0.056,
+      "taxes": 0.123,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY20",
+      "costOfRevenue": 1.26,
+      "sellingGeneralAndAdmin": 0.898,
+      "researchAndDev": 0.579,
+      "depreciationAndAmortization": 0.508,
+      "otherOperating": 0,
+      "nonOperating": 0.119,
+      "taxes": 0.167,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY21",
+      "costOfRevenue": 1.629,
+      "sellingGeneralAndAdmin": 1.233,
+      "researchAndDev": 0.732,
+      "depreciationAndAmortization": 0.639,
+      "otherOperating": 0,
+      "nonOperating": 0.499,
+      "taxes": 0.206,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 2.272,
+      "sellingGeneralAndAdmin": 1.704,
+      "researchAndDev": 0.948,
+      "depreciationAndAmortization": 0.819,
+      "otherOperating": 0,
+      "nonOperating": 0.157,
+      "taxes": 0.175,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 2.866,
+      "sellingGeneralAndAdmin": 2.118,
+      "researchAndDev": 1.215,
+      "depreciationAndAmortization": 1.021,
+      "otherOperating": 0,
+      "nonOperating": 0.922,
+      "taxes": 0.204,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 3.416,
+      "sellingGeneralAndAdmin": 2.526,
+      "researchAndDev": 1.437,
+      "depreciationAndAmortization": 1.226,
+      "otherOperating": 0,
+      "nonOperating": 0.395,
+      "taxes": 0.244,
+      "dilutionAdjustment": 0
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 3.87,
+      "sellingGeneralAndAdmin": 2.862,
+      "researchAndDev": 1.615,
+      "depreciationAndAmortization": 1.383,
+      "otherOperating": 0,
+      "nonOperating": 0.696,
+      "taxes": 0.353,
+      "dilutionAdjustment": 0
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
   "thesis": [
     "Serial acquisition model compounds capital at high returns across hundreds of vertical market software businesses, with annual deployment consistently exceeding $1 billion.",
     "Recurring maintenance and subscription revenue provides durable, predictable cash flows that fund continued acquisitions without requiring equity issuance.",
