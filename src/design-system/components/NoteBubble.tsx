@@ -11,8 +11,10 @@ type NoteBubbleNote = {
 
 type NoteBubbleProps = {
   note?: NoteBubbleNote;
+  defaultOpen?: boolean;
   onSave?: (text: string) => void;
   onDelete?: () => void;
+  onClose?: () => void;
   className?: string;
   children?: ReactNode;
 };
@@ -36,32 +38,41 @@ function ChatIcon() {
 
 export function NoteBubble({
   note,
+  defaultOpen = false,
   onSave,
   onDelete,
+  onClose,
   className = '',
   children,
 }: NoteBubbleProps) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   const [editing, setEditing] = useState(false);
   const [draft, setDraft] = useState('');
   const cardRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLButtonElement>(null);
+
+  const closePopover = useCallback(() => {
+    setOpen(false);
+    onClose?.();
+  }, [onClose]);
 
   const handleToggle = useCallback(() => {
     setOpen(prev => {
       if (!prev) {
         setDraft(note?.text ?? '');
         setEditing(false);
+      } else {
+        onClose?.();
       }
       return !prev;
     });
-  }, [note?.text]);
+  }, [note?.text, onClose]);
 
   useEffect(() => {
     if (!open) return;
 
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') closePopover();
     };
     const onClickAway = (e: MouseEvent) => {
       const target = e.target as Node;
@@ -71,7 +82,7 @@ export function NoteBubble({
         pinRef.current &&
         !pinRef.current.contains(target)
       ) {
-        setOpen(false);
+        closePopover();
       }
     };
 
@@ -81,7 +92,7 @@ export function NoteBubble({
       document.removeEventListener('keydown', onKey);
       document.removeEventListener('mousedown', onClickAway);
     };
-  }, [open]);
+  }, [open, closePopover]);
 
   const handleSave = useCallback(() => {
     if (!draft.trim()) return;
