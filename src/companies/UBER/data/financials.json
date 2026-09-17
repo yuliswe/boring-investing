@@ -1,27 +1,32 @@
 {
+  "guidanceYears": ["FY26E"],
   "keyMetrics": [
     {
       "label": "Diluted EPS",
-      "values": [-6.81, -3.86, -0.29, -4.65, 0.87, 4.56, 4.73],
-      "format": { "prefix": "$", "decimals": 2 }
+      "values": [-6.81, -3.86, -0.29, -4.65, 0.87, 4.56, 4.73, 2.95],
+      "format": { "prefix": "$", "decimals": 2 },
+      "guidanceCount": 1
     },
     {
       "label": "Operating margin %",
-      "values": [-66.1, -43.7, -22.0, -5.7, 3.0, 6.4, 10.7],
+      "values": [-66.1, -43.7, -22.0, -5.7, 3.0, 6.4, 10.7, 13.5],
       "format": { "suffix": "%", "decimals": 1 },
-      "deltaMode": "add"
+      "deltaMode": "add",
+      "guidanceCount": 1
     },
     {
       "label": "Net margin %",
-      "values": [-65.4, -60.8, -2.8, -28.7, 5.1, 22.4, 19.3],
+      "values": [-65.4, -60.8, -2.8, -28.7, 5.1, 22.4, 19.3, 10.4],
       "format": { "suffix": "%", "decimals": 1 },
-      "deltaMode": "add"
+      "deltaMode": "add",
+      "guidanceCount": 1
     },
     {
       "label": "Free cash flow margin %",
-      "values": [-37.8, -30.2, -4.3, 1.2, 11.3, 15.7, 18.8],
+      "values": [-37.8, -30.2, -4.3, 1.2, 11.3, 15.7, 18.8, 18.5],
       "format": { "suffix": "%", "decimals": 1 },
-      "deltaMode": "add"
+      "deltaMode": "add",
+      "guidanceCount": 1
     }
   ],
   "revenue": [
@@ -31,7 +36,8 @@
     { "year": "FY22", "revenue": 31.9, "operatingIncome": -1.8 },
     { "year": "FY23", "revenue": 37.3, "operatingIncome": 1.1 },
     { "year": "FY24", "revenue": 44.0, "operatingIncome": 2.8 },
-    { "year": "FY25", "revenue": 52.0, "operatingIncome": 5.6 }
+    { "year": "FY25", "revenue": 52.0, "operatingIncome": 5.6 },
+    { "year": "FY26E", "revenue": 57.9, "operatingIncome": null }
   ],
   "expenses": [
     {
@@ -110,6 +116,17 @@
       "nonOperating": -0.2,
       "taxes": -4.3,
       "dilutionAdjustment": 2.3
+    },
+    {
+      "year": "FY26E",
+      "costOfRevenue": null,
+      "sellingGeneralAndAdmin": null,
+      "researchAndDev": null,
+      "depreciationAndAmortization": null,
+      "otherOperating": null,
+      "nonOperating": null,
+      "taxes": null,
+      "dilutionAdjustment": null
     }
   ],
   "expensesDeducedLines": ["Total"],
