@@ -1,0 +1,121 @@
+{
+  "keyMetrics": [
+    {
+      "label": "Diluted EPS",
+      "values": [-6.81, -3.86, -0.29, -4.65, 0.87, 4.56, 4.73],
+      "format": { "prefix": "$", "decimals": 2 }
+    },
+    {
+      "label": "Operating margin %",
+      "values": [-66.1, -43.7, -22.0, -5.7, 3.0, 6.4, 10.7],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add"
+    },
+    {
+      "label": "Net margin %",
+      "values": [-65.4, -60.8, -2.8, -28.7, 5.1, 22.4, 19.3],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add"
+    },
+    {
+      "label": "Free cash flow margin %",
+      "values": [-37.8, -30.2, -4.3, 1.2, 11.3, 15.7, 18.8],
+      "format": { "suffix": "%", "decimals": 1 },
+      "deltaMode": "add"
+    }
+  ],
+  "revenue": [
+    { "year": "FY19", "revenue": 13.0, "operatingIncome": -8.6 },
+    { "year": "FY20", "revenue": 11.1, "operatingIncome": -4.9 },
+    { "year": "FY21", "revenue": 17.5, "operatingIncome": -3.8 },
+    { "year": "FY22", "revenue": 31.9, "operatingIncome": -1.8 },
+    { "year": "FY23", "revenue": 37.3, "operatingIncome": 1.1 },
+    { "year": "FY24", "revenue": 44.0, "operatingIncome": 2.8 },
+    { "year": "FY25", "revenue": 52.0, "operatingIncome": 5.6 }
+  ],
+  "expenses": [
+    {
+      "year": "FY19",
+      "costOfRevenue": 6.2,
+      "sellingGeneralAndAdmin": 10.5,
+      "researchAndDev": 4.9,
+      "depreciationAndAmortization": 0.5,
+      "otherOperating": 0,
+      "nonOperating": -0.2,
+      "taxes": 0.1,
+      "dilutionAdjustment": 4.6
+    },
+    {
+      "year": "FY20",
+      "costOfRevenue": 5.3,
+      "sellingGeneralAndAdmin": 8.4,
+      "researchAndDev": 2.3,
+      "depreciationAndAmortization": 0.6,
+      "otherOperating": 0,
+      "nonOperating": 1.6,
+      "taxes": 0.3,
+      "dilutionAdjustment": 0.8
+    },
+    {
+      "year": "FY21",
+      "costOfRevenue": 9.8,
+      "sellingGeneralAndAdmin": 9.4,
+      "researchAndDev": 2.1,
+      "depreciationAndAmortization": 0.9,
+      "otherOperating": 0,
+      "nonOperating": -2.8,
+      "taxes": -0.6,
+      "dilutionAdjustment": 1.2
+    },
+    {
+      "year": "FY22",
+      "costOfRevenue": 20.2,
+      "sellingGeneralAndAdmin": 10.6,
+      "researchAndDev": 2.9,
+      "depreciationAndAmortization": 0.9,
+      "otherOperating": 0,
+      "nonOperating": 7.5,
+      "taxes": -0.2,
+      "dilutionAdjustment": 1.8
+    },
+    {
+      "year": "FY23",
+      "costOfRevenue": 23.0,
+      "sellingGeneralAndAdmin": 10.0,
+      "researchAndDev": 3.2,
+      "depreciationAndAmortization": 0.8,
+      "otherOperating": 0,
+      "nonOperating": -1.3,
+      "taxes": 0.5,
+      "dilutionAdjustment": 1.9
+    },
+    {
+      "year": "FY24",
+      "costOfRevenue": 27.1,
+      "sellingGeneralAndAdmin": 10.9,
+      "researchAndDev": 3.2,
+      "depreciationAndAmortization": 0.7,
+      "otherOperating": 0,
+      "nonOperating": -1.3,
+      "taxes": -5.8,
+      "dilutionAdjustment": 2.1
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 31.8,
+      "sellingGeneralAndAdmin": 11.2,
+      "researchAndDev": 3.5,
+      "depreciationAndAmortization": 0.7,
+      "otherOperating": 0,
+      "nonOperating": -0.2,
+      "taxes": -4.3,
+      "dilutionAdjustment": 2.3
+    }
+  ],
+  "expensesDeducedLines": ["Total"],
+  "thesis": [
+    "Uber is the dominant global ride-hailing and delivery platform, and the network effects of matching riders with drivers and eaters with restaurants make it difficult for competitors to gain share in established markets.",
+    "The transition from operating losses to positive operating income and expanding free cash flow demonstrates the platform's natural operating leverage as revenue scales faster than costs.",
+    "Growth in Monthly Active Platform Consumers — 202 million in 2025, up 18% year over year — and increasing cross-platform usage across rides, delivery, grocery, and freight deepen engagement and extend the addressable market."
+  ]
+}
