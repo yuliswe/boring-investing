@@ -21,7 +21,7 @@ const hero: HeroData = {
   tags: ['Large Cap', 'DTC'],
   price: '$293.15',
   changePct: -0.87,
-  priceNote: 'close, 2 February',
+  priceNote: 'close, 1 February 2026',
   summary:
     'Technical athletic apparel retailer operating primarily through company-owned stores and e-commerce, with a vertically integrated brand that commands premium pricing in the athleisure category.',
 };
@@ -45,26 +45,41 @@ const luluSections: SectionData[] = [
       'FY22',
       'FY23',
       'FY24',
-      'FY25E',
+      'FY25',
+      'FY26E',
     ],
     guidanceCount: 1,
     series: [
       {
         label: 'Total revenue',
         desc: 'Consolidated net revenue from all channels and geographies.',
-        values: [2.34, 2.65, 3.29, 3.98, 4.4, 6.26, 8.11, 9.62, 10.59, 11.3],
+        values: [
+          2.34, 2.65, 3.29, 3.98, 4.4, 6.26, 8.11, 9.62, 10.59, 11.1, 11.43,
+        ],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
         total: true,
       },
       {
         label: 'Operating income',
         desc: 'Income from operations before interest and taxes.\nShown as a percentage of total revenue.',
-        values: [0.41, 0.43, 0.6, 0.72, 0.66, 1.37, 1.63, 1.97, 2.0, null],
+        values: [
+          0.42,
+          0.46,
+          0.71,
+          0.89,
+          0.82,
+          1.33,
+          1.33,
+          2.13,
+          2.51,
+          2.21,
+          null,
+        ],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
       },
     ],
     chartNote:
-      'Revenue and operating income from filed annual statements. FY25E is management guidance.',
+      'Revenue and operating income from filed annual statements. FY26E is management guidance midpoint.',
   },
   {
     rank: 600,
@@ -74,29 +89,24 @@ const luluSections: SectionData[] = [
     kind: 'rows',
     entries: [
       {
+        kind: '10-Q',
+        note: 'Quarterly report, thirteen weeks to 2 August',
+        date: 'Sep 3 2026',
+      },
+      {
+        kind: '10-Q',
+        note: 'Quarterly report, thirteen weeks to 3 May',
+        date: 'Jun 4 2026',
+      },
+      {
         kind: '10-K',
-        note: 'Annual report for fiscal year 2024',
-        date: 'Mar 27 2025',
+        note: 'Annual report for fiscal year 2025',
+        date: 'Mar 17 2026',
       },
       {
         kind: '10-Q',
-        note: 'Quarterly report, thirteen weeks to 27 October',
-        date: 'Dec 5 2024',
-      },
-      {
-        kind: '10-Q',
-        note: 'Quarterly report, thirteen weeks to 28 July',
-        date: 'Sep 5 2024',
-      },
-      {
-        kind: '10-Q',
-        note: 'Quarterly report, thirteen weeks to 28 April',
-        date: 'Jun 6 2024',
-      },
-      {
-        kind: 'DEF 14A',
-        note: 'Proxy statement and compensation tables',
-        date: 'May 10 2024',
+        note: 'Quarterly report, thirteen weeks to 2 November',
+        date: 'Dec 11 2025',
       },
     ],
   },
@@ -132,7 +142,7 @@ export function LuluPage() {
       hero={hero}
       financials={financials as RetailFinancials}
       extraSections={luluSections}
-      figuresDate='2 February'
+      figuresDate='1 February 2026'
       footer={footer}
     />
   );

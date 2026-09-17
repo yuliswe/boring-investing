@@ -5,8 +5,8 @@ Analytical method: [retail](../../methods/retail.md)
 ## Company-specific notes
 
 - **Fiscal year.** Lululemon uses a 52/53-week fiscal year ending on the
-  Sunday closest to 31 January, so "FY24" covers the 53 weeks ending
-  2 February 2025. All figures in the data files use fiscal-year labels.
+  Sunday closest to 31 January, so "FY25" covers the 52 weeks ending
+  1 February 2026. All figures in the data files use fiscal-year labels.
 
 - **Direct-to-consumer.** The vast majority of revenue comes from
   company-operated stores and the e-commerce channel. Lululemon does not

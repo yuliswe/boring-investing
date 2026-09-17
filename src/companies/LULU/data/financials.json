@@ -1,207 +1,198 @@
 {
-  "guidanceYears": ["FY25E"],
-  "criticalMetrics": [
-    {
-      "label": "P/E ratio",
-      "values": [37.2, 48.5, 36.1, 45.6, 70.2, 39.8, 29.0, 47.1, 23.8],
-      "format": { "decimals": 1 },
-      "invertColor": true,
-      "median10y": 39.8
-    },
-    {
-      "label": "P/FCF ratio",
-      "values": [42.0, 55.0, 40.5, 52.0, 58.0, 35.0, 26.5, 40.0, 25.0],
-      "format": { "decimals": 1 },
-      "invertColor": true,
-      "median10y": 40.5
-    }
-  ],
+  "guidanceYears": ["FY26E"],
   "operationalMetrics": [
     {
       "label": "Comp store sales growth",
-      "values": [5, 7, 8, 9, -1, 32, 19, 12, 2],
+      "values": [4, 1, 7, 9, null, null, 16, 8, 4, 2],
       "format": { "suffix": "%", "decimals": 0 },
       "deltaMode": "add",
-      "median10y": 8
+      "median10y": 6
     },
     {
       "label": "Store count",
-      "values": [406, 440, 479, 515, 521, 574, 655, 711, 749],
-      "format": { "decimals": 0 }
+      "values": [406, 404, 440, 491, 521, 574, 655, 711, 767, 811],
+      "format": { "decimals": 0 },
+      "median10y": 548
     },
     {
       "label": "Gross margin",
-      "values": [51.3, 52.8, 55.2, 55.8, 56.8, 57.7, 56.5, 58.3, 58.5],
+      "values": [51.2, 52.8, 55.2, 55.9, 56.0, 57.7, 55.4, 58.3, 59.2, 56.6],
       "format": { "suffix": "%", "decimals": 1 },
       "deltaMode": "add",
-      "median10y": 56.5
+      "median10y": 56.0
     },
     {
       "label": "Inventory turnover",
-      "values": [3.8, 3.9, 3.8, 3.5, 3.2, 4.2, 3.5, 3.8, 3.6],
+      "values": [3.9, 4.0, 4.0, 3.8, 3.3, 3.3, 3.0, 2.9, 3.1, 3.1],
       "format": { "suffix": "×", "decimals": 1 },
-      "median10y": 3.8
+      "median10y": 3.3
     }
   ],
   "keyMetrics": [
     {
       "label": "Diluted EPS",
-      "values": [2.21, 2.68, 3.84, 4.93, 4.5, 9.27, 11.45, 14.64, 14.64, 15.65],
+      "values": [
+        2.21, 1.9, 3.61, 4.93, 4.5, 7.49, 6.68, 12.2, 14.64, 13.26, 12.2
+      ],
       "format": { "prefix": "$", "decimals": 2 },
-      "median10y": 4.72,
+      "median10y": 5.81,
       "guidanceCount": 1
     },
     {
       "label": "ROE %",
-      "values": [28.5, 31.2, 41.0, 49.2, 38.6, 64.5, 55.8, 57.2, 46.5],
+      "values": [25.4, 17.5, 31.8, 38.0, 26.1, 36.8, 29.0, 42.0, 42.4, 34.0],
       "format": { "suffix": "%", "decimals": 1 },
       "deltaMode": "add",
-      "median10y": 46.5
-    },
-    {
-      "label": "ROIC %",
-      "values": [25.0, 26.5, 33.0, 35.5, 24.0, 46.8, 42.0, 40.5, 32.0],
-      "format": { "suffix": "%", "decimals": 1 },
-      "deltaMode": "add",
-      "median10y": 33.0
+      "median10y": 32.9
     },
     {
       "label": "Debt to equity",
-      "values": [0.0, 0.0, 0.0, 0.0, 0.58, 0.46, 0.35, 0.28, 0.21],
+      "values": [0.0, 0.0, 0.45, 0.38, 0.31, 0.32, 0.34, 0.33, 0.36, 0.36],
       "format": { "decimals": 2 },
       "invertColor": true,
-      "median10y": 0.0
+      "median10y": 0.34
     },
     {
       "label": "Net margin",
-      "values": [12.3, 13.5, 14.4, 14.9, 12.0, 17.6, 16.7, 18.6, 15.7, 16.8],
+      "values": [12.9, 9.8, 14.7, 16.2, 13.4, 15.6, 10.5, 16.1, 17.1, 14.2],
       "format": { "suffix": "%", "decimals": 1 },
       "deltaMode": "add",
-      "median10y": 14.9,
-      "guidanceCount": 1
+      "median10y": 14.5
     },
     {
       "label": "Free cash flow margin",
-      "values": [12.0, 11.0, 13.0, 12.0, 16.0, 18.0, 17.0, 17.0, 14.0],
+      "values": [null, null, null, null, null, 17.8, -1.3, 13.8, 16.3, 6.0],
       "format": { "suffix": "%", "decimals": 1 },
       "deltaMode": "add",
-      "median10y": 14.0
+      "median10y": 13.8
     }
   ],
   "revenue": [
-    { "year": "FY16", "revenue": 2.34, "operatingIncome": 0.41 },
-    { "year": "FY17", "revenue": 2.65, "operatingIncome": 0.43 },
-    { "year": "FY18", "revenue": 3.29, "operatingIncome": 0.6 },
-    { "year": "FY19", "revenue": 3.98, "operatingIncome": 0.72 },
-    { "year": "FY20", "revenue": 4.4, "operatingIncome": 0.66 },
-    { "year": "FY21", "revenue": 6.26, "operatingIncome": 1.37 },
-    { "year": "FY22", "revenue": 8.11, "operatingIncome": 1.63 },
-    { "year": "FY23", "revenue": 9.62, "operatingIncome": 1.97 },
-    { "year": "FY24", "revenue": 10.59, "operatingIncome": 2.0 },
-    { "year": "FY25E", "revenue": 11.3, "operatingIncome": null }
+    { "year": "FY16", "revenue": 2.34, "operatingIncome": 0.42 },
+    { "year": "FY17", "revenue": 2.65, "operatingIncome": 0.46 },
+    { "year": "FY18", "revenue": 3.29, "operatingIncome": 0.71 },
+    { "year": "FY19", "revenue": 3.98, "operatingIncome": 0.89 },
+    { "year": "FY20", "revenue": 4.4, "operatingIncome": 0.82 },
+    { "year": "FY21", "revenue": 6.26, "operatingIncome": 1.33 },
+    { "year": "FY22", "revenue": 8.11, "operatingIncome": 1.33 },
+    { "year": "FY23", "revenue": 9.62, "operatingIncome": 2.13 },
+    { "year": "FY24", "revenue": 10.59, "operatingIncome": 2.51 },
+    { "year": "FY25", "revenue": 11.1, "operatingIncome": 2.21 },
+    { "year": "FY26E", "revenue": 11.43, "operatingIncome": null }
   ],
   "expenses": [
     {
       "year": "FY16",
       "costOfRevenue": 1.14,
-      "sellingGeneralAndAdmin": 0.79,
+      "sellingGeneralAndAdmin": 0.78,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.11,
+      "depreciationAndAmortization": 0.09,
       "otherOperating": null,
-      "nonOperating": 0.005,
-      "taxes": 0.1,
+      "nonOperating": null,
+      "taxes": 0.12,
       "dilutionAdjustment": 0.02
     },
     {
       "year": "FY17",
       "costOfRevenue": 1.25,
-      "sellingGeneralAndAdmin": 0.97,
+      "sellingGeneralAndAdmin": 0.9,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.12,
-      "otherOperating": null,
-      "nonOperating": 0.01,
-      "taxes": 0.08,
+      "depreciationAndAmortization": 0.11,
+      "otherOperating": 0.039,
+      "nonOperating": null,
+      "taxes": 0.2,
       "dilutionAdjustment": 0.02
     },
     {
       "year": "FY18",
       "costOfRevenue": 1.47,
-      "sellingGeneralAndAdmin": 1.22,
+      "sellingGeneralAndAdmin": 1.11,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.15,
+      "depreciationAndAmortization": 0.12,
       "otherOperating": null,
       "nonOperating": 0.01,
-      "taxes": 0.13,
+      "taxes": 0.23,
       "dilutionAdjustment": 0.03
     },
     {
       "year": "FY19",
       "costOfRevenue": 1.76,
-      "sellingGeneralAndAdmin": 1.5,
+      "sellingGeneralAndAdmin": 1.33,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.18,
+      "depreciationAndAmortization": 0.16,
       "otherOperating": null,
       "nonOperating": 0.01,
-      "taxes": 0.14,
-      "dilutionAdjustment": 0.03
+      "taxes": 0.25,
+      "dilutionAdjustment": 0.05
     },
     {
       "year": "FY20",
-      "costOfRevenue": 1.9,
-      "sellingGeneralAndAdmin": 1.79,
+      "costOfRevenue": 1.94,
+      "sellingGeneralAndAdmin": 1.61,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.24,
-      "otherOperating": 0.05,
-      "nonOperating": -0.01,
-      "taxes": 0.15,
-      "dilutionAdjustment": 0.04
+      "depreciationAndAmortization": 0.19,
+      "otherOperating": 0.035,
+      "nonOperating": null,
+      "taxes": 0.23,
+      "dilutionAdjustment": 0.05
     },
     {
       "year": "FY21",
       "costOfRevenue": 2.65,
-      "sellingGeneralAndAdmin": 2.24,
+      "sellingGeneralAndAdmin": 2.23,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.28,
-      "otherOperating": null,
-      "nonOperating": 0.01,
-      "taxes": 0.29,
-      "dilutionAdjustment": 0.06
+      "depreciationAndAmortization": 0.22,
+      "otherOperating": 0.05,
+      "nonOperating": null,
+      "taxes": 0.36,
+      "dilutionAdjustment": 0.07
     },
     {
       "year": "FY22",
-      "costOfRevenue": 3.53,
-      "sellingGeneralAndAdmin": 2.95,
+      "costOfRevenue": 3.62,
+      "sellingGeneralAndAdmin": 2.76,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.33,
-      "otherOperating": null,
-      "nonOperating": 0.02,
-      "taxes": 0.35,
+      "depreciationAndAmortization": 0.29,
+      "otherOperating": 0.41,
+      "nonOperating": null,
+      "taxes": 0.48,
       "dilutionAdjustment": 0.08
     },
     {
       "year": "FY23",
       "costOfRevenue": 4.01,
-      "sellingGeneralAndAdmin": 3.64,
+      "sellingGeneralAndAdmin": 3.4,
       "researchAndDev": null,
-      "depreciationAndAmortization": 0.42,
-      "otherOperating": null,
-      "nonOperating": 0.05,
-      "taxes": 0.48,
-      "dilutionAdjustment": 0.1
+      "depreciationAndAmortization": 0.38,
+      "otherOperating": 0.08,
+      "nonOperating": 0.04,
+      "taxes": 0.63,
+      "dilutionAdjustment": 0.09
     },
     {
       "year": "FY24",
-      "costOfRevenue": 4.39,
-      "sellingGeneralAndAdmin": 4.2,
+      "costOfRevenue": 4.32,
+      "sellingGeneralAndAdmin": 3.76,
+      "researchAndDev": null,
+      "depreciationAndAmortization": 0.45,
+      "otherOperating": null,
+      "nonOperating": 0.07,
+      "taxes": 0.76,
+      "dilutionAdjustment": 0.09
+    },
+    {
+      "year": "FY25",
+      "costOfRevenue": 4.82,
+      "sellingGeneralAndAdmin": 4.07,
       "researchAndDev": null,
       "depreciationAndAmortization": 0.5,
       "otherOperating": null,
-      "nonOperating": 0.07,
-      "taxes": 0.46,
-      "dilutionAdjustment": 0.12
+      "nonOperating": 0.03,
+      "taxes": 0.66,
+      "dilutionAdjustment": 0.06
     },
     {
-      "year": "FY25E",
+      "year": "FY26E",
       "costOfRevenue": null,
       "sellingGeneralAndAdmin": null,
       "researchAndDev": null,
@@ -216,60 +207,66 @@
   "cashFlow": [
     {
       "year": "FY16",
-      "cashTaxesPaid": 0.08,
-      "workingCapitalChange": 0.03,
+      "cashTaxesPaid": 0.13,
+      "workingCapitalChange": null,
       "capitalExpenditures": 0.15
     },
     {
       "year": "FY17",
-      "cashTaxesPaid": 0.07,
-      "workingCapitalChange": -0.04,
-      "capitalExpenditures": 0.14
+      "cashTaxesPaid": 0.14,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 0.16
     },
     {
       "year": "FY18",
-      "cashTaxesPaid": 0.11,
-      "workingCapitalChange": -0.06,
-      "capitalExpenditures": 0.21
+      "cashTaxesPaid": 0.18,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 0.23
     },
     {
       "year": "FY19",
-      "cashTaxesPaid": 0.12,
-      "workingCapitalChange": -0.08,
-      "capitalExpenditures": 0.3
+      "cashTaxesPaid": 0.31,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 0.28
     },
     {
       "year": "FY20",
-      "cashTaxesPaid": 0.1,
-      "workingCapitalChange": 0.12,
-      "capitalExpenditures": 0.15
+      "cashTaxesPaid": 0.26,
+      "workingCapitalChange": null,
+      "capitalExpenditures": 0.23
     },
     {
       "year": "FY21",
-      "cashTaxesPaid": 0.24,
-      "workingCapitalChange": -0.2,
-      "capitalExpenditures": 0.35
+      "cashTaxesPaid": 0.25,
+      "workingCapitalChange": 0.13,
+      "capitalExpenditures": 0.39
     },
     {
       "year": "FY22",
-      "cashTaxesPaid": 0.3,
-      "workingCapitalChange": -0.05,
-      "capitalExpenditures": 0.55
+      "cashTaxesPaid": 0.5,
+      "workingCapitalChange": -0.66,
+      "capitalExpenditures": 0.64
     },
     {
       "year": "FY23",
-      "cashTaxesPaid": 0.4,
-      "workingCapitalChange": -0.1,
-      "capitalExpenditures": 0.63
-    },
-    {
-      "year": "FY24",
-      "cashTaxesPaid": 0.38,
-      "workingCapitalChange": 0.05,
+      "cashTaxesPaid": 0.82,
+      "workingCapitalChange": 0.2,
       "capitalExpenditures": 0.65
     },
     {
-      "year": "FY25E",
+      "year": "FY24",
+      "cashTaxesPaid": 0.58,
+      "workingCapitalChange": -0.05,
+      "capitalExpenditures": 0.69
+    },
+    {
+      "year": "FY25",
+      "cashTaxesPaid": 1.02,
+      "workingCapitalChange": -0.41,
+      "capitalExpenditures": 0.68
+    },
+    {
+      "year": "FY26E",
       "cashTaxesPaid": null,
       "workingCapitalChange": null,
       "capitalExpenditures": null
