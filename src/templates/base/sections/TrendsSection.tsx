@@ -184,6 +184,9 @@ function Sparkline({ panel }: { panel: ComputedPanel }) {
             key={i}
             className='flex-1 min-w-0 text-center flex flex-col gap-0'
           >
+            <span className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'>
+              {d.year}
+            </span>
             <span className='whitespace-nowrap overflow-hidden text-ellipsis'>
               {d.value}
             </span>
