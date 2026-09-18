@@ -562,7 +562,7 @@ export function BaseTemplate({
                 {sec.kicker}
               </p>
               {sec.warning && (
-                <div className='mt-[var(--space-3)] max-w-[62ch]'>
+                <div className='mt-[var(--space-3)]'>
                   <Banner tone='accent'>{sec.warning}</Banner>
                 </div>
               )}
