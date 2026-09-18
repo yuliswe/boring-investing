@@ -568,7 +568,7 @@ export function BaseTemplate({
                 {sec.kicker}
               </p>
               {sec.warning && (
-                <div className='mt-[var(--space-3)] [&_.banner]:text-xs'>
+                <div className='mt-[var(--space-3)]'>
                   <Banner tone='accent'>{sec.warning}</Banner>
                 </div>
               )}
