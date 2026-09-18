@@ -280,7 +280,8 @@ const EXPENSE_LINES: [string, string, (r: ExpensesRowData) => number | null][] =
 function buildExpensesSection(
   rows: ExpensesRowData[],
   deducedLines: string[],
-  guidanceCount: number
+  guidanceCount: number,
+  lineDescOverrides: Record<string, string> = {}
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const isDeduced = (label: string) => deducedLines.includes(label);
@@ -323,11 +324,11 @@ function buildExpensesSection(
         format: pctFormat,
         total: true,
       },
-      ...EXPENSE_LINES.map(([label, desc], li) => ({
+      ...EXPENSE_LINES.map(([label, defaultDesc], li) => ({
         label: mark(label),
         desc:
           (isDeduced(label) ? warnPrefix : '') +
-          desc +
+          (lineDescOverrides[label] ?? defaultDesc) +
           '\nShown as a percentage of total revenue.',
         values: lineShares[li],
         format: pctFormat,
@@ -482,6 +483,7 @@ export type BaseTemplateProps = {
   childSections?: SectionData[];
   expenses?: ExpensesRowData[];
   deducedExpenseLines?: string[];
+  expenseLineDescriptions?: Record<string, string>;
   expensesGuidanceCount?: number;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
@@ -496,6 +498,7 @@ export function BaseTemplate({
   childSections,
   expenses,
   deducedExpenseLines = [],
+  expenseLineDescriptions = {},
   expensesGuidanceCount = 0,
   cashFlow,
   figuresDate,
@@ -505,7 +508,12 @@ export function BaseTemplate({
   const baseSections: SectionData[] = [];
   if (expenses && expenses.length) {
     baseSections.push(
-      buildExpensesSection(expenses, deducedExpenseLines, expensesGuidanceCount)
+      buildExpensesSection(
+        expenses,
+        deducedExpenseLines,
+        expensesGuidanceCount,
+        expenseLineDescriptions
+      )
     );
     if (cashFlow && cashFlow.length) {
       baseSections.push(

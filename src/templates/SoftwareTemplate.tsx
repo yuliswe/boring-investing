@@ -40,6 +40,7 @@ export type SoftwareFinancials = {
     dilutionAdjustment: number | null;
   }[];
   expensesDeducedLines?: string[];
+  expenseLineDescriptions?: Record<string, string>;
   cashFlow?: {
     year: string;
     cashTaxesPaid: number | null;
@@ -155,6 +156,7 @@ export function SoftwareTemplate({
       childSections={extraSections}
       expenses={expenses}
       deducedExpenseLines={financials.expensesDeducedLines}
+      expenseLineDescriptions={financials.expenseLineDescriptions}
       expensesGuidanceCount={expensesGuidanceCount}
       cashFlow={financials.cashFlow}
       figuresDate={figuresDate}

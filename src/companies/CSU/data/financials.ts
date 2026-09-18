@@ -143,6 +143,19 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
+  expenseLineDescriptions: {
+    COGS: 'Cost of revenue — professional services and maintenance staff, third-party licences, and hardware, with depreciation of PP&E allocated proportionally.',
+    'SG&A':
+      'Selling, general and administrative — sales, marketing, and G&A staff, plus occupancy, travel, professional fees, and other overhead, with depreciation of PP&E allocated proportionally.',
+    'R&D':
+      'Research and development — R&D staff costs, with depreciation of PP&E allocated proportionally. CSU reports expenses by nature, so this line is the R&D staff department only.',
+    'D&A':
+      'Depreciation of property, plant and equipment only. Amortization of acquired intangible assets is reported separately under Other Ops.',
+    'Other Ops.':
+      "Amortization of acquired intangible assets — the IFRS-mandated non-cash charge on customer relationships, technology, and other intangibles recognized in acquisitions. This is the single largest non-cash cost and the main reason CSU's net margin (~5%) is far below its FCF margin (~23%).",
+    'Non-op.':
+      'Non-operating income and expenses — includes IRGA revaluation (mark-to-market on acquisition-related instruments), finance costs (interest on acquisition debt), foreign exchange gains and losses, bargain purchase gains, impairment charges, redeemable preferred share charges (Topicus/Lumine), and equity method revaluation. These items are volatile and largely non-cash or non-operational.',
+  },
   cashFlow: [
     {
       year: 'FY19',
