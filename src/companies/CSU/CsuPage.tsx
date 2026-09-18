@@ -1,9 +1,8 @@
 'use client';
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
-import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
-import financials from './data/financials.json';
+import financials from './data/financials';
 
 const navbar = {
   brand: 'Ledger',
@@ -91,7 +90,7 @@ export function CsuPage() {
     <SoftwareTemplate
       navbar={navbar}
       hero={hero}
-      financials={financials as SoftwareFinancials}
+      financials={financials}
       extraSections={csuSections}
       figuresDate='31 December'
       footer={footer}
