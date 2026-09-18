@@ -20,13 +20,6 @@ const financials: SoftwareFinancials = {
       median10y: 57.01,
     },
     {
-      label: 'Net margin %',
-      values: [9.72, 8.95, 12.39, 9.54, 10.98, 6.07, 7.73, 6.72, 7.26, 4.41],
-      format: { suffix: '%', decimals: 2 },
-      deltaMode: 'add',
-      median10y: 8.34,
-    },
-    {
       label: 'Free cash flow margin %',
       values: [
         22.35, 20.56, 20.92, 21.26, 29.25, 24.89, 18.97, 20.66, 21.15, 22.92,
