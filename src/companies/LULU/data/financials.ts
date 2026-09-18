@@ -5,10 +5,10 @@ const financials: RetailFinancials = {
   operationalMetrics: [
     {
       label: 'Comp store sales growth',
-      values: [4, 1, 7, 9, null, null, 16, 8, 4, 2],
+      values: [6, 1, 7, 9, null, null, 16, 8, 4, 2],
       format: { suffix: '%', decimals: 0 },
       deltaMode: 'add',
-      median10y: 6,
+      median10y: 7,
     },
     {
       label: 'Store count',
@@ -34,7 +34,7 @@ const financials: RetailFinancials = {
     {
       label: 'Diluted EPS',
       values: [
-        2.21, 1.9, 3.61, 4.93, 4.5, 7.49, 6.68, 12.2, 14.64, 13.26, 12.2,
+        2.21, 1.9, 3.61, 4.93, 4.5, 7.49, 6.68, 12.2, 14.64, 13.26, 9.61,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: 5.81,
@@ -80,7 +80,7 @@ const financials: RetailFinancials = {
     { year: 'FY23', revenue: 9.62, operatingIncome: 2.13 },
     { year: 'FY24', revenue: 10.59, operatingIncome: 2.51 },
     { year: 'FY25', revenue: 11.1, operatingIncome: 2.21 },
-    { year: 'FY26E', revenue: 11.43, operatingIncome: null },
+    { year: 'FY26E', revenue: 10.43, operatingIncome: null },
   ],
   expenses: [
     {

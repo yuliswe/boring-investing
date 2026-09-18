@@ -18,9 +18,9 @@ const hero: HeroData = {
   name: 'Lululemon Athletica Inc.',
   sector: 'Retail',
   tags: ['Large Cap', 'DTC'],
-  price: '$293.15',
-  changePct: -0.87,
-  priceNote: 'close, 1 February 2026',
+  price: '$174.50',
+  changePct: 0.43,
+  priceNote: 'close, 30 January 2026',
   summary:
     'Technical athletic apparel retailer operating primarily through company-owned stores and e-commerce, with a vertically integrated brand that commands premium pricing in the athleisure category.',
 };
@@ -53,7 +53,7 @@ const luluSections: SectionData[] = [
         label: 'Total revenue',
         desc: 'Consolidated net revenue from all channels and geographies.',
         values: [
-          2.34, 2.65, 3.29, 3.98, 4.4, 6.26, 8.11, 9.62, 10.59, 11.1, 11.43,
+          2.34, 2.65, 3.29, 3.98, 4.4, 6.26, 8.11, 9.62, 10.59, 11.1, 10.43,
         ],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
         total: true,
@@ -78,7 +78,7 @@ const luluSections: SectionData[] = [
       },
     ],
     chartNote:
-      'Revenue and operating income from filed annual statements. FY26E is management guidance midpoint.',
+      'Revenue and operating income from filed annual statements. FY26E is latest management guidance midpoint (September 2026).',
   },
   {
     rank: 600,
