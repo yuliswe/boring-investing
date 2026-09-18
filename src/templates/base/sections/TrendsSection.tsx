@@ -17,6 +17,7 @@ type ComputedDot = {
   h: string;
   x: string;
   isGuidance: boolean;
+  isNull: boolean;
 };
 
 type ComputedPanel = {
@@ -98,6 +99,7 @@ function computePanel(
       h: h.toFixed(1) + '%',
       x: (((i + 0.5) / values.length) * 100).toFixed(1) + '%',
       isGuidance: i >= historicalEnd,
+      isNull: v === null,
     };
   });
 
@@ -219,18 +221,21 @@ function Sparkline({
               </span>
             </div>
           )}
-          {panel.dots.map((d, i) => (
-            <div
-              key={i}
-              className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full pointer-events-none'
-              style={{
-                bottom: d.h,
-                left: d.x,
-                border: `1.5px ${d.isGuidance ? 'dashed' : 'solid'} ${panel.lineColor}`,
-                background: 'var(--color-bg)',
-              }}
-            />
-          ))}
+          {panel.dots.map(
+            (d, i) =>
+              !d.isNull && (
+                <div
+                  key={i}
+                  className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full pointer-events-none'
+                  style={{
+                    bottom: d.h,
+                    left: d.x,
+                    border: `1.5px ${d.isGuidance ? 'dashed' : 'solid'} ${panel.lineColor}`,
+                    background: 'var(--color-bg)',
+                  }}
+                />
+              )
+          )}
         </div>
       </div>
 

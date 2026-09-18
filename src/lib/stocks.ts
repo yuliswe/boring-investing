@@ -25,6 +25,14 @@ export const STOCKS: Stock[] = [
       'Cloud, productivity, and platform franchises with durable recurring revenue.',
     template: 'software',
   },
+  {
+    symbol: 'NFLX',
+    name: 'Netflix, Inc.',
+    sector: 'Entertainment',
+    summary:
+      'Dominant global streaming platform with subscription and ad-supported tiers serving 300+ million members.',
+    template: 'software',
+  },
 ];
 
 export function getStock(symbol: string): Stock | undefined {
