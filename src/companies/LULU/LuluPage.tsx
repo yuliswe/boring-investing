@@ -1,9 +1,8 @@
 'use client';
 
 import { RetailTemplate } from '@/templates/RetailTemplate';
-import type { RetailFinancials } from '@/templates/RetailTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
-import financials from './data/financials.json';
+import financials from './data/financials';
 
 const navbar = {
   brand: 'Ledger',
@@ -140,7 +139,7 @@ export function LuluPage() {
     <RetailTemplate
       navbar={navbar}
       hero={hero}
-      financials={financials as RetailFinancials}
+      financials={financials}
       extraSections={luluSections}
       figuresDate='1 February 2026'
       footer={footer}
