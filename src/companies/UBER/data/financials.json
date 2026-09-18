@@ -1,5 +1,21 @@
 {
   "guidanceYears": ["FY26E"],
+  "criticalMetrics": [
+    {
+      "label": "P/E ratio",
+      "values": [null, null, null, null, 67.7, 12.9, 17.3],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 17.3
+    },
+    {
+      "label": "P/FCF ratio",
+      "values": [null, null, null, null, 30.0, 18.2, 17.3],
+      "format": { "decimals": 1 },
+      "invertColor": true,
+      "median10y": 18.2
+    }
+  ],
   "keyMetrics": [
     {
       "label": "Diluted EPS",
