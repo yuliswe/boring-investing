@@ -49,6 +49,14 @@ export const STOCKS: Stock[] = [
       'Dominant global streaming platform with subscription and ad-supported tiers serving 300+ million members.',
     template: 'software',
   },
+  {
+    symbol: 'UBER',
+    name: 'Uber Technologies, Inc.',
+    sector: 'Technology',
+    summary:
+      'Global ride-hailing, delivery, and freight platform with expanding margins and network-effect moats.',
+    template: 'software',
+  },
 ];
 
 export function getStock(symbol: string): Stock | undefined {
