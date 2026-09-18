@@ -1,6 +1,6 @@
 'use client';
 
-import { Tag, Text } from '@/design-system';
+import { Banner, Tag, Text } from '@/design-system';
 import type { ReactNode } from 'react';
 import { LabelPopoverProvider } from './LabelPopover';
 import type {
@@ -484,6 +484,7 @@ export type BaseTemplateProps = {
   expenses?: ExpensesRowData[];
   deducedExpenseLines?: string[];
   expenseLineDescriptions?: Record<string, string>;
+  expensesWarning?: string;
   expensesGuidanceCount?: number;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
@@ -499,6 +500,7 @@ export function BaseTemplate({
   expenses,
   deducedExpenseLines = [],
   expenseLineDescriptions = {},
+  expensesWarning,
   expensesGuidanceCount = 0,
   cashFlow,
   figuresDate,
@@ -507,14 +509,14 @@ export function BaseTemplate({
 }: BaseTemplateProps) {
   const baseSections: SectionData[] = [];
   if (expenses && expenses.length) {
-    baseSections.push(
-      buildExpensesSection(
-        expenses,
-        deducedExpenseLines,
-        expensesGuidanceCount,
-        expenseLineDescriptions
-      )
+    const expSec = buildExpensesSection(
+      expenses,
+      deducedExpenseLines,
+      expensesGuidanceCount,
+      expenseLineDescriptions
     );
+    if (expensesWarning) expSec.warning = expensesWarning;
+    baseSections.push(expSec);
     if (cashFlow && cashFlow.length) {
       baseSections.push(
         buildCashFlowSection(expenses, cashFlow, expensesGuidanceCount)
@@ -559,6 +561,11 @@ export function BaseTemplate({
               <p className='mt-[var(--space-2)] max-w-[62ch] text-xs text-[var(--text-secondary)]'>
                 {sec.kicker}
               </p>
+              {sec.warning && (
+                <div className='mt-[var(--space-3)] max-w-[62ch]'>
+                  <Banner tone='accent'>{sec.warning}</Banner>
+                </div>
+              )}
               <div className='py-[var(--space-4)]'>
                 <SectionContent section={sec} />
               </div>
