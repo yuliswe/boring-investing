@@ -146,6 +146,56 @@
     }
   ],
   "expensesDeducedLines": ["Total"],
+  "cashFlow": [
+    {
+      "year": "FY19",
+      "cashTaxesPaid": 0.0,
+      "workingCapitalChange": 0.5,
+      "capitalExpenditures": 0.6
+    },
+    {
+      "year": "FY20",
+      "cashTaxesPaid": 0.1,
+      "workingCapitalChange": -0.7,
+      "capitalExpenditures": 0.6
+    },
+    {
+      "year": "FY21",
+      "cashTaxesPaid": 0.2,
+      "workingCapitalChange": -1.7,
+      "capitalExpenditures": 0.3
+    },
+    {
+      "year": "FY22",
+      "cashTaxesPaid": 0.3,
+      "workingCapitalChange": -0.3,
+      "capitalExpenditures": 0.3
+    },
+    {
+      "year": "FY23",
+      "cashTaxesPaid": 0.2,
+      "workingCapitalChange": -0.2,
+      "capitalExpenditures": 0.2
+    },
+    {
+      "year": "FY24",
+      "cashTaxesPaid": 0.3,
+      "workingCapitalChange": -2.4,
+      "capitalExpenditures": 0.2
+    },
+    {
+      "year": "FY25",
+      "cashTaxesPaid": 0.4,
+      "workingCapitalChange": -2.2,
+      "capitalExpenditures": 0.3
+    },
+    {
+      "year": "FY26E",
+      "cashTaxesPaid": null,
+      "workingCapitalChange": null,
+      "capitalExpenditures": null
+    }
+  ],
   "thesis": [
     "Uber is the dominant global ride-hailing and delivery platform, and the network effects of matching riders with drivers and eaters with restaurants make it difficult for competitors to gain share in established markets.",
     "The transition from operating losses to positive operating income and expanding free cash flow demonstrates the platform's natural operating leverage as revenue scales faster than costs.",
