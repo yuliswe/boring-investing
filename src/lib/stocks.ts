@@ -26,6 +26,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'GOOG',
+    name: 'Alphabet Inc.',
+    sector: 'Software',
+    summary:
+      'Advertising, cloud, and platform conglomerate anchored by search and YouTube.',
+    template: 'software',
+  },
+  {
     symbol: 'MSFT',
     name: 'Microsoft Corporation',
     sector: 'Software',
