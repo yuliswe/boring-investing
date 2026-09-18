@@ -142,7 +142,7 @@ const financials: SoftwareFinancials = {
       dilutionAdjustment: 0,
     },
   ],
-  expensesDeducedLines: ['Total'],
+  expensesDeducedLines: ['Total', 'Other Ops.', 'Non-op.'],
   expenseLineDescriptions: {
     COGS: 'Cost of revenue — professional services and maintenance staff, third-party licences, and hardware, with depreciation of PP&E allocated proportionally.',
     'SG&A':
@@ -156,7 +156,6 @@ const financials: SoftwareFinancials = {
     'Non-op.':
       'Non-operating income and expenses — includes IRGA revaluation (mark-to-market on acquisition-related instruments), finance costs (interest on acquisition debt), foreign exchange gains and losses, bargain purchase gains, impairment charges, redeemable preferred share charges (Topicus/Lumine), and equity method revaluation. These items are volatile and largely non-cash or non-operational.',
   },
-  warnedExpenseLines: ['Other Ops.', 'Non-op.'],
   expensesWarning:
     'CSU reports under IFRS, which mandates amortization of acquired intangible assets (~10% of revenue) as a non-cash charge. Combined with volatile non-operating items (~8%), these two lines push the Expenses Total to ~97% of revenue. The Free Cash Flow section below strips both, so its Total (~75%) reflects the actual cash cost of running the business.',
   cashFlow: [

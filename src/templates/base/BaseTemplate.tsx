@@ -281,14 +281,11 @@ function buildExpensesSection(
   rows: ExpensesRowData[],
   deducedLines: string[],
   guidanceCount: number,
-  lineDescOverrides: Record<string, string> = {},
-  warnedLines: string[] = []
+  lineDescOverrides: Record<string, string> = {}
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const isDeduced = (label: string) => deducedLines.includes(label);
-  const isWarned = (label: string) => warnedLines.includes(label);
-  const mark = (label: string) =>
-    isDeduced(label) || isWarned(label) ? `${label} ⚠️` : label;
+  const mark = (label: string) => (isDeduced(label) ? `${label} ⚠️` : label);
   const warnPrefix =
     '⚠️ This line was not reported directly in the filing and has been deduced from the other lines.\n';
   const shares = (line: (r: ExpensesRowData) => number | null) =>
@@ -330,7 +327,7 @@ function buildExpensesSection(
       ...EXPENSE_LINES.map(([label, defaultDesc], li) => ({
         label: mark(label),
         desc:
-          (isDeduced(label) ? warnPrefix : '') +
+          (isDeduced(label) && !lineDescOverrides[label] ? warnPrefix : '') +
           (lineDescOverrides[label] ?? defaultDesc) +
           '\nShown as a percentage of total revenue.',
         values: lineShares[li],
@@ -488,7 +485,6 @@ export type BaseTemplateProps = {
   deducedExpenseLines?: string[];
   expenseLineDescriptions?: Record<string, string>;
   expensesWarning?: string;
-  warnedExpenseLines?: string[];
   expensesGuidanceCount?: number;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
@@ -505,7 +501,6 @@ export function BaseTemplate({
   deducedExpenseLines = [],
   expenseLineDescriptions = {},
   expensesWarning,
-  warnedExpenseLines = [],
   expensesGuidanceCount = 0,
   cashFlow,
   figuresDate,
@@ -518,8 +513,7 @@ export function BaseTemplate({
       expenses,
       deducedExpenseLines,
       expensesGuidanceCount,
-      expenseLineDescriptions,
-      warnedExpenseLines
+      expenseLineDescriptions
     );
     if (expensesWarning) expSec.warning = expensesWarning;
     baseSections.push(expSec);
