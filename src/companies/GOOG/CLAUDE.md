@@ -29,6 +29,38 @@ Analytical method: [software](../../methods/software.md)
   one-time transition tax under the Tax Cuts and Jobs Act, which depressed
   net income and EPS well below operating income that year.
 
-- **CY22–CY23 restructuring.** The $2.1 B `otherOperating` charges in CY22
-  and CY23 reflect workforce-reduction and office-consolidation costs from
-  the January 2023 layoff of approximately 12,000 employees.
+- **CY22–CY23 restructuring.** Alphabet took $3.9 B in restructuring charges
+  in CY23 (primarily the January 2023 layoff of approximately 12,000
+  employees and office-consolidation costs). In the XBRL filings these
+  charges are allocated across functional expense lines (COGS, G&A) rather
+  than appearing as a separate `otherOperating` line, so `otherOperating` is
+  zero for CY22–CY23.
+
+## Data sourcing
+
+All income-statement, cash-flow, and balance-sheet figures in
+`data/financials.json` come from the SEC EDGAR XBRL companyconcept API
+(CIK 0001652044). Year-end stock prices come from Yahoo Finance. Key
+exceptions and approximations:
+
+- **D&A CY16–CY20.** The XBRL "Depreciation" tag only covers CY21–CY25.
+  Earlier values are derived from CapEx minus the year-over-year change in
+  PP&E net (PropertyPlantAndEquipmentNet) and may be off by ±$2 B because
+  of disposals and acquisitions that affect the balance sheet without
+  flowing through depreciation.
+- **Working capital change.** No single XBRL concept for aggregate working
+  capital change exists. The values in `cashFlow` are template-consistent
+  residuals derived so that the FCF chart's bars sum to the actual FCF
+  margin. They absorb non-cash non-operating income reversals and deferred
+  tax movements in addition to true working capital changes.
+- **SBC.** The XBRL AllocatedShareBasedCompensationExpense values round
+  differently across filings; the values used are from the income-statement
+  compilation and are internally consistent to ±$0.2 B.
+- **PEG CY16–CY20.** Set to null because computing trailing five-year EPS
+  CAGR requires pre-CY16 EPS data that is outside the XBRL filing range
+  for Alphabet's current CIK.
+- **Segments.** Segment revenue in `data/segments.json` comes from the
+  10-K narrative disclosures, not from the XBRL aggregate API (which does
+  not expose dimensional member data). CY16 segment values are estimates.
+- **CY26E.** Forward estimates (revenue, EPS, capex) are analyst consensus
+  approximations and are not filed data.
