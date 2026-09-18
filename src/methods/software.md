@@ -46,6 +46,19 @@ question is whether management reinvests at returns above the cost of capital or
 distributes excess cash, not whether one policy is inherently better than the
 other.
 
+## Data coverage
+
+Each company page covers the last nine completed fiscal years plus one forward
+fiscal-year estimate (FYE), for a total of ten data points per series. The nine
+actuals are taken from the filed annual statements; the single estimate uses the
+most recent consensus or management guidance available at the time the page is
+built. Arrays that have no meaningful forward estimate (for example, a company
+that does not provide guidance) fill the FYE slot with `null` values.
+
+All financial data — revenue, expenses, and cash flow — must be sourced from the
+company's original filed financial statements, not from third-party databases or
+press-release summaries.
+
 ## What we do not do
 
 - **No DCF or target price.** The page presents data and a qualitative thesis,

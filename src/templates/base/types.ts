@@ -150,6 +150,7 @@ export type SectionData = {
   id: string;
   title: string;
   kicker: string;
+  warning?: string;
   origin?: string;
 } & (
   | ProseSectionData

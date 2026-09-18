@@ -922,7 +922,7 @@ a.list-row:hover {
   padding: var(--space-3) var(--space-4);
   border: var(--hairline) solid var(--border-hairline);
   border-radius: var(--radius-md);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
 }
 .banner-accent {
   border-color: var(--border-strong);

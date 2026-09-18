@@ -84,7 +84,15 @@ function PopoverOverlay({
         onClose();
       }
     };
-    const onScroll = () => onClose();
+    const onScroll = (e: Event) => {
+      if (
+        cardRef.current &&
+        e.target instanceof Node &&
+        cardRef.current.contains(e.target)
+      )
+        return;
+      onClose();
+    };
 
     document.addEventListener('keydown', onKey);
     document.addEventListener('mousedown', onClickAway);

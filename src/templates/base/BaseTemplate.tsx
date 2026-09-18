@@ -1,6 +1,6 @@
 'use client';
 
-import { Tag, Text } from '@/design-system';
+import { Banner, Tag, Text } from '@/design-system';
 import type { ReactNode } from 'react';
 import { LabelPopoverProvider } from './LabelPopover';
 import type {
@@ -280,11 +280,15 @@ const EXPENSE_LINES: [string, string, (r: ExpensesRowData) => number | null][] =
 function buildExpensesSection(
   rows: ExpensesRowData[],
   deducedLines: string[],
-  guidanceCount: number
+  guidanceCount: number,
+  lineDescOverrides: Record<string, string> = {},
+  warnedLines: string[] = []
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const isDeduced = (label: string) => deducedLines.includes(label);
-  const mark = (label: string) => (isDeduced(label) ? `${label} ⚠️` : label);
+  const isWarned = (label: string) => warnedLines.includes(label);
+  const mark = (label: string) =>
+    isDeduced(label) || isWarned(label) ? `${label} ⚠️` : label;
   const warnPrefix =
     '⚠️ This line was not reported directly in the filing and has been deduced from the other lines.\n';
   const shares = (line: (r: ExpensesRowData) => number | null) =>
@@ -323,11 +327,11 @@ function buildExpensesSection(
         format: pctFormat,
         total: true,
       },
-      ...EXPENSE_LINES.map(([label, desc], li) => ({
+      ...EXPENSE_LINES.map(([label, defaultDesc], li) => ({
         label: mark(label),
         desc:
           (isDeduced(label) ? warnPrefix : '') +
-          desc +
+          (lineDescOverrides[label] ?? defaultDesc) +
           '\nShown as a percentage of total revenue.',
         values: lineShares[li],
         format: pctFormat,
@@ -482,6 +486,9 @@ export type BaseTemplateProps = {
   childSections?: SectionData[];
   expenses?: ExpensesRowData[];
   deducedExpenseLines?: string[];
+  expenseLineDescriptions?: Record<string, string>;
+  expensesWarning?: string;
+  warnedExpenseLines?: string[];
   expensesGuidanceCount?: number;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
@@ -496,6 +503,9 @@ export function BaseTemplate({
   childSections,
   expenses,
   deducedExpenseLines = [],
+  expenseLineDescriptions = {},
+  expensesWarning,
+  warnedExpenseLines = [],
   expensesGuidanceCount = 0,
   cashFlow,
   figuresDate,
@@ -504,9 +514,15 @@ export function BaseTemplate({
 }: BaseTemplateProps) {
   const baseSections: SectionData[] = [];
   if (expenses && expenses.length) {
-    baseSections.push(
-      buildExpensesSection(expenses, deducedExpenseLines, expensesGuidanceCount)
+    const expSec = buildExpensesSection(
+      expenses,
+      deducedExpenseLines,
+      expensesGuidanceCount,
+      expenseLineDescriptions,
+      warnedExpenseLines
     );
+    if (expensesWarning) expSec.warning = expensesWarning;
+    baseSections.push(expSec);
     if (cashFlow && cashFlow.length) {
       baseSections.push(
         buildCashFlowSection(expenses, cashFlow, expensesGuidanceCount)
@@ -551,6 +567,11 @@ export function BaseTemplate({
               <p className='mt-[var(--space-2)] max-w-[62ch] text-xs text-[var(--text-secondary)]'>
                 {sec.kicker}
               </p>
+              {sec.warning && (
+                <div className='mt-[var(--space-3)]'>
+                  <Banner tone='accent'>{sec.warning}</Banner>
+                </div>
+              )}
               <div className='py-[var(--space-4)]'>
                 <SectionContent section={sec} />
               </div>
