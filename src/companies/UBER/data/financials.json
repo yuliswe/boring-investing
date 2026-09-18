@@ -39,7 +39,7 @@
     },
     {
       "label": "Free cash flow margin %",
-      "values": [-37.8, -30.2, -4.3, 1.2, 11.3, 15.7, 18.8, 18.5],
+      "values": [-37.8, -30.2, -4.3, 1.2, 9.0, 15.7, 18.8, 18.5],
       "format": { "suffix": "%", "decimals": 1 },
       "deltaMode": "add",
       "guidanceCount": 1
@@ -64,7 +64,7 @@
       "depreciationAndAmortization": 0.5,
       "otherOperating": 0,
       "nonOperating": -0.2,
-      "taxes": 0.1,
+      "taxes": 0.0,
       "dilutionAdjustment": 4.6
     },
     {
@@ -74,8 +74,8 @@
       "researchAndDev": 2.3,
       "depreciationAndAmortization": 0.6,
       "otherOperating": 0,
-      "nonOperating": 1.6,
-      "taxes": 0.3,
+      "nonOperating": 2.1,
+      "taxes": -0.2,
       "dilutionAdjustment": 0.8
     },
     {
@@ -86,7 +86,7 @@
       "depreciationAndAmortization": 0.9,
       "otherOperating": 0,
       "nonOperating": -2.8,
-      "taxes": -0.6,
+      "taxes": -0.5,
       "dilutionAdjustment": 1.2
     },
     {
@@ -96,7 +96,7 @@
       "researchAndDev": 2.9,
       "depreciationAndAmortization": 0.9,
       "otherOperating": 0,
-      "nonOperating": 7.5,
+      "nonOperating": 7.6,
       "taxes": -0.2,
       "dilutionAdjustment": 1.8
     },
@@ -107,8 +107,8 @@
       "researchAndDev": 3.2,
       "depreciationAndAmortization": 0.8,
       "otherOperating": 0,
-      "nonOperating": -1.3,
-      "taxes": 0.5,
+      "nonOperating": -1.2,
+      "taxes": 0.2,
       "dilutionAdjustment": 1.9
     },
     {
@@ -120,7 +120,7 @@
       "otherOperating": 0,
       "nonOperating": -1.3,
       "taxes": -5.8,
-      "dilutionAdjustment": 2.1
+      "dilutionAdjustment": 1.8
     },
     {
       "year": "FY25",
@@ -131,7 +131,7 @@
       "otherOperating": 0,
       "nonOperating": -0.2,
       "taxes": -4.3,
-      "dilutionAdjustment": 2.3
+      "dilutionAdjustment": 1.8
     },
     {
       "year": "FY26E",
