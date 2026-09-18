@@ -281,11 +281,14 @@ function buildExpensesSection(
   rows: ExpensesRowData[],
   deducedLines: string[],
   guidanceCount: number,
-  lineDescOverrides: Record<string, string> = {}
+  lineDescOverrides: Record<string, string> = {},
+  warnedLines: string[] = []
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const isDeduced = (label: string) => deducedLines.includes(label);
-  const mark = (label: string) => (isDeduced(label) ? `${label} ⚠️` : label);
+  const isWarned = (label: string) => warnedLines.includes(label);
+  const mark = (label: string) =>
+    isDeduced(label) || isWarned(label) ? `${label} ⚠️` : label;
   const warnPrefix =
     '⚠️ This line was not reported directly in the filing and has been deduced from the other lines.\n';
   const shares = (line: (r: ExpensesRowData) => number | null) =>
@@ -485,6 +488,7 @@ export type BaseTemplateProps = {
   deducedExpenseLines?: string[];
   expenseLineDescriptions?: Record<string, string>;
   expensesWarning?: string;
+  warnedExpenseLines?: string[];
   expensesGuidanceCount?: number;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
@@ -501,6 +505,7 @@ export function BaseTemplate({
   deducedExpenseLines = [],
   expenseLineDescriptions = {},
   expensesWarning,
+  warnedExpenseLines = [],
   expensesGuidanceCount = 0,
   cashFlow,
   figuresDate,
@@ -513,7 +518,8 @@ export function BaseTemplate({
       expenses,
       deducedExpenseLines,
       expensesGuidanceCount,
-      expenseLineDescriptions
+      expenseLineDescriptions,
+      warnedExpenseLines
     );
     if (expensesWarning) expSec.warning = expensesWarning;
     baseSections.push(expSec);
