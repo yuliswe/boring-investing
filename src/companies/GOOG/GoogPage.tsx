@@ -1,10 +1,9 @@
 'use client';
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
-import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
-import financials from './data/financials.json';
-import segments from './data/segments.json';
+import financials from './data/financials';
+import segments from './data/segments';
 
 const navbar = {
   brand: 'Ledger',
@@ -38,6 +37,7 @@ const googSections: SectionData[] = [
     mode: 'absolute',
     years: [...segments.segments.map(s => s.year), 'CY26E'],
     guidanceCount: 1,
+    guidanceDesc: financials.estimateNote,
     series: [
       {
         label: 'Total revenue',
@@ -46,7 +46,7 @@ const googSections: SectionData[] = [
           ...segments.segments.map(
             s => s.googleServices + s.googleCloud + s.otherBets
           ),
-          460,
+          459,
         ],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
         total: true,
@@ -54,7 +54,7 @@ const googSections: SectionData[] = [
       {
         label: 'Google Services',
         desc: 'Search, YouTube advertising and subscriptions, Android, Chrome, Google Play, hardware, Gmail, and Maps.\nShown as a percentage of total revenue.',
-        values: [...segments.segments.map(s => s.googleServices), 385],
+        values: [...segments.segments.map(s => s.googleServices), 384],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
@@ -155,7 +155,7 @@ export function GoogPage() {
     <SoftwareTemplate
       navbar={navbar}
       hero={hero}
-      financials={financials as SoftwareFinancials}
+      financials={financials}
       extraSections={googSections}
       figuresDate='31 December'
       footer={footer}

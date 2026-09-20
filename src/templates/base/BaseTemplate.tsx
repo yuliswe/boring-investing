@@ -33,6 +33,7 @@ function SectionContent({ section }: { section: SectionData }) {
           panels={section.panels}
           chartSize={section.chartSize}
           chartNote={section.chartNote}
+          guidanceDesc={section.guidanceDesc}
         />
       );
     case 'metrics':
@@ -66,6 +67,7 @@ function SectionContent({ section }: { section: SectionData }) {
           guidanceCount={section.guidanceCount}
           baseLabel={section.baseLabel}
           chartNote={section.chartNote}
+          guidanceDesc={section.guidanceDesc}
         />
       );
     case 'table':
@@ -282,7 +284,8 @@ function buildExpensesSection(
   deducedLines: string[],
   guidanceCount: number,
   lineDescOverrides: Record<string, string> = {},
-  warnedLines: string[] = []
+  warnedLines: string[] = [],
+  guidanceDesc?: string
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const isDeduced = (label: string) => deducedLines.includes(label);
@@ -312,6 +315,7 @@ function buildExpensesSection(
     invert: true,
     baseLabel: '0%',
     guidanceCount,
+    guidanceDesc,
     series: [
       {
         label: mark('Total'),
@@ -345,7 +349,8 @@ function buildExpensesSection(
 function buildCashFlowSection(
   expenses: ExpensesRowData[],
   cashFlow: CashFlowRowData[],
-  guidanceCount: number
+  guidanceCount: number,
+  guidanceDesc?: string
 ): SectionData {
   const pctFormat = { suffix: '%', decimals: 1 };
   const byYear = new Map(cashFlow.map(cf => [cf.year, cf]));
@@ -424,6 +429,7 @@ function buildCashFlowSection(
     invert: true,
     baseLabel: '0%',
     guidanceCount,
+    guidanceDesc,
     series: [
       {
         label: 'Total',
@@ -488,6 +494,7 @@ export type BaseTemplateProps = {
   expensesWarning?: string;
   warnedExpenseLines?: string[];
   expensesGuidanceCount?: number;
+  guidanceDesc?: string;
   cashFlow?: CashFlowRowData[];
   figuresDate?: string;
   footer?: FooterData;
@@ -505,6 +512,7 @@ export function BaseTemplate({
   expensesWarning,
   warnedExpenseLines = [],
   expensesGuidanceCount = 0,
+  guidanceDesc,
   cashFlow,
   figuresDate,
   footer,
@@ -517,13 +525,19 @@ export function BaseTemplate({
       deducedExpenseLines,
       expensesGuidanceCount,
       expenseLineDescriptions,
-      warnedExpenseLines
+      warnedExpenseLines,
+      guidanceDesc
     );
     if (expensesWarning) expSec.warning = expensesWarning;
     baseSections.push(expSec);
     if (cashFlow && cashFlow.length) {
       baseSections.push(
-        buildCashFlowSection(expenses, cashFlow, expensesGuidanceCount)
+        buildCashFlowSection(
+          expenses,
+          cashFlow,
+          expensesGuidanceCount,
+          guidanceDesc
+        )
       );
     }
   }

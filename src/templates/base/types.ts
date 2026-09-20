@@ -83,6 +83,7 @@ type TrendsSectionData = {
   panels: TrendPanelData[];
   chartSize?: 'large' | 'small';
   chartNote?: string;
+  guidanceDesc?: string;
 };
 
 type MetricsSectionData = {
@@ -138,6 +139,7 @@ type MultiSectionData = {
   baseLabel?: string;
   chartNote?: string;
   guidanceCount?: number;
+  guidanceDesc?: string;
 };
 
 type PeersSectionData = {

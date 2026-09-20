@@ -156,9 +156,11 @@ function computePanel(
 function Sparkline({
   panel,
   large,
+  guidanceDesc,
 }: {
   panel: ComputedPanel;
   large?: boolean;
+  guidanceDesc?: string;
 }) {
   return (
     <div className='flex flex-col gap-[var(--space-2)] pb-[var(--space-3)] border-b border-[var(--color-divider)]'>
@@ -254,6 +256,12 @@ function Sparkline({
                 desc={d.yearNote}
                 className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'
               />
+            ) : d.isGuidance && guidanceDesc ? (
+              <DescribedLabel
+                label={d.year}
+                desc={guidanceDesc}
+                className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'
+              />
             ) : (
               <span className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'>
                 {d.year}
@@ -281,10 +289,12 @@ export function TrendsSection({
   panels,
   chartSize,
   chartNote,
+  guidanceDesc,
 }: {
   panels: TrendPanelData[];
   chartSize?: 'large' | 'small';
   chartNote?: string;
+  guidanceDesc?: string;
 }) {
   const large = chartSize === 'large';
   const computed = panels.map((p, i) => computePanel(p, i));
@@ -299,7 +309,12 @@ export function TrendsSection({
         }
       >
         {computed.map((p, i) => (
-          <Sparkline key={i} panel={p} large={large} />
+          <Sparkline
+            key={i}
+            panel={p}
+            large={large}
+            guidanceDesc={guidanceDesc}
+          />
         ))}
       </div>
       {chartNote && (
