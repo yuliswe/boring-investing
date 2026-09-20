@@ -354,13 +354,14 @@ function buildCashFlowSection(
     .filter(e => byYear.has(e.year))
     .map(e => ({ exp: e, cf: byYear.get(e.year)! }));
 
+  const opsFields: (keyof Pick<
+    ExpensesRowData,
+    'costOfRevenue' | 'sellingGeneralAndAdmin' | 'researchAndDev'
+  >)[] = ['costOfRevenue', 'sellingGeneralAndAdmin', 'researchAndDev'];
   const totalAccrualOps: (number | null)[] = rows.map(r => {
-    const {
-      costOfRevenue: c,
-      sellingGeneralAndAdmin: s,
-      researchAndDev: rd,
-    } = r.exp;
-    return c !== null && s !== null && rd !== null ? c + s + rd : null;
+    const parts = opsFields.map(f => r.exp[f]);
+    if (parts.every(v => v === null)) return null;
+    return parts.reduce((s: number, v) => s + (v ?? 0), 0);
   });
   const cashOps: (number | null)[] = totalAccrualOps.map((t, i) => {
     const da = rows[i].exp.depreciationAndAmortization;
@@ -403,15 +404,9 @@ function buildCashFlowSection(
   const taxesPct = share(cashTaxesB);
   const dwcPct = share(dwcB);
   const capexPct = share(capexB);
-  const totalPct = cogsPct.map((_, i) => {
-    const vals = [
-      cogsPct[i],
-      sgaPct[i],
-      rdPct[i],
-      taxesPct[i],
-      dwcPct[i],
-      capexPct[i],
-    ];
+  const cashOpsPct = share(cashOps);
+  const totalPct = cashOpsPct.map((_, i) => {
+    const vals = [cashOpsPct[i], taxesPct[i], dwcPct[i], capexPct[i]];
     return vals.every(v => v !== null)
       ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
       : null;
@@ -437,24 +432,27 @@ function buildCashFlowSection(
         format: pctFormat,
         total: true,
       },
-      {
-        label: 'Cash COGS',
-        desc: 'Cost of revenue on a cash basis, after removing the depreciation and stock-based compensation components.\nShown as a percentage of total revenue.',
-        values: cogsPct,
-        format: pctFormat,
-      },
-      {
-        label: 'Cash SG&A',
-        desc: 'Selling, general and administrative costs on a cash basis, after removing non-cash charges.\nShown as a percentage of total revenue.',
-        values: sgaPct,
-        format: pctFormat,
-      },
-      {
-        label: 'Cash R&D',
-        desc: 'Research and development costs on a cash basis, after removing non-cash charges.\nShown as a percentage of total revenue.',
-        values: rdPct,
-        format: pctFormat,
-      },
+      ...(
+        [
+          {
+            label: 'Cash COGS',
+            desc: 'Cost of revenue on a cash basis, after removing the depreciation and stock-based compensation components.\nShown as a percentage of total revenue.',
+            values: cogsPct,
+          },
+          {
+            label: 'Cash SG&A',
+            desc: 'Selling, general and administrative costs on a cash basis, after removing non-cash charges.\nShown as a percentage of total revenue.',
+            values: sgaPct,
+          },
+          {
+            label: 'Cash R&D',
+            desc: 'Research and development costs on a cash basis, after removing non-cash charges.\nShown as a percentage of total revenue.',
+            values: rdPct,
+          },
+        ] as { label: string; desc: string; values: (number | null)[] }[]
+      )
+        .filter(s => s.values.some(v => v !== null))
+        .map(s => ({ ...s, format: pctFormat })),
       {
         label: 'Cash Taxes Paid',
         desc: 'Income taxes actually paid in cash during the period, which may differ from the accrual-basis tax provision.\nShown as a percentage of total revenue.',

@@ -49,6 +49,14 @@ export const STOCKS: Stock[] = [
       'Dominant global streaming platform with subscription and ad-supported tiers serving 300+ million members.',
     template: 'software',
   },
+  {
+    symbol: 'TRI',
+    name: 'Thomson Reuters Corporation',
+    sector: 'Information Services',
+    summary:
+      'AI-powered information services and workflow software for legal, tax, and compliance professionals, with high recurring revenue and disciplined capital allocation.',
+    template: 'software',
+  },
 ];
 
 export function getStock(symbol: string): Stock | undefined {
