@@ -32,3 +32,20 @@
   data and may differ from figures reported in filed statements.
 - Segment revenue for FY20–FY25 comes from the company's earnings releases.
   The current five-segment structure dates from FY19 after the F&R divestiture.
+- Thomson Reuters does not break out SG&A or R&D as separate income
+  statement lines. "Cost of revenue" in the expenses array is the combined
+  operating expenses line. R&D is capitalised as computer software and
+  appears in amortisation.
+- FY17–FY18 expense data (operating expenses, D&A, taxes) comes from the
+  FY18 Q4 earnings release, which restated FY17 for continuing operations.
+  Non-operating income is null for these years because the press releases
+  did not break it out for continuing operations.
+- FY17 working capital change is null because the Q4 2017 results reported
+  only total-company cash flows including the F&R business.
+- Stock-based compensation (dilutionAdjustment) comes from the share-based
+  compensation note in each year's Form 40-F filing (XBRL pages R60/R63).
+- Cash taxes paid for FY17–FY20 and working capital for FY18–FY25 come
+  from the consolidated statements of cash flow in the Q4 earnings releases
+  and SEC filings for continuing operations.
+- Capital expenditures for FY17–FY18 ($519M and $576M) are from the FY18
+  Q4 earnings release, restated for continuing operations.
