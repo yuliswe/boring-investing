@@ -25,10 +25,10 @@ export type SegmentData<T extends { year: string }> = {
 
 export type SoftwareFinancials = {
   guidanceYears?: string[];
-  criticalMetrics?: TrendMetric[];
-  keyMetrics?: TrendMetric[];
+  criticalMetrics: TrendMetric[];
+  keyMetrics: TrendMetric[];
   revenue: { year: string; revenue: number; operatingIncome: number | null }[];
-  expenses?: {
+  expenses: {
     year: string;
     costOfRevenue: number | null;
     sellingGeneralAndAdmin: number | null;
@@ -42,7 +42,7 @@ export type SoftwareFinancials = {
   expensesDeducedLines?: string[];
   expenseLineDescriptions?: Record<string, string>;
   expensesWarning?: string;
-  cashFlow?: {
+  cashFlow: {
     year: string;
     cashTaxesPaid: number | null;
     workingCapitalChange: number | null;
@@ -98,53 +98,49 @@ export function SoftwareTemplate({
     },
   ];
 
-  if (financials.criticalMetrics) {
-    softwareSections.push({
-      rank: 200,
-      id: 'critical',
-      title: 'Critical Metrics',
-      kicker:
-        'Valuation ratios that signal whether the market price is justified by earnings and cash flow.',
-      kind: 'trends',
-      panels: financials.criticalMetrics.map(m => ({
-        label: m.label,
-        years: m.guidanceCount ? allYears : years,
-        values: m.values,
-        format: m.format,
-        invertColor: m.invertColor,
-        deltaMode: m.deltaMode,
-        median10y: m.median10y,
-        guidanceCount: m.guidanceCount,
-      })),
-      chartNote:
-        'Lower is cheaper on all three. 10Y median shown as dashed line.',
-    });
-  }
+  softwareSections.push({
+    rank: 200,
+    id: 'critical',
+    title: 'Critical Metrics',
+    kicker:
+      'Valuation ratios that signal whether the market price is justified by earnings and cash flow.',
+    kind: 'trends',
+    panels: financials.criticalMetrics.map(m => ({
+      label: m.label,
+      years: m.guidanceCount ? allYears : years,
+      values: m.values,
+      format: m.format,
+      invertColor: m.invertColor,
+      deltaMode: m.deltaMode,
+      median10y: m.median10y,
+      guidanceCount: m.guidanceCount,
+    })),
+    chartNote:
+      'Lower is cheaper on all three. 10Y median shown as dashed line.',
+  });
 
-  if (financials.keyMetrics) {
-    softwareSections.push({
-      rank: 300,
-      id: 'key',
-      title: 'Key Metrics',
-      kicker:
-        'Profitability, returns, leverage and margins with ten-year trend and 10Y median.',
-      kind: 'trends',
-      panels: financials.keyMetrics.map(m => ({
-        label: m.label,
-        years: m.guidanceCount ? allYears : years,
-        values: m.values,
-        format: m.format,
-        invertColor: m.invertColor,
-        deltaMode: m.deltaMode,
-        median10y: m.median10y,
-        guidanceCount: m.guidanceCount,
-      })),
-      chartNote:
-        'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
-    });
-  }
+  softwareSections.push({
+    rank: 300,
+    id: 'key',
+    title: 'Key Metrics',
+    kicker:
+      'Profitability, returns, leverage and margins with ten-year trend and 10Y median.',
+    kind: 'trends',
+    panels: financials.keyMetrics.map(m => ({
+      label: m.label,
+      years: m.guidanceCount ? allYears : years,
+      values: m.values,
+      format: m.format,
+      invertColor: m.invertColor,
+      deltaMode: m.deltaMode,
+      median10y: m.median10y,
+      guidanceCount: m.guidanceCount,
+    })),
+    chartNote:
+      'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
+  });
 
-  const expenses = financials.expenses?.map(e => ({
+  const expenses = financials.expenses.map(e => ({
     ...e,
     revenue: financials.revenue.find(r => r.year === e.year)?.revenue ?? 0,
   }));
