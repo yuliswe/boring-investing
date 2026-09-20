@@ -86,6 +86,24 @@ const triSections: SectionData[] = [
       'Current segment structure applies from FY19 onward. Corporates grew fastest as indirect tax and compliance products gained traction; Global Print continues its structural decline as customers shift to digital.',
   },
   {
+    rank: 560,
+    id: 'capital',
+    title: 'Capital Allocation',
+    kicker:
+      'How cash is deployed across maintenance capex, growth investment, and shareholder returns.',
+    kind: 'stack',
+    bars: [
+      { label: 'FY21', parts: [0.177, 0.31, 2.173] },
+      { label: 'FY22', parts: [0.14, 0.455, 2.116] },
+      { label: 'FY23', parts: [0.116, 0.428, 4.016] },
+      { label: 'FY24', parts: [0.113, 0.494, 1.583] },
+      { label: 'FY25', parts: [0.111, 0.523, 2.035] },
+    ],
+    format: { decimals: 2 },
+    chartNote:
+      'Maintenance = reported depreciation. Growth = capital expenditure above depreciation. Returned = dividends + buybacks. From the filed cash flow statements.',
+  },
+  {
     rank: 600,
     id: 'filings',
     title: 'Filings',
