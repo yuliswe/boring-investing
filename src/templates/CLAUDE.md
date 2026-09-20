@@ -41,34 +41,39 @@ The page must also provide a segment revenue breakdown in `extraSections`
 ## Expenses and Free Cash Flow sections
 
 Every company page must include an Expenses section (rank 500) and a Free Cash
-Flow section (rank 550). There are two ways to provide them, and the choice
-depends on whether the company's filing categories map cleanly onto the
-template's predefined columns.
-
-**Option 1: template-generated sections.** Pass `expenses` and `cashFlow`
-arrays in `SoftwareFinancials`. The template builds the Expenses and FCF
-sections automatically using its fixed columns (cost of revenue, SG&A, R&D,
-D&A, other operating, non-operating, taxes, stock-based compensation). Use
-this when the company reports those lines separately, as most US software
-companies do. Individual fields may be `null` for years without data.
-
-**Option 2: custom sections.** Build the Expenses and FCF sections directly
-as `extraSections` in the page component, using `kind: 'multi'` with
-`mode: 'share'`. Each line uses the label and description from the company's
-actual filing, and its values are shown as a percentage of total revenue. Omit
-`expenses` and `cashFlow` from the financials object so the template does not
-generate duplicate sections.
-
-Use option 2 when the company's reporting does not fit the template's
-predefined categories. GAAP and IFRS give companies flexibility in how they
-present the income statement — a company may report a single combined
+Flow section (rank 550). These sections follow the same principle as the
+Revenue breakdown (rank 400), which already uses the company's own segment
+structure as a custom `extraSections` entry. Each expense and cash-flow line
+on the page must correspond to a line the company actually reports in its
+filing, using the same label. GAAP and IFRS give companies flexibility in how
+they present the income statement — a company may report a single combined
 operating expense line, use different functional groupings, or capitalise
-costs that other companies expense. Forcing such data into the wrong column
-misrepresents what the company reported and can break the FCF computation.
-The rule is: each expense line on the page should correspond to a line the
-company actually reports, with the same label.
+costs that other companies expense — so the page must follow whatever
+structure the company uses rather than forcing data into a fixed set of
+categories.
 
-See `src/companies/MSFT/` for option 1 and `src/companies/TRI/` for option 2.
+**All new company pages must use custom sections.** Build the Expenses and FCF
+sections directly as `extraSections` in the page component, using
+`kind: 'multi'` with `mode: 'share'`. Define each line with a label and
+description matching the company's filing, and provide its values as raw
+amounts in billions; the page component converts them to percentages of
+revenue. Omit `expenses` and `cashFlow` from the financials object so the
+template does not generate its own sections at those ranks.
+
+See `src/companies/TRI/` for the reference implementation. The data lives in
+`financials.ts` as named exports (`expenseLines`, `cashFlowLines`,
+`expenseYears`, `revenueByYear`), and the page component (`TriPage.tsx`)
+contains `buildExpensesSection()` and `buildFCFSection()` helper functions
+that assemble the `SectionData` objects.
+
+**Deprecated: template-generated sections.** Some older company pages (MSFT,
+ADBE, CSU, NFLX, LULU) pass `expenses` and `cashFlow` arrays in
+`SoftwareFinancials`, and the template builds sections from fixed columns
+(cost of revenue, SG&A, R&D, D&A, etc.). This approach is deprecated because
+it forces every company into the same categories regardless of what they
+actually report, which misrepresents the data and breaks the FCF computation
+when a company's reporting does not fit. These pages will be migrated to
+custom sections over time.
 
 ## Data types
 
