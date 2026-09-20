@@ -84,169 +84,6 @@ const financials: SoftwareFinancials = {
     { year: 'FY24', revenue: 7.26, operatingIncome: 2.11 },
     { year: 'FY25', revenue: 7.48, operatingIncome: 2.13 },
   ],
-  expenses: [
-    {
-      year: 'FY17',
-      costOfRevenue: 3.706,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.605,
-      otherOperating: -0.041,
-      nonOperating: null,
-      taxes: -0.134,
-      dilutionAdjustment: 0.06,
-    },
-    {
-      year: 'FY18',
-      costOfRevenue: 4.131,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.619,
-      otherOperating: -0.029,
-      nonOperating: null,
-      taxes: 0.141,
-      dilutionAdjustment: 0.048,
-    },
-    {
-      year: 'FY19',
-      costOfRevenue: 4.413,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.717,
-      otherOperating: -0.423,
-      nonOperating: 0.228,
-      taxes: 1.198,
-      dilutionAdjustment: 0.056,
-    },
-    {
-      year: 'FY20',
-      costOfRevenue: 3.999,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.792,
-      otherOperating: -0.736,
-      nonOperating: 0.165,
-      taxes: 0.071,
-      dilutionAdjustment: 0.064,
-    },
-    {
-      year: 'FY21',
-      costOfRevenue: 4.37,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.77,
-      otherOperating: -0.034,
-      nonOperating: 0.188,
-      taxes: 1.607,
-      dilutionAdjustment: 0.076,
-    },
-    {
-      year: 'FY22',
-      costOfRevenue: 4.28,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.724,
-      otherOperating: -0.211,
-      nonOperating: -0.248,
-      taxes: 0.195,
-      dilutionAdjustment: 0.085,
-    },
-    {
-      year: 'FY23',
-      costOfRevenue: 4.134,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.725,
-      otherOperating: -0.397,
-      nonOperating: 0.344,
-      taxes: -0.417,
-      dilutionAdjustment: 0.083,
-    },
-    {
-      year: 'FY24',
-      costOfRevenue: 4.471,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.822,
-      otherOperating: -0.144,
-      nonOperating: 0.08,
-      taxes: 0.123,
-      dilutionAdjustment: 0.087,
-    },
-    {
-      year: 'FY25',
-      costOfRevenue: 4.578,
-      sellingGeneralAndAdmin: null,
-      researchAndDev: null,
-      depreciationAndAmortization: 0.93,
-      otherOperating: -0.164,
-      nonOperating: 0.198,
-      taxes: 0.423,
-      dilutionAdjustment: 0.111,
-    },
-  ],
-  expenseLineDescriptions: {
-    COGS: 'Combined operating expenses — Thomson Reuters reports a single line that includes cost of revenues, selling and marketing, general and administrative, and stock-based compensation. The company does not publish a breakdown.',
-  },
-  expensesWarning:
-    'Thomson Reuters reports operating expenses as one combined line. R&D spending is capitalised and appears in amortisation of computer software.',
-  expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'FY17',
-      cashTaxesPaid: 0.057,
-      workingCapitalChange: null,
-      capitalExpenditures: 0.519,
-    },
-    {
-      year: 'FY18',
-      cashTaxesPaid: 0.27,
-      workingCapitalChange: 0.134,
-      capitalExpenditures: 0.576,
-    },
-    {
-      year: 'FY19',
-      cashTaxesPaid: 0.268,
-      workingCapitalChange: -0.247,
-      capitalExpenditures: 0.505,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 0.052,
-      workingCapitalChange: 0.102,
-      capitalExpenditures: 0.504,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 1.916,
-      workingCapitalChange: 0.832,
-      capitalExpenditures: 0.487,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 0.2,
-      workingCapitalChange: 0.008,
-      capitalExpenditures: 0.595,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 0.868,
-      workingCapitalChange: 0.457,
-      capitalExpenditures: 0.544,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 0.551,
-      workingCapitalChange: 0.176,
-      capitalExpenditures: 0.607,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 0.337,
-      workingCapitalChange: 0.043,
-      capitalExpenditures: 0.634,
-    },
-  ],
   thesis: [
     'AI-powered products like CoCounsel and ONESOURCE expand wallet share with professional customers, embedding Thomson Reuters deeper into legal, tax, and compliance workflows.',
     'More than eighty percent of revenue is recurring, and the subscription model delivers resilient cash flows that are largely insensitive to economic cycles.',
@@ -255,3 +92,77 @@ const financials: SoftwareFinancials = {
 };
 
 export default financials;
+
+export const expenseYears = [
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const revenueByYear = [
+  5.3, 5.5, 5.91, 5.98, 6.35, 6.63, 6.79, 7.26, 7.48,
+];
+
+export const expenseLines = [
+  {
+    label: 'Operating Expenses',
+    desc: 'Combined operating expenses as reported by Thomson Reuters, which includes cost of revenues, selling and marketing, general and administrative, and depreciation. The company does not publish a breakdown into COGS, SG&A, and R&D.',
+    values: [3.706, 4.131, 4.413, 3.999, 4.37, 4.28, 4.134, 4.471, 4.578],
+  },
+  {
+    label: 'D&A',
+    desc: 'Depreciation and amortization, including amortization of capitalized computer software (which is where R&D spending appears in Thomson Reuters’ reporting).',
+    values: [0.605, 0.619, 0.717, 0.792, 0.77, 0.724, 0.725, 0.822, 0.93],
+  },
+  {
+    label: 'Other Operating',
+    desc: 'Other operating income and expenses, including restructuring charges, acquisition-related costs, and gains or losses on asset disposals.',
+    values: [
+      -0.041, -0.029, -0.423, -0.736, -0.034, -0.211, -0.397, -0.144, -0.164,
+    ],
+  },
+  {
+    label: 'Non-Operating',
+    desc: 'Non-operating income and expenses, including interest income, interest expense, and gains or losses on the LSEG equity stake and foreign exchange.',
+    values: [null, null, 0.228, 0.165, 0.188, -0.248, 0.344, 0.08, 0.198],
+  },
+  {
+    label: 'Taxes',
+    desc: 'Income tax provision. FY17 reflects a tax benefit from continuing operations; FY21 and FY23 include large tax charges or benefits tied to the Refinitiv/LSEG transactions.',
+    values: [-0.134, 0.141, 1.198, 0.071, 1.607, 0.195, -0.417, 0.123, 0.423],
+  },
+  {
+    label: 'Stock-Based Compensation',
+    desc: 'Stock-based compensation expense issued to employees, treated as an economic cost borne by shareholders.',
+    values: [0.06, 0.048, 0.056, 0.064, 0.076, 0.085, 0.083, 0.087, 0.111],
+  },
+];
+
+export const cashFlowLines = [
+  {
+    label: 'Cash Operating Costs',
+    desc: 'Operating expenses on a cash basis: reported operating expenses minus depreciation and stock-based compensation.\nShown as a percentage of total revenue.',
+    values: [3.041, 3.464, 3.64, 3.143, 3.524, 3.471, 3.326, 3.562, 3.537],
+  },
+  {
+    label: 'Cash Taxes Paid',
+    desc: 'Income taxes actually paid in cash during the period, which may differ from the accrual-basis tax provision.\nShown as a percentage of total revenue.',
+    values: [0.057, 0.27, 0.268, 0.052, 1.916, 0.2, 0.868, 0.551, 0.337],
+  },
+  {
+    label: 'Δ Working Capital',
+    desc: 'Change in net working capital. Positive means cash was freed; negative means cash was consumed as receivables or inventory grew faster than payables.\nShown as a percentage of total revenue.',
+    values: [null, 0.134, -0.247, 0.102, 0.832, 0.008, 0.457, 0.176, 0.043],
+  },
+  {
+    label: 'CapEx',
+    desc: 'Capital expenditures, including purchases of computer hardware and capitalized internally developed software.\nShown as a percentage of total revenue.',
+    values: [0.519, 0.576, 0.505, 0.504, 0.487, 0.595, 0.544, 0.607, 0.634],
+  },
+];

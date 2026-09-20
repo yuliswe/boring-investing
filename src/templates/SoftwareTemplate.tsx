@@ -28,7 +28,7 @@ export type SoftwareFinancials = {
   criticalMetrics: TrendMetric[];
   keyMetrics: TrendMetric[];
   revenue: { year: string; revenue: number; operatingIncome: number | null }[];
-  expenses: {
+  expenses?: {
     year: string;
     costOfRevenue: number | null;
     sellingGeneralAndAdmin: number | null;
@@ -42,7 +42,7 @@ export type SoftwareFinancials = {
   expensesDeducedLines?: string[];
   expenseLineDescriptions?: Record<string, string>;
   expensesWarning?: string;
-  cashFlow: {
+  cashFlow?: {
     year: string;
     cashTaxesPaid: number | null;
     workingCapitalChange: number | null;
@@ -140,7 +140,7 @@ export function SoftwareTemplate({
       'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
   });
 
-  const expenses = financials.expenses.map(e => ({
+  const expenses = financials.expenses?.map(e => ({
     ...e,
     revenue: financials.revenue.find(r => r.year === e.year)?.revenue ?? 0,
   }));
