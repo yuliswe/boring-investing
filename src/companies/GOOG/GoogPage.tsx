@@ -46,7 +46,7 @@ const googSections: SectionData[] = [
           ...segments.segments.map(
             s => s.googleServices + s.googleCloud + s.otherBets
           ),
-          450,
+          460,
         ],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
         total: true,
@@ -54,13 +54,13 @@ const googSections: SectionData[] = [
       {
         label: 'Google Services',
         desc: 'Search, YouTube advertising and subscriptions, Android, Chrome, Google Play, hardware, Gmail, and Maps.\nShown as a percentage of total revenue.',
-        values: [...segments.segments.map(s => s.googleServices), 380],
+        values: [...segments.segments.map(s => s.googleServices), 385],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {
         label: 'Google Cloud',
         desc: 'Google Cloud Platform infrastructure and Google Workspace (formerly G Suite) productivity tools.\nShown as a percentage of total revenue.',
-        values: [...segments.segments.map(s => s.googleCloud), 67],
+        values: [...segments.segments.map(s => s.googleCloud), 72],
         format: { prefix: '$', suffix: 'B', decimals: 0 },
       },
       {

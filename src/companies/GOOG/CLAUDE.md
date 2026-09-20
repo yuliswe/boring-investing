@@ -62,5 +62,9 @@ exceptions and approximations:
 - **Segments.** Segment revenue in `data/segments.json` comes from the
   10-K narrative disclosures, not from the XBRL aggregate API (which does
   not expose dimensional member data). CY16 segment values are estimates.
-- **CY26E.** Forward estimates (revenue, EPS, capex) are analyst consensus
-  approximations and are not filed data.
+- **CY26E.** Revenue ($460B) and capex ($160B) are annualised from filed
+  H1 2026 10-Q data (H1 revenue $229.7B, H1 capex $80.6B). EPS and net
+  margin are null because Q2 2026 contains a large non-operating gain
+  that distorts annualisation. H1 2026 FCF was barely positive at $4.3B
+  (OCF $84.9B minus CapEx $80.6B), and Q2 2026 standalone FCF was
+  negative (-$5.9B).
