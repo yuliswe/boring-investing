@@ -27,8 +27,23 @@
 
 - FY26E revenue of $50.7–51.7 B (midpoint $51.2 B) and operating margin
   ~31.5% from the Q4 2025 earnings letter.
+- FY26E operating income of $16.13 B derived from the 31.5% margin guidance
+  on $51.2 B midpoint revenue.
 - FY26E regional split is estimated proportionally from FY24–FY25 growth
   trends.
+
+## Consensus estimates
+
+- FY26E consensus from stockanalysis.com (46 analysts, retrieved 22 Sep 2026):
+  revenue $51.22 B, EPS $3.59, net income $15.27 B, free cash flow $12.87 B.
+- FY26E free cash flow per share ($3.02) derived from consensus FCF of
+  $12.87 B divided by estimated diluted shares of ~4.25 B (implied by
+  consensus net income ÷ consensus EPS).
+- FY26E P/E, P/FCF, and PEG computed from the 21 Sep 2026 closing price of
+  $73.36.
+- Balance-sheet-dependent metrics (ROE, ROIC, D/E, SGR) are left null for
+  FY26E because Netflix's large share repurchase program ($25 B authorized
+  in Apr 2026) makes year-end equity projections unreliable.
 
 ## Notes
 

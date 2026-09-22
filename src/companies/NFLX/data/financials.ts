@@ -5,45 +5,91 @@ const financials: SoftwareFinancials = {
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [309, 148, 96, 77, 89, 54, 30, 41, 45, 40],
+      values: [309, 148, 96, 77, 89, 54, 30, 41, 45, 40, 20.4],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 65.5,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the 21 Sep closing price of $73.36 divided by consensus diluted EPS of $3.59.',
+      },
     },
     {
       label: 'P/FCF ratio',
-      values: [null, null, null, null, null, null, 82, 32, 56, 46],
+      values: [null, null, null, null, null, null, 82, 32, 56, 46, 24.3],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 51.0,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the 21 Sep closing price of $73.36 divided by consensus free cash flow per share of $3.02.',
+      },
     },
     {
       label: 'PEG ratio',
-      values: [null, 0.66, 0.89, 1.48, 1.82, 0.64, null, 2.05, 0.69, 1.36],
+      values: [
+        null,
+        0.66,
+        0.89,
+        1.48,
+        1.82,
+        0.64,
+        null,
+        2.05,
+        0.69,
+        1.36,
+        0.49,
+      ],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 1.13,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the forward P/E of 20.4 divided by the FY25-to-FY26 EPS growth rate of 41.9%.',
+      },
     },
   ],
   keyMetrics: [
     {
       label: 'Diluted EPS',
-      values: [0.04, 0.13, 0.27, 0.41, 0.61, 1.12, 1.0, 1.2, 1.98, 2.53],
+      values: [0.04, 0.13, 0.27, 0.41, 0.61, 1.12, 1.0, 1.2, 1.98, 2.53, 3.59],
       format: { prefix: '$', decimals: 2 },
       median10y: 0.81,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate (46 analysts, stockanalysis.com).',
+      },
     },
     {
       label: 'Free cash flow per share',
       values: [
-        -0.36, -0.46, -0.65, -0.74, -0.43, -0.03, 0.36, 1.54, 1.58, 2.18,
+        -0.36, -0.46, -0.65, -0.74, -0.43, -0.03, 0.36, 1.54, 1.58, 2.18, 3.02,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: -0.2,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus free cash flow of $12.87B divided by estimated diluted shares of ~4.25B.',
+      },
     },
     {
       label: 'ROE %',
       values: [
-        9.33, 17.86, 27.46, 29.13, 29.61, 38.01, 24.53, 26.14, 38.44, 41.59,
+        9.33,
+        17.86,
+        27.46,
+        29.13,
+        29.61,
+        38.01,
+        24.53,
+        26.14,
+        38.44,
+        41.59,
+        null,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
@@ -52,7 +98,17 @@ const financials: SoftwareFinancials = {
     {
       label: 'ROIC %',
       values: [
-        5.35, 7.08, 8.77, 9.89, 14.19, 15.49, 12.69, 15.73, 20.72, 25.75,
+        5.35,
+        7.08,
+        8.77,
+        9.89,
+        14.19,
+        15.49,
+        12.69,
+        15.73,
+        20.72,
+        25.75,
+        null,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
@@ -60,7 +116,19 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Debt to equity ratio',
-      values: [1.26, 1.82, 1.98, 1.95, 1.47, 1.14, 0.81, 0.82, 0.73, 0.58],
+      values: [
+        1.26,
+        1.82,
+        1.98,
+        1.95,
+        1.47,
+        1.14,
+        0.81,
+        0.82,
+        0.73,
+        0.58,
+        null,
+      ],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 1.2,
@@ -68,7 +136,17 @@ const financials: SoftwareFinancials = {
     {
       label: 'Sustainable growth rate %',
       values: [
-        9.33, 17.86, 27.46, 29.13, 29.61, 38.01, 24.53, 26.14, 38.44, 41.59,
+        9.33,
+        17.86,
+        27.46,
+        29.13,
+        29.61,
+        38.01,
+        24.53,
+        26.14,
+        38.44,
+        41.59,
+        null,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
@@ -77,20 +155,31 @@ const financials: SoftwareFinancials = {
     {
       label: 'Net margin %',
       values: [
-        2.11, 4.78, 7.67, 9.26, 11.05, 17.23, 14.21, 16.04, 22.34, 24.31,
+        2.11, 4.78, 7.67, 9.26, 11.05, 17.23, 14.21, 16.04, 22.34, 24.31, 29.81,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 12.63,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus net income of $15.27B and consensus revenue of $51.22B.',
+      },
     },
     {
       label: 'Free cash flow margin %',
       values: [
         -17.67, -17.29, -18.07, -16.24, -7.74, -0.44, 5.12, 20.54, 17.75, 20.94,
+        25.13,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: -4.09,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus free cash flow of $12.87B and consensus revenue of $51.22B.',
+      },
     },
   ],
   revenue: [
@@ -104,7 +193,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 33.72, operatingIncome: 6.95 },
     { year: 'FY24', revenue: 39.0, operatingIncome: 10.42 },
     { year: 'FY25', revenue: 45.18, operatingIncome: 13.33 },
-    { year: 'FY26E', revenue: 51.2, operatingIncome: null },
+    { year: 'FY26E', revenue: 51.2, operatingIncome: 16.13 },
   ],
   expenses: [
     {
