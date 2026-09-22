@@ -58,6 +58,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'TOI',
+    name: 'Topicus.com Inc.',
+    sector: 'Software',
+    summary:
+      'Majority-owned CSU subsidiary acquiring European vertical market software businesses with durable recurring revenue and disciplined capital allocation.',
+    template: 'software',
+  },
+  {
     symbol: 'TRI',
     name: 'Thomson Reuters Corporation',
     sector: 'Information Services',

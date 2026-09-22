@@ -57,6 +57,7 @@ export type SoftwareFinancials = {
 export type SoftwareTemplateProps = {
   navbar?: NavbarData;
   hero: HeroData;
+  heroAddon?: ReactNode;
   financials: SoftwareFinancials;
   baseSections?: SectionData[];
   extraSections?: SectionData[];
@@ -68,6 +69,7 @@ export type SoftwareTemplateProps = {
 export function SoftwareTemplate({
   navbar,
   hero,
+  heroAddon,
   financials,
   baseSections = [],
   extraSections = [],
@@ -159,6 +161,7 @@ export function SoftwareTemplate({
     <BaseTemplate
       navbar={navbar}
       hero={hero}
+      heroAddon={heroAddon}
       sections={[...softwareSections, ...baseSections]}
       childSections={extraSections}
       expenses={expenses}
