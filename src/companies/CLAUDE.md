@@ -12,9 +12,12 @@ Each company page covers the last nine completed fiscal years plus one forward
 fiscal-year estimate (the "E" year, such as FY26E), for a total of ten data
 points per series. The forward estimate must come from a verifiable source, not
 from memory. Prefer management guidance when the company provides it; fall back
-to consensus analyst estimates otherwise. If neither management guidance nor
-analyst consensus is available for a metric, fill the forward-year slot with
-`null`.
+to consensus analyst estimates otherwise.
+
+The last data point in every series must be non-null. If a forward estimate is
+genuinely unavailable for a metric, omit the forward year from that series
+entirely so the last visible value is the most recent actual. The page should
+never display "N/A" as its final data point.
 
 Forward-year critical metrics that depend on the stock price (P/E, P/FCF, and
 PEG) must recalculate reactively when the user adjusts the price through the
