@@ -84,11 +84,15 @@ lines.
 - All dollar figures in `data/financials.json` and `data/segments.json` are
   in billions of USD, rounded to one decimal.
 - Figures are calendar-year values (Alphabet's fiscal year ends 31 December).
-- CY26E values are estimates informed by filed H1 2026 10-Q data: revenue
-  ($460B) annualises the H1 2026 total of $229.7B, and capex ($160B)
-  annualises H1 2026 capex of $80.6B. CY26E EPS and net margin are null
-  because Q2 2026 contains an outsized non-operating gain ($112.2B net
-  income on $119.8B revenue) that makes annualisation unreliable.
+- CY26E revenue ($460B) and capex ($160B) are annualised from filed H1 2026
+  10-Q data ($229.7B and $80.6B respectively). CY26E net margin is omitted
+  because Q2 2026 contains an outsized non-operating gain that makes
+  annualisation unreliable. CY26E P/FCF is omitted because free cash flow is
+  depressed by the $160B+ capex ramp.
+- CY26E EPS ($20.62) is the consensus analyst estimate from stockanalysis.com
+  (51 analysts, accessed 22 Sep 2026). The forward P/E and PEG ratios use
+  this consensus EPS with the default stock price, and recalculate reactively
+  when the price adjuster changes.
 - PEG is null for CY16–CY20 because computing the trailing five-year EPS
   CAGR requires pre-CY16 data that is outside the XBRL filing range for
   Alphabet's current CIK (0001652044).

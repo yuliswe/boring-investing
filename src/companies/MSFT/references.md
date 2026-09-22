@@ -52,6 +52,16 @@ all from the XBRL 10-K filings. "Cash COGS", "Cash SG&A", and "Cash R&D"
 are derived by stripping D&A and SBC from the accrual operating lines
 proportionally, so they represent the cash portion of each cost category.
 
+## Consensus estimates
+
+- FY27E diluted EPS ($20.50) is from the consensus analyst estimate on
+  stockanalysis.com (49 analysts, accessed 22 Sep 2026). The forward P/E and
+  PEG ratios use this consensus EPS with the default stock price, and
+  recalculate reactively when the price adjuster changes.
+- FY27E P/FCF is omitted because the wide range of analyst free cash flow
+  projections ($32B to $99B) reflects high uncertainty around the capex ramp
+  for AI infrastructure.
+
 ## Notes
 
 - All dollar figures in `data/financials.json` and `data/segments.json` are

@@ -5,10 +5,17 @@ const financials: SoftwareFinancials = {
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [21.2, 46.3, 26.5, 35.3, 33.7, 26.6, 35.2, 37.9, 36.5, 20.8],
+      values: [
+        21.2, 46.3, 26.5, 35.3, 33.7, 26.6, 35.2, 37.9, 36.5, 20.8, 18.2,
+      ],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 34.5,
+      guidanceCount: 1,
+      yearNotes: {
+        FY27E:
+          'Calculated from the default price of $373.02 divided by consensus diluted EPS of $20.50.',
+      },
     },
     {
       label: 'P/FCF ratio',
@@ -19,10 +26,15 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'PEG ratio',
-      values: [2.08, null, 1.89, 1.13, 1.31, 1.09, 0.99, 2.05, 1.94, 1.2],
+      values: [2.08, null, 1.89, 1.13, 1.31, 1.09, 0.99, 2.05, 1.94, 1.2, 1.28],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 1.31,
+      guidanceCount: 1,
+      yearNotes: {
+        FY27E:
+          'Calculated from the forward P/E of 18.2 divided by the FY26-to-FY27 EPS growth rate of 14.2%.',
+      },
     },
   ],
   keyMetrics: [
@@ -37,9 +49,16 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Free cash flow per share',
-      values: [4.01, 4.14, 4.93, 5.89, 7.38, 8.64, 7.96, 9.92, 9.59, 8.99],
+      values: [
+        4.01, 4.14, 4.93, 5.89, 7.38, 8.64, 7.96, 9.92, 9.59, 8.99, 4.37,
+      ],
       format: { prefix: '$', decimals: 2 },
       median10y: 7.67,
+      guidanceCount: 1,
+      yearNotes: {
+        FY27E:
+          'Derived from consensus free cash flow of $32.34B divided by ~7.4B estimated diluted shares. Depressed by the AI infrastructure capex ramp.',
+      },
     },
     {
       label: 'ROE %',
@@ -90,10 +109,16 @@ const financials: SoftwareFinancials = {
       label: 'Free cash flow margin %',
       values: [
         32.49, 29.23, 30.4, 31.63, 33.39, 32.86, 28.07, 30.22, 25.42, 20.19,
+        8.27,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 30.31,
+      guidanceCount: 1,
+      yearNotes: {
+        FY27E:
+          'Derived from consensus free cash flow of $32.34B and consensus revenue of $391.0B (49 analysts, stockanalysis.com).',
+      },
     },
   ],
   revenue: [
@@ -107,7 +132,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY24', revenue: 245.1, operatingIncome: 109.4 },
     { year: 'FY25', revenue: 281.7, operatingIncome: 128.5 },
     { year: 'FY26', revenue: 331.8, operatingIncome: 155.2 },
-    { year: 'FY27E', revenue: 365, operatingIncome: null },
+    { year: 'FY27E', revenue: 391.0, operatingIncome: 182.2 },
   ],
   expenses: [
     {

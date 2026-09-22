@@ -17,6 +17,7 @@ type TrendMetric = {
   deltaMode?: 'pct' | 'add';
   median10y?: number;
   guidanceCount?: number;
+  yearNotes?: Record<string, string>;
 };
 
 export type RetailFinancials = {
@@ -112,6 +113,7 @@ export function RetailTemplate({
         deltaMode: m.deltaMode,
         median10y: m.median10y,
         guidanceCount: m.guidanceCount,
+        yearNotes: m.yearNotes,
       })),
       chartNote:
         'Lower is cheaper on all ratios. 10Y median shown as dashed line.',
@@ -135,6 +137,7 @@ export function RetailTemplate({
         deltaMode: m.deltaMode,
         median10y: m.median10y,
         guidanceCount: m.guidanceCount,
+        yearNotes: m.yearNotes,
       })),
       chartNote:
         'Source: filed annual statements and investor presentations. FY = fiscal year.',
@@ -158,6 +161,7 @@ export function RetailTemplate({
         deltaMode: m.deltaMode,
         median10y: m.median10y,
         guidanceCount: m.guidanceCount,
+        yearNotes: m.yearNotes,
       })),
       chartNote:
         'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',

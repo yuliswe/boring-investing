@@ -43,3 +43,15 @@ year-end date. Adobe's fiscal year ends the Friday nearest 30 November.
 | FY23 | 1 Dec 2023  | $612.47 |
 | FY24 | 29 Nov 2024 | $515.93 |
 | FY25 | 28 Nov 2025 | $320.13 |
+
+## Consensus estimates
+
+- FY26E diluted EPS ($19.50) and free cash flow ($10.44B) are consensus
+  analyst estimates from stockanalysis.com (34 analysts, accessed
+  22 Sep 2026). Free cash flow per share ($25.46) is derived from the
+  consensus FCF divided by estimated diluted shares of approximately 410M,
+  reflecting the ongoing buyback program that has reduced the share count
+  from 427M (FY25 annual average) to approximately 402M (Q3 FY26).
+- The forward P/E, P/FCF, and PEG ratios use these consensus estimates with
+  the default stock price, and recalculate reactively when the price adjuster
+  changes.
