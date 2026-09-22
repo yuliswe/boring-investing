@@ -12,7 +12,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'P/E ratio',
       desc: 'Price divided by adjusted EPS.',
-      values: [46.9, 63.1, 52.7, 45.4, 63.1, 49.0, 42.0, 42.4, 33.5, 24.0],
+      values: [46.9, 63.1, 52.7, 45.4, 63.1, 47.9, 42.0, 42.4, 33.5, 24.0],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 46.9,
@@ -32,7 +32,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'Adjusted EPS',
       desc: 'Thomson Reuters adjusted diluted EPS, which excludes one-time Refinitiv and LSEG transaction gains and non-cash amortization of acquired intangibles.',
-      values: [0.94, 0.75, 1.29, 1.85, 1.95, 2.56, 3.51, 3.77, 3.92, 4.44],
+      values: [0.94, 0.75, 1.29, 1.85, 1.95, 2.62, 3.51, 3.77, 3.92, 4.44],
       format: { prefix: '$', decimals: 2 },
       median10y: 1.95,
       guidanceCount: 1,
@@ -47,7 +47,7 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'ROE %',
-      values: [3.62, 2.5, 4.61, 7.57, 7.72, 9.08, 13.63, 14.65, 14.6, 15.0],
+      values: [3.62, 2.5, 4.61, 7.57, 7.72, 9.3, 13.63, 14.65, 14.6, 15.0],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 7.72,
@@ -72,17 +72,17 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Sustainable growth rate %',
-      values: [0.0, 0.0, 0.0, 0.94, 1.31, 2.91, 6.09, 6.63, 6.55, 7.3],
+      values: [1.5, 2.0, 2.7, 2.8, 6.7, 3.4, 9.1, 8.3, 4.5, 5.2],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 1.31,
+      median10y: 3.4,
       guidanceCount: 1,
       yearNotes: adjustedNotes,
     },
     {
       label: 'Net margin %',
       desc: 'Adjusted net income as a share of revenue.',
-      values: [8.9, 6.8, 10.9, 15.2, 14.5, 17.0, 23.4, 23.4, 23.7, 23.8],
+      values: [8.9, 6.8, 10.9, 15.2, 14.5, 17.4, 23.4, 23.4, 23.7, 23.8],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 15.2,
