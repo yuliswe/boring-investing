@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   expenseYears,
   revenueByYear,
@@ -29,6 +30,13 @@ const hero: HeroData = {
   priceNote: 'close, 19 September',
   summary:
     'AI-powered information services and workflow software for legal, tax, and compliance professionals. More than eighty percent of revenue is recurring, drawn from subscriptions across research platforms, analytics tools, and workflow automation.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'TRI',
+  defaultPrice: 106.35,
+  currency: '$',
+  referenceClose: 106.9059,
 };
 
 const pctFormat = { suffix: '%', decimals: 1 };
@@ -256,10 +264,12 @@ const footer: FooterData = {
 };
 
 export function TriPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={triSections}
       figuresDate='31 December'

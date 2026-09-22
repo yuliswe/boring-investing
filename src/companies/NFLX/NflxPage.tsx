@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 import segments from './data/segments';
 
@@ -24,6 +25,13 @@ const hero: HeroData = {
   priceNote: 'close, 31 December',
   summary:
     'Dominant global streaming entertainment platform with more than 300 million paid members across 190 countries. Netflix earns nearly all of its revenue from monthly subscriptions, supplemented by an ad-supported tier introduced in late 2022.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'NFLX',
+  defaultPrice: 97.0,
+  currency: '$',
+  referenceClose: 95.7079,
 };
 
 const membershipYears = segments.segments.map(s => s.year);
@@ -167,10 +175,12 @@ const footer: FooterData = {
 };
 
 export function NflxPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={nflxSections}
       figuresDate='31 December'

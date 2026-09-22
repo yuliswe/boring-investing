@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 import segments from './data/segments';
 
@@ -24,6 +25,13 @@ const hero: HeroData = {
   priceNote: 'close, 31 December',
   summary:
     'Advertising, cloud, and platform conglomerate whose core franchise in search and YouTube advertising generates the cash that funds Google Cloud growth and Other Bets ventures including Waymo autonomous vehicles.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'GOOG',
+  defaultPrice: 313.8,
+  currency: '$',
+  referenceClose: 190.4357,
 };
 
 const googSections: SectionData[] = [
@@ -151,10 +159,12 @@ const footer: FooterData = {
 };
 
 export function GoogPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={googSections}
       figuresDate='31 December'
