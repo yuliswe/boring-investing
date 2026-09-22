@@ -5,24 +5,43 @@ const financials: SoftwareFinancials = {
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [43.0, 53.1, 48.2, 51.6, 44.1, 61.5, 33.8, 51.8, 41.7, 19.2],
+      values: [
+        43.0, 53.1, 48.2, 51.6, 44.1, 61.5, 33.8, 51.8, 41.7, 19.2, 16.4,
+      ],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 46.2,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the default price of $320.13 divided by consensus diluted EPS of $19.50.',
+      },
     },
     {
       label: 'P/FCF ratio',
-      values: [25.2, 32.9, 33.2, 37.8, 43.6, 43.1, 21.7, 40.5, 29.5, 13.9],
+      values: [
+        25.2, 32.9, 33.2, 37.8, 43.6, 43.1, 21.7, 40.5, 29.5, 13.9, 12.6,
+      ],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 33.0,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the default price of $320.13 divided by consensus free cash flow per share of $25.46.',
+      },
     },
     {
       label: 'PEG ratio',
-      values: [null, 1.16, 0.9, 3.35, 0.55, null, null, 3.04, 9.13, 0.55],
+      values: [null, 1.16, 0.9, 3.35, 0.55, null, null, 3.04, 9.13, 0.55, 0.98],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 1.16,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the forward P/E of 16.4 divided by the FY25-to-FY26 EPS growth rate of 16.8%.',
+      },
     },
   ],
   keyMetrics: [
@@ -38,10 +57,15 @@ const financials: SoftwareFinancials = {
     {
       label: 'Free cash flow per share',
       values: [
-        3.96, 5.46, 7.56, 8.19, 10.93, 14.31, 15.71, 15.12, 17.51, 23.07,
+        3.96, 5.46, 7.56, 8.19, 10.93, 14.31, 15.71, 15.12, 17.51, 23.07, 25.46,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: 12.62,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus free cash flow of $10.44B divided by estimated diluted shares of ~410M.',
+      },
     },
     {
       label: 'ROE %',

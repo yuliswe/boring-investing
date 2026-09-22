@@ -3,14 +3,21 @@ import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 const financials: SoftwareFinancials = {
   guidanceYears: ['CY26E'],
   estimateNote:
-    'CY26E figures are annualized from the filed Q1 and Q2 2026 10-Q reports (H1 year-to-date values doubled). Operating lines — revenue, cost of revenue, SGA, R&D, D&A, stock-based compensation, operating income, and capital expenditures — annualize cleanly. Net income, EPS, taxes, and non-operating income are omitted because both quarters included large non-operating gains that distort annualization. Alphabet has mild Q4 advertising seasonality, so H1 annualization may slightly understate full-year revenue.',
+    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income, capex) are annualized from filed H1 2026 10-Q reports. EPS uses the consensus analyst estimate because non-operating gains in H1 2026 distort annualization. Net margin and P/FCF are omitted for CY26E because the non-operating gains and capex ramp make those metrics unreliable. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0],
+      values: [
+        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 15.2,
+      ],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 26.5,
+      guidanceCount: 1,
+      yearNotes: {
+        CY26E:
+          'Calculated from the default price of $313.80 divided by consensus diluted EPS of $20.62.',
+      },
     },
     {
       label: 'P/FCF ratio',
@@ -21,19 +28,29 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'PEG ratio',
-      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97],
+      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 0.17],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 0.89,
+      guidanceCount: 1,
+      yearNotes: {
+        CY26E:
+          'Calculated from the forward P/E of 15.2 divided by the CY25-to-CY26 EPS growth rate of 90.7%.',
+      },
     },
   ],
   keyMetrics: [
     {
       label: 'Diluted EPS',
-      values: [1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, null],
+      values: [
+        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 20.62,
+      ],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.75,
       guidanceCount: 1,
+      yearNotes: {
+        CY26E: 'Consensus analyst estimate (51 analysts, stockanalysis.com).',
+      },
     },
     {
       label: 'Free cash flow per share',
@@ -71,23 +88,10 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Net margin %',
-      values: [
-        21.6,
-        11.5,
-        22.4,
-        21.2,
-        22.1,
-        29.5,
-        21.2,
-        24.0,
-        28.6,
-        32.8,
-        null,
-      ],
+      values: [21.6, 11.5, 22.4, 21.2, 22.1, 29.5, 21.2, 24.0, 28.6, 32.8],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 22.25,
-      guidanceCount: 1,
     },
     {
       label: 'Free cash flow margin %',

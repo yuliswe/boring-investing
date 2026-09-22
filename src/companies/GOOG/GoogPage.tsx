@@ -158,14 +158,54 @@ const footer: FooterData = {
   ],
 };
 
+const EPS_EST = 20.62;
+const PRIOR_EPS = 10.81;
+
+function buildDynamicFinancials(price: number) {
+  const pe = +(price / EPS_EST).toFixed(1);
+  const epsGrowth = ((EPS_EST - PRIOR_EPS) / PRIOR_EPS) * 100;
+  const peg = +(pe / epsGrowth).toFixed(2);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/E ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pe;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            CY26E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
+          },
+        };
+      }
+      if (m.label === 'PEG ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = peg;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            CY26E: `Calculated from the forward P/E of ${pe} divided by the CY25-to-CY26 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
+          },
+        };
+      }
+      return m;
+    }),
+  };
+}
+
 export function GoogPage() {
-  const { hero: h, addon } = usePriceHero(hero, priceConfig);
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
-      financials={financials}
+      financials={dynamicFinancials}
       extraSections={googSections}
       figuresDate='31 December'
       footer={footer}

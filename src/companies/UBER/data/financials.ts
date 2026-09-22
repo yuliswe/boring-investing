@@ -5,17 +5,27 @@ const financials: SoftwareFinancials = {
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [null, null, null, null, 67.7, 12.9, 17.3],
+      values: [null, null, null, null, 67.7, 12.9, 17.3, 33.0],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 17.3,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the default price of $97.42 divided by consensus diluted EPS of $2.95.',
+      },
     },
     {
       label: 'P/FCF ratio',
-      values: [null, null, null, null, 30.0, 18.2, 17.3],
+      values: [null, null, null, null, 30.0, 18.2, 17.3, 19.0],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 18.2,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the default price of $97.42 divided by estimated free cash flow per share of $5.12.',
+      },
     },
   ],
   keyMetrics: [
