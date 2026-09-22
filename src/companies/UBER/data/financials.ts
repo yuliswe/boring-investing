@@ -65,7 +65,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 37.3, operatingIncome: 1.1 },
     { year: 'FY24', revenue: 44.0, operatingIncome: 2.8 },
     { year: 'FY25', revenue: 52.0, operatingIncome: 5.6 },
-    { year: 'FY26E', revenue: 57.9, operatingIncome: null },
+    { year: 'FY26E', revenue: 57.9, operatingIncome: 8.47 },
   ],
   expenses: [
     {

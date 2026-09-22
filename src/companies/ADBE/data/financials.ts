@@ -116,10 +116,16 @@ const financials: SoftwareFinancials = {
       label: 'Free cash flow margin %',
       values: [
         34.09, 37.45, 41.66, 36.05, 41.25, 43.6, 42.01, 35.77, 36.61, 41.45,
+        39.23,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 39.35,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus free cash flow of $10.44B and consensus revenue of $26.61B.',
+      },
     },
   ],
   revenue: [
@@ -133,6 +139,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 19.4, operatingIncome: 6.7 },
     { year: 'FY24', revenue: 21.5, operatingIncome: 6.7 },
     { year: 'FY25', revenue: 23.8, operatingIncome: 8.7 },
+    { year: 'FY26E', revenue: 26.61, operatingIncome: 11.97 },
   ],
   expenses: [
     {

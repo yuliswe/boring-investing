@@ -18,10 +18,16 @@ const financials: RetailFinancials = {
     },
     {
       label: 'Gross margin',
-      values: [51.2, 52.8, 55.2, 55.9, 56.0, 57.7, 55.4, 58.3, 59.2, 56.6],
+      values: [
+        51.2, 52.8, 55.2, 55.9, 56.0, 57.7, 55.4, 58.3, 59.2, 56.6, 55.5,
+      ],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 56.0,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate (30 analysts, stockanalysis.com).',
+      },
     },
     {
       label: 'Inventory turnover',
@@ -56,17 +62,27 @@ const financials: RetailFinancials = {
     },
     {
       label: 'Net margin',
-      values: [12.9, 9.8, 14.7, 16.2, 13.4, 15.6, 10.5, 16.1, 17.1, 14.2],
+      values: [12.9, 9.8, 14.7, 16.2, 13.4, 15.6, 10.5, 16.1, 17.1, 14.2, 10.3],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 14.5,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus net income of $1.08B and consensus revenue of $10.46B (30 analysts, stockanalysis.com).',
+      },
     },
     {
       label: 'Free cash flow margin',
-      values: [null, null, null, null, null, 17.8, -1.3, 13.8, 16.3, 6.0],
+      values: [null, null, null, null, null, 17.8, -1.3, 13.8, 16.3, 6.0, 8.5],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 13.8,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus free cash flow of $891M and consensus revenue of $10.46B (30 analysts, stockanalysis.com).',
+      },
     },
   ],
   revenue: [
@@ -80,7 +96,7 @@ const financials: RetailFinancials = {
     { year: 'FY23', revenue: 9.62, operatingIncome: 2.13 },
     { year: 'FY24', revenue: 10.59, operatingIncome: 2.51 },
     { year: 'FY25', revenue: 11.1, operatingIncome: 2.21 },
-    { year: 'FY26E', revenue: 10.43, operatingIncome: null },
+    { year: 'FY26E', revenue: 10.46, operatingIncome: 1.51 },
   ],
   expenses: [
     {

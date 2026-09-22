@@ -144,7 +144,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 6.79, operatingIncome: 2.33 },
     { year: 'FY24', revenue: 7.26, operatingIncome: 2.11 },
     { year: 'FY25', revenue: 7.48, operatingIncome: 2.13 },
-    { year: 'FY26E', revenue: 8.08, operatingIncome: null },
+    { year: 'FY26E', revenue: 8.08, operatingIncome: 2.46 },
   ],
   thesis: [
     'AI-powered products like CoCounsel and ONESOURCE expand wallet share with professional customers, embedding Thomson Reuters deeper into legal, tax, and compliance workflows.',

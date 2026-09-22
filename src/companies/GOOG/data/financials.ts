@@ -3,7 +3,7 @@ import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 const financials: SoftwareFinancials = {
   guidanceYears: ['CY26E'],
   estimateNote:
-    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income, capex) are annualized from filed H1 2026 10-Q reports. EPS uses the consensus analyst estimate because non-operating gains in H1 2026 distort annualization. Net margin and P/FCF are omitted for CY26E because the non-operating gains and capex ramp make those metrics unreliable. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
+    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income, capex) are annualized from filed H1 2026 10-Q reports. EPS, FCF per share, and FCF margin use consensus analyst estimates. Net margin and P/FCF are omitted for CY26E because $80B+ in non-operating gains inflates net income well above operating income, and the resulting P/FCF of ~490 is not a meaningful valuation metric. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
@@ -54,9 +54,14 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Free cash flow per share',
-      values: [1.85, 1.7, 1.62, 2.21, 3.12, 4.94, 4.56, 5.46, 5.84, 5.99],
+      values: [1.85, 1.7, 1.62, 2.21, 3.12, 4.94, 4.56, 5.46, 5.84, 5.99, 0.64],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.84,
+      guidanceCount: 1,
+      yearNotes: {
+        CY26E:
+          'Derived from consensus free cash flow of $7.78B divided by ~12.2B diluted shares. Depressed by $160B+ capex ramp for AI infrastructure.',
+      },
     },
     {
       label: 'ROE %',
@@ -95,10 +100,15 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Free cash flow margin %',
-      values: [28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 20.8, 18.2],
+      values: [28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 20.8, 18.2, 1.6],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 21.4,
+      guidanceCount: 1,
+      yearNotes: {
+        CY26E:
+          'Derived from consensus free cash flow of $7.78B and consensus revenue of $498.6B. Depressed by $160B+ capex ramp for AI infrastructure.',
+      },
     },
   ],
   revenue: [

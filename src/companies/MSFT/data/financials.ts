@@ -49,9 +49,16 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Free cash flow per share',
-      values: [4.01, 4.14, 4.93, 5.89, 7.38, 8.64, 7.96, 9.92, 9.59, 8.99],
+      values: [
+        4.01, 4.14, 4.93, 5.89, 7.38, 8.64, 7.96, 9.92, 9.59, 8.99, 4.37,
+      ],
       format: { prefix: '$', decimals: 2 },
       median10y: 7.67,
+      guidanceCount: 1,
+      yearNotes: {
+        FY27E:
+          'Derived from consensus free cash flow of $32.34B divided by ~7.4B estimated diluted shares. Depressed by the AI infrastructure capex ramp.',
+      },
     },
     {
       label: 'ROE %',
@@ -102,10 +109,16 @@ const financials: SoftwareFinancials = {
       label: 'Free cash flow margin %',
       values: [
         32.49, 29.23, 30.4, 31.63, 33.39, 32.86, 28.07, 30.22, 25.42, 20.19,
+        8.27,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 30.31,
+      guidanceCount: 1,
+      yearNotes: {
+        FY27E:
+          'Derived from consensus free cash flow of $32.34B and consensus revenue of $391.0B (49 analysts, stockanalysis.com).',
+      },
     },
   ],
   revenue: [
@@ -119,7 +132,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY24', revenue: 245.1, operatingIncome: 109.4 },
     { year: 'FY25', revenue: 281.7, operatingIncome: 128.5 },
     { year: 'FY26', revenue: 331.8, operatingIncome: 155.2 },
-    { year: 'FY27E', revenue: 365, operatingIncome: null },
+    { year: 'FY27E', revenue: 391.0, operatingIncome: 182.2 },
   ],
   expenses: [
     {
