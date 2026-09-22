@@ -1,31 +1,47 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 const financials: SoftwareFinancials = {
+  guidanceYears: ['FY26E'],
   criticalMetrics: [
     {
       label: 'P/FCF ratio',
       desc: 'Year-end market cap divided by free cash flow available to shareholders (FCFA2S), the metric Topicus and its parent CSU consider most representative of owner economics.',
-      values: [null, 78.2, 62.3, 34.7, 33.7, 28.5],
+      values: [null, 78.2, 62.3, 34.7, 33.7, 28.5, 17.8],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 34.7,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the 18 Sep closing price of CA$89.60, ~83.5M basic shares, an approximate EUR/CAD rate of 0.645, and estimated FCFA2S of €271M (FY25 FCFA2S grown by the H1 2026 year-on-year FCFA2S growth rate of 24%).',
+      },
     },
   ],
   keyMetrics: [
     {
       label: 'FCFA2S per share',
       desc: 'Free cash flow available to shareholders divided by diluted shares outstanding. Topicus uses FCFA2S as its primary profitability measure, excluding acquisition-related financing and preferred-share charges.',
-      values: [0.67, 0.42, 0.95, 1.37, 1.72, 2.63],
+      values: [0.67, 0.42, 0.95, 1.37, 1.72, 2.63, 3.25],
       format: { prefix: '€', decimals: 2 },
       median10y: 1.16,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from estimated FCFA2S of €271M (FY25 grown by 24% H1 2026 rate) divided by ~83.5M basic shares.',
+      },
     },
     {
       label: 'Free cash flow margin %',
       desc: 'FCFA2S as a share of total revenue.',
-      values: [17.6, 11.8, 6.0, 11.0, 13.7, 14.1],
+      values: [17.6, 11.8, 6.0, 11.0, 13.7, 14.1, 15.1],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 12.8,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from estimated FCFA2S of €271M divided by consensus revenue of €1.80B.',
+      },
     },
     {
       label: 'Organic revenue growth %',
@@ -43,6 +59,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 1.125, operatingIncome: 0.164 },
     { year: 'FY24', revenue: 1.295, operatingIncome: 0.206 },
     { year: 'FY25', revenue: 1.552, operatingIncome: 0.234 },
+    { year: 'FY26E', revenue: 1.795, operatingIncome: null },
   ],
   thesis: [
     'Topicus operates the same serial-acquisition playbook as its parent Constellation Software, compounding capital at high returns by acquiring European vertical market software businesses with durable recurring revenue.',
