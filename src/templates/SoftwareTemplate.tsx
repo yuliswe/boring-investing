@@ -11,12 +11,14 @@ import type {
 
 type TrendMetric = {
   label: string;
+  desc?: string;
   values: (number | null)[];
   format?: { prefix?: string; suffix?: string; decimals?: number };
   invertColor?: boolean;
   deltaMode?: 'pct' | 'add';
   median10y?: number;
   guidanceCount?: number;
+  yearNotes?: Record<string, string>;
 };
 
 export type SegmentData<T extends { year: string }> = {
@@ -107,6 +109,7 @@ export function SoftwareTemplate({
     kind: 'trends',
     panels: financials.criticalMetrics.map(m => ({
       label: m.label,
+      desc: m.desc,
       years: m.guidanceCount ? allYears : years,
       values: m.values,
       format: m.format,
@@ -114,6 +117,7 @@ export function SoftwareTemplate({
       deltaMode: m.deltaMode,
       median10y: m.median10y,
       guidanceCount: m.guidanceCount,
+      yearNotes: m.yearNotes,
     })),
     chartNote:
       'Lower is cheaper on all three. 10Y median shown as dashed line.',
@@ -128,6 +132,7 @@ export function SoftwareTemplate({
     kind: 'trends',
     panels: financials.keyMetrics.map(m => ({
       label: m.label,
+      desc: m.desc,
       years: m.guidanceCount ? allYears : years,
       values: m.values,
       format: m.format,
@@ -135,6 +140,7 @@ export function SoftwareTemplate({
       deltaMode: m.deltaMode,
       median10y: m.median10y,
       guidanceCount: m.guidanceCount,
+      yearNotes: m.yearNotes,
     })),
     chartNote:
       'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',

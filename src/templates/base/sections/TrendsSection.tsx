@@ -11,6 +11,7 @@ import { DescribedLabel } from '../LabelPopover';
 
 type ComputedDot = {
   year: string;
+  yearNote?: string;
   value: string;
   delta: string;
   deltaColor: string;
@@ -46,6 +47,7 @@ function computePanel(
     invertColor,
     deltaMode,
     guidanceCount = 0,
+    yearNotes,
   } = panel;
   const numericVals = values.filter((v): v is number => v !== null);
   const allVals =
@@ -93,6 +95,7 @@ function computePanel(
     const h = v !== null ? pct(v, lo, hi) : 0;
     return {
       year: years[i],
+      yearNote: yearNotes?.[years[i]],
       value: formatValue(v, format),
       delta,
       deltaColor,
@@ -245,9 +248,17 @@ function Sparkline({
             key={i}
             className='flex-1 min-w-0 text-center flex flex-col gap-0'
           >
-            <span className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'>
-              {d.year}
-            </span>
+            {d.yearNote ? (
+              <DescribedLabel
+                label={d.year}
+                desc={d.yearNote}
+                className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'
+              />
+            ) : (
+              <span className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'>
+                {d.year}
+              </span>
+            )}
             <span className='whitespace-nowrap overflow-hidden text-ellipsis'>
               {d.value}
             </span>

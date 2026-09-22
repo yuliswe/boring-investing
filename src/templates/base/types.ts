@@ -26,6 +26,7 @@ export type TrendPanelData = {
   invertColor?: boolean;
   deltaMode?: 'pct' | 'add';
   guidanceCount?: number;
+  yearNotes?: Record<string, string>;
 };
 
 export type MetricRowData = {

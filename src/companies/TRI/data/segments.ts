@@ -59,6 +59,14 @@ const segments: SegmentData<TriSegmentRow> = {
       reutersNews: 0.853,
       globalPrint: 0.49,
     },
+    {
+      year: 'FY26E',
+      legal: 3.15,
+      corporates: 2.18,
+      taxAccounting: 1.43,
+      reutersNews: 0.88,
+      globalPrint: 0.45,
+    },
   ],
 };
 

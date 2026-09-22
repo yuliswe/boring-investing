@@ -1,76 +1,137 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+const adjustedNotes: Record<string, string> = {
+  FY18: 'Removed: gain on sale of the Financial & Risk business (Refinitiv) to Blackstone.',
+  FY21: 'Removed: gains from the LSEG acquisition of Refinitiv and the resulting equity stake conversion.',
+  FY23: 'Removed: LSEG-related tax benefit and equity stake fair value gains.',
+};
+
 const financials: SoftwareFinancials = {
+  guidanceYears: ['FY26E'],
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [19.5, 6.4, 20.6, 35.4, 10.2, 41.1, 24.8, 32.7, 39.4],
+      desc: 'Price divided by adjusted EPS.',
+      values: [46.9, 63.1, 52.7, 45.4, 63.1, 47.9, 42.0, 42.4, 33.5, 24.0],
       format: { decimals: 1 },
       invertColor: true,
-      median10y: 24.8,
+      median10y: 46.9,
+      guidanceCount: 1,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Calculated from the 19 Sep closing price of $106.35 divided by consensus adjusted EPS of $4.44.',
+      },
     },
     {
       label: 'P/FCF ratio',
-      values: [14.6, 15.5, null, 29.5, 44.7, 41.5, 37.5, 39.1, 29.4],
+      values: [14.6, 15.5, null, 29.5, 44.7, 41.5, 37.5, 39.1, 29.4, 21.9],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 33.5,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the 19 Sep closing price of $106.35 divided by consensus free cash flow per share of $4.85.',
+      },
     },
   ],
   keyMetrics: [
     {
-      label: 'Diluted EPS',
-      values: [2.26, 7.39, 3.3, 2.37, 12.06, 3.05, 5.94, 4.89, 3.33],
+      label: 'Adjusted EPS',
+      desc: 'Thomson Reuters adjusted diluted EPS, which excludes one-time Refinitiv and LSEG transaction gains and non-cash amortization of acquired intangibles.',
+      values: [0.94, 0.75, 1.29, 1.85, 1.95, 2.62, 3.51, 3.77, 3.92, 4.44],
       format: { prefix: '$', decimals: 2 },
-      median10y: 3.33,
+      median10y: 1.95,
+      guidanceCount: 1,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E: 'Consensus analyst estimate for adjusted diluted EPS.',
+      },
     },
     {
       label: 'Free cash flow per share',
-      values: [3.02, 3.03, 0.41, 2.85, 2.73, 2.87, 3.97, 4.17, 4.53],
+      values: [3.02, 3.03, 0.41, 2.85, 2.73, 2.87, 3.97, 4.17, 4.53, 4.85],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.02,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate for free cash flow per share.',
+      },
     },
     {
       label: 'ROE %',
-      values: [8.7, 24.6, 11.8, 9.7, 47.76, 10.82, 23.06, 19.0, 12.4],
+      values: [3.62, 2.5, 4.61, 7.57, 7.72, 9.3, 13.63, 14.65, 14.6, 15.0],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 12.4,
+      median10y: 7.72,
+      guidanceCount: 1,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Derived from consensus adjusted EPS of $4.44, estimated shares of ~445M, and FY25 shareholders’ equity of ~$12.1B.',
+      },
     },
     {
       label: 'ROIC %',
-      values: [6.0, 15.0, 7.0, 6.0, 7.66, 9.19, 11.52, 14.34, 11.29],
+      values: [6.0, 15.0, 7.0, 6.0, 7.66, 9.19, 11.52, 14.34, 11.29, 11.0],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 9.19,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate for return on invested capital.',
+      },
     },
     {
       label: 'Debt to equity ratio',
-      values: [0.55, 0.35, 0.28, 0.27, 0.29, 0.42, 0.32, 0.26, 0.2],
+      values: [0.55, 0.35, 0.28, 0.27, 0.29, 0.42, 0.32, 0.26, 0.2, 0.18],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 0.29,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate for year-end debt-to-equity ratio.',
+      },
     },
     {
       label: 'Sustainable growth rate %',
-      values: [3.5, 20.0, 6.8, 3.6, 41.3, 4.0, 15.4, 10.8, 3.8],
+      values: [1.5, 2.0, 2.7, 2.8, 6.7, 3.4, 9.1, 8.3, 4.5, 5.2],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 6.8,
+      median10y: 3.4,
+      guidanceCount: 1,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Derived from adjusted ROE of 15.0% and estimated retention ratio of ~49%, based on expected dividend of ~$2.28/share.',
+      },
     },
     {
       label: 'Net margin %',
-      values: [21.3, 67.2, 27.9, 19.5, 89.6, 20.2, 39.6, 30.4, 20.1],
+      desc: 'Adjusted net income as a share of revenue.',
+      values: [8.9, 6.8, 10.9, 15.2, 14.5, 17.4, 23.4, 23.4, 23.7, 23.8],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 27.9,
+      median10y: 15.2,
+      guidanceCount: 1,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Derived from consensus adjusted EPS of $4.44, estimated shares of ~445M, and company-guided revenue of $8.08B.',
+      },
     },
     {
       label: 'Free cash flow margin %',
-      values: [28.5, 27.5, 3.5, 23.5, 20.3, 19.9, 26.4, 25.5, 27.0],
+      values: [28.5, 27.5, 3.5, 23.5, 20.3, 19.9, 26.4, 25.5, 27.0, 26.0],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 25.5,
+      guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus FCF per share of $4.85, estimated shares of ~445M, and company-guided revenue of $8.08B.',
+      },
     },
   ],
   revenue: [
@@ -83,6 +144,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 6.79, operatingIncome: 2.33 },
     { year: 'FY24', revenue: 7.26, operatingIncome: 2.11 },
     { year: 'FY25', revenue: 7.48, operatingIncome: 2.13 },
+    { year: 'FY26E', revenue: 8.08, operatingIncome: null },
   ],
   thesis: [
     'AI-powered products like CoCounsel and ONESOURCE expand wallet share with professional customers, embedding Thomson Reuters deeper into legal, tax, and compliance workflows.',

@@ -132,6 +132,7 @@ const triSections: SectionData[] = [
       'Revenue by segment in billions, with year-on-year growth rates. The current segment structure dates from FY19 after the Refinitiv divestiture.',
     kind: 'multi',
     mode: 'absolute',
+    guidanceCount: 1,
     years: segments.segments.map(s => s.year),
     series: [
       {
