@@ -1,6 +1,12 @@
 'use client';
 
-import { useState, useCallback, type ReactNode } from 'react';
+import {
+  useState,
+  useCallback,
+  useRef,
+  useSyncExternalStore,
+  type ReactNode,
+} from 'react';
 import type { HeroData } from '@/templates/base';
 
 export type PriceConfig = {
@@ -22,25 +28,36 @@ function usePriceOverride(
   defaultPrice: number
 ): [number, (p: number) => void] {
   const key = `price-${symbol}`;
+  const listenersRef = useRef(new Set<() => void>());
 
-  const [price, setPrice] = useState(() => {
-    if (typeof window === 'undefined') return defaultPrice;
+  const subscribe = useCallback((onChange: () => void) => {
+    listenersRef.current.add(onChange);
+    return () => {
+      listenersRef.current.delete(onChange);
+    };
+  }, []);
+
+  const getSnapshot = useCallback(() => {
     const stored = localStorage.getItem(key);
     if (stored !== null) {
       const n = parseFloat(stored);
       if (!isNaN(n) && n > 0) return n;
     }
     return defaultPrice;
-  });
+  }, [key, defaultPrice]);
+
+  const getServerSnapshot = useCallback(() => defaultPrice, [defaultPrice]);
+
+  const price = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const update = useCallback(
     (p: number) => {
-      setPrice(p);
       if (p === defaultPrice) {
         localStorage.removeItem(key);
       } else {
         localStorage.setItem(key, p.toString());
       }
+      listenersRef.current.forEach(fn => fn());
     },
     [key, defaultPrice]
   );

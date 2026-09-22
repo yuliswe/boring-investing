@@ -151,6 +151,59 @@ const nflxSections: SectionData[] = [
   },
 ];
 
+const EPS_EST = 3.59;
+const FCF_PER_SHARE_EST = 3.02;
+const PRIOR_EPS = 2.53;
+
+function buildDynamicFinancials(price: number) {
+  const pe = +(price / EPS_EST).toFixed(1);
+  const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
+  const epsGrowth = ((EPS_EST - PRIOR_EPS) / PRIOR_EPS) * 100;
+  const peg = +(pe / epsGrowth).toFixed(2);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/E ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pe;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
+          },
+        };
+      }
+      if (m.label === 'P/FCF ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from $${price.toFixed(2)} divided by consensus free cash flow per share of $${FCF_PER_SHARE_EST}.`,
+          },
+        };
+      }
+      if (m.label === 'PEG ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = peg;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from the forward P/E of ${pe} divided by the FY25-to-FY26 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
+          },
+        };
+      }
+      return m;
+    }),
+  };
+}
+
 const footer: FooterData = {
   links: [
     {
@@ -175,13 +228,14 @@ const footer: FooterData = {
 };
 
 export function NflxPage() {
-  const { hero: h, addon } = usePriceHero(hero, priceConfig);
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
-      financials={financials}
+      financials={dynamicFinancials}
       extraSections={nflxSections}
       figuresDate='31 December'
       footer={footer}
