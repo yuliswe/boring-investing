@@ -1,5 +1,11 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+const divestNotes: Record<string, string> = {
+  FY18: 'Includes a large one-time gain from the sale of the Financial & Risk business (Refinitiv) to a consortium led by Blackstone.',
+  FY21: 'Includes one-time gains from the completion of the LSEG acquisition of Refinitiv and the resulting stake conversion.',
+  FY23: 'Includes an LSEG-related tax benefit that inflates net income relative to underlying operations.',
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   criticalMetrics: [
@@ -10,6 +16,7 @@ const financials: SoftwareFinancials = {
       invertColor: true,
       median10y: 24.8,
       guidanceCount: 1,
+      yearNotes: divestNotes,
     },
     {
       label: 'P/FCF ratio',
@@ -27,6 +34,7 @@ const financials: SoftwareFinancials = {
       format: { prefix: '$', decimals: 2 },
       median10y: 3.33,
       guidanceCount: 1,
+      yearNotes: divestNotes,
     },
     {
       label: 'Free cash flow per share',
@@ -42,6 +50,7 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 12.4,
       guidanceCount: 1,
+      yearNotes: divestNotes,
     },
     {
       label: 'ROIC %',
@@ -66,6 +75,7 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 6.8,
       guidanceCount: 1,
+      yearNotes: divestNotes,
     },
     {
       label: 'Net margin %',
@@ -74,6 +84,7 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 27.9,
       guidanceCount: 1,
+      yearNotes: divestNotes,
     },
     {
       label: 'Free cash flow margin %',
