@@ -41,7 +41,7 @@ src/
       CLAUDE.md                   Company-specific notes; references methods/<type>.md
       references.md               External data sources
       components/<Component>.tsx  Helper components used only by this stock
-      data/<data>.json            Data for this stock
+      data/<data>.ts              Typed data for this stock
   app/
     layout.tsx                    Root layout and global styles
     page.tsx                      Home page: directory of all stocks
@@ -67,11 +67,12 @@ public/
 ## Adding a new stock
 
 1. Register it in `src/lib/stocks.ts` (`STOCKS` array), choosing a `template`.
-2. Create `src/companies/<SYMBOL>/data/*.json` matching the template's data type
-   (for the software template, `SoftwareFinancials` in
-   `src/templates/software.tsx`).
-3. Create `src/app/<SYMBOL>/page.tsx` that reads the JSON and renders the chosen
-   template. Use `MSFT` as the reference implementation.
+2. Create `src/companies/<SYMBOL>/data/*.ts` typed against the template's data
+   type (for the software template, `SoftwareFinancials` in
+   `src/templates/software.tsx`). Use `export default` so the page can import
+   the object directly.
+3. Create `src/app/<SYMBOL>/page.tsx` that imports the data and renders the
+   chosen template. Use `MSFT` as the reference implementation.
 4. Add any stock-only sections under `src/companies/<SYMBOL>/components/`.
 
 ## Imports and paths

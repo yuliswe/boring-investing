@@ -27,6 +27,7 @@ export type SegmentData<T extends { year: string }> = {
 
 export type SoftwareFinancials = {
   guidanceYears?: string[];
+  estimateNote?: string;
   criticalMetrics: TrendMetric[];
   keyMetrics: TrendMetric[];
   revenue: { year: string; revenue: number; operatingIncome: number | null }[];
@@ -76,6 +77,7 @@ export function SoftwareTemplate({
 }: SoftwareTemplateProps) {
   const guidanceYears = financials.guidanceYears ?? [];
   const guidanceSet = new Set(guidanceYears);
+  const estimateNote = financials.estimateNote;
   const years = financials.revenue
     .map(r => r.year)
     .filter(y => !guidanceSet.has(y));
@@ -121,6 +123,7 @@ export function SoftwareTemplate({
     })),
     chartNote:
       'Lower is cheaper on all three. 10Y median shown as dashed line.',
+    guidanceDesc: estimateNote,
   });
 
   softwareSections.push({
@@ -144,6 +147,7 @@ export function SoftwareTemplate({
     })),
     chartNote:
       'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
+    guidanceDesc: estimateNote,
   });
 
   const expenses = financials.expenses?.map(e => ({
@@ -162,6 +166,7 @@ export function SoftwareTemplate({
       expenseLineDescriptions={financials.expenseLineDescriptions}
       expensesWarning={financials.expensesWarning}
       expensesGuidanceCount={expensesGuidanceCount}
+      guidanceDesc={estimateNote}
       cashFlow={financials.cashFlow}
       figuresDate={figuresDate}
       footer={footer}
