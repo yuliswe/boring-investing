@@ -15,3 +15,12 @@ from memory. Prefer management guidance when the company provides it; fall back
 to consensus analyst estimates otherwise. If neither management guidance nor
 analyst consensus is available for a metric, fill the forward-year slot with
 `null`.
+
+Forward-year critical metrics that depend on the stock price (P/E, P/FCF, and
+PEG) must recalculate reactively when the user adjusts the price through the
+price adjuster. The page component should destructure `price` from
+`usePriceHero`, store the per-share consensus estimates (EPS, FCF per share) as
+constants, and override the forward-year values in the financials object at
+render time. The data file holds the default values for the initial price; the
+page component replaces them dynamically. See `src/companies/TRI/TriPage.tsx`
+for the reference implementation.
