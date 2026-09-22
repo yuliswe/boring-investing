@@ -1,9 +1,9 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
-const divestNotes: Record<string, string> = {
-  FY18: 'Includes a large one-time gain from the sale of the Financial & Risk business (Refinitiv) to a consortium led by Blackstone.',
-  FY21: 'Includes one-time gains from the completion of the LSEG acquisition of Refinitiv and the resulting stake conversion.',
-  FY23: 'Includes an LSEG-related tax benefit that inflates net income relative to underlying operations.',
+const adjustedNotes: Record<string, string> = {
+  FY18: 'Removed: gain on sale of the Financial & Risk business (Refinitiv) to Blackstone.',
+  FY21: 'Removed: gains from the LSEG acquisition of Refinitiv and the resulting equity stake conversion.',
+  FY23: 'Removed: LSEG-related tax benefit and equity stake fair value gains.',
 };
 
 const financials: SoftwareFinancials = {
@@ -11,12 +11,13 @@ const financials: SoftwareFinancials = {
   criticalMetrics: [
     {
       label: 'P/E ratio',
-      values: [19.5, 6.4, 20.6, 35.4, 10.2, 41.1, 24.8, 32.7, 39.4, 24.0],
+      desc: 'Price divided by adjusted EPS.',
+      values: [46.9, 63.1, 52.7, 45.4, 63.1, 49.0, 42.0, 42.4, 33.5, 24.0],
       format: { decimals: 1 },
       invertColor: true,
-      median10y: 24.8,
+      median10y: 46.9,
       guidanceCount: 1,
-      yearNotes: divestNotes,
+      yearNotes: adjustedNotes,
     },
     {
       label: 'P/FCF ratio',
@@ -29,12 +30,13 @@ const financials: SoftwareFinancials = {
   ],
   keyMetrics: [
     {
-      label: 'Diluted EPS',
-      values: [2.26, 7.39, 3.3, 2.37, 12.06, 3.05, 5.94, 4.89, 3.33, 4.44],
+      label: 'Adjusted EPS',
+      desc: 'Thomson Reuters adjusted diluted EPS, which excludes one-time Refinitiv and LSEG transaction gains and non-cash amortization of acquired intangibles.',
+      values: [0.94, 0.75, 1.29, 1.85, 1.95, 2.56, 3.51, 3.77, 3.92, 4.44],
       format: { prefix: '$', decimals: 2 },
-      median10y: 3.33,
+      median10y: 1.95,
       guidanceCount: 1,
-      yearNotes: divestNotes,
+      yearNotes: adjustedNotes,
     },
     {
       label: 'Free cash flow per share',
@@ -45,12 +47,12 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'ROE %',
-      values: [8.7, 24.6, 11.8, 9.7, 47.76, 10.82, 23.06, 19.0, 12.4, 12.4],
+      values: [3.62, 2.5, 4.61, 7.57, 7.72, 9.08, 13.63, 14.65, 14.6, 15.0],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 12.4,
+      median10y: 7.72,
       guidanceCount: 1,
-      yearNotes: divestNotes,
+      yearNotes: adjustedNotes,
     },
     {
       label: 'ROIC %',
@@ -70,21 +72,22 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Sustainable growth rate %',
-      values: [3.5, 20.0, 6.8, 3.6, 41.3, 4.0, 15.4, 10.8, 3.8, 5.2],
+      values: [0.0, 0.0, 0.0, 0.94, 1.31, 2.91, 6.09, 6.63, 6.55, 7.3],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 6.8,
+      median10y: 1.31,
       guidanceCount: 1,
-      yearNotes: divestNotes,
+      yearNotes: adjustedNotes,
     },
     {
       label: 'Net margin %',
-      values: [21.3, 67.2, 27.9, 19.5, 89.6, 20.2, 39.6, 30.4, 20.1, 23.8],
+      desc: 'Adjusted net income as a share of revenue.',
+      values: [8.9, 6.8, 10.9, 15.2, 14.5, 17.0, 23.4, 23.4, 23.7, 23.8],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
-      median10y: 27.9,
+      median10y: 15.2,
       guidanceCount: 1,
-      yearNotes: divestNotes,
+      yearNotes: adjustedNotes,
     },
     {
       label: 'Free cash flow margin %',
