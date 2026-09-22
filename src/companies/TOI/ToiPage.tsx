@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useCallback } from 'react';
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
 import financials, {
@@ -9,6 +10,12 @@ import financials, {
   cashFlowLines,
 } from './data/financials';
 
+const DEFAULT_PRICE_CAD = 89.6;
+const FY25_CLOSE_CAD = 127.15;
+const SHARES_M = 83.5;
+const EUR_PER_CAD = 0.645;
+const FCFA2S_EST_M = 271;
+
 const navbar = {
   brand: 'Ledger',
   links: [
@@ -16,18 +23,6 @@ const navbar = {
     { label: 'Screens', href: '#' },
     { label: 'Watchlist', href: '#' },
   ],
-};
-
-const hero: HeroData = {
-  symbol: 'TOI',
-  name: 'Topicus.com Inc.',
-  sector: 'Software',
-  tags: ['Mid Cap'],
-  price: 'CA$89.60',
-  changePct: -29.5,
-  priceNote: 'TSXV close, 18 September',
-  summary:
-    'Majority-owned subsidiary of Constellation Software, acquiring and operating European vertical market software businesses. Topicus generates the majority of its revenue from recurring maintenance and subscription fees, deploying free cash flow into disciplined acquisitions across diverse industries.',
 };
 
 const pctFormat = { suffix: '%', decimals: 1 };
@@ -223,12 +218,153 @@ const footer: FooterData = {
   ],
 };
 
+function usePriceOverride(
+  symbol: string,
+  defaultPrice: number
+): [number, (p: number) => void] {
+  const key = `price-${symbol}`;
+
+  const [price, setPrice] = useState(() => {
+    if (typeof window === 'undefined') return defaultPrice;
+    const stored = localStorage.getItem(key);
+    if (stored !== null) {
+      const n = parseFloat(stored);
+      if (!isNaN(n) && n > 0) return n;
+    }
+    return defaultPrice;
+  });
+
+  const update = useCallback(
+    (p: number) => {
+      setPrice(p);
+      if (p === defaultPrice) {
+        localStorage.removeItem(key);
+      } else {
+        localStorage.setItem(key, p.toString());
+      }
+    },
+    [key, defaultPrice]
+  );
+
+  return [price, update];
+}
+
+function PriceAdjuster({
+  price,
+  defaultPrice,
+  onChange,
+}: {
+  price: number;
+  defaultPrice: number;
+  onChange: (p: number) => void;
+}) {
+  const [draft, setDraft] = useState<string | null>(null);
+  const isAdjusted = price !== defaultPrice;
+  const displayValue = draft ?? price.toFixed(2);
+
+  function commit() {
+    if (draft === null) return;
+    const n = parseFloat(draft);
+    if (!isNaN(n) && n > 0) {
+      onChange(n);
+    }
+    setDraft(null);
+  }
+
+  return (
+    <div className='flex items-center gap-[var(--space-2)] mt-[var(--space-2)]'>
+      <span className='text-xs text-[var(--text-muted)] font-[family-name:var(--font-interactable)]'>
+        Adjust price
+      </span>
+      <div className='inline-flex items-center gap-px rounded-[var(--radius-sm)] border border-[var(--color-divider)] bg-[var(--surface-raised)] px-[var(--space-2)] py-[var(--space-1)]'>
+        <span className='text-xs text-[var(--text-muted)] ds-tnum select-none'>
+          CA$
+        </span>
+        <input
+          type='text'
+          inputMode='decimal'
+          value={displayValue}
+          onChange={e => setDraft(e.target.value)}
+          onFocus={() => setDraft(price.toFixed(2))}
+          onBlur={commit}
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
+              e.currentTarget.blur();
+            }
+          }}
+          className='w-16 bg-transparent text-xs ds-tnum text-[var(--text-primary)] outline-none border-none pl-[var(--space-1)]'
+        />
+      </div>
+      {isAdjusted && (
+        <button
+          onClick={() => onChange(defaultPrice)}
+          className='text-xs text-[var(--text-muted)] font-[family-name:var(--font-interactable)] hover:text-[var(--color-accent)] cursor-pointer bg-transparent border-none p-0'
+        >
+          Reset
+        </button>
+      )}
+    </div>
+  );
+}
+
+function computePFcf(priceCad: number): number {
+  return +((priceCad * SHARES_M * EUR_PER_CAD) / FCFA2S_EST_M).toFixed(1);
+}
+
+function buildDynamicFinancials(priceCad: number) {
+  const pFcf = computePFcf(priceCad);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label !== 'P/FCF ratio') return m;
+      const values = [...m.values];
+      values[values.length - 1] = pFcf;
+      return {
+        ...m,
+        values,
+        yearNotes: {
+          ...m.yearNotes,
+          FY26E: `Calculated from CA$${priceCad.toFixed(2)}, ~${SHARES_M}M basic shares, EUR/CAD ≈ ${EUR_PER_CAD}, and estimated FCFA2S of €${FCFA2S_EST_M}M (FY25 FCFA2S grown by the H1 2026 year-on-year rate of 24%).`,
+        },
+      };
+    }),
+  };
+}
+
 export function ToiPage() {
+  const [price, setPrice] = usePriceOverride('TOI', DEFAULT_PRICE_CAD);
+
+  const isAdjusted = price !== DEFAULT_PRICE_CAD;
+  const changePct = ((price - FY25_CLOSE_CAD) / FY25_CLOSE_CAD) * 100;
+
+  const hero: HeroData = {
+    symbol: 'TOI',
+    name: 'Topicus.com Inc.',
+    sector: 'Software',
+    tags: ['Mid Cap'],
+    price: `CA$${price.toFixed(2)}`,
+    changePct,
+    priceNote: isAdjusted
+      ? `adjusted · close was CA$${DEFAULT_PRICE_CAD.toFixed(2)} on 18 Sep`
+      : 'TSXV close, 18 September',
+    summary:
+      'Majority-owned subsidiary of Constellation Software, acquiring and operating European vertical market software businesses. Topicus generates the majority of its revenue from recurring maintenance and subscription fees, deploying free cash flow into disciplined acquisitions across diverse industries.',
+  };
+
+  const dynamicFinancials = buildDynamicFinancials(price);
+
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={hero}
-      financials={financials}
+      heroAddon={
+        <PriceAdjuster
+          price={price}
+          defaultPrice={DEFAULT_PRICE_CAD}
+          onChange={setPrice}
+        />
+      }
+      financials={dynamicFinancials}
       extraSections={toiSections}
       figuresDate='31 December'
       footer={footer}

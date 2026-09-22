@@ -119,7 +119,7 @@ function Nav({ navbar }: { navbar: NavbarData }) {
   );
 }
 
-function HeroSection({ hero }: { hero: HeroData }) {
+function HeroSection({ hero, addon }: { hero: HeroData; addon?: ReactNode }) {
   const arrow = hero.changePct > 0 ? '↑' : hero.changePct < 0 ? '↓' : '—';
 
   return (
@@ -149,6 +149,7 @@ function HeroSection({ hero }: { hero: HeroData }) {
           )}
         </div>
       </div>
+      {addon}
       <p className='mt-[var(--space-2)] max-w-[var(--measure)] text-sm leading-[1.55] text-[var(--text-secondary)]'>
         {hero.summary}
       </p>
@@ -480,6 +481,7 @@ function buildCashFlowSection(
 export type BaseTemplateProps = {
   navbar?: NavbarData;
   hero: HeroData;
+  heroAddon?: ReactNode;
   sections: SectionData[];
   childSections?: SectionData[];
   expenses?: ExpensesRowData[];
@@ -497,6 +499,7 @@ export type BaseTemplateProps = {
 export function BaseTemplate({
   navbar,
   hero,
+  heroAddon,
   sections,
   childSections,
   expenses,
@@ -542,7 +545,7 @@ export function BaseTemplate({
         )}
 
         <div className='mx-auto max-w-[var(--page-max)] px-[var(--space-5)]'>
-          <HeroSection hero={hero} />
+          <HeroSection hero={hero} addon={heroAddon} />
           <Header sections={merged} figuresDate={figuresDate} />
 
           {merged.map(sec => (
