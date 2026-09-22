@@ -263,14 +263,53 @@ const footer: FooterData = {
   ],
 };
 
+const ADJ_EPS_EST = 4.44;
+const FCF_PER_SHARE_EST = 4.85;
+
+function buildDynamicFinancials(price: number) {
+  const pe = +(price / ADJ_EPS_EST).toFixed(1);
+  const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/E ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pe;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from $${price.toFixed(2)} divided by consensus adjusted EPS of $${ADJ_EPS_EST}.`,
+          },
+        };
+      }
+      if (m.label === 'P/FCF ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from $${price.toFixed(2)} divided by consensus free cash flow per share of $${FCF_PER_SHARE_EST}.`,
+          },
+        };
+      }
+      return m;
+    }),
+  };
+}
+
 export function TriPage() {
-  const { hero: h, addon } = usePriceHero(hero, priceConfig);
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
-      financials={financials}
+      financials={dynamicFinancials}
       extraSections={triSections}
       figuresDate='31 December'
       footer={footer}
