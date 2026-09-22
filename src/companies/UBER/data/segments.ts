@@ -1,0 +1,21 @@
+import type { SegmentData } from '@/templates/SoftwareTemplate';
+
+export type UberSegmentRow = {
+  year: string;
+  mobility: number;
+  delivery: number;
+  freight: number;
+};
+
+const segments: SegmentData<UberSegmentRow> = {
+  segments: [
+    { year: 'FY20', mobility: 5.6, delivery: 3.6, freight: 1.3 },
+    { year: 'FY21', mobility: 7.0, delivery: 8.4, freight: 2.1 },
+    { year: 'FY22', mobility: 14.0, delivery: 10.9, freight: 6.9 },
+    { year: 'FY23', mobility: 19.8, delivery: 12.2, freight: 5.3 },
+    { year: 'FY24', mobility: 25.1, delivery: 13.8, freight: 5.1 },
+    { year: 'FY25', mobility: 29.7, delivery: 17.2, freight: 5.1 },
+  ],
+};
+
+export default segments;
