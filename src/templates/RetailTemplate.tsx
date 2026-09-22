@@ -49,6 +49,7 @@ export type RetailFinancials = {
 export type RetailTemplateProps = {
   navbar?: NavbarData;
   hero: HeroData;
+  heroAddon?: ReactNode;
   financials: RetailFinancials;
   baseSections?: SectionData[];
   extraSections?: SectionData[];
@@ -60,6 +61,7 @@ export type RetailTemplateProps = {
 export function RetailTemplate({
   navbar,
   hero,
+  heroAddon,
   financials,
   baseSections = [],
   extraSections = [],
@@ -171,6 +173,7 @@ export function RetailTemplate({
     <BaseTemplate
       navbar={navbar}
       hero={hero}
+      heroAddon={heroAddon}
       sections={[...retailSections, ...baseSections]}
       childSections={extraSections}
       expenses={expenses}

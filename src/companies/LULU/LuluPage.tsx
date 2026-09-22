@@ -2,6 +2,7 @@
 
 import { RetailTemplate } from '@/templates/RetailTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 
 const navbar = {
@@ -23,6 +24,13 @@ const hero: HeroData = {
   priceNote: 'close, 30 January 2026',
   summary:
     'Technical athletic apparel retailer operating primarily through company-owned stores and e-commerce, with a vertically integrated brand that commands premium pricing in the athleisure category.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'LULU',
+  defaultPrice: 174.5,
+  currency: '$',
+  referenceClose: 173.7529,
 };
 
 const luluSections: SectionData[] = [
@@ -135,10 +143,12 @@ const footer: FooterData = {
 };
 
 export function LuluPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <RetailTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={luluSections}
       figuresDate='1 February 2026'

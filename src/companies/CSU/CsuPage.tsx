@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 
 const navbar = {
@@ -23,6 +24,13 @@ const hero: HeroData = {
   priceNote: 'TSX close, 31 December',
   summary:
     'Serial acquirer of vertical market software businesses, operating a decentralized portfolio of hundreds of companies across diverse industries. Constellation Software generates the majority of its revenue from recurring maintenance and subscription fees, deploying free cash flow into disciplined acquisitions.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'CSU',
+  defaultPrice: 3297.78,
+  currency: 'CA$',
+  referenceClose: 3318.6877,
 };
 
 const csuSections: SectionData[] = [
@@ -86,10 +94,12 @@ const footer: FooterData = {
 };
 
 export function CsuPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={csuSections}
       figuresDate='31 December'

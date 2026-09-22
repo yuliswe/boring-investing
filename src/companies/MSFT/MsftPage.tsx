@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 import segments from './data/segments';
 
@@ -24,6 +25,13 @@ const hero: HeroData = {
   priceNote: 'close, 30 June',
   summary:
     'Cloud, productivity, and platform franchises with durable recurring revenue. Microsoft derives the majority of its revenue from recurring commercial subscriptions and cloud services across three segments.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'MSFT',
+  defaultPrice: 373.02,
+  currency: '$',
+  referenceClose: 368.5604,
 };
 
 const msftSections: SectionData[] = [
@@ -150,10 +158,12 @@ const footer: FooterData = {
 };
 
 export function MsftPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={msftSections}
       figuresDate='30 June'

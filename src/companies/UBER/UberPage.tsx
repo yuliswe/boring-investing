@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 import segments from './data/segments';
 
@@ -24,6 +25,13 @@ const hero: HeroData = {
   priceNote: 'close, 16 September',
   summary:
     'Global ride-hailing, delivery, and freight platform connecting consumers with independent drivers, couriers, and carriers across more than 70 countries. Uber derives revenue from service fees on each transaction, with Mobility and Delivery accounting for roughly 90% of total revenue.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'UBER',
+  defaultPrice: 97.42,
+  currency: '$',
+  referenceClose: 96.5798,
 };
 
 const uberSections: SectionData[] = [
@@ -126,10 +134,12 @@ const footer: FooterData = {
 };
 
 export function UberPage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={uberSections}
       figuresDate='31 December'

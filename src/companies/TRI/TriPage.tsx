@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   expenseYears,
   revenueByYear,
@@ -29,6 +30,13 @@ const hero: HeroData = {
   priceNote: 'close, 19 September',
   summary:
     'AI-powered information services and workflow software for legal, tax, and compliance professionals. More than eighty percent of revenue is recurring, drawn from subscriptions across research platforms, analytics tools, and workflow automation.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'TRI',
+  defaultPrice: 106.35,
+  currency: '$',
+  referenceClose: 106.9059,
 };
 
 const pctFormat = { suffix: '%', decimals: 1 };
@@ -255,12 +263,53 @@ const footer: FooterData = {
   ],
 };
 
+const ADJ_EPS_EST = 4.44;
+const FCF_PER_SHARE_EST = 4.85;
+
+function buildDynamicFinancials(price: number) {
+  const pe = +(price / ADJ_EPS_EST).toFixed(1);
+  const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/E ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pe;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from $${price.toFixed(2)} divided by consensus adjusted EPS of $${ADJ_EPS_EST}.`,
+          },
+        };
+      }
+      if (m.label === 'P/FCF ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from $${price.toFixed(2)} divided by consensus free cash flow per share of $${FCF_PER_SHARE_EST}.`,
+          },
+        };
+      }
+      return m;
+    }),
+  };
+}
+
 export function TriPage() {
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
-      financials={financials}
+      hero={h}
+      heroAddon={addon}
+      financials={dynamicFinancials}
       extraSections={triSections}
       figuresDate='31 December'
       footer={footer}

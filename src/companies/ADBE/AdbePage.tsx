@@ -2,6 +2,7 @@
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials from './data/financials';
 import segments from './data/segments';
 
@@ -24,6 +25,13 @@ const hero: HeroData = {
   priceNote: 'close, 28 November',
   summary:
     'Creative and document software leader whose subscription-based Creative Cloud, Document Cloud, and Experience Cloud serve creative professionals, enterprises, and marketers worldwide.',
+};
+
+const priceConfig: PriceConfig = {
+  symbol: 'ADBE',
+  defaultPrice: 320.13,
+  currency: '$',
+  referenceClose: 324.7413,
 };
 
 const pricingPlans: {
@@ -253,10 +261,12 @@ const footer: FooterData = {
 };
 
 export function AdbePage() {
+  const { hero: h, addon } = usePriceHero(hero, priceConfig);
   return (
     <SoftwareTemplate
       navbar={navbar}
-      hero={hero}
+      hero={h}
+      heroAddon={addon}
       financials={financials}
       extraSections={adbeSections}
       figuresDate='28 November'
