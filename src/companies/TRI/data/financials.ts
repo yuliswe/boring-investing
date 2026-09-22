@@ -17,7 +17,11 @@ const financials: SoftwareFinancials = {
       invertColor: true,
       median10y: 46.9,
       guidanceCount: 1,
-      yearNotes: adjustedNotes,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Calculated from the 19 Sep closing price of $106.35 divided by consensus adjusted EPS of $4.44.',
+      },
     },
     {
       label: 'P/FCF ratio',
@@ -26,6 +30,10 @@ const financials: SoftwareFinancials = {
       invertColor: true,
       median10y: 33.5,
       guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Calculated from the 19 Sep closing price of $106.35 divided by consensus free cash flow per share of $4.85.',
+      },
     },
   ],
   keyMetrics: [
@@ -36,7 +44,10 @@ const financials: SoftwareFinancials = {
       format: { prefix: '$', decimals: 2 },
       median10y: 1.95,
       guidanceCount: 1,
-      yearNotes: adjustedNotes,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E: 'Consensus analyst estimate for adjusted diluted EPS.',
+      },
     },
     {
       label: 'Free cash flow per share',
@@ -44,6 +55,9 @@ const financials: SoftwareFinancials = {
       format: { prefix: '$', decimals: 2 },
       median10y: 3.02,
       guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate for free cash flow per share.',
+      },
     },
     {
       label: 'ROE %',
@@ -52,7 +66,11 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 7.72,
       guidanceCount: 1,
-      yearNotes: adjustedNotes,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Derived from consensus adjusted EPS of $4.44, estimated shares of ~445M, and FY25 shareholders’ equity of ~$12.1B.',
+      },
     },
     {
       label: 'ROIC %',
@@ -61,6 +79,9 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 9.19,
       guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate for return on invested capital.',
+      },
     },
     {
       label: 'Debt to equity ratio',
@@ -69,6 +90,9 @@ const financials: SoftwareFinancials = {
       invertColor: true,
       median10y: 0.29,
       guidanceCount: 1,
+      yearNotes: {
+        FY26E: 'Consensus analyst estimate for year-end debt-to-equity ratio.',
+      },
     },
     {
       label: 'Sustainable growth rate %',
@@ -77,7 +101,11 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 3.4,
       guidanceCount: 1,
-      yearNotes: adjustedNotes,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Derived from adjusted ROE of 15.0% and estimated retention ratio of ~49%, based on expected dividend of ~$2.28/share.',
+      },
     },
     {
       label: 'Net margin %',
@@ -87,7 +115,11 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 15.2,
       guidanceCount: 1,
-      yearNotes: adjustedNotes,
+      yearNotes: {
+        ...adjustedNotes,
+        FY26E:
+          'Derived from consensus adjusted EPS of $4.44, estimated shares of ~445M, and company-guided revenue of $8.08B.',
+      },
     },
     {
       label: 'Free cash flow margin %',
@@ -96,6 +128,10 @@ const financials: SoftwareFinancials = {
       deltaMode: 'add',
       median10y: 25.5,
       guidanceCount: 1,
+      yearNotes: {
+        FY26E:
+          'Derived from consensus FCF per share of $4.85, estimated shares of ~445M, and company-guided revenue of $8.08B.',
+      },
     },
   ],
   revenue: [
