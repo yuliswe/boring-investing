@@ -1,6 +1,6 @@
 'use client';
 
-import { Banner, Tag, Text } from '@/design-system';
+import { Banner, Tag, Text, ThemeToggle } from '@/design-system';
 import type { ReactNode } from 'react';
 import { LabelPopoverProvider } from './LabelPopover';
 import type {
@@ -117,6 +117,7 @@ function Nav({ navbar }: { navbar: NavbarData }) {
           {navbar.action.label}
         </a>
       )}
+      <ThemeToggle />
     </nav>
   );
 }
