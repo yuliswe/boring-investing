@@ -7,6 +7,8 @@ import financials, {
   expenseYears,
   revenueByYear,
   expenseLines,
+  cashFlowYears,
+  cashFlowRevenue,
   cashFlowLines,
 } from './data/financials';
 import segments from './data/segments';
@@ -90,8 +92,18 @@ function buildExpensesSection(): SectionData {
   };
 }
 
+function toCashFlowShareOfRevenue(
+  values: (number | null)[]
+): (number | null)[] {
+  return values.map((v, i) =>
+    v !== null && cashFlowRevenue[i]
+      ? +((v / cashFlowRevenue[i]) * 100).toFixed(1)
+      : null
+  );
+}
+
 function buildFCFSection(): SectionData {
-  const linePcts = cashFlowLines.map(l => toShareOfRevenue(l.values));
+  const linePcts = cashFlowLines.map(l => toCashFlowShareOfRevenue(l.values));
   const totalPct = linePcts[0].map((_, i) => {
     const vals = linePcts.map(lp => lp[i]);
     return vals.every(v => v !== null)
@@ -105,7 +117,7 @@ function buildFCFSection(): SectionData {
     kicker:
       'The same costs on a cash basis: D&A and stock comp drop out, replaced by the actual cash movements — working capital swings, real CapEx, and cash taxes paid. Everything as a share of revenue.',
     kind: 'multi',
-    years: expenseYears,
+    years: cashFlowYears,
     mode: 'share',
     invert: true,
     baseLabel: '0%',
@@ -125,7 +137,7 @@ function buildFCFSection(): SectionData {
       })),
     ],
     chartNote:
-      'All lines as a share of revenue. Cash flow data for FY17–FY21 is limited to CapEx from CFO commentary; full breakdown available from FY22. Δ Working capital: positive means cash was freed, negative means cash was consumed.',
+      'FY22–FY26 only because full cash flow breakdowns are not available for earlier years. Δ Working capital: positive means cash was freed, negative means cash was consumed.',
   };
 }
 
