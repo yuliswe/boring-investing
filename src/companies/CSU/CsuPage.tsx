@@ -33,7 +33,77 @@ const priceConfig: PriceConfig = {
   referenceClose: 3318.6877,
 };
 
+const FCFA2S_PER_SHARE_EST_CAD = 193.64;
+
+function buildDynamicFinancials(price: number) {
+  const pfcf = +(price / FCFA2S_PER_SHARE_EST_CAD).toFixed(1);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/FCFA2S ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from CA$${price.toFixed(2)} divided by consensus FCFA2S per share of CA$${FCFA2S_PER_SHARE_EST_CAD} (US$140.19 at FY25 year-end exchange rate).`,
+          },
+        };
+      }
+      return m;
+    }),
+  };
+}
+
 const csuSections: SectionData[] = [
+  {
+    rank: 400,
+    id: 'revenue',
+    title: 'Revenue',
+    kicker:
+      'Revenue by type in billions of US dollars, with year-on-year growth rates. Constellation reports revenue by nature rather than by operating group.',
+    kind: 'multi',
+    mode: 'absolute',
+    guidanceCount: 1,
+    years: ['FY21', 'FY22', 'FY23', 'FY24', 'FY25', 'FY26E'],
+    series: [
+      {
+        label: 'Total revenue',
+        desc: 'Sum of all four revenue streams.',
+        values: [5.107, 6.622, 8.405, 10.066, 11.623, 13.82],
+        format: { prefix: '$', suffix: 'B', decimals: 2 },
+        total: true,
+      },
+      {
+        label: 'Maintenance & Recurring',
+        desc: 'Recurring revenue from software maintenance contracts, subscriptions, and transaction-based fees across all operating groups.',
+        values: [3.611, 4.688, 5.985, 7.396, 8.7, null],
+        format: { prefix: '$', suffix: 'B', decimals: 2 },
+      },
+      {
+        label: 'Professional Services',
+        desc: 'Implementation, customisation, consulting, and training services delivered alongside software products.',
+        values: [1.033, 1.381, 1.766, 1.975, 2.126, null],
+        format: { prefix: '$', suffix: 'B', decimals: 2 },
+      },
+      {
+        label: 'Licenses',
+        desc: 'One-time perpetual and term software licence fees.',
+        values: [0.287, 0.32, 0.386, 0.393, 0.415, null],
+        format: { prefix: '$', suffix: 'B', decimals: 2 },
+      },
+      {
+        label: 'Hardware & Other',
+        desc: 'Hardware sales and other miscellaneous revenue.',
+        values: [0.176, 0.233, 0.268, 0.302, 0.382, null],
+        format: { prefix: '$', suffix: 'B', decimals: 2 },
+      },
+    ],
+    chartNote:
+      'Maintenance and recurring revenue consistently exceeds seventy percent of total revenue, reflecting the sticky, subscription-like nature of vertical market software. Revenue growth is primarily acquisition-driven, with organic growth in the low single digits.',
+  },
   {
     rank: 600,
     id: 'filings',
@@ -94,13 +164,14 @@ const footer: FooterData = {
 };
 
 export function CsuPage() {
-  const { hero: h, addon } = usePriceHero(hero, priceConfig);
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
-      financials={financials}
+      financials={dynamicFinancials}
       extraSections={csuSections}
       figuresDate='31 December'
       footer={footer}

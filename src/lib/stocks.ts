@@ -74,6 +74,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'SPGI',
+    name: 'S&P Global Inc.',
+    sector: 'Financial Data & Analytics',
+    summary:
+      'Provider of credit ratings, benchmarks, analytics, and data to the capital and commodity markets, with subscription-driven recurring revenue and regulatory moats.',
+    template: 'software',
+  },
+  {
     symbol: 'TOI',
     name: 'Topicus.com Inc.',
     sector: 'Software',
