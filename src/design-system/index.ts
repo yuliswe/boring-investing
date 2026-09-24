@@ -25,5 +25,6 @@ export { Popover, PopoverMenuItem } from '@/design-system/components/Popover';
 export { Toast, ToastViewport } from '@/design-system/components/Toast';
 export { Banner } from '@/design-system/components/Banner';
 export { NavBar } from '@/design-system/components/NavBar';
+export { ThemeToggle } from '@/design-system/components/ThemeToggle';
 export { Skeleton, SkeletonRow } from '@/design-system/components/Skeleton';
 export { NoteBubble } from '@/design-system/components/NoteBubble';

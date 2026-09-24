@@ -1,11 +1,14 @@
-import { Card, Link, Text } from '@/design-system';
+import { Card, Link, Text, ThemeToggle } from '@/design-system';
 import { STOCKS } from '@/lib/stocks';
 
 export default function HomePage() {
   return (
     <main className='ds mx-auto max-w-[56.25rem] px-5 py-12'>
       <header className='flex flex-col gap-2'>
-        <Text variant='display'>Boring Investing</Text>
+        <div className='flex items-start justify-between'>
+          <Text variant='display'>Boring Investing</Text>
+          <ThemeToggle />
+        </div>
         <Text variant='body' muted>
           Plain, static analysis of a few companies worth understanding.
         </Text>
