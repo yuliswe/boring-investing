@@ -58,6 +58,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'NVDA',
+    name: 'NVIDIA Corporation',
+    sector: 'Semiconductors',
+    summary:
+      'Designer of GPUs and accelerated computing platforms dominating AI training and inference, with a vertically integrated hardware-software ecosystem and outsourced fabrication model.',
+    template: 'software',
+  },
+  {
     symbol: 'NFLX',
     name: 'Netflix, Inc.',
     sector: 'Entertainment',
