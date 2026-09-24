@@ -1,13 +1,19 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 const financials: SoftwareFinancials = {
+  guidanceYears: ['FY26E'],
+  estimateNote:
+    'FY26E values use consensus analyst estimates from MarketScreener (S&P Global Market Intelligence, 12 analysts as of September 2026). Revenue, operating income, and FCF are consensus figures. P/FCF recalculates from the adjusted price.',
   criticalMetrics: [
     {
       label: 'P/FCF ratio',
-      values: [17.5, 21.8, 18.6, 24.9, 23.0, 30.2, 25.6, 30.3, 30.7, 19.0],
+      values: [
+        17.5, 21.8, 18.6, 24.9, 23.0, 30.2, 25.6, 30.3, 30.7, 19.0, 17.0,
+      ],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 24.0,
+      guidanceCount: 1,
     },
   ],
   keyMetrics: [
@@ -15,18 +21,22 @@ const financials: SoftwareFinancials = {
       label: 'Free cash flow per share',
       values: [
         22.45, 24.06, 30.19, 35.0, 54.76, 59.95, 59.25, 81.93, 100.42, 125.66,
+        140.19,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: 57.01,
+      guidanceCount: 1,
     },
     {
       label: 'Free cash flow margin %',
       values: [
         22.35, 20.56, 20.92, 21.26, 29.25, 24.89, 18.97, 20.66, 21.15, 22.92,
+        21.5,
       ],
       format: { suffix: '%', decimals: 2 },
       deltaMode: 'add',
       median10y: 21.21,
+      guidanceCount: 1,
     },
   ],
   revenue: [
@@ -40,6 +50,7 @@ const financials: SoftwareFinancials = {
     { year: 'FY23', revenue: 8.41, operatingIncome: 1.18 },
     { year: 'FY24', revenue: 10.07, operatingIncome: 1.47 },
     { year: 'FY25', revenue: 11.62, operatingIncome: 1.93 },
+    { year: 'FY26E', revenue: 13.82, operatingIncome: 2.1 },
   ],
   expenses: [
     {

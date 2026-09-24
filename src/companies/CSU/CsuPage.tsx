@@ -33,6 +33,30 @@ const priceConfig: PriceConfig = {
   referenceClose: 3318.6877,
 };
 
+const FCF_PER_SHARE_EST_CAD = 193.64;
+
+function buildDynamicFinancials(price: number) {
+  const pfcf = +(price / FCF_PER_SHARE_EST_CAD).toFixed(1);
+  return {
+    ...financials,
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/FCF ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY26E: `Calculated from CA$${price.toFixed(2)} divided by consensus FCF per share of CA$${FCF_PER_SHARE_EST_CAD} (US$140.19 at FY25 year-end exchange rate).`,
+          },
+        };
+      }
+      return m;
+    }),
+  };
+}
+
 const csuSections: SectionData[] = [
   {
     rank: 600,
@@ -94,13 +118,14 @@ const footer: FooterData = {
 };
 
 export function CsuPage() {
-  const { hero: h, addon } = usePriceHero(hero, priceConfig);
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
-      financials={financials}
+      financials={dynamicFinancials}
       extraSections={csuSections}
       figuresDate='31 December'
       footer={footer}
