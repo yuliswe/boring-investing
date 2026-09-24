@@ -34,6 +34,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'MCD',
+    name: "McDonald's Corporation",
+    sector: 'Restaurants',
+    summary:
+      'Global quick-service restaurant franchisor with 95% franchised restaurants, durable royalty-like revenue, and decades of dividend growth.',
+    template: 'retail',
+  },
+  {
     symbol: 'LULU',
     name: 'Lululemon Athletica Inc.',
     sector: 'Retail',
