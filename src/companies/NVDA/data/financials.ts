@@ -214,6 +214,22 @@ const financials: SoftwareFinancials = {
           'Derived from consensus FCF of $194.1B and consensus revenue of $411.6B.',
       },
     },
+    {
+      label: 'Days sales outstanding',
+      desc: 'Accounts receivable divided by revenue, multiplied by 365. Measures how many days of revenue are tied up in uncollected receivables.',
+      values: [43.6, 47.6, 44.3, 55.4, 53.2, 63.1, 51.8, 59.9, 64.5, 65.0],
+      format: { suffix: ' days', decimals: 1 },
+      invertColor: true,
+      deltaMode: 'add',
+      median10y: 54.3,
+    },
+    {
+      label: 'Cash earnings quality',
+      desc: 'Operating cash flow divided by net income. Values above 1.0 indicate earnings are well-supported by cash generation; below 1.0 suggests accrual earnings exceed cash collected.',
+      values: [1.0, 1.15, 0.9, 1.7, 1.34, 0.93, 1.29, 0.94, 0.88, 0.86],
+      format: { decimals: 2 },
+      median10y: 0.97,
+    },
   ],
   revenue: [
     { year: 'FY17', revenue: 6.91, operatingIncome: 1.93 },

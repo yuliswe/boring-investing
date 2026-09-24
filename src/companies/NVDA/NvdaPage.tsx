@@ -88,7 +88,7 @@ function buildExpensesSection(): SectionData {
       })),
     ],
     chartNote:
-      "Shares of revenue from the filed income statement. Stock-based compensation is already allocated across cost of revenue, R&D, and SGA in NVIDIA's filings but shown separately for visibility. Deltas are additive (pp); lower is better on every line, so a fall shows green.",
+      "Shares of revenue from the filed income statement. Stock-based compensation is embedded within cost of revenue, R&D, and SGA in NVIDIA's GAAP filings. Deltas are additive (pp); lower is better on every line, so a fall shows green.",
   };
 }
 
