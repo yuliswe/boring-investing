@@ -33,14 +33,14 @@ const priceConfig: PriceConfig = {
   referenceClose: 3318.6877,
 };
 
-const FCF_PER_SHARE_EST_CAD = 193.64;
+const FCFA2S_PER_SHARE_EST_CAD = 193.64;
 
 function buildDynamicFinancials(price: number) {
-  const pfcf = +(price / FCF_PER_SHARE_EST_CAD).toFixed(1);
+  const pfcf = +(price / FCFA2S_PER_SHARE_EST_CAD).toFixed(1);
   return {
     ...financials,
     criticalMetrics: financials.criticalMetrics.map(m => {
-      if (m.label === 'P/FCF ratio') {
+      if (m.label === 'P/FCFA2S ratio') {
         const values = [...m.values];
         values[values.length - 1] = pfcf;
         return {
@@ -48,7 +48,7 @@ function buildDynamicFinancials(price: number) {
           values,
           yearNotes: {
             ...m.yearNotes,
-            FY26E: `Calculated from CA$${price.toFixed(2)} divided by consensus FCF per share of CA$${FCF_PER_SHARE_EST_CAD} (US$140.19 at FY25 year-end exchange rate).`,
+            FY26E: `Calculated from CA$${price.toFixed(2)} divided by consensus FCFA2S per share of CA$${FCFA2S_PER_SHARE_EST_CAD} (US$140.19 at FY25 year-end exchange rate).`,
           },
         };
       }

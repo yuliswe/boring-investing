@@ -3,10 +3,11 @@ import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   estimateNote:
-    'FY26E values use consensus analyst estimates from MarketScreener (S&P Global Market Intelligence, 12 analysts as of September 2026). Revenue, operating income, and FCF are consensus figures. P/FCF recalculates from the adjusted price.',
+    'FY26E values use consensus analyst estimates from MarketScreener (S&P Global Market Intelligence, 12 analysts as of September 2026). Revenue, operating income, and FCFA2S are consensus figures. P/FCFA2S recalculates from the adjusted price.',
   criticalMetrics: [
     {
-      label: 'P/FCF ratio',
+      label: 'P/FCFA2S ratio',
+      desc: 'Year-end market cap divided by free cash flow available to shareholders (FCFA2S), the metric CSU considers most representative of owner economics.',
       values: [
         17.5, 21.8, 18.6, 24.9, 23.0, 30.2, 25.6, 30.3, 30.7, 19.0, 17.0,
       ],
@@ -18,7 +19,8 @@ const financials: SoftwareFinancials = {
   ],
   keyMetrics: [
     {
-      label: 'Free cash flow per share',
+      label: 'FCFA2S per share',
+      desc: 'Free cash flow available to shareholders divided by diluted shares outstanding. CSU uses FCFA2S as its primary profitability measure, excluding acquisition-related intangible amortization and non-cash charges that depress GAAP net income.',
       values: [
         22.45, 24.06, 30.19, 35.0, 54.76, 59.95, 59.25, 81.93, 100.42, 125.66,
         140.19,
@@ -28,7 +30,8 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
     },
     {
-      label: 'Free cash flow margin %',
+      label: 'FCFA2S margin %',
+      desc: 'FCFA2S as a share of total revenue.',
       values: [
         22.35, 20.56, 20.92, 21.26, 29.25, 24.89, 18.97, 20.66, 21.15, 22.92,
         21.5,
