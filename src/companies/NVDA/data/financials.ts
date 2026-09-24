@@ -34,47 +34,46 @@ export const expenseLines = [
     values: [0.66, 0.82, 0.99, 1.09, 1.94, 2.17, 2.44, 2.65, 3.49, 4.58],
   },
   {
-    label: 'Acquisition termination cost',
-    desc: 'One-time charge from the termination of the Arm Holdings acquisition agreement in FY23.',
-    values: [null, null, null, null, null, null, 1.35, null, null, null],
+    label: 'Other operating',
+    desc: 'Non-recurring operating charges. FY23 includes a $1.35B charge for the terminated Arm Holdings acquisition.',
+    values: [0, 0, 0, 0, 0, 0, 1.35, 0, 0, 0],
   },
   {
-    label: 'Interest expense',
-    desc: 'Interest on outstanding notes and other borrowings.',
-    values: [0.06, 0.06, 0.06, 0.05, 0.18, 0.24, 0.26, 0.26, 0.25, 0.25],
+    label: 'Non-operating, net',
+    desc: 'Interest expense on debt minus interest and investment income. Negative values represent net income from investments exceeding interest costs.',
+    values: [0.12, 0.01, -0.1, -0.12, 0.12, 0.1, 0.04, -0.85, -2.57, -11.06],
   },
   {
     label: 'Income taxes',
     desc: 'Provision for income taxes. Negative values in FY19 and FY23 reflect tax benefits from the TCJA transition and deferred tax asset revaluations.',
-    values: [0.24, 0.15, -0.25, 0.17, 0.08, 0.19, -0.19, 4.06, 11.15, 21.38],
-  },
-  {
-    label: 'Stock-based compensation',
-    desc: 'Non-cash expense for equity awards to employees, already allocated across cost of revenue, R&D, and SGA above. Shown separately for visibility.',
-    values: [0.25, 0.39, 0.56, 0.84, 1.4, 2.0, 2.71, 3.55, 4.74, 6.39],
+    values: [0.15, 0.15, -0.25, 0.17, 0.08, 0.19, -0.19, 4.06, 11.15, 21.38],
   },
 ];
+
+export const cashFlowYears = ['FY22', 'FY23', 'FY24', 'FY25', 'FY26'];
+
+export const cashFlowRevenue = [26.91, 26.97, 60.92, 130.5, 215.94];
 
 export const cashFlowLines = [
   {
     label: 'Cash operating costs',
-    desc: 'Revenue minus free cash flow minus cash taxes paid, representing the cash cost of running the business.\nShown as a percentage of total revenue.',
-    values: [null, null, null, null, null, 2.75, 5.83, 6.98, 10.98, 19.54],
+    desc: 'Revenue minus free cash flow, cash taxes, working capital changes, and capital expenditures.\nShown as a percentage of total revenue.',
+    values: [20.78, 22.15, 29.91, 60.68, 108.83],
   },
   {
     label: 'Cash taxes paid',
     desc: 'Income taxes actually paid in cash during the fiscal year, which may differ from the income tax provision due to timing and deferred taxes.\nShown as a percentage of total revenue.',
-    values: [null, null, null, null, null, 0.4, 1.4, 6.55, 15.12, 20.29],
+    values: [0.4, 1.4, 6.55, 15.12, 20.29],
   },
   {
     label: 'Δ Working capital',
-    desc: 'Net change in operating assets and liabilities. Negative means cash was consumed (e.g. inventory build); positive means cash was freed.\nShown as a percentage of total revenue.',
-    values: [null, null, null, null, null, -3.36, -2.21, -3.72, -9.38, -15.95],
+    desc: 'Net change in operating assets and liabilities. Negative means cash was consumed by growing receivables and inventory; positive means cash was freed.\nShown as a percentage of total revenue.',
+    values: [-3.36, -2.21, -3.72, -9.38, -15.95],
   },
   {
     label: 'CapEx',
     desc: 'Purchases of property, equipment, and intangible assets.\nShown as a percentage of total revenue.',
-    values: [0.18, 0.59, 0.6, 0.49, 1.13, 0.98, 1.83, 1.07, 3.24, 6.04],
+    values: [0.98, 1.83, 1.07, 3.24, 6.04],
   },
 ];
 
