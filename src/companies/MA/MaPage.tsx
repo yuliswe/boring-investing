@@ -178,67 +178,43 @@ function buildFCFSection(): SectionData {
   };
 }
 
-const segmentYears = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
-const revenueYears = financials.revenue.map(r => r.year);
-
 const maSections: SectionData[] = [
   {
     rank: 350,
-    id: 'revenue-total',
+    id: 'revenue',
     title: 'Revenue',
     kicker:
-      'Net revenue in billions with year-on-year growth rates. Net revenue is gross revenue minus rebates and incentives paid to financial institutions and merchants.',
+      'Net revenue split between the core Payment Network and Value-Added Services and Solutions, in billions. Net revenue is gross revenue minus rebates and incentives paid to financial institutions and merchants.',
     kind: 'multi',
     mode: 'absolute',
     guidanceCount: 1,
-    years: revenueYears,
+    years: ['FY20', 'FY21', 'FY22', 'FY23', 'FY24', 'FY25', 'FY26E'],
     series: [
       {
         label: 'Net revenue',
         desc: 'Consolidated net revenue after rebates and incentives.',
-        values: financials.revenue.map(r => r.revenue),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-        total: true,
-      },
-    ],
-    chartNote:
-      'Revenue dipped 9% in FY20 from COVID-19 as cross-border travel and in-person spending fell, then recovered strongly from FY21 onward. FY26E revenue is the consensus estimate from 37 analysts.',
-  },
-  buildExpensesSection(),
-  buildFCFSection(),
-  {
-    rank: 400,
-    id: 'revenue',
-    title: 'Revenue by Segment',
-    kicker:
-      'Net revenue split between the core Payment Network and Value-Added Services and Solutions, in billions.',
-    kind: 'multi',
-    mode: 'absolute',
-    years: segmentYears,
-    series: [
-      {
-        label: 'Net revenue',
-        desc: 'Sum of Payment Network and Value-Added Services and Solutions.',
-        values: [18.884, 22.237, 25.098, 28.167, 32.791],
+        values: [15.301, 18.884, 22.237, 25.098, 28.167, 32.791, 37.26],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
         total: true,
       },
       {
         label: 'Payment Network',
         desc: 'Assessment fees on gross dollar volume, transaction processing fees on switched transactions, and cross-border volume fees. Growth is driven by the secular shift from cash to electronic payments and by cross-border travel recovery post-COVID.',
-        values: [11.943, 14.358, 15.824, 17.335, 19.476],
+        values: [9.897, 11.943, 14.358, 15.824, 17.335, 19.476, null],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
       },
       {
         label: 'Value-Added Services',
-        desc: 'Cyber and intelligence solutions, data and services (analytics, consulting, marketing), loyalty and rewards, processing, and real-time payments. This segment grew from 37% of revenue in FY21 to 41% in FY25.',
-        values: [6.941, 7.879, 9.274, 10.832, 13.315],
+        desc: 'Cyber and intelligence solutions, data and services (analytics, consulting, marketing), loyalty and rewards, processing, and real-time payments. This segment grew from 35% of revenue in FY20 to 41% in FY25.',
+        values: [5.404, 6.941, 7.879, 9.274, 10.832, 13.315, null],
         format: { prefix: '$', suffix: 'B', decimals: 2 },
       },
     ],
     chartNote:
-      'Mastercard reports two revenue lines in its earnings releases. Value-Added Services has grown at roughly double the rate of Payment Network since FY21, driven by cyber security, analytics, and real-time payments. The segment mix shift toward VAS deepens integration with customers beyond pure transaction processing.',
+      'Revenue dipped 9% in FY20 from COVID-19 as cross-border travel and in-person spending fell, then recovered strongly from FY21 onward. Value-Added Services has grown at roughly double the rate of Payment Network since FY20, driven by cyber security, analytics, and real-time payments. FY20 segment split is from the recast in the FY22 10-K. FY26E total is the consensus estimate from 37 analysts.',
   },
+  buildExpensesSection(),
+  buildFCFSection(),
   {
     rank: 600,
     id: 'filings',
