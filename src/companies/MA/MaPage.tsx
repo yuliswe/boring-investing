@@ -185,9 +185,9 @@ const maSections: SectionData[] = [
   {
     rank: 350,
     id: 'revenue-total',
-    title: 'Revenue & Operating Income',
+    title: 'Revenue',
     kicker:
-      'Net revenue and operating income in billions with year-on-year growth rates. Net revenue is gross revenue minus rebates and incentives paid to financial institutions and merchants.',
+      'Net revenue in billions with year-on-year growth rates. Net revenue is gross revenue minus rebates and incentives paid to financial institutions and merchants.',
     kind: 'multi',
     mode: 'absolute',
     guidanceCount: 1,
@@ -200,15 +200,9 @@ const maSections: SectionData[] = [
         format: { prefix: '$', suffix: 'B', decimals: 2 },
         total: true,
       },
-      {
-        label: 'Operating income',
-        desc: 'Net revenue minus total operating expenses (general and administrative, advertising and marketing, depreciation and amortization, and provision for litigation).',
-        values: financials.revenue.map(r => r.operatingIncome),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
     ],
     chartNote:
-      'Revenue dipped 9% in FY20 from COVID-19 as cross-border travel and in-person spending fell, then recovered strongly from FY21 onward. FY18 operating income was depressed by a $1.1B litigation provision; excluding it, the operating margin trend is smooth at 53–58%. FY26E revenue is the consensus estimate from 37 analysts.',
+      'Revenue dipped 9% in FY20 from COVID-19 as cross-border travel and in-person spending fell, then recovered strongly from FY21 onward. FY26E revenue is the consensus estimate from 37 analysts.',
   },
   buildExpensesSection(),
   buildFCFSection(),
