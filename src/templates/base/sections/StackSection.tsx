@@ -24,7 +24,7 @@ export function StackSection({
 
   return (
     <>
-      <div className='relative flex items-end gap-[var(--space-2)] h-47 mt-[var(--space-5)] border-b border-[var(--color-divider)]'>
+      <div className='relative flex items-end gap-2 h-47 mt-5 border-b border-divider'>
         {bars.map((b, i) => {
           const total = totals[i];
           const h = pct(total, 0, hi);
@@ -33,7 +33,7 @@ export function StackSection({
           return (
             <div key={i} className='relative flex-1 h-full'>
               <div
-                className='absolute left-0 right-0 bottom-0 mx-auto max-w-16 flex flex-col justify-end border border-[var(--color-accent)] rounded-t-[var(--radius-sm)] overflow-hidden'
+                className='absolute left-0 right-0 bottom-0 mx-auto max-w-16 flex flex-col justify-end border border-accent rounded-t-sm overflow-hidden'
                 style={{ height: h.toFixed(1) + '%' }}
               >
                 <div
@@ -61,14 +61,14 @@ export function StackSection({
           );
         })}
       </div>
-      <div className='flex gap-[var(--space-2)] pt-[var(--space-2)]'>
+      <div className='flex gap-2 pt-2'>
         {bars.map((b, i) => (
           <div key={i} className='flex-1 text-center text-xs ds-tnum'>
             {b.label}
           </div>
         ))}
       </div>
-      <div className='flex flex-wrap gap-[var(--space-2)] gap-x-[var(--space-5)] pt-[var(--space-3)]'>
+      <div className='flex flex-wrap gap-2 gap-x-5 pt-3'>
         <LegendItem
           color='color-mix(in srgb, var(--color-accent) 62%, transparent)'
           label={legend[0]}
@@ -82,20 +82,16 @@ export function StackSection({
           label={legend[2]}
         />
       </div>
-      {chartNote && (
-        <p className='mt-[var(--space-3)] text-xs text-[var(--text-muted)]'>
-          {chartNote}
-        </p>
-      )}
+      {chartNote && <p className='mt-3 text-xs text-muted'>{chartNote}</p>}
     </>
   );
 }
 
 function LegendItem({ color, label }: { color: string; label: string }) {
   return (
-    <span className='inline-flex items-center gap-[var(--space-2)] text-xs text-[var(--text-secondary)]'>
+    <span className='inline-flex items-center gap-2 text-xs text-secondary'>
       <span
-        className='w-2.5 h-2.5 border border-[var(--color-accent)]'
+        className='w-2.5 h-2.5 border border-accent'
         style={{ background: color }}
       />
       {label}

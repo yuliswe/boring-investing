@@ -16,16 +16,14 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
   const n = panel.rows.length;
 
   return (
-    <div className='flex flex-col gap-[var(--space-1)]'>
-      <div className='flex items-baseline gap-[var(--space-2)] pb-[var(--space-2)] border-b border-[var(--color-divider)]'>
+    <div className='flex flex-col gap-1'>
+      <div className='flex items-baseline gap-2 pb-2 border-b border-divider'>
         <DescribedLabel
           label={panel.label}
           desc={panel.desc}
           className='flex-1 min-w-0 ds-kicker'
         />
-        <span className='flex-none text-xs text-[var(--text-muted)]'>
-          {panel.hint}
-        </span>
+        <span className='flex-none text-xs text-muted'>{panel.hint}</span>
       </div>
       {panel.rows.map((r, i) => {
         const rank = rankMap[i];
@@ -33,13 +31,10 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
         const barColor = PEER_COLORS[ci];
         const w = (max ? (Math.abs(r.value) / max) * 100 : 0).toFixed(1) + '%';
         return (
-          <div
-            key={i}
-            className='flex items-center gap-[var(--space-2)] min-h-6.5'
-          >
+          <div key={i} className='flex items-center gap-2 min-h-6.5'>
             <span
               className={`flex-none w-26 text-xs ${
-                r.self ? 'font-semibold' : 'text-[var(--text-secondary)]'
+                r.self ? 'font-semibold' : 'text-secondary'
               }`}
               style={r.self ? { color: barColor } : undefined}
             >
@@ -47,7 +42,7 @@ function PeerBar({ panel }: { panel: PeerPanelData }) {
             </span>
             <div className='relative flex-1 h-2.75'>
               <div
-                className='absolute left-0 inset-y-0 rounded-[var(--radius-sm)]'
+                className='absolute left-0 inset-y-0 rounded-sm'
                 style={{
                   width: w,
                   background: r.self
@@ -78,16 +73,12 @@ export function PeersSection({
 }) {
   return (
     <>
-      <div className='grid grid-cols-[repeat(auto-fit,minmax(17.5rem,1fr))] gap-[var(--space-6)] gap-x-[var(--space-8)]'>
+      <div className='grid grid-cols-[repeat(auto-fit,minmax(17.5rem,1fr))] gap-6 gap-x-8'>
         {panels.map((p, i) => (
           <PeerBar key={i} panel={p} />
         ))}
       </div>
-      {chartNote && (
-        <p className='mt-[var(--space-4)] text-xs text-[var(--text-muted)]'>
-          {chartNote}
-        </p>
-      )}
+      {chartNote && <p className='mt-4 text-xs text-muted'>{chartNote}</p>}
     </>
   );
 }

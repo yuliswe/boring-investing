@@ -163,19 +163,19 @@ function Sparkline({
   guidanceDesc?: string;
 }) {
   return (
-    <div className='flex flex-col gap-[var(--space-2)] pb-[var(--space-3)] border-b border-[var(--color-divider)]'>
-      <div className='flex items-baseline gap-[var(--space-2)]'>
+    <div className='flex flex-col gap-2 pb-3 border-b border-divider'>
+      <div className='flex items-baseline gap-2'>
         <span
-          className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
+          className='inline-block w-2 h-0.75 flex-none rounded-sm'
           style={{ background: panel.lineColor }}
         />
         <DescribedLabel
           label={panel.label}
           desc={panel.desc}
-          className='flex-1 min-w-0 text-xs text-[var(--text-secondary)]'
+          className='flex-1 min-w-0 text-xs text-secondary'
         />
         <span
-          className={`font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] ds-tnum ${large ? 'text-2xl' : 'text-lg'}`}
+          className={`font-heading font-[var(--font-heading-weight)] ds-tnum ${large ? 'text-2xl' : 'text-lg'}`}
         >
           {panel.latest}
         </span>
@@ -217,11 +217,11 @@ function Sparkline({
         <div className='absolute inset-0'>
           {panel.hasMedian && (
             <div
-              className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)]'
+              className='absolute left-0 right-0 h-0 flex items-center gap-1'
               style={{ bottom: panel.medianH }}
             >
               <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
-              <span className='flex-none text-xs tracking-[0.04em] text-[var(--text-muted)] whitespace-nowrap'>
+              <span className='flex-none text-xs tracking-[0.04em] text-muted whitespace-nowrap'>
                 10Y {panel.medianLabel}
               </span>
             </div>
@@ -244,7 +244,7 @@ function Sparkline({
         </div>
       </div>
 
-      <div className='flex justify-between text-[0.6875rem] ds-tnum text-[var(--text-secondary)]'>
+      <div className='flex justify-between text-[0.6875rem] ds-tnum text-secondary'>
         {panel.dots.map((d, i) => (
           <div
             key={i}
@@ -254,16 +254,16 @@ function Sparkline({
               <DescribedLabel
                 label={d.year}
                 desc={d.yearNote}
-                className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'
+                className='whitespace-nowrap overflow-hidden text-ellipsis text-muted'
               />
             ) : d.isGuidance && guidanceDesc ? (
               <DescribedLabel
                 label={d.year}
                 desc={guidanceDesc}
-                className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'
+                className='whitespace-nowrap overflow-hidden text-ellipsis text-muted'
               />
             ) : (
-              <span className='whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-muted)]'>
+              <span className='whitespace-nowrap overflow-hidden text-ellipsis text-muted'>
                 {d.year}
               </span>
             )}
@@ -304,8 +304,8 @@ export function TrendsSection({
       <div
         className={
           large
-            ? 'grid grid-cols-1 gap-[var(--space-5)]'
-            : 'grid grid-cols-1 sm:grid-cols-2 gap-[var(--space-5)] gap-x-[var(--space-8)]'
+            ? 'grid grid-cols-1 gap-5'
+            : 'grid grid-cols-1 sm:grid-cols-2 gap-5 gap-x-8'
         }
       >
         {computed.map((p, i) => (
@@ -317,11 +317,7 @@ export function TrendsSection({
           />
         ))}
       </div>
-      {chartNote && (
-        <p className='mt-[var(--space-4)] text-xs text-[var(--text-muted)]'>
-          {chartNote}
-        </p>
-      )}
+      {chartNote && <p className='mt-4 text-xs text-muted'>{chartNote}</p>}
     </>
   );
 }

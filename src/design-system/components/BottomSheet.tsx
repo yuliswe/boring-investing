@@ -55,7 +55,7 @@ export function SheetOption({
     <button type='button' className='sheet-option' onClick={onClick}>
       <span className='flex-1'>{children}</span>
       {selected ? (
-        <span className='text-ds-accent' aria-hidden='true'>
+        <span className='text-accent' aria-hidden='true'>
           ✓
         </span>
       ) : null}

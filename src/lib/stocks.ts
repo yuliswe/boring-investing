@@ -50,6 +50,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'MA',
+    name: 'Mastercard Incorporated',
+    sector: 'Payment Networks',
+    summary:
+      'Global payment network connecting cardholders and merchants through issuing and acquiring banks, earning toll-like fees on electronic transactions without taking credit risk.',
+    template: 'software',
+  },
+  {
     symbol: 'MSFT',
     name: 'Microsoft Corporation',
     sector: 'Software',

@@ -297,22 +297,19 @@ export function MultiSection({
 
   return (
     <>
-      <div className='flex flex-wrap gap-[var(--space-2)] gap-x-[var(--space-6)] mt-[var(--space-1)]'>
+      <div className='flex flex-wrap gap-2 gap-x-6 mt-1'>
         {multi.lines.map((l, i) => (
-          <div
-            key={i}
-            className='inline-flex items-baseline gap-[var(--space-2)] text-xs'
-          >
+          <div key={i} className='inline-flex items-baseline gap-2 text-xs'>
             <span
-              className='inline-block w-3 h-0.75 flex-none rounded-[var(--radius-sm)]'
+              className='inline-block w-3 h-0.75 flex-none rounded-sm'
               style={{ background: l.color }}
             />
             <DescribedLabel
               label={l.label}
               desc={l.desc}
-              className='text-[var(--text-secondary)]'
+              className='text-secondary'
             />
-            <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-base ds-tnum'>
+            <span className='font-heading font-[var(--font-heading-weight)] text-base ds-tnum'>
               {l.latest}
             </span>
             <span className='text-xs ds-tnum' style={{ color: l.changeColor }}>
@@ -324,34 +321,34 @@ export function MultiSection({
 
       <div className='overflow-x-auto'>
         <div style={{ minWidth: '48rem' }}>
-          <div className='flex mt-[var(--space-4)] border-b border-[var(--color-divider)]'>
+          <div className='flex mt-4 border-b border-divider'>
             <div
               className='flex-none'
               style={{
                 width:
-                  'calc(0.5rem + var(--space-2) + 5.5rem + var(--space-2))',
+                  'calc(0.5rem + var(--spacing-2) + 5.5rem + var(--spacing-2))',
               }}
             />
             <div className='relative flex-1 min-w-0 h-44 overflow-hidden'>
               {multi.ticks.map((t, i) => (
                 <div
                   key={i}
-                  className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)] pointer-events-none'
+                  className='absolute left-0 right-0 h-0 flex items-center gap-1 pointer-events-none'
                   style={{ bottom: t.bottom }}
                 >
                   <span className='flex-1 border-t border-[color-mix(in_srgb,var(--color-text)_8%,transparent)]' />
-                  <span className='flex-none text-xs ds-tnum text-[var(--text-muted)]'>
+                  <span className='flex-none text-xs ds-tnum text-muted'>
                     {t.label}
                   </span>
                 </div>
               ))}
 
               <div
-                className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-1)]'
+                className='absolute left-0 right-0 h-0 flex items-center gap-1'
                 style={{ bottom: multi.baseH }}
               >
                 <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_30%,transparent)]' />
-                <span className='flex-none text-xs tracking-[0.04em] text-[var(--text-muted)]'>
+                <span className='flex-none text-xs tracking-[0.04em] text-muted'>
                   {multi.baseLabel}
                 </span>
               </div>
@@ -410,7 +407,7 @@ export function MultiSection({
             </div>
           </div>
 
-          <div className='flex items-center gap-[var(--space-2)] pt-[var(--space-2)] text-xs ds-tnum'>
+          <div className='flex items-center gap-2 pt-2 text-xs ds-tnum'>
             <span className='flex-none w-2' />
             <span className='flex-none w-22' />
             <div className='flex-1 flex justify-between'>
@@ -427,29 +424,29 @@ export function MultiSection({
             </div>
           </div>
 
-          <div className='flex flex-col gap-[var(--space-1)] pt-[var(--space-2)]'>
+          <div className='flex flex-col gap-1 pt-2'>
             {multi.lines.map((l, li) => (
-              <div key={li} className='flex items-center gap-[var(--space-2)]'>
+              <div key={li} className='flex items-center gap-2'>
                 <span
-                  className='inline-block w-2 h-0.75 flex-none rounded-[var(--radius-sm)]'
+                  className='inline-block w-2 h-0.75 flex-none rounded-sm'
                   style={{ background: l.color }}
                 />
                 <DescribedLabel
                   label={l.label}
                   desc={l.desc}
-                  className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-[var(--text-secondary)]'
+                  className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-secondary'
                 />
                 <div className='flex-1 flex justify-between text-xs ds-tnum'>
                   {l.dots.map((d, di) => (
                     <div
                       key={di}
-                      className={`flex-1 text-center flex flex-col gap-[var(--space-1)] py-[var(--space-1)] whitespace-nowrap${d.h === null ? ' opacity-30' : ''}`}
+                      className={`flex-1 text-center flex flex-col gap-1 py-1 whitespace-nowrap${d.h === null ? ' opacity-30' : ''}`}
                     >
                       {mode === 'absolute' &&
                       !l.total &&
                       multi.lines.some(x => x.total) ? (
                         <span>
-                          <span className='text-[var(--text-secondary)]'>
+                          <span className='text-secondary'>
                             {d.shareLabel || '—'}
                           </span>{' '}
                           <span style={{ color: d.shareDeltaColor }}>
@@ -459,7 +456,7 @@ export function MultiSection({
                       ) : (
                         <>
                           <span>
-                            <span className='text-[var(--text-secondary)]'>
+                            <span className='text-secondary'>
                               {d.h !== null ? d.value : '—'}
                             </span>{' '}
                             <span style={{ color: d.deltaColor }}>
@@ -468,7 +465,7 @@ export function MultiSection({
                           </span>
                           {d.shareLabel && (
                             <span>
-                              <span className='text-[var(--text-secondary)]'>
+                              <span className='text-secondary'>
                                 {d.shareLabel}
                               </span>{' '}
                               <span style={{ color: d.shareDeltaColor }}>
@@ -487,11 +484,7 @@ export function MultiSection({
         </div>
       </div>
 
-      {chartNote && (
-        <p className='mt-[var(--space-3)] text-xs text-[var(--text-muted)]'>
-          {chartNote}
-        </p>
-      )}
+      {chartNote && <p className='mt-3 text-xs text-muted'>{chartNote}</p>}
     </>
   );
 }
