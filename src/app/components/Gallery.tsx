@@ -100,9 +100,9 @@ function Section({
   children: ReactNode;
 }) {
   return (
-    <section className='pt-7.5 pb-2 border-t border-ds-divider'>
+    <section className='pt-7.5 pb-2 border-t border-divider'>
       <div className='flex items-baseline gap-3'>
-        <span className='ds-tnum text-xs tracking-[0.12em] font-ds-heading text-ds-accent'>
+        <span className='ds-tnum text-xs tracking-[0.12em] font-heading text-accent'>
           {n}
         </span>
         <Text variant='h3'>{title}</Text>
@@ -119,7 +119,7 @@ function Section({
 
 function Sub({ label, children }: { label: string; children: ReactNode }) {
   return (
-    <div className='flex flex-col gap-3 py-4.5 border-t border-ds-divider-faint'>
+    <div className='flex flex-col gap-3 py-4.5 border-t border-divider-faint'>
       <span className='ds-kicker'>{label}</span>
       {children}
     </div>
@@ -440,7 +440,7 @@ export function Gallery() {
           title='Input'
           blurb='Transparent field on a hairline border; the accent appears only on focus. Fields fill their column, minimum 44px tall.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(14.375rem,1fr))] gap-4 py-4.5 border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(14.375rem,1fr))] gap-4 py-4.5 border-t border-divider-faint\'>
             <Input label='Default' placeholder='Search companies' />
             <Input
               label='Filled · live'
@@ -458,9 +458,9 @@ export function Gallery() {
               value={search}
               onChange={e => setSearch(e.target.value)}
               placeholder='Ticker or name'
-              affixStart={<span className='text-ds-neutral-500'>&#9906;</span>}
+              affixStart={<span className='text-neutral-500'>&#9906;</span>}
               affixEnd={
-                <span className='ds-tnum text-xs text-ds-neutral-500'>
+                <span className='ds-tnum text-xs text-neutral-500'>
                   {ROWS.length}
                 </span>
               }
@@ -479,7 +479,7 @@ export function Gallery() {
           title='Textarea'
           blurb="The input's border and focus behaviour at a 90px minimum, resizable vertically only. Counter sits under the right edge, tabular."
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-4 py-4.5 border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-4 py-4.5 border-t border-divider-faint\'>
             <Textarea
               label='Filled · live, with counter'
               value={bio}
@@ -506,7 +506,7 @@ export function Gallery() {
           title='Select'
           blurb='A native select carrying the input shell. Two or three short options become a segmented control instead.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(13.75rem,1fr))] gap-4 py-4.5 border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(13.75rem,1fr))] gap-4 py-4.5 border-t border-divider-faint\'>
             <Select
               label='Default · live'
               options={['Annual', 'Quarterly', 'Trailing twelve months']}
@@ -536,7 +536,7 @@ export function Gallery() {
           title='Checkbox & radio'
           blurb='Both sit inside a 44px label so the whole row is tappable. Checked state is an accent stroke with an inset ground.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-5.5 py-4.5 border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-5.5 py-4.5 border-t border-divider-faint\'>
             <div className='flex flex-col'>
               <span className='ds-kicker mb-1.5'>Checkbox · live</span>
               {['Cash flow', 'Dividends', 'Buybacks'].map(c => (
@@ -571,7 +571,7 @@ export function Gallery() {
           title='Toggle'
           blurb='For settings that take effect immediately. Label left, control right-aligned, hairline between rows.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             {Object.keys(switches).map(k => (
               <ToggleRow
                 key={k}
@@ -591,7 +591,7 @@ export function Gallery() {
           title='Card'
           blurb='Bordered, unfilled. An auto-fit grid at a 240px minimum handles one, two and three columns without a breakpoint.'
         >
-          <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-3.5 py-4.5 border-t border-ds-divider-faint\'>
+          <div className='grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-3.5 py-4.5 border-t border-divider-faint\'>
             <Card
               kicker='Sector'
               title='Arcadia Mills'
@@ -615,7 +615,7 @@ export function Gallery() {
               kicker='Interactive'
               title='Whole card is the link'
               body='Border takes the accent on hover; the focus ring wraps the card.'
-              meta={<span className='text-ds-accent'>Open &#8594;</span>}
+              meta={<span className='text-accent'>Open &#8594;</span>}
             />
             <Card
               disabled
@@ -632,7 +632,7 @@ export function Gallery() {
           title='List row'
           blurb='Hairline-separated rows, 56px tall, primary text left and figures right. What a table becomes below 640px.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             {ROWS.map(r => (
               <ListRow
                 key={r.sym}
@@ -660,7 +660,7 @@ export function Gallery() {
           title='Table'
           blurb='Uppercase hairline header, row rules, tabular figures right-aligned. Company and Price headers sort live.'
         >
-          <div className='py-4.5 overflow-x-auto border-t border-ds-divider-faint\'>
+          <div className='py-4.5 overflow-x-auto border-t border-divider-faint\'>
             <Table>
               <thead>
                 <tr>
@@ -688,9 +688,7 @@ export function Gallery() {
                   <tr key={r.sym}>
                     <td>
                       <span className='table-name'>{r.name}</span>{' '}
-                      <span className='text-xs text-ds-neutral-500'>
-                        {r.sym}
-                      </span>
+                      <span className='text-xs text-neutral-500'>{r.sym}</span>
                     </td>
                     <td className='text-sm'>{r.sector}</td>
                     <td className='table-num'>{r.price.toFixed(2)}</td>
@@ -711,7 +709,7 @@ export function Gallery() {
           title='Tabs'
           blurb='A hairline baseline with the active tab underlined in accent. The strip scrolls horizontally when labels outrun the width.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             <Tabs
               items={[
                 {
@@ -753,7 +751,7 @@ export function Gallery() {
           title='Accordion'
           blurb='One open at a time. Rule above each row, 52px minimum header, a rotating hairline marker.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             <Accordion
               defaultOpen={0}
               items={[
@@ -783,7 +781,7 @@ export function Gallery() {
           title='Dialog'
           blurb='Centred, 440px maximum, on the surface tone at the top elevation. Escape and backdrop both dismiss.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             <Button variant='primary' onClick={() => setDialogOpen(true)}>
               Open dialog
             </Button>
@@ -823,7 +821,7 @@ export function Gallery() {
           title='Bottom sheet'
           blurb="The dialog's mobile form: docked to the bottom edge, rounded at the top only, rising on open."
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             <Button variant='secondary' onClick={() => setSheetOpen(true)}>
               Open bottom sheet
             </Button>
@@ -858,7 +856,7 @@ export function Gallery() {
           title='Popover'
           blurb='A small floating surface anchored below its trigger. Dismiss on Escape or outside click. Use position: relative on the parent.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint flex flex-wrap gap-[var(--space-4)]'>
+          <div className='py-4.5 border-t border-divider-faint flex flex-wrap gap-4'>
             <div className='relative inline-block'>
               <Button
                 variant='secondary'
@@ -871,10 +869,10 @@ export function Gallery() {
               </Button>
               <Popover open={popoverOpen} onClose={() => setPopoverOpen(false)}>
                 <Text variant='h5'>Arcadia Mills</Text>
-                <div className='mt-[var(--space-1)] text-sm text-[var(--text-secondary)]'>
+                <div className='mt-1 text-sm text-secondary'>
                   ARC · Textiles · Held 4y
                 </div>
-                <div className='mt-[var(--space-3)] pt-[var(--space-3)] border-t border-[var(--border-hairline)] text-xs text-[var(--text-muted)] ds-tnum'>
+                <div className='mt-3 pt-3 border-t border-hairline text-xs text-muted ds-tnum'>
                   P/E 11.4 · ROE 13.9% · Yield 2.1%
                 </div>
               </Popover>
@@ -895,7 +893,7 @@ export function Gallery() {
                 onClose={() => setMenuOpen(false)}
                 anchor='right'
               >
-                <div className='popover-menu -mx-[var(--space-4)] -my-[var(--space-4)]'>
+                <div className='popover-menu -mx-4 -my-4'>
                   <PopoverMenuItem onClick={() => setMenuOpen(false)}>
                     Add to watchlist
                   </PopoverMenuItem>
@@ -950,7 +948,7 @@ export function Gallery() {
           title='Nav bar'
           blurb='Brand left, links right, one hairline beneath. Below 768px the links collapse behind a menu button.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             <NavBar
               brand='Ledger'
               links={[
@@ -973,7 +971,7 @@ export function Gallery() {
           title='Skeleton'
           blurb='Placeholders mirror the shape of what is loading, at the same heights, so nothing jumps when content lands.'
         >
-          <div className='py-4.5 border-t border-ds-divider-faint\'>
+          <div className='py-4.5 border-t border-divider-faint\'>
             <div className='mb-4'>
               <Button
                 variant='secondary'
@@ -1011,12 +1009,12 @@ export function Gallery() {
           title='Note bubble'
           blurb='A floating pin anchored to any point on the page. Click to attach a single editable note.'
         >
-          <div className='relative mt-3 h-56 rounded-[var(--radius-md)] border border-ds-divider-faint bg-[color-mix(in_srgb,var(--color-text)_3%,transparent)]'>
-            <div className='p-[var(--space-4)]'>
-              <div className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-xl text-[var(--text-primary)]'>
+          <div className='relative mt-3 h-56 rounded-md border border-divider-faint bg-[color-mix(in_srgb,var(--color-text)_3%,transparent)]'>
+            <div className='p-4'>
+              <div className='font-heading font-[var(--font-heading-weight)] text-xl text-primary'>
                 Arcadia Mills
               </div>
-              <p className='mt-1 text-xs text-[var(--text-muted)] max-w-[28ch] leading-[var(--leading-body)]'>
+              <p className='mt-1 text-xs text-muted max-w-[28ch] leading-body'>
                 Twelve straight years of rising book value per share, funded
                 without new equity.
               </p>
@@ -1034,7 +1032,7 @@ export function Gallery() {
           </div>
         </Section>
 
-        <footer className='pt-8.5 border-t border-ds-divider'>
+        <footer className='pt-8.5 border-t border-divider'>
           <Text variant='caption'>
             Twenty-two components on the Ledger tokens. Every interactive
             element carries a themed hover, a pressed state and the 2px accent
