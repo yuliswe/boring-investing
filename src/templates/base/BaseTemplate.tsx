@@ -90,19 +90,17 @@ function SectionContent({ section }: { section: SectionData }) {
 
 function Nav({ navbar }: { navbar: NavbarData }) {
   return (
-    <nav className='flex items-center gap-[var(--space-4)] min-h-14 px-[var(--space-5)] bg-[var(--color-bg)] border-b border-[var(--color-divider)]'>
-      <span className='flex-none font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-xl leading-none'>
+    <nav className='flex items-center gap-4 min-h-14 px-5 bg-bg border-b border-divider'>
+      <span className='flex-none font-heading font-[var(--font-heading-weight)] text-xl leading-none'>
         {navbar.brand}
       </span>
-      <div className='flex flex-1 min-w-0 gap-[var(--space-4)] overflow-x-auto'>
+      <div className='flex flex-1 min-w-0 gap-4 overflow-x-auto'>
         {navbar.links.map(l => (
           <a
             key={l.label}
             href={l.href}
-            className={`flex-none font-[family-name:var(--font-interactable)] text-xs no-underline ${
-              l.active
-                ? 'text-[var(--color-accent)]'
-                : 'text-[var(--text-secondary)]'
+            className={`flex-none font-interactable text-xs no-underline ${
+              l.active ? 'text-accent' : 'text-secondary'
             }`}
           >
             {l.label}
@@ -126,8 +124,8 @@ function HeroSection({ hero, addon }: { hero: HeroData; addon?: ReactNode }) {
   const arrow = hero.changePct > 0 ? '↑' : hero.changePct < 0 ? '↓' : '—';
 
   return (
-    <section id='hero' className='pt-[var(--space-7)] pb-[var(--space-5)]'>
-      <div className='flex items-center gap-[var(--space-2)] flex-wrap'>
+    <section id='hero' className='pt-7 pb-5'>
+      <div className='flex items-center gap-2 flex-wrap'>
         <span className='ds-kicker'>{hero.symbol}</span>
         <Tag tone='neutral'>{hero.sector}</Tag>
         {hero.tags?.map(t => (
@@ -136,24 +134,22 @@ function HeroSection({ hero, addon }: { hero: HeroData; addon?: ReactNode }) {
           </Tag>
         ))}
       </div>
-      <div className='flex flex-wrap items-baseline gap-[var(--space-2)] gap-x-[var(--space-5)] mt-[var(--space-2)]'>
+      <div className='flex flex-wrap items-baseline gap-2 gap-x-5 mt-2'>
         <Text variant='h2'>{hero.name}</Text>
-        <div className='flex items-baseline gap-[var(--space-2)]'>
-          <span className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-3xl leading-none ds-tnum'>
+        <div className='flex items-baseline gap-2'>
+          <span className='font-heading font-[var(--font-heading-weight)] text-3xl leading-none ds-tnum'>
             {hero.price}
           </span>
           <span className='text-sm ds-tnum'>
             {arrow} {Math.abs(hero.changePct).toFixed(2)}%{' †'}
           </span>
           {hero.priceNote && (
-            <span className='text-xs text-[var(--text-muted)]'>
-              {hero.priceNote}
-            </span>
+            <span className='text-xs text-muted'>{hero.priceNote}</span>
           )}
         </div>
       </div>
       {addon}
-      <p className='mt-[var(--space-2)] max-w-[var(--measure)] text-sm leading-[1.55] text-[var(--text-secondary)]'>
+      <p className='mt-2 max-w-measure text-sm leading-[1.55] text-secondary'>
         {hero.summary}
       </p>
     </section>
@@ -168,21 +164,21 @@ function Header({
   figuresDate?: string;
 }) {
   return (
-    <header className='sticky top-14 z-10 flex flex-wrap items-center gap-[var(--space-2)] gap-x-[var(--space-4)] py-[var(--space-3)] bg-[var(--color-bg)] border-y border-[var(--color-divider)]'>
+    <header className='sticky top-14 z-10 flex flex-wrap items-center gap-2 gap-x-4 py-3 bg-bg border-y border-divider'>
       <span className='ds-kicker'>On this page</span>
-      <div className='flex flex-1 gap-[var(--space-1)] gap-x-[var(--space-3)] overflow-x-auto pb-[var(--space-1)]'>
+      <div className='flex flex-1 gap-1 gap-x-3 overflow-x-auto pb-1'>
         {sections.map(s => (
           <a
             key={s.id}
             href={`#${s.id}`}
-            className='flex-none font-[family-name:var(--font-interactable)] text-xs no-underline text-[var(--text-secondary)] hover:text-[var(--color-accent)]'
+            className='flex-none font-interactable text-xs no-underline text-secondary hover:text-accent'
           >
             {s.title}
           </a>
         ))}
       </div>
       {figuresDate && (
-        <span className='text-xs ds-tnum text-[var(--text-muted)]'>
+        <span className='text-xs ds-tnum text-muted'>
           Figures dated {figuresDate}
         </span>
       )}
@@ -194,25 +190,25 @@ function FooterSection({ footer }: { footer: FooterData }) {
   return (
     <footer
       id='footer'
-      className='flex flex-wrap gap-[var(--space-3)] gap-x-[var(--space-8)] mt-[var(--space-5)] pt-[var(--space-6)] pb-[var(--space-8)] border-t border-[var(--color-divider)]'
+      className='flex flex-wrap gap-3 gap-x-8 mt-5 pt-6 pb-8 border-t border-divider'
     >
       <div className='flex-1 min-w-55'>
-        <div className='font-[family-name:var(--font-heading)] font-[var(--font-heading-weight)] text-xl'>
+        <div className='font-heading font-[var(--font-heading-weight)] text-xl'>
           Ledger
         </div>
-        <p className='mt-[var(--space-2)] max-w-[44ch] text-xs text-[var(--text-secondary)]'>
+        <p className='mt-2 max-w-[44ch] text-xs text-secondary'>
           {footer.disclaimer ||
             'Figures traced to filed statements and dated where they appear. Delayed data marked †'}
         </p>
       </div>
       {footer.links && footer.links.length > 0 && (
-        <div className='flex flex-col gap-[var(--space-1)]'>
+        <div className='flex flex-col gap-1'>
           <span className='ds-kicker'>Company</span>
           {footer.links.map(l => (
             <a
               key={l.label}
               href={l.href}
-              className='font-[family-name:var(--font-interactable)] text-xs no-underline text-[var(--text-secondary)]'
+              className='font-interactable text-xs no-underline text-secondary'
             >
               {l.label}
             </a>
@@ -220,13 +216,13 @@ function FooterSection({ footer }: { footer: FooterData }) {
         </div>
       )}
       {footer.externalLinks && footer.externalLinks.length > 0 && (
-        <div className='flex flex-col gap-[var(--space-1)]'>
+        <div className='flex flex-col gap-1'>
           <span className='ds-kicker'>Elsewhere</span>
           {footer.externalLinks.map(l => (
             <a
               key={l.label}
               href={l.href}
-              className='font-[family-name:var(--font-interactable)] text-xs no-underline text-[var(--text-secondary)]'
+              className='font-interactable text-xs no-underline text-secondary'
             >
               {l.label}
             </a>
@@ -559,7 +555,7 @@ export function BaseTemplate({
           </div>
         )}
 
-        <div className='mx-auto max-w-[var(--page-max)] px-[var(--space-5)]'>
+        <div className='mx-auto max-w-page-max px-5'>
           <HeroSection hero={hero} addon={heroAddon} />
           <Header sections={merged} figuresDate={figuresDate} />
 
@@ -567,10 +563,10 @@ export function BaseTemplate({
             <section
               key={sec.id}
               id={sec.id}
-              className='pt-[var(--space-7)] pb-[var(--space-2)] border-t border-[var(--color-divider)] scroll-mt-42.5'
+              className='pt-7 pb-2 border-t border-divider scroll-mt-42.5'
             >
-              <div className='flex flex-wrap items-baseline gap-[var(--space-2)] gap-x-[var(--space-3)]'>
-                <span className='ds-tnum text-xs tracking-[0.12em] font-[family-name:var(--font-heading)] text-[var(--color-accent)]'>
+              <div className='flex flex-wrap items-baseline gap-2 gap-x-3'>
+                <span className='ds-tnum text-xs tracking-[0.12em] font-heading text-accent'>
                   {sec.rank}
                 </span>
                 <Text variant='h3' className='text-3xl'>
@@ -580,15 +576,15 @@ export function BaseTemplate({
                   <Tag tone='accent'>{sec.origin}</Tag>
                 )}
               </div>
-              <p className='mt-[var(--space-2)] max-w-[62ch] text-xs text-[var(--text-secondary)]'>
+              <p className='mt-2 max-w-[62ch] text-xs text-secondary'>
                 {sec.kicker}
               </p>
               {sec.warning && (
-                <div className='mt-[var(--space-3)]'>
+                <div className='mt-3'>
                   <Banner tone='accent'>{sec.warning}</Banner>
                 </div>
               )}
-              <div className='py-[var(--space-4)]'>
+              <div className='py-4'>
                 <SectionContent section={sec} />
               </div>
             </section>

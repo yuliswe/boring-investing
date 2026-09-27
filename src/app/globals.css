@@ -17,17 +17,83 @@
 
 /* Tailwind v4 is configured from CSS: `@theme` entries become utility
    classes. These aliases bridge Tailwind utilities to the Ledger design
-   tokens (defined in src/design-system/tokens/) so classes like
-   `text-ds-accent` and `border-ds-divider` resolve to token values. */
+   tokens (defined in src/design-system/tokens/). For example,
+   --color-accent here produces text-accent, bg-accent, border-accent. */
 @theme {
-  --color-ds-accent: var(--color-accent);
-  --color-ds-neutral-500: var(--color-neutral-500);
-  --color-ds-neutral-600: var(--color-neutral-600);
-  --color-ds-divider: var(--color-divider);
-  --color-ds-divider-faint: color-mix(
-    in srgb,
-    var(--color-text) 8%,
-    transparent
-  );
-  --font-ds-heading: var(--font-heading);
+  /* --- Colors --------------------------------------------------------- */
+  --color-accent: var(--color-accent);
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-text: var(--color-text);
+  --color-divider: var(--color-divider);
+  --color-divider-faint: color-mix(in srgb, var(--color-text) 8%, transparent);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+
+  /* Semantic text colors (--text-* in tokens → --color-* here so
+     text-muted, bg-muted, border-muted etc. all work) */
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-muted: var(--text-muted);
+  --color-text-accent: var(--text-accent);
+
+  /* Surfaces & borders */
+  --color-surface-page: var(--surface-page);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-tint: var(--surface-tint);
+  --color-hairline: var(--border-hairline);
+  --color-strong: var(--border-strong);
+  --color-focus-ring: var(--focus-ring);
+  --color-scrim: var(--scrim);
+  --color-state-hover: var(--state-hover);
+  --color-state-pressed: var(--state-pressed);
+  --color-state-row-hover: var(--state-row-hover);
+
+  /* --- Spacing -------------------------------------------------------- */
+  --spacing-1: var(--spacing-1);
+  --spacing-2: var(--spacing-2);
+  --spacing-3: var(--spacing-3);
+  --spacing-4: var(--spacing-4);
+  --spacing-5: var(--spacing-5);
+  --spacing-6: var(--spacing-6);
+  --spacing-7: var(--spacing-7);
+  --spacing-8: var(--spacing-8);
+  --spacing-tap: var(--spacing-tap);
+  --spacing-measure: var(--spacing-measure);
+  --spacing-page-max: var(--spacing-page-max);
+
+  /* --- Border radius -------------------------------------------------- */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+
+  /* --- Shadows -------------------------------------------------------- */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+
+  /* --- Typography ----------------------------------------------------- */
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-interactable: var(--font-interactable);
+  --leading-body: var(--leading-body);
+  --leading-heading: var(--leading-heading);
+  --tracking-display: var(--tracking-display);
+  --tracking-overline: var(--tracking-overline);
 }

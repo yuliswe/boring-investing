@@ -40,7 +40,7 @@ export const CHART_COLORS = [
 ];
 
 export function pct(v: number, lo: number, hi: number): number {
-  return Math.max(0, Math.min(100, ((v - lo) / (hi - lo)) * 100));
+  return ((v - lo) / (hi - lo)) * 100;
 }
 
 export function formatValue(v: number | null, fmt?: ValueFormatData): string {

@@ -26,14 +26,14 @@ export default function HomePage() {
               <>
                 <span>{stock.name}</span>
                 <span>&middot;</span>
-                <span className='text-ds-accent'>View analysis &#8594;</span>
+                <span className='text-accent'>View analysis &#8594;</span>
               </>
             }
           />
         ))}
       </div>
 
-      <footer className='mt-8 pt-4.5 border-t border-ds-divider'>
+      <footer className='mt-8 pt-4.5 border-t border-divider'>
         <Link href='/components' variant='standalone'>
           Component library &#8594;
         </Link>

@@ -4,16 +4,16 @@ import { DescribedLabel } from '../LabelPopover';
 
 export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
   return (
-    <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-x-[var(--space-8)]'>
+    <div className='grid grid-cols-[repeat(auto-fit,minmax(16.25rem,1fr))] gap-x-8'>
       {metrics.map((m, i) => (
         <div
           key={i}
-          className='flex items-baseline gap-[var(--space-3)] min-h-11 border-b border-[var(--color-divider)]'
+          className='flex items-baseline gap-3 min-h-11 border-b border-divider'
         >
           <DescribedLabel
             label={m.label}
             desc={m.desc}
-            className='flex-1 text-xs text-[var(--text-secondary)]'
+            className='flex-1 text-xs text-secondary'
           />
           {m.changePct != null && (
             <span
@@ -25,9 +25,7 @@ export function MetricsSection({ metrics }: { metrics: MetricRowData[] }) {
               {m.changePct >= 0 ? '↑' : '↓'} {Math.abs(m.changePct).toFixed(1)}%
             </span>
           )}
-          {m.note && (
-            <span className='text-xs text-[var(--text-muted)]'>{m.note}</span>
-          )}
+          {m.note && <span className='text-xs text-muted'>{m.note}</span>}
           <span className='text-sm ds-tnum'>{m.value}</span>
         </div>
       ))}

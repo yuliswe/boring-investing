@@ -39,11 +39,7 @@ export function TableSection({
           </tbody>
         </table>
       </div>
-      {tableNote && (
-        <p className='mt-[var(--space-2)] text-xs text-[var(--text-muted)]'>
-          {tableNote}
-        </p>
-      )}
+      {tableNote && <p className='mt-2 text-xs text-muted'>{tableNote}</p>}
     </>
   );
 }

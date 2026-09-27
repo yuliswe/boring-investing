@@ -34,7 +34,7 @@ export function ChartSection({
 
   return (
     <>
-      <div className='relative flex items-end h-47 mt-[var(--space-5)] border-b border-[var(--color-divider)]'>
+      <div className='relative flex items-end h-47 mt-5 border-b border-divider'>
         <svg
           viewBox='0 0 100 100'
           preserveAspectRatio='none'
@@ -58,7 +58,7 @@ export function ChartSection({
           return (
             <div key={i} className='relative flex-1 h-full'>
               <div
-                className='absolute left-1/2 w-2.25 h-2.25 -ml-0.75 -mb-0.75 rounded-full border-[1.5px] border-[var(--color-accent)] bg-[var(--color-bg)]'
+                className='absolute left-1/2 w-2.25 h-2.25 -ml-0.75 -mb-0.75 rounded-full border-[1.5px] border-accent bg-bg'
                 style={{ bottom: h }}
               />
               <div
@@ -72,31 +72,25 @@ export function ChartSection({
         })}
         {hasRef && (
           <div
-            className='absolute left-0 right-0 h-0 flex items-center gap-[var(--space-2)] pointer-events-none'
+            className='absolute left-0 right-0 h-0 flex items-center gap-2 pointer-events-none'
             style={{ bottom: refBottom }}
           >
             <span className='flex-1 border-t border-dashed border-[color-mix(in_srgb,var(--color-text)_40%,transparent)]' />
-            <span className='flex-none text-xs tracking-[0.06em] uppercase text-[var(--text-muted)]'>
+            <span className='flex-none text-xs tracking-[0.06em] uppercase text-muted'>
               {refLabel}
             </span>
           </div>
         )}
       </div>
-      <div className='flex pt-[var(--space-2)]'>
+      <div className='flex pt-2'>
         {bars.map((b, i) => (
           <div key={i} className='flex-1 text-center'>
             <div className='text-xs ds-tnum'>{b.label}</div>
-            {b.sub && (
-              <div className='text-xs text-[var(--text-muted)]'>{b.sub}</div>
-            )}
+            {b.sub && <div className='text-xs text-muted'>{b.sub}</div>}
           </div>
         ))}
       </div>
-      {chartNote && (
-        <p className='mt-[var(--space-3)] text-xs text-[var(--text-muted)]'>
-          {chartNote}
-        </p>
-      )}
+      {chartNote && <p className='mt-3 text-xs text-muted'>{chartNote}</p>}
     </>
   );
 }

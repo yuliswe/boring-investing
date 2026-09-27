@@ -90,12 +90,10 @@ function PriceAdjuster({
   }
 
   return (
-    <div className='flex items-center gap-[var(--space-2)] mt-[var(--space-2)]'>
-      <span className='text-xs text-[var(--text-muted)] font-[family-name:var(--font-interactable)]'>
-        Adjust price
-      </span>
-      <div className='inline-flex items-center gap-px rounded-[var(--radius-sm)] border border-[var(--color-divider)] bg-[var(--surface-raised)] px-[var(--space-2)] py-[var(--space-1)]'>
-        <span className='text-xs text-[var(--text-muted)] ds-tnum select-none'>
+    <div className='flex items-center gap-2 mt-2'>
+      <span className='text-xs text-muted font-interactable'>Adjust price</span>
+      <div className='inline-flex items-center gap-px rounded-sm border border-divider bg-surface-raised px-2 py-1'>
+        <span className='text-xs text-muted ds-tnum select-none'>
           {currency}
         </span>
         <input
@@ -110,13 +108,13 @@ function PriceAdjuster({
               e.currentTarget.blur();
             }
           }}
-          className='w-20 bg-transparent text-xs ds-tnum text-[var(--text-primary)] outline-none border-none pl-[var(--space-1)]'
+          className='w-20 bg-transparent text-xs ds-tnum text-primary outline-none border-none pl-1'
         />
       </div>
       {isAdjusted && (
         <button
           onClick={() => onChange(defaultPrice)}
-          className='text-xs text-[var(--text-muted)] font-[family-name:var(--font-interactable)] hover:text-[var(--color-accent)] cursor-pointer bg-transparent border-none p-0'
+          className='text-xs text-muted font-interactable hover:text-accent cursor-pointer bg-transparent border-none p-0'
         >
           Reset
         </button>

@@ -19,9 +19,7 @@ export function Segmented({
         <label
           key={option}
           className={
-            block
-              ? 'seg-opt flex-1 justify-center min-h-[var(--tap)]'
-              : 'seg-opt'
+            block ? 'seg-opt flex-1 justify-center min-h-tap' : 'seg-opt'
           }
         >
           <input
