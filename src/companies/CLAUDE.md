@@ -35,33 +35,62 @@ every company page to provide these fields:
 The page must also provide a segment revenue breakdown in `extraSections`
 (rank 400, kind `'multi'`) and a filings section (rank 600, kind `'rows'`).
 
-## Expenses and Free Cash Flow sections
+## Expenses section
 
-Every company page must include an Expenses section (rank 500) and a Free Cash
-Flow section (rank 550). These sections follow the same principle as the
-Revenue breakdown (rank 400), which already uses the company's own segment
-structure as a custom `extraSections` entry. Each expense and cash-flow line
-on the page must correspond to a line the company actually reports in its
-filing, using the same label. GAAP and IFRS give companies flexibility in how
+Every company page must include an Expenses section (rank 500). Build it as
+a custom `extraSections` entry using `kind: 'multi'` with `mode: 'share'`.
+All values are raw amounts in billions; the page component converts them to
+percentages of revenue.
+
+The section must contain at least these four lines:
+
+1. **Total expenses** — revenue minus net income. This is the `total: true`
+   series and serves as the denominator for share-of-total readouts.
+2. **Operating expenses** — the sum of all operating expense lines reported
+   between revenue and operating income. Under GAAP this includes cost of
+   revenue (COGS) when the company reports one, along with SG&A, R&D, D&A,
+   and any other operating lines. Some companies (such as payment networks)
+   have no meaningful COGS and report only functional categories like
+   general & administrative.
+3. **Non-operating expenses** — the net of items reported between operating
+   income and pre-tax income (interest expense, interest income, other
+   income/expense, gains and losses on equity investments, etc.).
+4. **Tax expense** — income tax expense as reported on the income statement.
+
+In addition, include a breakdown of each of 2, 3, and 4 as separate lines
+whenever the 10-K provides one. For example, if the company breaks operating
+expenses into cost of revenue, SG&A, R&D, and D&A, include each of those as
+its own line beneath the operating expenses total. Use the same labels the
+company uses in its filing. GAAP and IFRS give companies flexibility in how
 they present the income statement — a company may report a single combined
 operating expense line, use different functional groupings, or capitalise
 costs that other companies expense — so the page must follow whatever
 structure the company uses rather than forcing data into a fixed set of
 categories.
 
-**All new company pages must use custom sections.** Build the Expenses and FCF
-sections directly as `extraSections` in the page component, using
-`kind: 'multi'` with `mode: 'share'`. Define each line with a label and
-description matching the company's filing, and provide its values as raw
-amounts in billions; the page component converts them to percentages of
-revenue. Omit `expenses` and `cashFlow` from the financials object so the
-template does not generate its own sections at those ranks.
+## Free Cash Flow section
 
-See `src/companies/TRI/` for the reference implementation. The data lives in
+Every company page must include a Free Cash Flow section (rank 550). Build
+it the same way as the Expenses section (`kind: 'multi'`, `mode: 'share'`,
+raw amounts in billions converted to percentages of revenue).
+
+Each cash-flow line on the page must correspond to a line the company
+actually reports in its filing, using the same label. Do not invent derived
+labels like "Cash operating costs" — if the filing does not report that
+number, the page should not show it. The section should use the same
+structure as the Expenses section: operating expense lines adjusted to a
+cash basis (by removing their share of non-cash charges like D&A and SBC),
+cash taxes paid (from the supplemental disclosure), working capital changes,
+and capital expenditures.
+
+## Building these sections
+
+Omit `expenses` and `cashFlow` from the financials object so the template
+does not generate its own sections at those ranks. Define data in
 `financials.ts` as named exports (`expenseLines`, `cashFlowLines`,
-`expenseYears`, `revenueByYear`), and the page component (`TriPage.tsx`)
-contains `buildExpensesSection()` and `buildFCFSection()` helper functions
-that assemble the `SectionData` objects.
+`expenseYears`, `revenueByYear`), and build `SectionData` objects in the
+page component with `buildExpensesSection()` and `buildFCFSection()` helper
+functions. See `src/companies/TRI/` for the reference implementation.
 
 **Deprecated: template-generated sections.** Some older company pages (MSFT,
 ADBE, CSU, NFLX, LULU) pass `expenses` and `cashFlow` arrays in

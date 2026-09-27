@@ -19,7 +19,7 @@ export const revenueByYear = [
 export const expenseLines = [
   {
     label: 'General & administrative',
-    desc: 'Personnel costs, technology and communications, professional fees, and other administrative expenses. This is Mastercard’s largest cost line and includes the workforce cost of approximately 39,800 employees.',
+    desc: "Personnel costs, technology and communications, professional fees, and other administrative expenses. This is Mastercard's largest cost line and includes the workforce cost of approximately 39,800 employees.",
     values: [4.653, 5.174, 5.763, 5.91, 7.087, 8.078, 8.927, 10.193, 11.318],
   },
   {
@@ -37,6 +37,16 @@ export const expenseLines = [
     desc: 'Charges for legal settlements and estimated litigation losses. The $1.1B spike in FY18 was the U.S. merchant class action settlement; FY19 had no material provision.',
     values: [0.015, 1.128, 0.0, 0.073, 0.094, 0.356, 0.539, 0.68, 0.504],
   },
+  {
+    label: 'Other income (expense)',
+    desc: 'Net of non-operating items reported between operating income and pre-tax income: interest expense, investment income, gains and losses on equity investments, and other. Positive values mean non-operating items were a net cost; negative values mean they generated net income.',
+    values: [0.1, 0.078, -0.067, 0.321, -0.225, 0.532, 0.369, 0.328, 0.319],
+  },
+  {
+    label: 'Income tax expense',
+    desc: 'Provision for income taxes as reported on the income statement. FY17 was elevated by the $873M Tax Cuts and Jobs Act provisional charge on accumulated foreign earnings.',
+    values: [2.607, 1.345, 1.613, 1.349, 1.62, 1.802, 2.444, 2.38, 3.61],
+  },
 ];
 
 export const cashFlowYears = ['FY20', 'FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
@@ -46,13 +56,67 @@ export const cashFlowRevenue = [15.301, 18.884, 22.237, 25.098, 28.167, 32.791];
 export const cashFlowLines = [
   {
     label: 'Cash operating costs',
-    desc: 'Revenue minus operating cash flow. Absorbs working capital movements and non-cash adjustments, so year-to-year changes partly reflect timing rather than structural cost changes.',
-    values: [8.077, 9.421, 11.042, 13.118, 13.387, 15.143],
+    desc: 'Operating expenses on a cash basis: reported operating expenses minus depreciation, amortization, and stock-based compensation.',
+    values: [5.578, 6.685, 7.632, 8.429, 9.095, 10.681],
+  },
+  {
+    label: 'Cash taxes paid',
+    desc: 'Income taxes actually paid in cash during the fiscal year, from the supplemental disclosure in the cash flow statement.',
+    values: [1.349, 1.82, 2.506, 2.746, 3.252, 3.02],
+  },
+  {
+    label: 'Δ Working capital',
+    desc: 'Net cash consumed by working capital movements, including settlement receivables and payables from the payment network, accounts receivable, prepaid expenses, accrued litigation, and other current assets and liabilities.',
+    values: [1.15, 0.916, 0.904, 1.943, 1.04, 1.442],
   },
   {
     label: 'CapEx',
     desc: 'Purchases of property and equipment plus capitalized software development costs.',
     values: [0.708, 0.814, 1.097, 1.088, 1.194, 1.215],
+  },
+];
+
+export const cashFlowStatementYears = [
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Total cash flow',
+    desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
+    values: [-0.988, 0.751, 0.676, 3.193, -2.364, -0.603, 1.141, 0.542, 2.107],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [5.555, 6.223, 8.183, 7.224, 9.463, 11.195, 11.98, 14.78, 17.648],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
+    values: [
+      -1.779, -0.506, -1.64, -1.879, -5.272, -1.47, -1.351, -3.402, -1.362,
+    ],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
+    values: [
+      -4.764, -4.966, -5.867, -2.152, -6.555, -10.328, -9.488, -10.836, -14.179,
+    ],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and capitalized software).',
+    values: [5.132, 5.719, 7.455, 6.516, 8.649, 10.098, 10.892, 13.586, 16.433],
   },
 ];
 
@@ -161,7 +225,7 @@ const financials: SoftwareFinancials = {
   ],
   thesis: [
     'Mastercard operates a two-sided payment network that connects cardholders and merchants through issuing and acquiring banks, earning a toll-like fee on every transaction without taking credit risk, which produces operating margins above 55% and predictable revenue growth tied to the secular shift from cash to electronic payments.',
-    'Value-Added Services and Solutions, which includes cyber security, analytics, consulting, loyalty programs, and real-time payment processing, now accounts for over 40% of revenue and is growing at roughly double the rate of the core payment network, deepening Mastercard’s integration into the payments ecosystem beyond pure transaction processing.',
+    "Value-Added Services and Solutions, which includes cyber security, analytics, consulting, loyalty programs, and real-time payment processing, now accounts for over 40% of revenue and is growing at roughly double the rate of the core payment network, deepening Mastercard's integration into the payments ecosystem beyond pure transaction processing.",
     'Aggressive share buybacks consistently reduce the diluted share count by 2–3% per year, amplifying per-share growth in earnings and free cash flow beyond the already strong revenue growth of the underlying business.',
   ],
 };
