@@ -171,7 +171,7 @@ const financials: SoftwareFinancials = {
       'Non-operating income and expenses — includes IRGA revaluation (mark-to-market on acquisition-related instruments), finance costs (interest on acquisition debt), foreign exchange gains and losses, bargain purchase gains, impairment charges, redeemable preferred share charges (Topicus/Lumine), and equity method revaluation. These items are volatile and largely non-cash or non-operational.',
   },
   expensesWarning:
-    'CSU reports under IFRS, which mandates amortization of acquired intangible assets (~10% of revenue) as a non-cash charge. Combined with volatile non-operating items (~8%), these two lines push the Expenses Total to ~97% of revenue. The Free Cash Flow section below strips both, so its Total (~75%) reflects the actual cash cost of running the business.',
+    'CSU reports under IFRS, which mandates amortization of acquired intangible assets (~10% of revenue) as a non-cash charge. Combined with volatile non-operating items (~8%), these two lines push the Expenses Total to ~97% of revenue, but neither consumes cash, so free cash flow margins (~21%) are far above net income margins (~5%).',
   thesis: [
     'Serial acquisition model compounds capital at high returns across hundreds of vertical market software businesses, with annual deployment consistently exceeding $1 billion.',
     'Recurring maintenance and subscription revenue provides durable, predictable cash flows that fund continued acquisitions without requiring equity issuance.',
