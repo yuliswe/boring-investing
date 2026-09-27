@@ -127,6 +127,7 @@ export type MultiSeriesData = {
   values: (number | null)[];
   format?: ValueFormatData;
   total?: boolean;
+  bold?: boolean;
   invert?: boolean;
 };
 

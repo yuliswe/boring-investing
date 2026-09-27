@@ -90,7 +90,7 @@ export const cashFlowStatementYears = [
 
 export const cashFlowStatementLines = [
   {
-    label: 'Total cash flow',
+    label: 'Net cash flow',
     desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
     values: [-0.988, 0.751, 0.676, 3.193, -2.364, -0.603, 1.141, 0.542, 2.107],
   },

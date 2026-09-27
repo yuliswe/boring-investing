@@ -85,7 +85,7 @@ function computeMulti(
   const min = Math.min(...all);
   const max = Math.max(...all);
   const range = max - min || 1;
-  const lo = plotRaw ? 0 : min - range * 0.15;
+  const lo = plotRaw ? Math.min(0, min - range * 0.1) : min - range * 0.15;
   const hi = max + range * 0.15;
   const n = series[0].values.length;
   const baseH = pct(plotRaw ? 0 : 100, lo, hi);
@@ -212,7 +212,7 @@ function computeMulti(
       color: s.total
         ? 'var(--color-text)'
         : CHART_COLORS[(si - totalOffset) % CHART_COLORS.length],
-      width: s.total ? '1.5' : '1',
+      width: s.total ? '1.5' : s.bold ? '2.5' : '1',
       latest: formatValue(lastNonNull, s.format),
       change:
         (last >= 0 ? '+' : '−') +
@@ -228,7 +228,9 @@ function computeMulti(
   const ticks: ComputedTick[] = [];
   if (share) {
     const step = hi > 40 ? 20 : hi > 20 ? 10 : 5;
-    for (let t = step; t <= hi; t += step) {
+    const start = lo < 0 ? Math.ceil(lo / step) * step : step;
+    for (let t = start; t <= hi; t += step) {
+      if (t === 0) continue;
       ticks.push({
         label: t + '%',
         bottom: pct(t, lo, hi).toFixed(1) + '%',
@@ -240,7 +242,9 @@ function computeMulti(
       decimals: 0,
     };
     const step = niceStep(max);
-    for (let t = step; t <= hi; t += step) {
+    const start = lo < 0 ? Math.ceil(lo / step) * step : step;
+    for (let t = start; t <= hi; t += step) {
+      if (t === 0) continue;
       ticks.push({
         label: formatValue(t, tickFmt),
         bottom: pct(t, lo, hi).toFixed(1) + '%',
