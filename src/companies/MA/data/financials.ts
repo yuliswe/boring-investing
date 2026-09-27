@@ -49,33 +49,6 @@ export const expenseLines = [
   },
 ];
 
-export const cashFlowYears = ['FY20', 'FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
-
-export const cashFlowRevenue = [15.301, 18.884, 22.237, 25.098, 28.167, 32.791];
-
-export const cashFlowLines = [
-  {
-    label: 'Cash operating costs',
-    desc: 'Operating expenses on a cash basis: reported operating expenses minus depreciation, amortization, and stock-based compensation.',
-    values: [5.578, 6.685, 7.632, 8.429, 9.095, 10.681],
-  },
-  {
-    label: 'Cash taxes paid',
-    desc: 'Income taxes actually paid in cash during the fiscal year, from the supplemental disclosure in the cash flow statement.',
-    values: [1.349, 1.82, 2.506, 2.746, 3.252, 3.02],
-  },
-  {
-    label: 'Δ Working capital',
-    desc: 'Net cash consumed by working capital movements, including settlement receivables and payables from the payment network, accounts receivable, prepaid expenses, accrued litigation, and other current assets and liabilities.',
-    values: [1.15, 0.916, 0.904, 1.943, 1.04, 1.442],
-  },
-  {
-    label: 'CapEx',
-    desc: 'Purchases of property and equipment plus capitalized software development costs.',
-    values: [0.708, 0.814, 1.097, 1.088, 1.194, 1.215],
-  },
-];
-
 export const cashFlowStatementYears = [
   'FY17',
   'FY18',

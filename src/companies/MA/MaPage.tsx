@@ -7,9 +7,6 @@ import financials, {
   expenseYears,
   revenueByYear,
   expenseLines,
-  cashFlowYears,
-  cashFlowRevenue,
-  cashFlowLines,
   cashFlowStatementYears,
   cashFlowStatementLines,
 } from './data/financials';
@@ -131,55 +128,6 @@ function buildExpensesSection(): SectionData {
   };
 }
 
-function toCashFlowShareOfRevenue(
-  values: (number | null)[]
-): (number | null)[] {
-  return values.map((v, i) =>
-    v !== null && cashFlowRevenue[i]
-      ? +((v / cashFlowRevenue[i]) * 100).toFixed(1)
-      : null
-  );
-}
-
-function buildFCFSection(): SectionData {
-  const linePcts = cashFlowLines.map(l => toCashFlowShareOfRevenue(l.values));
-  const totalPct = linePcts[0].map((_, i) => {
-    const vals = linePcts.map(lp => lp[i]);
-    return vals.every(v => v !== null)
-      ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
-      : null;
-  });
-  return {
-    rank: 550,
-    id: 'cashflow',
-    title: 'Free Cash Flow',
-    kicker:
-      'The same costs on a cash basis: D&A drops out, replaced by actual capital expenditures. Everything as a share of net revenue.',
-    kind: 'multi',
-    years: cashFlowYears,
-    mode: 'share',
-    invert: true,
-    baseLabel: '0%',
-    series: [
-      {
-        label: 'Total',
-        desc: 'Sum of all cash-flow lines below.\nShown as a percentage of net revenue.',
-        values: totalPct,
-        format: pctFormat,
-        total: true,
-      },
-      ...cashFlowLines.map((l, li) => ({
-        label: l.label,
-        desc: l.desc,
-        values: linePcts[li],
-        format: pctFormat,
-      })),
-    ],
-    chartNote:
-      'FY20–FY25 only, because Mastercard began disclosing capitalized software as a separate capex line starting with FY20. Cash operating costs include cash taxes paid and working capital movements. The improving FCF margin from 43% in FY20 to 50% in FY25 reflects operating leverage as revenue grew faster than cash costs.',
-  };
-}
-
 const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
 
 function buildCashFlowStatementSection(): SectionData {
@@ -240,7 +188,6 @@ const maSections: SectionData[] = [
       'Revenue dipped 9% in FY20 from COVID-19 as cross-border travel and in-person spending fell, then recovered strongly from FY21 onward. Value-Added Services has grown at roughly double the rate of Payment Network since FY20, driven by cyber security, analytics, and real-time payments. FY20 segment split is from the recast in the FY22 10-K. FY26E total is the consensus estimate from 37 analysts.',
   },
   buildExpensesSection(),
-  buildFCFSection(),
   buildCashFlowStatementSection(),
   {
     rank: 600,
