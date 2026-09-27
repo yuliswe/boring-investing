@@ -3,7 +3,10 @@
 import { RetailTemplate } from '@/templates/RetailTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
 import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
-import financials from './data/financials';
+import financials, {
+  cashFlowStatementYears,
+  cashFlowStatementLines,
+} from './data/financials';
 
 const navbar = {
   brand: 'Ledger',
@@ -32,6 +35,30 @@ const priceConfig: PriceConfig = {
   currency: '$',
   referenceClose: 173.7529,
 };
+
+const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
+
+function buildCashFlowStatementSection(): SectionData {
+  return {
+    rank: 560,
+    id: 'cashflow-statement',
+    title: 'Cash Flow',
+    kicker:
+      'The three sections of the cash flow statement plus free cash flow, in billions. Net cash flow is the net change in cash for the year.',
+    kind: 'multi',
+    years: cashFlowStatementYears,
+    mode: 'absolute',
+    series: cashFlowStatementLines.map(l => ({
+      label: l.label,
+      desc: l.desc,
+      values: l.values,
+      format: billionFormat,
+      ...(l.label === 'Net cash flow' && { bold: true }),
+    })),
+    chartNote:
+      'FY20 investing outflows include $466M for the MIRROR acquisition. FY22 free cash flow dropped as capital expenditures rose sharply for new stores and distribution centres. FY24–FY25 financing outflows reflect accelerated share repurchase programmes.',
+  };
+}
 
 const luluSections: SectionData[] = [
   {
@@ -88,6 +115,7 @@ const luluSections: SectionData[] = [
     chartNote:
       'Revenue and operating income from filed annual statements. FY26E is latest management guidance midpoint (September 2026).',
   },
+  buildCashFlowStatementSection(),
   {
     rank: 600,
     id: 'filings',

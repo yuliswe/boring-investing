@@ -1,5 +1,60 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+export const cashFlowStatementYears = [
+  'CY16',
+  'CY17',
+  'CY18',
+  'CY19',
+  'CY20',
+  'CY21',
+  'CY22',
+  'CY23',
+  'CY24',
+  'CY25',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash, cash equivalents, and restricted cash for the calendar year.',
+    values: [
+      -3.631, -2.203, 5.986, 1.797, 7.967, -5.52, 0.934, 2.169, -0.582, 7.242,
+    ],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [
+      36.036, 37.091, 47.971, 54.52, 65.124, 91.652, 91.495, 101.746, 125.299,
+      164.713,
+    ],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including capital expenditures, acquisitions, and purchases and maturities of marketable securities.',
+    values: [
+      -31.165, -31.401, -28.504, -29.491, -32.773, -35.523, -20.298, -27.063,
+      -45.536, -120.291,
+    ],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividends, and repayments of debt.',
+    values: [
+      -8.332, -8.298, -13.179, -23.209, -24.408, -61.362, -69.757, -72.093,
+      -79.733, -37.388,
+    ],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and construction in progress).',
+    values: [
+      25.824, 23.907, 22.832, 30.972, 42.843, 67.012, 60.01, 69.495, 72.764,
+      73.266,
+    ],
+  },
+];
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['CY26E'],
   estimateNote:
@@ -248,74 +303,6 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'CY16',
-      cashTaxesPaid: 1.6,
-      workingCapitalChange: -2.1,
-      capitalExpenditures: 10.2,
-    },
-    {
-      year: 'CY17',
-      cashTaxesPaid: 6.2,
-      workingCapitalChange: -1.7,
-      capitalExpenditures: 13.2,
-    },
-    {
-      year: 'CY18',
-      cashTaxesPaid: 5.7,
-      workingCapitalChange: -3.8,
-      capitalExpenditures: 25.1,
-    },
-    {
-      year: 'CY19',
-      cashTaxesPaid: 8.2,
-      workingCapitalChange: -6.4,
-      capitalExpenditures: 23.5,
-    },
-    {
-      year: 'CY20',
-      cashTaxesPaid: 5.0,
-      workingCapitalChange: -4.7,
-      capitalExpenditures: 22.3,
-    },
-    {
-      year: 'CY21',
-      cashTaxesPaid: 13.4,
-      workingCapitalChange: -0.7,
-      capitalExpenditures: 24.6,
-    },
-    {
-      year: 'CY22',
-      cashTaxesPaid: 18.9,
-      workingCapitalChange: -2.7,
-      capitalExpenditures: 31.5,
-    },
-    {
-      year: 'CY23',
-      cashTaxesPaid: 19.2,
-      workingCapitalChange: -2.1,
-      capitalExpenditures: 32.3,
-    },
-    {
-      year: 'CY24',
-      cashTaxesPaid: 27.4,
-      workingCapitalChange: -2.2,
-      capitalExpenditures: 52.5,
-    },
-    {
-      year: 'CY25',
-      cashTaxesPaid: 21.5,
-      workingCapitalChange: -11.1,
-      capitalExpenditures: 91.5,
-    },
-    {
-      year: 'CY26E',
-      cashTaxesPaid: null,
-      workingCapitalChange: null,
-      capitalExpenditures: 161.2,
-    },
-  ],
   thesis: [
     'Google Search dominates online advertising with a self-reinforcing data and AI moat that has resisted competitive challenges for two decades.',
     'Google Cloud crossed into sustained profitability and is compounding revenue as enterprises adopt its AI platform alongside traditional cloud infrastructure.',

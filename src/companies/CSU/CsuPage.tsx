@@ -3,7 +3,10 @@
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
 import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
-import financials from './data/financials';
+import financials, {
+  cashFlowStatementYears,
+  cashFlowStatementLines,
+} from './data/financials';
 
 const navbar = {
   brand: 'Ledger',
@@ -33,6 +36,30 @@ const priceConfig: PriceConfig = {
   referenceClose: 3318.6877,
 };
 
+const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
+
+function buildCashFlowStatementSection(): SectionData {
+  return {
+    rank: 560,
+    id: 'cashflow-statement',
+    title: 'Cash Flow',
+    kicker:
+      'The three sections of the cash flow statement plus free cash flow, in billions. Net cash flow is the net change in cash for the year.',
+    kind: 'multi',
+    years: cashFlowStatementYears,
+    mode: 'absolute',
+    series: cashFlowStatementLines.map(l => ({
+      label: l.label,
+      desc: l.desc,
+      values: l.values,
+      format: billionFormat,
+      ...(l.label === 'Net cash flow' && { bold: true }),
+    })),
+    chartNote:
+      'Investing activities are dominated by acquisition spending, which typically exceeds $1B annually. Capital expenditures are minimal relative to operating cash flow, reflecting the asset-light nature of vertical market software. Financing activities shifted from net outflows in FY21 to net inflows in FY22-FY25 as CSU drew on credit facilities to fund larger acquisitions.',
+  };
+}
+
 const FCFA2S_PER_SHARE_EST_CAD = 193.64;
 
 function buildDynamicFinancials(price: number) {
@@ -58,6 +85,7 @@ function buildDynamicFinancials(price: number) {
 }
 
 const csuSections: SectionData[] = [
+  buildCashFlowStatementSection(),
   {
     rank: 400,
     id: 'revenue',

@@ -33,25 +33,47 @@ export const expenseLines = [
   },
 ];
 
-export const cashFlowYears = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
+export const cashFlowStatementYears = [
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
 
-export const cashFlowRevenue = [8.297, 11.181, 12.497, 14.208, 15.336];
-
-export const cashFlowLines = [
+export const cashFlowStatementLines = [
   {
-    label: 'Cash operating costs',
-    desc: 'Revenue minus operating cash flow. Absorbs working capital movements, so year-to-year swings partly reflect timing of receivables and payables rather than structural cost changes.',
-    values: [4.699, 8.578, 8.787, 8.519, 9.685],
+    label: 'Net cash flow',
+    desc: 'Net change in cash, cash equivalents, and restricted cash for the year, including exchange rate effects.',
+    values: [0.387, -0.821, 0.928, 1.236, 2.383, -5.218, 0.004, 0.375, 0.079],
   },
   {
-    label: 'Cash taxes paid',
-    desc: 'Income taxes actually paid in cash during the fiscal year, which can differ materially from the GAAP tax provision due to timing, deferred taxes, and merger-related adjustments.',
-    values: [0.883, 1.555, 1.279, 1.159, 1.502],
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges (including approximately $1B of intangible amortization annually post-merger) and working capital changes.',
+    values: [2.016, 2.064, 2.776, 3.567, 3.598, 2.603, 3.71, 5.689, 5.651],
   },
   {
-    label: 'CapEx',
-    desc: 'Purchases of property, equipment, and internally developed software.',
-    values: [0.035, 0.089, 0.143, 0.124, 0.195],
+    label: 'Investing activities',
+    desc: 'Net cash provided by (used in) investing activities, including acquisitions, divestitures, and capital expenditures. FY22 includes approximately $3.6B in proceeds from the Engineering Solutions divestiture.',
+    values: [
+      -0.209, -0.513, -0.131, -0.24, -0.12, 3.628, 0.562, -0.255, -0.704,
+    ],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividend payments, and debt issuance and repayment. FY22 reflects approximately $10B in net debt repayment following the IHS Markit merger.',
+    values: [
+      -1.507, -2.288, -1.751, -2.166, -1.013, -11.326, -4.28, -4.998, -4.93,
+    ],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and capitalized software).',
+    values: [1.893, 1.951, 2.661, 3.491, 3.563, 2.514, 3.567, 5.565, 5.456],
   },
 ];
 

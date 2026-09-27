@@ -1,5 +1,46 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+export const cashFlowStatementYears = [
+  'FY16',
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
+    values: [-0.33, 1.33, 1.03, 1.23, 3.16, -2.1, -0.71, 1.87, 1.11, 0.85],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash used in operating activities. Before FY20, operating cash flow was deeply negative because cash spent on content exceeded content amortization.',
+    values: [-1.47, -1.79, -2.68, -2.89, 2.43, 0.39, 2.03, 7.27, 7.36, 10.15],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash provided by (used in) investing activities, including purchases and maturities of short-term investments and capital expenditures.',
+    values: [0.05, 0.03, -0.34, -0.39, -0.51, -1.34, -2.08, 0.54, -2.18, 1.04],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash provided by (used in) financing activities, including debt issuance and repayment and share repurchases.',
+    values: [1.09, 3.08, 4.05, 4.51, 1.24, -1.15, -0.66, -5.95, -4.07, -10.35],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property and equipment).',
+    values: [-1.58, -1.96, -2.85, -3.14, 1.93, -0.13, 1.62, 6.93, 6.92, 9.46],
+  },
+];
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   criticalMetrics: [
@@ -277,68 +318,6 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'FY16',
-      cashTaxesPaid: 0.03,
-      workingCapitalChange: 0.19,
-      capitalExpenditures: 0.11,
-    },
-    {
-      year: 'FY17',
-      cashTaxesPaid: 0.11,
-      workingCapitalChange: 0.06,
-      capitalExpenditures: 0.17,
-    },
-    {
-      year: 'FY18',
-      cashTaxesPaid: 0.13,
-      workingCapitalChange: 0.29,
-      capitalExpenditures: 0.17,
-    },
-    {
-      year: 'FY19',
-      cashTaxesPaid: 0.4,
-      workingCapitalChange: 0.04,
-      capitalExpenditures: 0.25,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 0.29,
-      workingCapitalChange: -0.03,
-      capitalExpenditures: 0.5,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 0.51,
-      workingCapitalChange: -0.24,
-      capitalExpenditures: 0.52,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 0.81,
-      workingCapitalChange: -0.76,
-      capitalExpenditures: 0.41,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 1.16,
-      workingCapitalChange: -0.12,
-      capitalExpenditures: 0.35,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 1.64,
-      workingCapitalChange: -0.03,
-      capitalExpenditures: 0.44,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 2.22,
-      workingCapitalChange: -0.46,
-      capitalExpenditures: 0.69,
-    },
-  ],
   thesis: [
     'Netflix is the dominant global streaming platform with more than 300 million paid members, and its ad-supported tier opens a second revenue layer that roughly doubles each year, so the addressable market continues to expand even as subscriber penetration matures.',
     'The content flywheel, in which higher membership funds more original production that in turn attracts and retains members, now generates substantial free cash flow, ending the long era of cash burn and funding aggressive share buybacks.',

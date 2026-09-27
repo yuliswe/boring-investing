@@ -3,7 +3,10 @@
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
 import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
-import financials from './data/financials';
+import financials, {
+  cashFlowStatementYears,
+  cashFlowStatementLines,
+} from './data/financials';
 import segments from './data/segments';
 
 const navbar = {
@@ -33,6 +36,30 @@ const priceConfig: PriceConfig = {
   currency: '$',
   referenceClose: 96.5798,
 };
+
+const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
+
+function buildCashFlowStatementSection(): SectionData {
+  return {
+    rank: 560,
+    id: 'cashflow-statement',
+    title: 'Cash Flow',
+    kicker:
+      'The three sections of the cash flow statement plus free cash flow, in billions. Net cash flow is the net change in cash for the year.',
+    kind: 'multi',
+    years: cashFlowStatementYears,
+    mode: 'absolute',
+    series: cashFlowStatementLines.map(l => ({
+      label: l.label,
+      desc: l.desc,
+      values: l.values,
+      format: billionFormat,
+      ...(l.label === 'Net cash flow' && { bold: true }),
+    })),
+    chartNote:
+      'FY19 financing includes $8.1B in IPO proceeds. Operating cash flow turned positive in FY22 as the platform reached profitability, and free cash flow has expanded rapidly since. FY25 financing outflows reflect accelerated share repurchases.',
+  };
+}
 
 const uberSections: SectionData[] = [
   {
@@ -74,6 +101,7 @@ const uberSections: SectionData[] = [
     chartNote:
       'FY20 segment total ($10.5B) is lower than reported total revenue ($11.1B) because the divested ATG and Other segments are excluded. FY22 Freight includes a full year of Transplace revenue following its Q4 2021 acquisition.',
   },
+  buildCashFlowStatementSection(),
   {
     rank: 600,
     id: 'filings',

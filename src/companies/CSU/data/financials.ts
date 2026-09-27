@@ -172,50 +172,6 @@ const financials: SoftwareFinancials = {
   },
   expensesWarning:
     'CSU reports under IFRS, which mandates amortization of acquired intangible assets (~10% of revenue) as a non-cash charge. Combined with volatile non-operating items (~8%), these two lines push the Expenses Total to ~97% of revenue. The Free Cash Flow section below strips both, so its Total (~75%) reflects the actual cash cost of running the business.',
-  cashFlow: [
-    {
-      year: 'FY19',
-      cashTaxesPaid: 0.123,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.034,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 0.167,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.03,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 0.206,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.029,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 0.175,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.041,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 0.204,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.042,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 0.244,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.067,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 0.353,
-      workingCapitalChange: 0,
-      capitalExpenditures: 0.068,
-    },
-  ],
   thesis: [
     'Serial acquisition model compounds capital at high returns across hundreds of vertical market software businesses, with annual deployment consistently exceeding $1 billion.',
     'Recurring maintenance and subscription revenue provides durable, predictable cash flows that fund continued acquisitions without requiring equity issuance.',
@@ -224,3 +180,33 @@ const financials: SoftwareFinancials = {
 };
 
 export default financials;
+
+export const cashFlowStatementYears = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash and equivalents for the year, including exchange rate effects.',
+    values: [0.005, 0.048, 0.473, 0.696, 1.109],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges (primarily amortization of acquired intangible assets) and working capital changes.',
+    values: [1.3, 1.297, 1.779, 2.196, 2.732],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, dominated by cash paid for acquisitions rather than capital expenditures. CSU typically deploys more than $1B annually on acquisitions.',
+    values: [-1.238, -1.694, -1.639, -1.567, -1.881],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash provided by (used in) financing activities, including proceeds from and repayment of credit facilities, dividends, and subsidiary equity transactions.',
+    values: [-0.041, 0.483, 0.316, 0.114, 0.156],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, plant and equipment). Capital expenditures are minimal relative to operating cash flow, as CSU is an asset-light software business.',
+    values: [1.271, 1.256, 1.737, 2.129, 2.664],
+  },
+];

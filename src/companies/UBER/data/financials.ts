@@ -1,5 +1,43 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+export const cashFlowStatementYears = [
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
+    values: [3.83, -4.24, 0.13, -0.98, 0.26, 1.87, 0.82],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by (used in) operating activities. Turned positive in FY22 as the platform reached profitability.',
+    values: [-4.32, -2.75, -0.45, 0.64, 3.59, 7.14, 10.1],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including acquisitions, purchases of investments, and capital expenditures.',
+    values: [-0.79, -2.87, -1.2, -1.64, -3.23, -3.18, -3.56],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash provided by (used in) financing activities. FY19 included $8.1B in IPO proceeds. FY25 outflows reflect accelerated share repurchases.',
+    values: [8.94, 1.38, 1.78, 0.01, -0.1, -2.09, -5.71],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property and equipment).',
+    values: [-4.91, -3.36, -0.74, 0.39, 3.36, 6.89, 9.76],
+  },
+];
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   criticalMetrics: [
@@ -158,56 +196,6 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'FY19',
-      cashTaxesPaid: 0.0,
-      workingCapitalChange: 0.5,
-      capitalExpenditures: 0.6,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 0.1,
-      workingCapitalChange: -0.7,
-      capitalExpenditures: 0.6,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 0.2,
-      workingCapitalChange: -1.7,
-      capitalExpenditures: 0.3,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 0.3,
-      workingCapitalChange: -0.3,
-      capitalExpenditures: 0.3,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 0.2,
-      workingCapitalChange: -0.2,
-      capitalExpenditures: 0.2,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 0.3,
-      workingCapitalChange: -2.4,
-      capitalExpenditures: 0.2,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 0.4,
-      workingCapitalChange: -2.2,
-      capitalExpenditures: 0.3,
-    },
-    {
-      year: 'FY26E',
-      cashTaxesPaid: null,
-      workingCapitalChange: null,
-      capitalExpenditures: null,
-    },
-  ],
   thesis: [
     'Uber is the dominant global ride-hailing and delivery platform, and the network effects of matching riders with drivers and eaters with restaurants make it difficult for competitors to gain share in established markets.',
     "The transition from operating losses to positive operating income and expanding free cash flow demonstrates the platform's natural operating leverage as revenue scales faster than costs.",

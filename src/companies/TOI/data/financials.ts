@@ -102,20 +102,39 @@ export const expenseLines = [
   },
 ];
 
-export const cashFlowLines = [
+export const cashFlowStatementYears = [
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
   {
-    label: 'Cash Operating Costs',
-    desc: 'Operating expenses on a cash basis: staff, third-party, and other operating costs, excluding depreciation and amortization.\nShown as a percentage of total revenue.',
-    values: [0.322, 0.513, 0.668, 0.808, 0.919, 1.114],
+    label: 'Net cash flow',
+    desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
+    values: [0.028, 0.02, 0.061, 0.042, 0.027, 0.121],
   },
   {
-    label: 'Cash Taxes Paid',
-    desc: 'Income taxes actually paid in cash during the period.\nShown as a percentage of total revenue.',
-    values: [0.02, 0.039, 0.046, 0.05, 0.055, 0.054],
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [0.152, 0.176, 0.203, 0.247, 0.348, 0.413],
   },
   {
-    label: 'CapEx',
-    desc: 'Capital expenditures on property and equipment.\nShown as a percentage of total revenue.',
-    values: [0.002, 0.005, 0.007, 0.008, 0.008, 0.011],
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
+    values: [-0.074, -0.213, -0.133, -0.127, -0.11, -0.67],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
+    values: [-0.05, 0.057, -0.008, -0.078, -0.212, 0.381],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures.',
+    values: [0.149, 0.172, 0.196, 0.24, 0.34, 0.403],
   },
 ];

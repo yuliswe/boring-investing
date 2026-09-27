@@ -1,5 +1,50 @@
 import type { RetailFinancials } from '@/templates/RetailTemplate';
 
+export const cashFlowStatementYears = [
+  'FY16',
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
+    values: [0.21, 0.22, -0.09, 0.21, 0.03, 0.12, -0.07, 1.09, -0.18, -0.27],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [0.39, 0.49, 0.74, 0.67, 0.8, 1.39, 0.97, 2.3, 2.27, 1.6],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, primarily capital expenditures for new and renovated stores and technology infrastructure.',
+    values: [
+      -0.15, -0.17, -0.24, -0.28, -0.7, -0.43, -0.57, -0.65, -0.8, -0.66,
+    ],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases and lease payments. FY24–FY25 outflows reflect accelerated buyback programmes.',
+    values: [
+      -0.03, -0.1, -0.59, -0.18, -0.08, -0.84, -0.47, -0.55, -1.65, -1.21,
+    ],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and leasehold improvements).',
+    values: [0.24, 0.33, 0.52, 0.39, 0.57, 0.99, 0.33, 1.64, 1.58, 0.92],
+  },
+];
+
 const financials: RetailFinancials = {
   guidanceYears: ['FY26E'],
   operationalMetrics: [
@@ -222,74 +267,6 @@ const financials: RetailFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'FY16',
-      cashTaxesPaid: 0.13,
-      workingCapitalChange: null,
-      capitalExpenditures: 0.15,
-    },
-    {
-      year: 'FY17',
-      cashTaxesPaid: 0.14,
-      workingCapitalChange: null,
-      capitalExpenditures: 0.16,
-    },
-    {
-      year: 'FY18',
-      cashTaxesPaid: 0.18,
-      workingCapitalChange: null,
-      capitalExpenditures: 0.23,
-    },
-    {
-      year: 'FY19',
-      cashTaxesPaid: 0.31,
-      workingCapitalChange: null,
-      capitalExpenditures: 0.28,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 0.26,
-      workingCapitalChange: null,
-      capitalExpenditures: 0.23,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 0.25,
-      workingCapitalChange: 0.13,
-      capitalExpenditures: 0.39,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 0.5,
-      workingCapitalChange: -0.66,
-      capitalExpenditures: 0.64,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 0.82,
-      workingCapitalChange: 0.2,
-      capitalExpenditures: 0.65,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 0.58,
-      workingCapitalChange: -0.05,
-      capitalExpenditures: 0.69,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 1.02,
-      workingCapitalChange: -0.41,
-      capitalExpenditures: 0.68,
-    },
-    {
-      year: 'FY26E',
-      cashTaxesPaid: null,
-      workingCapitalChange: null,
-      capitalExpenditures: null,
-    },
-  ],
   thesis: [
     "Lululemon's brand strength in technical athletic apparel commands premium pricing and sustains gross margins above 55%, which is well above the specialty retail average.",
     'International expansion, particularly in China and Europe, provides a long runway for store growth beyond the mature North American market.',

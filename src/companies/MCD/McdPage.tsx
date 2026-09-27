@@ -7,7 +7,8 @@ import financials, {
   expenseYears,
   revenueByYear,
   expenseLines,
-  cashFlowLines,
+  cashFlowStatementYears,
+  cashFlowStatementLines,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -90,42 +91,27 @@ function buildExpensesSection(): SectionData {
   };
 }
 
-function buildFCFSection(): SectionData {
-  const linePcts = cashFlowLines.map(l => toShareOfRevenue(l.values));
-  const totalPct = linePcts[0].map((_, i) => {
-    const vals = linePcts.map(lp => lp[i]);
-    return vals.every(v => v !== null)
-      ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
-      : null;
-  });
+const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
+
+function buildCashFlowStatementSection(): SectionData {
   return {
-    rank: 550,
-    id: 'cashflow',
-    title: 'Free Cash Flow',
+    rank: 560,
+    id: 'cashflow-statement',
+    title: 'Cash Flow',
     kicker:
-      'The same costs on a cash basis: D&A and stock comp drop out, replaced by the actual cash movements — working capital swings, real CapEx, and cash taxes paid. Everything as a share of revenue.',
+      'The three sections of the cash flow statement plus free cash flow, in billions. Net cash flow is the net change in cash for the year.',
     kind: 'multi',
-    years: expenseYears,
-    mode: 'share',
-    invert: true,
-    baseLabel: '0%',
-    series: [
-      {
-        label: 'Total',
-        desc: 'Sum of all cash-flow lines below.\nShown as a percentage of total revenue.',
-        values: totalPct,
-        format: pctFormat,
-        total: true,
-      },
-      ...cashFlowLines.map((l, li) => ({
-        label: l.label,
-        desc: l.desc,
-        values: linePcts[li],
-        format: pctFormat,
-      })),
-    ],
+    years: cashFlowStatementYears,
+    mode: 'absolute',
+    series: cashFlowStatementLines.map(l => ({
+      label: l.label,
+      desc: l.desc,
+      values: l.values,
+      format: billionFormat,
+      ...(l.label === 'Net cash flow' && { bold: true }),
+    })),
     chartNote:
-      'All lines as a share of revenue. Δ Working capital: positive means cash was freed, negative means cash was consumed. SBC excluded as non-cash.',
+      'FY17 investing activities were positive because net proceeds from restaurant sales during the refranchising program exceeded capital expenditures. FY20 operating cash flow declined due to the COVID-19 pandemic. FY24 investing activities jumped to $5.3B as acquisition spending increased alongside higher capital expenditures.',
   };
 }
 
@@ -133,7 +119,7 @@ const revenueYears = financials.revenue.map(r => r.year);
 
 const mcdSections: SectionData[] = [
   buildExpensesSection(),
-  buildFCFSection(),
+  buildCashFlowStatementSection(),
   {
     rank: 400,
     id: 'revenue',

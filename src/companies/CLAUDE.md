@@ -68,38 +68,49 @@ costs that other companies expense — so the page must follow whatever
 structure the company uses rather than forcing data into a fixed set of
 categories.
 
-## Free Cash Flow section
+## Cash Flow section
 
-Every company page must include a Free Cash Flow section (rank 550). Build
-it the same way as the Expenses section (`kind: 'multi'`, `mode: 'share'`,
-raw amounts in billions converted to percentages of revenue).
+Every company page must include a Cash Flow section (rank 560). Build it as
+a custom `extraSections` entry using `kind: 'multi'` with `mode: 'absolute'`.
+All values are in billions, formatted with `{ prefix: '$', suffix: 'B',
+decimals: 2 }` (adjust the currency prefix for non-USD companies).
 
-Each cash-flow line on the page must correspond to a line the company
-actually reports in its filing, using the same label. Do not invent derived
-labels like "Cash operating costs" — if the filing does not report that
-number, the page should not show it. The section should use the same
-structure as the Expenses section: operating expense lines adjusted to a
-cash basis (by removing their share of non-cash charges like D&A and SBC),
-cash taxes paid (from the supplemental disclosure), working capital changes,
-and capital expenditures.
+The section must contain these five lines, mirroring the structure of the
+cash flow statement as filed:
+
+1. **Net cash flow** — the net change in cash for the year, equal to the sum
+   of operating, investing, and financing activities. Mark this series with
+   `bold: true` so it draws with a thicker stroke.
+2. **Operating activities** — net cash provided by operating activities.
+3. **Investing activities** — net cash used in investing activities (typically
+   negative).
+4. **Financing activities** — net cash used in financing activities (typically
+   negative for mature companies returning capital).
+5. **Free cash flow** — operating activities minus capital expenditures.
+
+Do not include forward-year estimates in this section, because consensus
+estimates for the individual cash flow statement lines are rarely available.
+Use only completed fiscal years.
+
+See `src/companies/MA/` for the reference implementation.
 
 ## Building these sections
 
 Omit `expenses` and `cashFlow` from the financials object so the template
 does not generate its own sections at those ranks. Define data in
-`financials.ts` as named exports (`expenseLines`, `cashFlowLines`,
-`expenseYears`, `revenueByYear`), and build `SectionData` objects in the
-page component with `buildExpensesSection()` and `buildFCFSection()` helper
-functions. See `src/companies/TRI/` for the reference implementation.
+`financials.ts` as named exports (`expenseLines`, `expenseYears`,
+`revenueByYear` for expenses; `cashFlowStatementYears` and
+`cashFlowStatementLines` for cash flow), and build `SectionData` objects in
+the page component with `buildExpensesSection()` and
+`buildCashFlowStatementSection()` helper functions. See
+`src/companies/MA/` for the reference implementation.
 
-**Deprecated: template-generated sections.** Some older company pages (MSFT,
-ADBE, CSU, NFLX, LULU) pass `expenses` and `cashFlow` arrays in
-`SoftwareFinancials`, and the template builds sections from fixed columns
-(cost of revenue, SG&A, R&D, D&A, etc.). This approach is deprecated because
-it forces every company into the same categories regardless of what they
-actually report, which misrepresents the data and breaks the FCF computation
-when a company's reporting does not fit. These pages will be migrated to
-custom sections over time.
+**Deprecated: template-generated sections.** Some older company pages pass
+`expenses` and `cashFlow` arrays in `SoftwareFinancials`, and the template
+builds sections from fixed columns (cost of revenue, SG&A, R&D, D&A, etc.).
+This approach is deprecated because it forces every company into the same
+categories regardless of what they actually report. These pages should be
+migrated to custom sections.
 
 ## Data types
 

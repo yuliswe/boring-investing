@@ -1,5 +1,58 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+export const cashFlowStatementYears = [
+  'FY16',
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash and cash equivalents for the fiscal year.',
+    values: [
+      0.135, 1.295, -0.663, 1.007, 1.828, -0.634, 0.392, 2.905, 0.472, -2.182,
+    ],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [
+      2.2, 2.913, 4.029, 4.422, 5.727, 7.23, 7.838, 7.302, 8.056, 10.031,
+    ],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and purchases and maturities of investments.',
+    values: [
+      -0.96, -0.443, -4.685, -0.456, -0.414, -3.537, -0.57, 0.776, 0.149,
+      -1.187,
+    ],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
+    values: [
+      -1.091, -1.184, -0.006, -2.946, -3.488, -4.301, -6.825, -5.182, -7.724,
+      -11.06,
+    ],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and capitalized internal-use software).',
+    values: [
+      1.996, 2.735, 3.762, 4.028, 5.308, 6.882, 7.396, 6.942, 7.873, 9.852,
+    ],
+  },
+];
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   criticalMetrics: [
@@ -254,68 +307,6 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'FY16',
-      cashTaxesPaid: 0.2,
-      workingCapitalChange: 0.4,
-      capitalExpenditures: 0.2,
-    },
-    {
-      year: 'FY17',
-      cashTaxesPaid: 0.4,
-      workingCapitalChange: 0.4,
-      capitalExpenditures: 0.2,
-    },
-    {
-      year: 'FY18',
-      cashTaxesPaid: 0.2,
-      workingCapitalChange: 0.5,
-      capitalExpenditures: 0.3,
-    },
-    {
-      year: 'FY19',
-      cashTaxesPaid: 0.4,
-      workingCapitalChange: 0.0,
-      capitalExpenditures: 0.4,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 0.5,
-      workingCapitalChange: 0.3,
-      capitalExpenditures: 0.4,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 0.8,
-      workingCapitalChange: 0.3,
-      capitalExpenditures: 0.3,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 0.8,
-      workingCapitalChange: 0.3,
-      capitalExpenditures: 0.4,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 1.9,
-      workingCapitalChange: -0.3,
-      capitalExpenditures: 0.4,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 1.7,
-      workingCapitalChange: 0.1,
-      capitalExpenditures: 0.2,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 2.2,
-      workingCapitalChange: 0.7,
-      capitalExpenditures: 0.2,
-    },
-  ],
   thesis: [
     'Creative Cloud dominates creative-professional tooling with minimal substitution risk, and the AI-native features in Firefly and Acrobat broaden the addressable market into non-specialist users.',
     'The subscription model, now fully converted from perpetual licences, produces highly predictable revenue with low churn and expanding average revenue per user.',

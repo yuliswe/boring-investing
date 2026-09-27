@@ -206,25 +206,32 @@ export const expenseLines = [
   },
 ];
 
-export const cashFlowLines = [
+export const cashFlowStatementYears = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
+
+export const cashFlowStatementLines = [
   {
-    label: 'Cash Operating Costs',
-    desc: 'Operating expenses on a cash basis: reported operating expenses minus depreciation and stock-based compensation.\nShown as a percentage of total revenue.',
-    values: [3.041, 3.464, 3.64, 3.143, 3.524, 3.471, 3.326, 3.562, 3.537],
+    label: 'Net cash flow',
+    desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
+    values: [-1.009, 0.291, 0.229, 0.67, -1.457],
   },
   {
-    label: 'Cash Taxes Paid',
-    desc: 'Income taxes actually paid in cash during the period, which may differ from the accrual-basis tax provision.\nShown as a percentage of total revenue.',
-    values: [0.057, 0.27, 0.268, 0.052, 1.916, 0.2, 0.868, 0.551, 0.337],
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [1.773, 1.915, 2.341, 2.457, 2.651],
   },
   {
-    label: 'Δ Working Capital',
-    desc: 'Change in net working capital. Positive means cash was freed; negative means cash was consumed as receivables or inventory grew faster than payables.\nShown as a percentage of total revenue.',
-    values: [null, 0.134, -0.247, 0.102, 0.832, 0.008, 0.457, 0.176, 0.043],
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
+    values: [-0.504, -0.462, 3.513, 0.68, -1.284],
   },
   {
-    label: 'CapEx',
-    desc: 'Capital expenditures, including purchases of computer hardware and capitalized internally developed software.\nShown as a percentage of total revenue.',
-    values: [0.519, 0.576, 0.505, 0.504, 0.487, 0.595, 0.544, 0.607, 0.634],
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
+    values: [-2.273, -1.156, -5.626, -2.459, -2.828],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures.',
+    values: [1.286, 1.32, 1.797, 1.85, 2.017],
   },
 ];
