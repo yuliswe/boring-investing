@@ -241,7 +241,7 @@ function computeMulti(
       ...(totalSeries?.format ?? series[0].format),
       decimals: 0,
     };
-    const step = niceStep(max);
+    const step = niceStep(hi - lo);
     const start = lo < 0 ? Math.ceil(lo / step) * step : step;
     for (let t = start; t <= hi; t += step) {
       if (t === 0) continue;
