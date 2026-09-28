@@ -61,7 +61,7 @@ function buildExpensesSection(): SectionData {
   return {
     rank: 500,
     id: 'expenses',
-    title: 'Expenses',
+    title: 'Cost Analysis',
     kicker:
       'Each line of the income statement as a share of revenue, using the categories Thomson Reuters reports in its filings.',
     kind: 'multi',
@@ -120,7 +120,7 @@ const triSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by segment in billions, with year-on-year growth rates. The current segment structure dates from FY19 after the Refinitiv divestiture.',
     kind: 'multi',

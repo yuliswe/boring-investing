@@ -64,7 +64,7 @@ const googSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by segment in billions, with year-on-year growth rates. Google Cloud was first broken out in CY19 with figures restated to CY17; CY16 values are estimates.',
     kind: 'multi',

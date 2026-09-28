@@ -66,6 +66,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'PEP',
+    name: 'PepsiCo, Inc.',
+    sector: 'Consumer Staples',
+    summary:
+      'Global food and beverage company with complementary snack and drink portfolios spanning Frito-Lay, Quaker, and Pepsi brands across six operating segments.',
+    template: 'retail',
+  },
+  {
     symbol: 'NVDA',
     name: 'NVIDIA Corporation',
     sector: 'Semiconductors',

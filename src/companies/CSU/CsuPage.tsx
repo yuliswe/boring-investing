@@ -88,7 +88,7 @@ const csuSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by type in billions of US dollars, with year-on-year growth rates. Constellation reports revenue by nature rather than by operating group.',
     kind: 'multi',

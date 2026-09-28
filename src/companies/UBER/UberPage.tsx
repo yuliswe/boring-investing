@@ -64,7 +64,7 @@ const uberSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by segment in billions, with year-on-year growth rates. FY20 totals exclude revenue from the ATG segment, which was divested in early 2021.',
     kind: 'multi',
