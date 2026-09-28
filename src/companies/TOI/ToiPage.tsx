@@ -7,7 +7,8 @@ import financials, {
   expenseYears,
   revenueByYear,
   expenseLines,
-  cashFlowLines,
+  cashFlowStatementYears,
+  cashFlowStatementLines,
 } from './data/financials';
 
 const SHARES_M = 83.5;
@@ -93,48 +94,33 @@ function buildExpensesSection(): SectionData {
   };
 }
 
-function buildFCFSection(): SectionData {
-  const linePcts = cashFlowLines.map(l => toShareOfRevenue(l.values));
-  const totalPct = linePcts[0].map((_, i) => {
-    const vals = linePcts.map(lp => lp[i]);
-    return vals.every(v => v !== null)
-      ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
-      : null;
-  });
+const billionFormat = { prefix: '€', suffix: 'B', decimals: 2 };
+
+function buildCashFlowStatementSection(): SectionData {
   return {
-    rank: 550,
-    id: 'cashflow',
-    title: 'Free Cash Flow',
+    rank: 560,
+    id: 'cashflow-statement',
+    title: 'Cash Flow',
     kicker:
-      'The same costs on a cash basis: depreciation and amortization drop out, replaced by the actual cash movements — cash taxes paid and real capital expenditures. Everything as a share of revenue.',
+      'The three sections of the cash flow statement plus free cash flow, in billions of euros. Net cash flow is the net change in cash for the year.',
     kind: 'multi',
-    years: expenseYears,
-    mode: 'share',
-    invert: true,
-    baseLabel: '0%',
-    series: [
-      {
-        label: 'Total',
-        desc: 'Sum of all cash-flow lines below.\nShown as a percentage of total revenue.',
-        values: totalPct,
-        format: pctFormat,
-        total: true,
-      },
-      ...cashFlowLines.map((l, li) => ({
-        label: l.label,
-        desc: l.desc,
-        values: linePcts[li],
-        format: pctFormat,
-      })),
-    ],
+    years: cashFlowStatementYears,
+    mode: 'absolute',
+    series: cashFlowStatementLines.map(l => ({
+      label: l.label,
+      desc: l.desc,
+      values: l.values,
+      format: billionFormat,
+      ...(l.label === 'Net cash flow' && { bold: true }),
+    })),
     chartNote:
-      'All lines as a share of revenue. Cash operating costs = staff + third-party + other operating, excluding D&A. The residual after subtracting the total from 100% is the pre-acquisition free cash flow margin.',
+      'FY25 investing cash flow of -€0.67B reflects the €385M Asseco Poland acquisition. FY25 financing was positive as Topicus raised capital to fund the deal. Capital expenditures are minimal because the business is almost entirely software with no heavy infrastructure.',
   };
 }
 
 const toiSections: SectionData[] = [
   buildExpensesSection(),
-  buildFCFSection(),
+  buildCashFlowStatementSection(),
   {
     rank: 400,
     id: 'revenue',

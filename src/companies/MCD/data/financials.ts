@@ -233,41 +233,46 @@ export const expenseLines = [
   },
 ];
 
-export const cashFlowLines = [
+export const cashFlowStatementYears = [
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+];
+
+export const cashFlowStatementLines = [
   {
-    label: 'Cash Operating Costs',
-    desc: 'Operating expenses on a cash basis: total operating costs minus depreciation and stock-based compensation.\nShown as a percentage of total revenue.',
+    label: 'Net cash flow',
+    desc: 'Net change in cash and equivalents for the year, including the effect of exchange rate changes on cash held in foreign currencies.',
+    values: [1.066, -1.598, 0.033, 2.551, 1.26, -2.126, 1.996, -3.494, -0.311],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [5.551, 6.967, 8.122, 6.265, 9.142, 7.387, 9.612, 9.447, 10.551],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash provided by (used in) investing activities, primarily capital expenditures for new restaurants and existing restaurant improvements, partially offset by proceeds from restaurant sales.',
     values: [
-      15.228, 11.789, 10.603, 10.277, 10.044, 10.853, 11.773, 11.687, 11.94,
-      12.136,
+      0.562, -2.455, -3.071, -1.546, -2.166, -2.678, -3.185, -5.346, -3.822,
     ],
   },
   {
-    label: 'Cash Taxes Paid',
-    desc: 'Income taxes actually paid in cash during the period.\nShown as a percentage of total revenue.',
-    values: [2.388, 2.786, 1.734, 2.0, 1.5, 2.404, 3.024, 3.0, 3.0, 2.688],
-  },
-  {
-    label: 'Δ Working Capital',
-    desc: 'Change in net working capital. Positive means cash was freed; negative means cash was consumed.\nShown as a percentage of total revenue.',
+    label: 'Financing activities',
+    desc: 'Net cash used in financing activities, including share repurchases, dividend payments, and net debt issuance and repayment.',
     values: [
-      null,
-      null,
-      null,
-      null,
-      null,
-      0.454,
-      -0.645,
-      -0.108,
-      -0.438,
-      0.106,
+      -5.311, -5.95, -4.995, -2.249, -5.596, -6.58, -4.374, -7.495, -7.125,
     ],
   },
   {
-    label: 'CapEx',
-    desc: 'Capital expenditures for new restaurants, existing restaurant improvements, and corporate facilities.\nShown as a percentage of total revenue.',
-    values: [
-      1.821, 1.854, 2.742, 2.394, 1.64, 2.04, 1.899, 2.357, 2.775, 3.365,
-    ],
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and restaurant construction).',
+    values: [3.697, 4.225, 5.728, 4.624, 7.102, 5.488, 7.255, 6.672, 7.186],
   },
 ];

@@ -7,9 +7,8 @@ import financials, {
   expenseYears,
   revenueByYear,
   expenseLines,
-  cashFlowYears,
-  cashFlowRevenue,
-  cashFlowLines,
+  cashFlowStatementYears,
+  cashFlowStatementLines,
 } from './data/financials';
 
 const navbar = {
@@ -129,52 +128,27 @@ function buildExpensesSection(): SectionData {
   };
 }
 
-function toCashFlowShareOfRevenue(
-  values: (number | null)[]
-): (number | null)[] {
-  return values.map((v, i) =>
-    v !== null && cashFlowRevenue[i]
-      ? +((v / cashFlowRevenue[i]) * 100).toFixed(1)
-      : null
-  );
-}
+const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
 
-function buildFCFSection(): SectionData {
-  const linePcts = cashFlowLines.map(l => toCashFlowShareOfRevenue(l.values));
-  const totalPct = linePcts[0].map((_, i) => {
-    const vals = linePcts.map(lp => lp[i]);
-    return vals.every(v => v !== null)
-      ? +vals.reduce((sum, v) => sum + (v as number), 0).toFixed(1)
-      : null;
-  });
+function buildCashFlowStatementSection(): SectionData {
   return {
-    rank: 550,
-    id: 'cashflow',
-    title: 'Free Cash Flow',
+    rank: 560,
+    id: 'cashflow-statement',
+    title: 'Cash Flow',
     kicker:
-      'The same costs on a cash basis: D&A and stock compensation drop out, replaced by the actual cash movements. Everything as a share of revenue.',
+      'The three sections of the cash flow statement plus free cash flow, in billions. Net cash flow is the net change in cash for the year.',
     kind: 'multi',
-    years: cashFlowYears,
-    mode: 'share',
-    invert: true,
-    baseLabel: '0%',
-    series: [
-      {
-        label: 'Total',
-        desc: 'Sum of all cash-flow lines below.\nShown as a percentage of total revenue.',
-        values: totalPct,
-        format: pctFormat,
-        total: true,
-      },
-      ...cashFlowLines.map((l, li) => ({
-        label: l.label,
-        desc: l.desc,
-        values: linePcts[li],
-        format: pctFormat,
-      })),
-    ],
+    years: cashFlowStatementYears,
+    mode: 'absolute',
+    series: cashFlowStatementLines.map(l => ({
+      label: l.label,
+      desc: l.desc,
+      values: l.values,
+      format: billionFormat,
+      ...(l.label === 'Net cash flow' && { bold: true }),
+    })),
     chartNote:
-      'FY21-FY25 only. Cash operating costs absorb working capital movements because SPGI does not separately disclose the components in its earnings releases. FY22 cash operating costs spiked to 76.7% of revenue as merger integration consumed cash and one-time transaction costs were paid.',
+      'FY22 was heavily affected by the IHS Markit merger (closed February 2022). Financing activities of -$11.3B reflect accelerated debt repayment and share buybacks. Investing activities of +$3.6B include proceeds from the Engineering Solutions divestiture. FY22 operating cash flow declined as merger integration costs consumed cash.',
   };
 }
 
@@ -211,7 +185,7 @@ const spgiSections: SectionData[] = [
       'Revenue jumped 34.7% in FY22 from the IHS Markit merger (closed February 2022), but operating income initially fell as approximately $900M in new intangible amortization and merger integration costs more than offset the added revenue. Operating margins have recovered from 27.0% in FY22 toward the pre-merger level of approximately 50% as integration costs wind down. FY26E is derived from SPGI guidance.',
   },
   buildExpensesSection(),
-  buildFCFSection(),
+  buildCashFlowStatementSection(),
   {
     rank: 400,
     id: 'revenue',

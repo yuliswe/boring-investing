@@ -1,5 +1,60 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
+export const cashFlowStatementYears = [
+  'FY17',
+  'FY18',
+  'FY19',
+  'FY20',
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+  'FY26',
+];
+
+export const cashFlowStatementLines = [
+  {
+    label: 'Net cash flow',
+    desc: 'Net change in cash and cash equivalents for the fiscal year.',
+    values: [
+      1.153, 4.283, -0.59, 2.22, 0.648, -0.293, 20.773, -16.389, 11.927, -9.307,
+    ],
+  },
+  {
+    label: 'Operating activities',
+    desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
+    values: [
+      39.507, 43.884, 52.185, 60.675, 76.74, 89.035, 87.582, 118.548, 136.162,
+      182.935,
+    ],
+  },
+  {
+    label: 'Investing activities',
+    desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and purchases and maturities of investments.',
+    values: [
+      -46.781, -6.061, -15.773, -12.223, -27.577, -30.311, -22.68, -96.97,
+      -72.599, -139.5,
+    ],
+  },
+  {
+    label: 'Financing activities',
+    desc: 'Net cash provided by or used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
+    values: [
+      8.408, -33.59, -36.887, -46.031, -48.486, -58.876, -43.935, -37.757,
+      -51.699, -52.546,
+    ],
+  },
+  {
+    label: 'Free cash flow',
+    desc: 'Operating cash flow minus capital expenditures (property and equipment, including finance leases).',
+    values: [
+      31.378, 32.252, 38.26, 45.234, 56.118, 65.149, 59.475, 74.071, 71.611,
+      66.987,
+    ],
+  },
+];
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   criticalMetrics: [
@@ -258,74 +313,6 @@ const financials: SoftwareFinancials = {
     },
   ],
   expensesDeducedLines: ['Total'],
-  cashFlow: [
-    {
-      year: 'FY17',
-      cashTaxesPaid: 2.4,
-      workingCapitalChange: 3.1,
-      capitalExpenditures: 8.1,
-    },
-    {
-      year: 'FY18',
-      cashTaxesPaid: 5.5,
-      workingCapitalChange: 2.3,
-      capitalExpenditures: 11.6,
-    },
-    {
-      year: 'FY19',
-      cashTaxesPaid: 8.4,
-      workingCapitalChange: 0.9,
-      capitalExpenditures: 13.9,
-    },
-    {
-      year: 'FY20',
-      cashTaxesPaid: 12.5,
-      workingCapitalChange: 2.1,
-      capitalExpenditures: 15.4,
-    },
-    {
-      year: 'FY21',
-      cashTaxesPaid: 13.4,
-      workingCapitalChange: 1.4,
-      capitalExpenditures: 20.6,
-    },
-    {
-      year: 'FY22',
-      cashTaxesPaid: 16.0,
-      workingCapitalChange: -0.2,
-      capitalExpenditures: 23.9,
-    },
-    {
-      year: 'FY23',
-      cashTaxesPaid: 23.1,
-      workingCapitalChange: -2.0,
-      capitalExpenditures: 28.1,
-    },
-    {
-      year: 'FY24',
-      cashTaxesPaid: 23.4,
-      workingCapitalChange: 0.1,
-      capitalExpenditures: 44.5,
-    },
-    {
-      year: 'FY25',
-      cashTaxesPaid: 28.7,
-      workingCapitalChange: -5.3,
-      capitalExpenditures: 64.6,
-    },
-    {
-      year: 'FY26',
-      cashTaxesPaid: 21.2,
-      workingCapitalChange: -3.0,
-      capitalExpenditures: 115.9,
-    },
-    {
-      year: 'FY27E',
-      cashTaxesPaid: null,
-      workingCapitalChange: null,
-      capitalExpenditures: 175,
-    },
-  ],
   thesis: [
     'Azure keeps compounding as enterprises migrate workloads to the cloud, and it now anchors the fastest-growing segment.',
     'Microsoft 365 and the Copilot add-ons turn a large installed base into expanding per-seat revenue.',
