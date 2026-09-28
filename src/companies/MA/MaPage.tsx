@@ -98,7 +98,7 @@ function buildExpensesSection(): SectionData {
   return {
     rank: 500,
     id: 'expenses',
-    title: 'Expenses',
+    title: 'Cost Analysis',
     kicker:
       'Every line of the income statement from revenue to net income, expressed as a share of net revenue. Includes operating expenses, non-operating items, and income taxes.',
     kind: 'multi',
@@ -154,7 +154,7 @@ const maSections: SectionData[] = [
   {
     rank: 350,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Net revenue split between the core Payment Network and Value-Added Services and Solutions, in billions. Net revenue is gross revenue minus rebates and incentives paid to financial institutions and merchants.',
     kind: 'multi',

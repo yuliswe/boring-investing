@@ -63,7 +63,7 @@ const luluSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Total net revenue in billions with year-on-year growth rates. Revenue is predominantly direct-to-consumer through company-operated stores and e-commerce.',
     kind: 'multi',

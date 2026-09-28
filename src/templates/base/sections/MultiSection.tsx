@@ -97,17 +97,24 @@ function computeMulti(
     const inv = !!(s.invert ?? invertAll);
 
     const lastNonNull = [...s.values].reverse().find(v => v !== null) ?? null;
-    const firstVal = s.values[0];
     const lastIdx = s.values.lastIndexOf(lastNonNull as number);
+    const prevVal =
+      lastIdx > 0
+        ? (s.values
+            .slice(0, lastIdx)
+            .reverse()
+            .find(v => v !== null) ?? null)
+        : null;
     const last =
-      lastNonNull !== null && firstVal !== null
+      lastNonNull !== null && prevVal !== null
         ? share
-          ? lastNonNull - firstVal
+          ? lastNonNull - prevVal
           : abs
-            ? firstVal
-              ? (lastNonNull / firstVal - 1) * 100
+            ? prevVal
+              ? (lastNonNull / prevVal - 1) * 100
               : 0
-            : (idx[si][lastIdx] as number) - 100
+            : (idx[si][lastIdx] as number) -
+              (idx[si][s.values.lastIndexOf(prevVal)] as number)
         : 0;
 
     const dots: ComputedDot[] = hs.map((h, i) => {

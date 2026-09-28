@@ -68,7 +68,7 @@ const nflxSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by geographic region in billions, with year-on-year growth rates.',
     kind: 'multi',

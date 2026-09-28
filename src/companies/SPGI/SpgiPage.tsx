@@ -98,7 +98,7 @@ function buildExpensesSection(): SectionData {
   return {
     rank: 500,
     id: 'expenses',
-    title: 'Expenses',
+    title: 'Cost Analysis',
     kicker:
       'Total expenses as a share of revenue, split into core operating costs and non-cash depreciation and amortization. SPGI reports a single combined expenses line in its earnings releases.',
     kind: 'multi',

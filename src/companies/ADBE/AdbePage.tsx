@@ -132,7 +132,7 @@ const adbeSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by segment in billions, with year-on-year growth rates. Digital Experience was called Digital Marketing through FY17.',
     kind: 'multi',

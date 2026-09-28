@@ -64,7 +64,7 @@ function buildExpensesSection(): SectionData {
   return {
     rank: 500,
     id: 'expenses',
-    title: 'Expenses',
+    title: 'Cost Analysis',
     kicker:
       'Each line of the income statement as a share of revenue, using the categories Topicus reports in its filings.',
     kind: 'multi',
@@ -123,7 +123,7 @@ const toiSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by type in billions of euros, with year-on-year growth rates. Topicus reports revenue by nature rather than by operating group.',
     kind: 'multi',

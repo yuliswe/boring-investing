@@ -61,7 +61,7 @@ function buildExpensesSection(): SectionData {
   return {
     rank: 500,
     id: 'expenses',
-    title: 'Expenses',
+    title: 'Cost Analysis',
     kicker:
       'Each line of the income statement as a share of revenue, using the categories NVIDIA reports in its filings.',
     kind: 'multi',
@@ -122,7 +122,7 @@ const nvdaSections: SectionData[] = [
   {
     rank: 400,
     id: 'revenue',
-    title: 'Revenue',
+    title: 'Revenue Streams',
     kicker:
       'Revenue by market platform in billions. Data Center has grown from 12% of revenue in FY17 to 90% in FY26, driven by AI accelerator demand.',
     kind: 'multi',

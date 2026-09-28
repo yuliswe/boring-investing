@@ -304,7 +304,7 @@ function buildExpensesSection(
   return {
     rank: 500,
     id: 'expenses',
-    title: 'Expenses',
+    title: 'Cost Analysis',
     kicker:
       'Each line of the income statement as a share of revenue. A falling line means the cost is being outgrown.',
     kind: 'multi',
