@@ -258,14 +258,16 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Funds from operations',
-    desc: 'Net income adjusted for non-cash items (depreciation, amortization, deferred taxes, share-based compensation, and gains/losses on sales). This is operating cash flow before working capital changes.',
-    values: [5.81, 6.48, 8.01, 6.4, 9.24, 7.51, 8.46, 9.75, 10.77],
+    desc: 'Net income plus depreciation, amortization, and stock-based compensation (SEC EDGAR XBRL).',
+    values: [6.673, 7.531, 7.753, 6.574, 9.553, 8.215, 10.622, 10.492, 10.927],
     indent: 1,
   },
   {
     label: 'Changes in working capital',
-    desc: 'Net cash impact of changes in operating assets and liabilities: accounts payable, accrued liabilities, receivables, income taxes payable, and operating lease liabilities.',
-    values: [-0.26, 0.49, 0.12, -0.13, -0.1, -0.12, 1.15, -0.31, -0.22],
+    desc: 'Operating cash flow minus funds from operations, capturing deferred taxes, non-cash gains and losses on restaurant dispositions, and changes in operating assets and liabilities.',
+    values: [
+      -1.122, -0.564, 0.369, -0.309, -0.411, -0.828, -1.01, -1.045, -0.376,
+    ],
     indent: 1,
   },
   {
@@ -277,26 +279,30 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Purchase/Sale of business',
-    desc: "Net cash from restaurant business acquisitions and divestitures, including purchases and sales of restaurant businesses and equity method investments. FY17 includes proceeds from the sale of the majority interest in McDonald's China and Hong Kong operations.",
-    values: [0.9, 0.43, -0.2, 0.01, -0.18, -0.44, -0.25, -2.35, -0.01],
+    desc: 'Net cash from restaurant business acquisitions, divestitures, and property sales, computed as the investing residual so that all four sub-lines sum exactly to the parent. FY17 and FY18 were peak refranchising years when McDonald’s sold thousands of company-operated restaurants to franchisees.',
+    values: [2.662, 0.59, -0.048, 0.038, -0.072, -0.322, -0.152, -0.236, 0.122],
     indent: 1,
   },
   {
     label: 'Purchase/Sale of investments',
-    desc: "Net cash from purchases and sales of financial investments. McDonald's does not hold material financial investment portfolios, so this line is typically near zero.",
-    values: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    desc: 'Net cash used for equity method investments. FY24 reflects the approximately $1.8B investment in the Carlyle-led consortium that acquired a stake in McDonald’s China and Hong Kong operations.',
+    values: [0, 0, 0, 0, 0, 0, 0, -1.837, 0],
     indent: 1,
   },
   {
     label: 'Capital expenditures',
-    desc: 'Cash spent on property, equipment, and restaurant construction, including new restaurant openings, existing restaurant reimaging, and technology investments.',
-    values: [-1.85, -2.74, -2.39, -1.64, -2.04, -1.9, -2.36, -2.77, -3.37],
+    desc: 'Cash spent on property, equipment, and restaurant construction (SEC EDGAR: PaymentsToAcquirePropertyPlantAndEquipment).',
+    values: [
+      -1.854, -2.742, -2.394, -1.641, -2.04, -1.899, -2.357, -2.775, -3.365,
+    ],
     indent: 1,
   },
   {
-    label: 'Other investing cash flow items',
-    desc: 'Residual investing activities including proceeds from property and equipment sales, restaurant franchise rights, and other miscellaneous investing items. FY17 is elevated by the China/HK divestiture proceeds.',
-    values: [1.52, -0.14, -0.48, 0.09, 0.05, -0.34, -0.58, -0.23, -0.45],
+    label: 'Other investing items',
+    desc: 'Other investing activities including technology investments, lease-related payments, and miscellaneous items (SEC EDGAR: PaymentsForProceedsFromOtherInvestingActivities).',
+    values: [
+      -0.246, -0.303, -0.629, 0.057, -0.054, -0.457, -0.676, -0.498, -0.579,
+    ],
     indent: 1,
   },
   {
@@ -308,26 +314,32 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Issuance/Retirement of stocks',
-    desc: "Net cash from common stock repurchases and employee stock option exercises. McDonald's has been a consistent net repurchaser of shares, reducing diluted shares outstanding each year.",
-    values: [-4.23, -4.8, -4.63, -0.61, -0.56, -3.65, -2.79, -2.5, -1.77],
+    desc: 'Net cash used for share repurchases, partially offset by proceeds from stock option exercises (SEC EDGAR: PaymentsForRepurchaseOfCommonStock and ProceedsFromStockOptionsExercised).',
+    values: [
+      -4.229, -4.805, -4.626, -0.612, -0.56, -3.648, -2.794, -2.496, -1.771,
+    ],
     indent: 1,
   },
   {
     label: 'Issuance/Retirement of debt',
-    desc: "Net cash from long-term debt issuance and repayment plus net short-term borrowings. McDonald's regularly accesses debt markets to fund share repurchases and capital expenditures.",
-    values: [2.03, 2.13, 3.24, 2.24, -1.07, 1.2, 2.99, -0.07, -0.07],
+    desc: 'Net proceeds from (repayment of) long-term and short-term debt (SEC EDGAR: ProceedsFromIssuanceOfLongTermDebt, RepaymentsOfLongTermDebt, and ProceedsFromRepaymentsOfShortTermDebt).',
+    values: [2.028, 2.131, 3.236, 2.238, -1.071, 1.198, 2.993, -0.071, -0.072],
     indent: 1,
   },
   {
     label: 'Cash dividends paid',
-    desc: "Cash dividends paid to common shareholders. McDonald's has paid dividends every year since 1976 and has increased the annual dividend in each of the last 49 years.",
-    values: [-3.09, -3.26, -3.58, -3.75, -3.92, -4.17, -4.53, -4.87, -5.12],
+    desc: 'Common stock dividends paid to shareholders (SEC EDGAR: PaymentsOfDividendsCommonStock).',
+    values: [
+      -3.089, -3.256, -3.582, -3.753, -3.919, -4.168, -4.533, -4.87, -5.115,
+    ],
     indent: 1,
   },
   {
-    label: 'Other financing cash flow items',
-    desc: 'Residual financing activities including payments for debt issuance costs, settlement of derivatives, and other miscellaneous financing items.',
-    values: [-0.02, -0.02, -0.02, -0.12, -0.05, 0.04, -0.04, -0.06, -0.17],
+    label: 'Other financing items',
+    desc: 'Financing residual: debt issuance costs, derivative settlements, and other minor items, computed so that all four sub-lines sum exactly to the parent.',
+    values: [
+      -0.021, -0.02, -0.023, -0.122, -0.046, 0.038, -0.04, -0.058, -0.167,
+    ],
     indent: 1,
   },
   {

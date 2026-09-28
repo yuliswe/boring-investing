@@ -26,17 +26,17 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Funds from operations',
-    desc: 'Net income plus non-cash adjustments such as content amortization, depreciation, stock-based compensation, deferred taxes, and foreign currency remeasurement, before changes in working capital.',
+    desc: 'Net income plus adjustments to reconcile to operating cash flow before working capital changes, including content asset amortization net of additions and content liability changes, depreciation and amortization, stock-based compensation, foreign currency remeasurement on long-term debt, and deferred income taxes.',
     values: [
-      -1.677, -2.461, -3.37, -3.679, 1.695, -0.683, 1.641, 6.406, 6.546, 7.437,
+      -1.666, -1.845, -2.974, -2.93, 2.459, 0.635, 2.784, 7.39, 7.394, 10.605,
     ],
     indent: 1,
   },
   {
     label: 'Changes in working capital',
-    desc: 'Net cash absorbed or released by changes in operating assets and liabilities, including accounts payable, accrued expenses, deferred revenue, and other current and non-current items.',
+    desc: 'Net change in non-content operating assets and liabilities: accounts payable, accrued expenses and other liabilities, deferred revenue, other current assets, and other non-current items.',
     values: [
-      0.203, 0.675, 0.69, 0.792, 0.732, 1.076, 0.385, 0.868, 0.815, 2.712,
+      0.196, 0.055, 0.294, 0.04, -0.029, -0.245, -0.754, -0.12, -0.034, -0.455,
     ],
     indent: 1,
   },
@@ -47,19 +47,19 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Purchase/Sale of business',
-    desc: 'Cash paid for acquisitions, net of cash acquired. FY21 included Scanline VFX; FY22 included Animal Logic and other production studio acquisitions.',
+    desc: 'Acquisitions of companies and business assets, net of cash acquired, including gaming studio acquisitions in FY21 and FY22.',
     values: [0, 0, 0, 0, 0, -0.788, -0.757, 0, 0, -0.017],
     indent: 1,
   },
   {
     label: 'Purchase/Sale of investments',
-    desc: 'Net cash from purchases, sales, and maturities of short-term investments and debt securities.',
+    desc: 'Net of purchases, sales, and maturities of short-term investment securities, primarily available-for-sale debt securities in FY16-FY17 and a broader portfolio from FY22 onward.',
     values: [0.236, 0.268, 0, 0, 0, 0, -0.911, 0.89, -1.742, 1.747],
     indent: 1,
   },
   {
     label: 'Capital expenditures',
-    desc: 'Cash paid for property and equipment, including production facilities and data center equipment.',
+    desc: 'Additions to property and equipment, including office buildings, production facilities, and data center infrastructure.',
     values: [
       -0.108, -0.173, -0.174, -0.253, -0.498, -0.525, -0.408, -0.349, -0.44,
       -0.688,
@@ -67,9 +67,12 @@ export const cashFlowStatementLines = [
     indent: 1,
   },
   {
-    label: 'Other investing cash flow items',
-    desc: 'Other investing activities not classified above.',
-    values: [-0.078, -0.06, -0.165, -0.134, -0.007, -0.027, 0, 0, 0, 0],
+    label: 'Other investing items',
+    desc: 'Other investing activities including DVD content library acquisitions (FY16-FY17) and changes in other non-current assets.',
+    values: [
+      -0.078, -0.065, -0.166, -0.137, -0.012, -0.027, -0.004, -0.001, 0.002,
+      -0.002,
+    ],
     indent: 1,
   },
   {
@@ -79,28 +82,30 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Issuance/Retirement of stocks',
-    desc: 'Net cash from stock option exercises and common stock repurchases. Netflix began large-scale buybacks in FY23.',
+    desc: 'Net of proceeds from stock option exercises and payments for share repurchases and tax withholding on equity awards, with significant buybacks beginning in FY23.',
     values: [
-      0.102, 0.088, 0.125, 0.072, 0.235, -0.65, 0.036, -5.875, -5.439, -8.506,
+      0.037, 0.088, 0.125, 0.072, 0.235, -0.65, 0.036, -5.875, -5.439, -8.506,
     ],
     indent: 1,
   },
   {
     label: 'Issuance/Retirement of debt',
-    desc: 'Net cash from debt issuance and repayment. Netflix funded content spending through debt issuance in FY16–FY20, then pivoted to repayment from FY21.',
-    values: [0.989, 2.988, 3.926, 4.433, 1.002, -0.5, -0.7, 0, 1.394, -1.833],
+    desc: 'Net of proceeds from issuance of long-term debt minus repayments, reflecting heavy net issuance from FY16 through FY20 and a shift to net repayment as free cash flow turned positive.',
+    values: [1.0, 3.021, 3.962, 4.469, 1.009, -0.5, -0.7, 0, 1.394, -1.833],
     indent: 1,
   },
   {
     label: 'Cash dividends paid',
-    desc: 'Netflix does not pay dividends.',
+    desc: 'Netflix does not pay cash dividends to shareholders.',
     values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     indent: 1,
   },
   {
-    label: 'Other financing cash flow items',
-    desc: 'Other financing activities including taxes paid related to net share settlement of equity awards and debt issuance costs.',
-    values: [0.001, 0.001, -0.002, 0.001, 0, 0, 0, -0.076, -0.029, -0.007],
+    label: 'Other financing items',
+    desc: 'Other financing activities including debt issuance costs and, in FY16, excess tax benefits from stock-based compensation classified as a financing activity under the pre-ASU 2016-09 standard.',
+    values: [
+      0.053, -0.029, -0.037, -0.031, -0.004, 0, 0.004, -0.075, -0.025, -0.011,
+    ],
     indent: 1,
   },
   {
