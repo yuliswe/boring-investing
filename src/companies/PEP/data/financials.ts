@@ -189,7 +189,7 @@ export const cashFlowStatementLines = [
   {
     label: 'Net cash flow',
     desc: 'Net change in cash and equivalents for the year, including the effect of exchange rate changes on cash held in foreign currencies.',
-    values: [1.49, 0.11, null, null, -2.55, -0.61, 4.66, -1.21, 0.65, null],
+    values: [1.49, 0.11, -5.2, 2.68, -2.55, -0.61, 4.66, -1.21, 0.65, null],
   },
   {
     label: 'Operating activities',
@@ -199,19 +199,19 @@ export const cashFlowStatementLines = [
   {
     label: 'Funds from operations',
     desc: 'Net income plus depreciation, amortization, and stock-based compensation.',
-    values: [null, null, null, null, 11.0, 12.41, 12.81, 13.56, 12.45, null],
+    values: [7.52, 15.17, 9.98, 9.93, 10.63, 12.02, 12.4, 13.1, 11.98, null],
     indent: 1,
   },
   {
     label: 'Changes in working capital',
     desc: 'Operating cash flow minus funds from operations, capturing deferred taxes, non-cash gains and losses, and changes in operating assets and liabilities.',
-    values: [null, null, null, null, 0.62, -1.6, 0.63, -1.05, -0.36, null],
+    values: [2.51, -5.75, -0.33, 0.68, 0.99, -1.21, 1.04, -0.59, 0.11, null],
     indent: 1,
   },
   {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including capital expenditures, acquisitions, and asset disposals.',
-    values: [-4.4, 4.56, null, null, -3.27, -2.43, -5.5, -5.47, -6.88, null],
+    values: [-4.4, 4.56, -6.44, -11.62, -3.27, -2.43, -5.5, -5.47, -6.88, null],
   },
   {
     label: 'Capital expenditures',
@@ -232,8 +232,8 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Acquisitions & other',
-    desc: 'Net cash used for acquisitions, asset disposals, investments, and other investing activities. FY18 was positive due to large proceeds from asset sales and bottling operations.',
-    values: [-1.43, 7.85, null, null, 1.36, 2.78, 0.02, -0.15, -2.46, null],
+    desc: 'Net cash used for acquisitions, asset disposals, investments, and other investing activities. FY18 was positive due to large proceeds from asset sales and bottling operations. FY20 includes the $3.9B Rockstar Energy and $1.7B Pioneer Foods acquisitions.',
+    values: [-1.43, 7.85, -2.21, -7.38, 1.36, 2.78, 0.02, -0.15, -2.46, null],
     indent: 1,
   },
   {
@@ -242,8 +242,8 @@ export const cashFlowStatementLines = [
     values: [
       -4.19,
       -13.77,
-      null,
-      null,
+      -8.49,
+      3.82,
       -10.78,
       -8.52,
       -3.01,
@@ -278,7 +278,7 @@ export const cashFlowStatementLines = [
   {
     label: 'Net debt & other',
     desc: 'Net proceeds from (repayment of) debt and other financing activities, computed as the financing residual so that all three sub-lines sum exactly to the parent.',
-    values: [2.29, -6.84, null, null, -4.86, -0.85, 4.67, 0.67, 3.66, null],
+    values: [2.29, -6.84, -0.19, 11.33, -4.86, -0.85, 4.67, 0.67, 3.66, null],
     indent: 1,
   },
   {

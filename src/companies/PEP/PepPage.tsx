@@ -110,7 +110,7 @@ function buildCashFlowStatementSection(): SectionData {
       ...(l.label === 'Net cash flow' && { bold: true }),
     })),
     chartNote:
-      'FY18 investing activities were positive due to large proceeds from asset sales and bottling operations. FY18 financing activities reflect significant debt repayment. FY19–FY20 investing and financing totals are unavailable from the earnings releases for those years. FY26E free cash flow is the consensus analyst estimate.',
+      'FY18 investing activities were positive due to large proceeds from asset sales and bottling operations. FY20 investing activities reached $11.6B negative as PepsiCo acquired Rockstar Energy ($3.9B) and Pioneer Foods ($1.7B), funded by $13.8B in new debt issuance. FY26E free cash flow is the consensus analyst estimate.',
   };
 }
 
@@ -197,23 +197,23 @@ const pepSections: SectionData[] = [
     entries: [
       {
         kind: '10-Q',
-        note: 'Quarterly report, twelve weeks to 6 September',
-        date: 'Oct 7 2025',
+        note: 'Quarterly report, twelve weeks to 13 June',
+        date: 'Jul 8 2026',
       },
       {
         kind: '10-Q',
-        note: 'Quarterly report, twelve weeks to 14 June',
-        date: 'Jul 8 2025',
-      },
-      {
-        kind: '10-Q',
-        note: 'Quarterly report, twelve weeks to 22 March',
-        date: 'Apr 22 2025',
+        note: 'Quarterly report, twelve weeks to 21 March',
+        date: 'Apr 22 2026',
       },
       {
         kind: '10-K',
         note: 'Annual report for fiscal year 2025',
         date: 'Feb 2 2026',
+      },
+      {
+        kind: '10-Q',
+        note: 'Quarterly report, twelve weeks to 6 September',
+        date: 'Oct 7 2025',
       },
     ],
   },
