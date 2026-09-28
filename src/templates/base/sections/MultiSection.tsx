@@ -227,6 +227,54 @@ function computeMulti(
     };
   });
 
+  for (let si = 0; si < series.length; si++) {
+    const s = series[si];
+    if (!s.indent) continue;
+    let parentIdx = -1;
+    for (let pi = si - 1; pi >= 0; pi--) {
+      if ((series[pi].indent ?? 0) < (s.indent ?? 0)) {
+        parentIdx = pi;
+        break;
+      }
+    }
+    if (parentIdx < 0) continue;
+    const parent = series[parentIdx];
+    const line = lines[si];
+    const inv = !!(s.invert ?? invertAll);
+    for (let i = 0; i < s.values.length; i++) {
+      const cur = s.values[i];
+      const pv = parent.values[i];
+      const dot = line.dots[i];
+      if (cur !== null && pv !== null && pv !== 0) {
+        const ratio = (cur / pv) * 100;
+        dot.value = ratio.toFixed(1) + '%';
+        const prevCur = i > 0 ? s.values[i - 1] : null;
+        const prevPv = i > 0 ? parent.values[i - 1] : null;
+        if (prevCur !== null && prevPv !== null && prevPv !== 0) {
+          const prevRatio = (prevCur / prevPv) * 100;
+          const ppChg = ratio - prevRatio;
+          if (Math.abs(ppChg) < 0.05) {
+            dot.delta = '−0.0pp';
+            dot.deltaColor = COLOR_FLAT;
+          } else {
+            dot.delta =
+              (ppChg >= 0 ? '↑' : '↓') + Math.abs(ppChg).toFixed(1) + 'pp';
+            dot.deltaColor = (inv ? ppChg <= 0 : ppChg >= 0)
+              ? COLOR_GOOD
+              : COLOR_BAD;
+          }
+        } else {
+          dot.delta = '';
+          dot.deltaColor = '';
+        }
+      } else {
+        dot.value = '—';
+        dot.delta = '';
+        dot.deltaColor = '';
+      }
+    }
+  }
+
   const ticks: ComputedTick[] = [];
   if (share) {
     const step = hi > 40 ? 20 : hi > 20 ? 10 : 5;
