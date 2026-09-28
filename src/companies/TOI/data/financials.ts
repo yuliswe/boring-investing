@@ -109,32 +109,93 @@ export const cashFlowStatementYears = [
   'FY23',
   'FY24',
   'FY25',
+  'FY26E',
 ];
 
 export const cashFlowStatementLines = [
   {
     label: 'Net cash flow',
     desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
-    values: [0.028, 0.02, 0.061, 0.042, 0.027, 0.121],
+    values: [0.028, 0.02, 0.061, 0.042, 0.027, 0.121, null],
   },
   {
     label: 'Operating activities',
     desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
-    values: [0.152, 0.176, 0.203, 0.247, 0.348, 0.413],
+    values: [0.152, 0.176, 0.203, 0.247, 0.348, 0.413, null],
+  },
+  {
+    label: 'Funds from operations',
+    desc: 'Net income adjusted for non-cash charges (depreciation, amortization, impairments, redeemable preferred securities expense, finance costs, income tax expense) and cash taxes paid. Excludes working capital movements.',
+    values: [0.141, 0.184, 0.202, 0.267, 0.321, 0.385, null],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net change in non-cash operating assets and liabilities: accounts receivable, inventory, accounts payable, unearned revenue, and other operating items.',
+    values: [0.011, -0.008, 0.001, -0.02, 0.027, 0.028, null],
+    indent: 1,
   },
   {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
-    values: [-0.074, -0.213, -0.133, -0.127, -0.11, -0.67],
+    values: [-0.074, -0.213, -0.133, -0.127, -0.11, -0.67, null],
+  },
+  {
+    label: 'Purchase/Sale of business',
+    desc: 'Cash spent on acquisitions of businesses net of cash obtained, plus post-acquisition settlement payments. TOI acquires dozens of small European vertical market software businesses each year.',
+    values: [-0.073, -0.209, -0.129, -0.119, -0.1, -0.274, null],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Cash spent on or received from equity investments and securities. FY25 includes the Asseco Poland stake acquisition for approximately €413M, partially offset by a €28M equity sale.',
+    values: [0, 0, 0, 0, 0, -0.393, null],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of property and equipment.',
+    values: [-0.002, -0.005, -0.007, -0.008, -0.008, -0.011, -0.01],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Interest and dividends received, changes in restricted cash, and other investing activities.',
+    values: [0.001, 0.001, 0.003, 0, -0.002, 0.008, null],
+    indent: 1,
   },
   {
     label: 'Financing activities',
-    desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
-    values: [-0.05, 0.057, -0.008, -0.078, -0.212, 0.381],
+    desc: 'Net cash from financing activities, including debt issuance and repayment, dividends, and lease payments.',
+    values: [-0.05, 0.057, -0.008, -0.078, -0.212, 0.381, null],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Equity-related transactions including Vela Software Group contributions toward acquisitions and return of capital to non-controlling interests.',
+    values: [0, 0.018, 0.007, 0, -0.009, 0, null],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net proceeds from revolving credit facility draws, term loans, CSI and Vela Software Group loans, and bank indebtedness, less repayments. FY25 includes a €200M loan and expanded revolving facility to fund the Asseco Poland investment.',
+    values: [-0.03, 0.122, 0.087, -0.052, 0.055, 0.446, null],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Dividends paid to shareholders, non-controlling interests, and redeemable preferred securities holders. FY24 includes a €128M special dividend to shareholders alongside NCI dividends.',
+    values: [0, -0.055, -0.067, -0.002, -0.208, -0.004, null],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Interest paid on lease obligations and credit facilities, lease obligation payments, credit facility transaction costs, and other financing activities.',
+    values: [-0.02, -0.028, -0.035, -0.024, -0.05, -0.061, null],
+    indent: 1,
   },
   {
     label: 'Free cash flow',
     desc: 'Operating cash flow minus capital expenditures.',
-    values: [0.149, 0.172, 0.196, 0.24, 0.34, 0.403],
+    values: [0.149, 0.172, 0.196, 0.24, 0.34, 0.403, 0.39],
   },
 ];

@@ -57,33 +57,94 @@ export const cashFlowStatementYears = [
   'FY24',
   'FY25',
   'FY26',
+  'FY27E',
 ];
 
 export const cashFlowStatementLines = [
   {
     label: 'Net cash flow',
     desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
-    values: [-10.049, 1.143, 1.399, 3.891, 1.309, 2.016],
+    values: [-10.049, 1.143, 1.399, 3.891, 1.309, 2.016, null],
   },
   {
     label: 'Operating activities',
     desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
-    values: [5.822, 9.108, 5.641, 28.09, 64.089, 102.718],
+    values: [5.822, 9.108, 5.641, 28.09, 64.089, 102.718, null],
+  },
+  {
+    label: 'Funds from operations',
+    desc: 'Net income plus non-cash adjustments (depreciation, amortization, stock-based compensation, deferred taxes, and gains/losses on investments) before working capital changes.',
+    values: [6.525, 12.471, 7.848, 31.812, 73.472, 118.667, null],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net cash effect of changes in operating assets and liabilities: accounts receivable, inventories, prepaid expenses, accounts payable, accrued liabilities, and other non-current liabilities.',
+    values: [-0.703, -3.363, -2.207, -3.722, -9.383, -15.949, null],
+    indent: 1,
   },
   {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
-    values: [-19.675, -9.83, 7.375, -10.566, -20.421, -52.228],
+    values: [-19.675, -9.83, 7.375, -10.566, -20.421, -52.228, null],
+  },
+  {
+    label: 'Purchase/Sale of business',
+    desc: 'Net cash used for business acquisitions. FY21 includes the $8.5B Mellanox acquisition. FY26 includes a $13.0B acquisition.',
+    values: [-8.524, -0.263, -0.049, -0.083, -1.007, -14.535, null],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net purchases and sales of marketable debt and equity securities, including available-for-sale debt securities and equity investments at fair value.',
+    values: [-9.989, -8.567, 9.257, -9.29, -16.2, -31.651, null],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Cash paid for property, equipment, and other productive assets including data center infrastructure.',
+    values: [-1.128, -0.976, -1.833, -1.069, -3.236, -6.042, null],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities not classified above.',
+    values: [-0.034, -0.024, 0.0, -0.124, 0.022, 0.0, null],
+    indent: 1,
   },
   {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
-    values: [3.804, 1.865, -11.617, -13.633, -42.359, -48.474],
+    values: [3.804, 1.865, -11.617, -13.633, -42.359, -48.474, null],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Net of share repurchases, tax withholding on RSU settlements, and proceeds from employee stock plans. FY25 and FY26 repurchases exceeded $33B and $40B respectively as NVIDIA returned AI-driven cash flows to shareholders.',
+    values: [-0.942, -1.623, -11.159, -11.913, -40.146, -47.39, null],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net of long-term debt proceeds and repayments. FY21–FY22 reflect $5.0B note issuances; FY24–FY25 include $1.25B annual repayments.',
+    values: [4.968, 3.977, 0.0, -1.25, -1.25, 0.0, null],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Cash dividends paid to common shareholders.',
+    values: [-0.395, -0.399, -0.398, -0.395, -0.834, -0.974, null],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Other financing activities including payments for debt issuance costs and other items.',
+    values: [0.173, -0.09, -0.06, -0.075, -0.129, -0.11, null],
+    indent: 1,
   },
   {
     label: 'Free cash flow',
     desc: 'Operating cash flow minus capital expenditures.',
-    values: [4.694, 8.132, 3.808, 27.021, 60.853, 96.676],
+    values: [4.694, 8.132, 3.808, 27.021, 60.853, 96.676, 194.11],
   },
 ];
 

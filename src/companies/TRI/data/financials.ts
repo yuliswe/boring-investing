@@ -206,32 +206,99 @@ export const expenseLines = [
   },
 ];
 
-export const cashFlowStatementYears = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
+export const cashFlowStatementYears = [
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+  'FY26E',
+];
 
 export const cashFlowStatementLines = [
   {
     label: 'Net cash flow',
     desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
-    values: [-1.009, 0.291, 0.229, 0.67, -1.457],
+    values: [-1.009, 0.291, 0.229, 0.67, -1.457, null],
   },
   {
     label: 'Operating activities',
     desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges and working capital changes.',
-    values: [1.773, 1.915, 2.341, 2.457, 2.651],
+    values: [1.773, 1.915, 2.341, 2.457, 2.651, null],
+  },
+  {
+    label: 'Funds from operations',
+    desc: 'Cash generated from the business before working capital movements: net income adjusted for depreciation, amortization, share of equity method investee results, deferred taxes, and other non-cash items.',
+    values: [0.941, 1.907, 1.884, 2.281, 2.608, null],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net cash impact of changes in trade receivables, prepaid expenses, accounts payable, accrued liabilities, deferred revenue, and other operating assets and liabilities. Positive values indicate working capital released cash.',
+    values: [0.832, 0.008, 0.457, 0.176, 0.043, null],
+    indent: 1,
   },
   {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
-    values: [-0.504, -0.462, 3.513, 0.68, -1.284],
+    values: [-0.504, -0.462, 3.513, 0.68, -1.284, null],
+  },
+  {
+    label: 'Purchase/Sale of business',
+    desc: 'Net cash from acquisitions of businesses (net of cash acquired) and proceeds from disposals of businesses and investments. Negative values indicate net acquisition spending exceeded disposal proceeds.',
+    values: [0.01, 0.025, -0.798, -0.296, -0.589, null],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Proceeds from sales of LSEG shares and dividends received from equity method investees. Thomson Reuters divested its LSEG stake between FY21 and FY24, generating $8.3B in total proceeds.',
+    values: [0.994, 0.043, 5.424, 1.854, 0.0, null],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of property, equipment, and capitalized software.',
+    values: [-0.487, -0.595, -0.544, -0.607, -0.634, -0.65],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities including proceeds from asset sales, taxes paid on LSEG share sales and business disposals, and cash flows from discontinued operations.',
+    values: [-1.021, 0.065, -0.569, -0.271, -0.061, null],
+    indent: 1,
   },
   {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
-    values: [-2.273, -1.156, -5.626, -2.459, -2.828],
+    values: [-2.273, -1.156, -5.626, -2.459, -2.828, null],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Net cash from share repurchases under normal course issuer bid programs, return of capital transactions, and purchases of non-controlling interests. FY23 includes a $2.0B return of capital to shareholders funded by LSEG share sale proceeds.',
+    values: [-1.4, -1.282, -3.124, -1.023, -1.0, null],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net of long-term debt repayments and short-term borrowings under commercial paper and revolving credit facilities. FY23 includes repayment of $600M in notes; FY25 includes the C$1.4B (US$999M) 2.239% notes maturity.',
+    values: [0.0, 1.042, -1.556, -0.429, -0.709, null],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Dividends paid on common and preference shares, net of amounts reinvested through the dividend reinvestment plan.',
+    values: [-0.775, -0.837, -0.892, -0.949, -1.039, -1.11],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Payments of lease principal and other financing activities.',
+    values: [-0.098, -0.079, -0.054, -0.058, -0.08, null],
+    indent: 1,
   },
   {
     label: 'Free cash flow',
     desc: 'Operating cash flow minus capital expenditures.',
-    values: [1.286, 1.32, 1.797, 1.85, 2.017],
+    values: [1.286, 1.32, 1.797, 1.85, 2.017, 2.1],
   },
 ];

@@ -129,6 +129,7 @@ export type MultiSeriesData = {
   total?: boolean;
   bold?: boolean;
   invert?: boolean;
+  indent?: number;
 };
 
 type MultiSectionData = {

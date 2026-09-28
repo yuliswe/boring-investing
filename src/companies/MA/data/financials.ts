@@ -73,6 +73,20 @@ export const cashFlowStatementLines = [
     values: [5.555, 6.223, 8.183, 7.224, 9.463, 11.195, 11.98, 14.78, 17.648],
   },
   {
+    label: 'Funds from operations',
+    desc: 'Net income plus non-cash charges (depreciation and amortization, amortization of customer and merchant incentives, stock-based compensation, deferred taxes, and gains or losses on equity investments). This is the cash the business generates before working capital movements.',
+    values: [5.841, 7.536, 9.881, 8.374, 10.379, 12.099, 13.923, 15.82, 19.09],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net change in operating assets and liabilities: accounts receivable, settlement assets and obligations, prepaid expenses, accrued litigation, accounts payable, accrued expenses, and income taxes payable.',
+    values: [
+      -0.286, -1.313, -1.698, -1.15, -0.916, -0.904, -1.943, -1.04, -1.442,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and investment purchases and sales.',
     values: [
@@ -80,11 +94,69 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Purchase/Sale of business',
+    desc: 'Cash paid for acquisitions net of cash acquired. Major deals include Vocalink ($700M, FY17), Nets ($3.2B, FY19), CipherTrace and Aiia (FY21), and Recorded Future ($2.5B, FY24).',
+    values: [-1.175, 0, -1.44, -0.989, -4.436, -0.313, 0, -2.511, 0],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net purchases and sales of available-for-sale and held-to-maturity investment securities plus equity investments in private companies.',
+    values: [
+      -0.182, 0.012, 0.532, -0.01, -0.055, -0.057, -0.257, 0.306, -0.149,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of property and equipment plus capitalized software costs. Capitalized software is the larger component, growing from $123M in FY17 to $726M in FY25 as Mastercard invested in its technology platform.',
+    values: [
+      -0.423, -0.504, -0.728, -0.708, -0.814, -1.097, -1.088, -1.194, -1.215,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities not classified above, including interest rate derivative settlements ($175M in FY20) and miscellaneous items.',
+    values: [
+      0.001, -0.014, -0.004, -0.172, 0.033, -0.003, -0.006, -0.003, 0.002,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
     values: [
       -4.764, -4.966, -5.867, -2.152, -6.555, -10.328, -9.488, -10.836, -14.179,
     ],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Net of treasury stock repurchases, proceeds from stock option exercises, and tax withholdings on share-based payments. Repurchases have grown from $3.8B in FY17 to $12.0B in FY25.',
+    values: [
+      -3.752, -4.909, -6.532, -4.526, -5.976, -8.804, -8.884, -10.989, -11.815,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net of long-term debt issuance proceeds and debt repayments. Mastercard issued significant debt in FY20 ($4.0B) and FY24 ($4.0B) to fund operations and acquisitions.',
+    values: [-0.064, 0.991, 2.224, 3.959, 1.374, 0.399, 1.554, 2.624, 0.492],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Dividends paid to common shareholders. Mastercard has raised its dividend every year since 2007, growing from $0.942B in FY17 to $2.756B in FY25.',
+    values: [
+      -0.942, -1.044, -1.345, -1.605, -1.741, -1.903, -2.158, -2.448, -2.756,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Other financing activities including contingent consideration payments ($199M in FY19 for Vocalink), redeemable non-controlling interest payments, and miscellaneous items.',
+    values: [-0.006, -0.004, -0.214, 0.02, -0.212, -0.02, 0, -0.023, -0.1],
+    indent: 1,
   },
   {
     label: 'Free cash flow',

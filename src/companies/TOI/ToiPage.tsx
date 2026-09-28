@@ -106,10 +106,9 @@ function buildCashFlowStatementSection(): SectionData {
     kind: 'multi',
     years: cashFlowStatementYears,
     mode: 'absolute',
+    guidanceCount: 1,
     series: cashFlowStatementLines.map(l => ({
-      label: l.label,
-      desc: l.desc,
-      values: l.values,
+      ...l,
       format: billionFormat,
       ...(l.label === 'Net cash flow' && { bold: true }),
     })),

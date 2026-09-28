@@ -8,33 +8,94 @@ export const cashFlowStatementYears = [
   'FY23',
   'FY24',
   'FY25',
+  'FY26E',
 ];
 
 export const cashFlowStatementLines = [
   {
     label: 'Net cash flow',
     desc: 'Net change in cash: the sum of operating, investing, and financing activities.',
-    values: [3.83, -4.24, 0.13, -0.98, 0.26, 1.87, 0.82],
+    values: [3.83, -4.24, 0.13, -0.98, 0.26, 1.87, 0.82, null],
   },
   {
     label: 'Operating activities',
     desc: 'Net cash provided by (used in) operating activities. Turned positive in FY22 as the platform reached profitability.',
-    values: [-4.32, -2.75, -0.45, 0.64, 3.59, 7.14, 10.1],
+    values: [-4.32, -2.75, -0.45, 0.64, 3.59, 7.14, 10.1, null],
+  },
+  {
+    label: 'Funds from operations',
+    desc: 'Net income adjusted for non-cash charges including depreciation, amortization, stock-based compensation, unrealized gains and losses on equity investments, and deferred income taxes.',
+    values: [-4.767, -2.797, -1.102, 0.5, 3.396, 4.959, 8.049, null],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net change in operating assets and liabilities including accounts receivable, prepaid expenses, accounts payable, accrued liabilities, insurance reserves, and operating lease liabilities.',
+    values: [0.447, 0.047, 0.652, 0.14, 0.194, 2.181, 2.051, null],
+    indent: 1,
   },
   {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, purchases of investments, and capital expenditures.',
-    values: [-0.79, -2.87, -1.2, -1.64, -3.23, -3.18, -3.56],
+    values: [-0.79, -2.87, -1.2, -1.64, -3.23, -3.18, -3.56, null],
+  },
+  {
+    label: 'Purchase/Sale of business',
+    desc: 'Net cash for acquisitions and divestitures. FY20 reflects the Postmates acquisition ($1.47B). FY21 is the Transplace acquisition ($2.31B). FY25 includes the Delivery Hero Taiwan acquisition.',
+    values: [0.286, -1.471, -2.314, -0.033, 0.0, 0.0, -0.815, null],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net purchases and sales of marketable securities and equity method investments.',
+    values: [-0.439, -0.741, 2.178, -1.332, -2.984, -2.544, -1.401, null],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of property and equipment. Uber is asset-light so capex is modest relative to operating cash flow.',
+    values: [-0.588, -0.616, -0.298, -0.252, -0.223, -0.242, -0.336, -0.33],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities including notes receivable, other asset purchases, and proceeds from property sales.',
+    values: [-0.049, -0.042, -0.766, -0.023, -0.023, -0.394, -1.008, null],
+    indent: 1,
   },
   {
     label: 'Financing activities',
     desc: 'Net cash provided by (used in) financing activities. FY19 included $8.1B in IPO proceeds. FY25 outflows reflect accelerated share repurchases.',
-    values: [8.94, 1.38, 1.78, 0.01, -0.1, -2.09, -5.71],
+    values: [8.94, 1.38, 1.78, 0.01, -0.1, -2.09, -5.71, null],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Net cash from equity transactions including IPO proceeds (FY19), preferred stock issuance, private placement, stock option exercises, share repurchases, and tax withholding for stock-based compensation.',
+    values: [7.919, 0.23, 0.648, 0.255, 0.0, -1.252, -6.523, null],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net cash from long-term debt issuance and repayment.',
+    values: [1.162, 1.21, 1.15, -0.08, 0.124, -0.014, 1.009, null],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Uber does not pay cash dividends.',
+    values: [0, 0, 0, 0, 0, 0, 0, null],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Other financing activities including finance lease payments, repurchase of redeemable noncontrolling interests, and other items. FY24 includes $851M for repurchase of Careem redeemable noncontrolling interest.',
+    values: [-0.141, -0.06, -0.018, -0.165, -0.224, -0.824, -0.196, null],
+    indent: 1,
   },
   {
     label: 'Free cash flow',
     desc: 'Operating cash flow minus capital expenditures (property and equipment).',
-    values: [-4.91, -3.36, -0.74, 0.39, 3.36, 6.89, 9.76],
+    values: [-4.91, -3.36, -0.74, 0.39, 3.36, 6.89, 9.76, 10.49],
   },
 ];
 
