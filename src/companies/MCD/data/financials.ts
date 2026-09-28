@@ -257,6 +257,18 @@ export const cashFlowStatementLines = [
     values: [5.551, 6.967, 8.122, 6.265, 9.142, 7.387, 9.612, 9.447, 10.551],
   },
   {
+    label: 'Funds from operations',
+    desc: 'Net income adjusted for non-cash items (depreciation, amortization, deferred taxes, share-based compensation, and gains/losses on sales). This is operating cash flow before working capital changes.',
+    values: [5.81, 6.48, 8.01, 6.4, 9.24, 7.51, 8.46, 9.75, 10.77],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net cash impact of changes in operating assets and liabilities: accounts payable, accrued liabilities, receivables, income taxes payable, and operating lease liabilities.',
+    values: [-0.26, 0.49, 0.12, -0.13, -0.1, -0.12, 1.15, -0.31, -0.22],
+    indent: 1,
+  },
+  {
     label: 'Investing activities',
     desc: 'Net cash provided by (used in) investing activities, primarily capital expenditures for new restaurants and existing restaurant improvements, partially offset by proceeds from restaurant sales.',
     values: [
@@ -264,11 +276,59 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Purchase/Sale of business',
+    desc: "Net cash from restaurant business acquisitions and divestitures, including purchases and sales of restaurant businesses and equity method investments. FY17 includes proceeds from the sale of the majority interest in McDonald's China and Hong Kong operations.",
+    values: [0.9, 0.43, -0.2, 0.01, -0.18, -0.44, -0.25, -2.35, -0.01],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: "Net cash from purchases and sales of financial investments. McDonald's does not hold material financial investment portfolios, so this line is typically near zero.",
+    values: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Cash spent on property, equipment, and restaurant construction, including new restaurant openings, existing restaurant reimaging, and technology investments.',
+    values: [-1.85, -2.74, -2.39, -1.64, -2.04, -1.9, -2.36, -2.77, -3.37],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Residual investing activities including proceeds from property and equipment sales, restaurant franchise rights, and other miscellaneous investing items. FY17 is elevated by the China/HK divestiture proceeds.',
+    values: [1.52, -0.14, -0.48, 0.09, 0.05, -0.34, -0.58, -0.23, -0.45],
+    indent: 1,
+  },
+  {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividend payments, and net debt issuance and repayment.',
     values: [
       -5.311, -5.95, -4.995, -2.249, -5.596, -6.58, -4.374, -7.495, -7.125,
     ],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: "Net cash from common stock repurchases and employee stock option exercises. McDonald's has been a consistent net repurchaser of shares, reducing diluted shares outstanding each year.",
+    values: [-4.23, -4.8, -4.63, -0.61, -0.56, -3.65, -2.79, -2.5, -1.77],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: "Net cash from long-term debt issuance and repayment plus net short-term borrowings. McDonald's regularly accesses debt markets to fund share repurchases and capital expenditures.",
+    values: [2.03, 2.13, 3.24, 2.24, -1.07, 1.2, 2.99, -0.07, -0.07],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: "Cash dividends paid to common shareholders. McDonald's has paid dividends every year since 1976 and has increased the annual dividend in each of the last 49 years.",
+    values: [-3.09, -3.26, -3.58, -3.75, -3.92, -4.17, -4.53, -4.87, -5.12],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Residual financing activities including payments for debt issuance costs, settlement of derivatives, and other miscellaneous financing items.',
+    values: [-0.02, -0.02, -0.02, -0.12, -0.05, 0.04, -0.04, -0.06, -0.17],
+    indent: 1,
   },
   {
     label: 'Free cash flow',

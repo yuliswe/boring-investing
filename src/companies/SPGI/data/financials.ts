@@ -57,6 +57,18 @@ export const cashFlowStatementLines = [
     values: [2.016, 2.064, 2.776, 3.567, 3.598, 2.603, 3.71, 5.689, 5.651],
   },
   {
+    label: 'Funds from operations',
+    desc: 'Net income adjusted for non-cash items: depreciation and amortization ($1.2B annually post-merger), stock-based compensation, deferred income taxes, and gains or losses on business dispositions.',
+    values: [1.775, 2.344, 2.421, 2.588, 3.326, 2.197, 3.593, 4.847, 5.343],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net cash impact of changes in operating assets and liabilities, including accounts receivable, accounts payable, accrued compensation, unearned revenue, and other current items.',
+    values: [0.241, -0.28, 0.355, 0.979, 0.272, 0.406, 0.117, 0.842, 0.308],
+    indent: 1,
+  },
+  {
     label: 'Investing activities',
     desc: 'Net cash provided by (used in) investing activities, including acquisitions, divestitures, and capital expenditures. FY22 includes approximately $3.6B in proceeds from the Engineering Solutions divestiture.',
     values: [
@@ -64,11 +76,69 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Purchase/Sale of business',
+    desc: 'Net cash for acquisitions minus proceeds from divestitures. FY22 includes $3.5B in Engineering Solutions divestiture proceeds. FY23 includes $1.0B from the Fincentric divestiture. FY25 includes $2.0B in acquisition spending offset by $1.5B in divestiture proceeds.',
+    values: [
+      -0.081, 0.006, -0.006, -0.183, -0.083, 3.719, 0.718, -0.137, -0.474,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net cash for purchases and sales of short-term investments.',
+    values: [
+      -0.005, -0.005, -0.01, 0.019, -0.002, -0.002, -0.013, 0.006, -0.035,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Cash spent on property, equipment, and capitalized software development costs.',
+    values: [
+      -0.123, -0.113, -0.115, -0.076, -0.035, -0.089, -0.143, -0.124, -0.195,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities not classified above, including transfers to investments and purchases of equity interests in subsidiaries.',
+    values: [0, -0.401, 0, 0, 0, 0, 0, 0, 0],
+    indent: 1,
+  },
+  {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividend payments, and debt issuance and repayment. FY22 reflects approximately $10B in net debt repayment following the IHS Markit merger.',
     values: [
       -1.507, -2.288, -1.751, -2.166, -1.013, -11.326, -4.28, -4.998, -4.93,
     ],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Net cash from share repurchases, employee stock option exercises, and tax withholding on vested equity awards. FY22 includes $12.0B in buybacks as SPGI returned cash from the IHS Markit merger. FY21 repurchases were paused during the pending merger.',
+    values: [
+      -1.073, -1.717, -1.23, -1.209, -0.043, -11.697, -3.4, -3.326, -5.031,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net cash from senior note issuance and repayment, including commercial paper. FY22 reflects $5.4B in issuance offset by $3.8B in repayments as SPGI refinanced merger-related debt.',
+    values: [0, 0.086, 0.218, -0.118, 0, 1.555, 0.556, -0.047, 1.704],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Dividends paid to common shareholders and non-controlling interests in S&P Dow Jones Indices LLC.',
+    values: [
+      -0.532, -0.657, -0.703, -0.839, -0.97, -1.294, -1.427, -1.421, -1.491,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Other financing activities including contingent consideration payments and debt issuance costs.',
+    values: [0.098, 0, -0.036, 0, 0, 0.11, -0.009, -0.204, -0.112],
+    indent: 1,
   },
   {
     label: 'Free cash flow',

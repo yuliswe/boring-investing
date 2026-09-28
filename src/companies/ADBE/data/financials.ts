@@ -29,6 +29,22 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Funds from operations',
+    desc: 'Net income plus non-cash charges (depreciation, amortization, stock-based compensation, deferred taxes and other adjustments) before working capital changes.',
+    values: [
+      1.803, 2.525, 3.086, 4.465, 5.541, 6.938, 7.502, 7.657, 7.912, 9.426,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net change in operating assets and liabilities: trade receivables, prepaid expenses, trade payables, accrued expenses, income taxes payable and deferred revenue.',
+    values: [
+      0.397, 0.388, 0.943, -0.043, 0.186, 0.292, 0.336, -0.355, 0.144, 0.605,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and purchases and maturities of investments.',
     values: [
@@ -37,12 +53,74 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Purchase/Sale of business',
+    desc: 'Cash paid for acquisitions of businesses, net of cash acquired. Major acquisitions include Marketo (FY18, $4.8B) and Frame.io (FY21, $1.3B).',
+    values: [-0.048, -0.46, -6.314, -0.101, 0, -2.682, -0.126, 0, 0, -0.017],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net of purchases, sales and maturities of short-term and long-term investment securities.',
+    values: [
+      -0.643, 0.227, 1.914, 0.089, 0.02, -0.465, 0.044, 1.189, 0.44, -0.86,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of property and equipment, including leasehold improvements and capitalized internal-use software development costs.',
+    values: [
+      -0.204, -0.178, -0.267, -0.395, -0.419, -0.348, -0.442, -0.36, -0.183,
+      -0.179,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Purchases of long-term investments, intangible assets and other investing activities not separately classified.',
+    values: [
+      -0.065, -0.032, -0.018, -0.049, -0.015, -0.042, -0.046, -0.053, -0.108,
+      -0.131,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
     values: [
       -1.091, -1.184, -0.006, -2.946, -3.488, -4.301, -6.825, -5.182, -7.724,
       -11.06,
     ],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Stock repurchases under the buyback program, proceeds from re-issuance of treasury stock under employee equity plans, and taxes paid on net share settlement of equity awards.',
+    values: [
+      -0.854, -0.942, -1.859, -2.957, -3.461, -4.378, -6.79, -4.675, -9.816,
+      -11.408,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Proceeds from issuance of senior notes less repayments of long-term debt at maturity.',
+    values: [0, 0, 2.248, 0, -0.006, 0, 0, -0.5, 1.997, 0.497],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Adobe does not pay cash dividends.',
+    values: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Other financing activities including excess tax benefits from stock-based compensation (through FY16) and miscellaneous items.',
+    values: [
+      -0.237, -0.242, -0.395, 0.011, -0.021, 0.077, -0.035, -0.007, 0.095,
+      -0.149,
+    ],
+    indent: 1,
   },
   {
     label: 'Free cash flow',

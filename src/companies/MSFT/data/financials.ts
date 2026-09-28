@@ -30,6 +30,23 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Funds from operations',
+    desc: 'Net income plus non-cash charges (depreciation, amortization, stock-based compensation, deferred income taxes, and net gains or losses on investments and derivatives). Represents the cash-equivalent earning power before working capital movements.',
+    values: [
+      34.631, 23.417, 48.319, 62.158, 77.676, 88.589, 89.97, 116.724, 141.512,
+      187.83,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net change in operating assets and liabilities: accounts receivable, inventories, other current and long-term assets, accounts payable, unearned revenue, income taxes, and other current and long-term liabilities.',
+    values: [
+      4.876, 20.467, 3.866, -1.483, -0.936, 0.446, -2.388, 1.824, -5.35, -4.895,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including acquisitions, capital expenditures, and purchases and maturities of investments.',
     values: [
@@ -38,12 +55,81 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Purchase/Sale of business',
+    desc: 'Acquisition of companies, net of cash acquired, and purchases of intangible assets. FY17 includes the $25.9B LinkedIn acquisition. FY24 includes the $68.7B Activision Blizzard acquisition.',
+    values: [
+      -25.944, -0.888, -2.388, -2.521, -8.909, -22.038, -1.67, -69.132, -5.978,
+      -1.743,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net of purchases, maturities, and sales of investments (primarily debt securities and equity investments).',
+    values: [
+      -12.511, 6.557, 0.54, 6.98, 2.876, 18.438, 10.213, 17.937, -4.387, -1.948,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Additions to property and equipment, including land, buildings, and data center infrastructure.',
+    values: [
+      -8.129, -11.632, -13.925, -15.441, -20.622, -23.886, -28.107, -44.477,
+      -64.551, -115.948,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities including securities lending payable and other miscellaneous items.',
+    values: [
+      -0.197, -0.098, 0, -1.241, -0.922, -2.825, -3.116, -1.298, 2.317, -19.861,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Financing activities',
     desc: 'Net cash provided by or used in financing activities, including share repurchases, dividends, and debt issuance and repayment.',
     values: [
       8.408, -33.59, -36.887, -46.031, -48.486, -58.876, -43.935, -37.757,
       -51.699, -52.546,
     ],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Net of common stock issued (primarily from employee stock plans) and common stock repurchased under buyback programs.',
+    values: [
+      -11.016, -9.719, -18.401, -21.625, -25.692, -30.855, -20.379, -15.252,
+      -16.364, -20.262,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Net of proceeds from debt issuance (including short-term commercial paper) and repayments of debt, plus any cash premium on debt exchanges. FY17 includes $44.3B of debt issued primarily to fund the LinkedIn acquisition.',
+    values: [
+      31.459, -10.201, -4.0, -8.935, -5.504, -9.023, -2.75, 0.575, -8.962, -3.0,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Common stock cash dividends paid to shareholders.',
+    values: [
+      -11.845, -12.699, -13.811, -15.137, -16.521, -18.135, -19.8, -21.771,
+      -24.082, -26.445,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Other financing activities including finance lease payments and other miscellaneous items.',
+    values: [
+      -0.19, -0.971, -0.675, -0.334, -0.769, -0.863, -1.006, -1.309, -2.291,
+      -2.839,
+    ],
+    indent: 1,
   },
   {
     label: 'Free cash flow',

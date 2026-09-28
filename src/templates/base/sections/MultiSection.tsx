@@ -33,6 +33,7 @@ type ComputedLine = {
   guidancePoints: string;
   dots: ComputedDot[];
   total: boolean;
+  indent: number;
 };
 
 type ComputedTick = {
@@ -209,6 +210,7 @@ function computeMulti(
       label: s.label,
       desc: s.desc,
       total: !!s.total,
+      indent: s.indent ?? 0,
       color: s.total
         ? 'var(--color-text)'
         : CHART_COLORS[(si - totalOffset) % CHART_COLORS.length],
@@ -302,25 +304,30 @@ export function MultiSection({
   return (
     <>
       <div className='flex flex-wrap gap-2 gap-x-6 mt-1'>
-        {multi.lines.map((l, i) => (
-          <div key={i} className='inline-flex items-baseline gap-2 text-xs'>
-            <span
-              className='inline-block w-3 h-0.75 flex-none rounded-sm'
-              style={{ background: l.color }}
-            />
-            <DescribedLabel
-              label={l.label}
-              desc={l.desc}
-              className='text-secondary'
-            />
-            <span className='font-heading font-[var(--font-heading-weight)] text-base ds-tnum'>
-              {l.latest}
-            </span>
-            <span className='text-xs ds-tnum' style={{ color: l.changeColor }}>
-              {l.change}
-            </span>
-          </div>
-        ))}
+        {multi.lines
+          .filter(l => l.indent === 0)
+          .map((l, i) => (
+            <div key={i} className='inline-flex items-baseline gap-2 text-xs'>
+              <span
+                className='inline-block w-3 h-0.75 flex-none rounded-sm'
+                style={{ background: l.color }}
+              />
+              <DescribedLabel
+                label={l.label}
+                desc={l.desc}
+                className='text-secondary'
+              />
+              <span className='font-heading font-[var(--font-heading-weight)] text-base ds-tnum'>
+                {l.latest}
+              </span>
+              <span
+                className='text-xs ds-tnum'
+                style={{ color: l.changeColor }}
+              >
+                {l.change}
+              </span>
+            </div>
+          ))}
       </div>
 
       <div className='overflow-x-auto'>
@@ -363,51 +370,55 @@ export function MultiSection({
                 aria-hidden='true'
                 className='absolute inset-0 w-full h-full overflow-visible pointer-events-none'
               >
-                {multi.lines.map((l, li) => (
-                  <g key={li}>
-                    {l.historicalPoints && (
-                      <polyline
-                        points={l.historicalPoints}
-                        fill='none'
-                        stroke={l.color}
-                        strokeWidth={l.width}
-                        strokeLinejoin='bevel'
-                        strokeLinecap='round'
-                        vectorEffect='non-scaling-stroke'
-                      />
-                    )}
-                    {l.guidancePoints && (
-                      <polyline
-                        points={l.guidancePoints}
-                        fill='none'
-                        stroke={l.color}
-                        strokeWidth={l.width}
-                        strokeLinejoin='bevel'
-                        strokeLinecap='round'
-                        strokeDasharray='4 3'
-                        vectorEffect='non-scaling-stroke'
-                      />
-                    )}
-                  </g>
-                ))}
+                {multi.lines
+                  .filter(l => l.indent === 0)
+                  .map((l, li) => (
+                    <g key={li}>
+                      {l.historicalPoints && (
+                        <polyline
+                          points={l.historicalPoints}
+                          fill='none'
+                          stroke={l.color}
+                          strokeWidth={l.width}
+                          strokeLinejoin='bevel'
+                          strokeLinecap='round'
+                          vectorEffect='non-scaling-stroke'
+                        />
+                      )}
+                      {l.guidancePoints && (
+                        <polyline
+                          points={l.guidancePoints}
+                          fill='none'
+                          stroke={l.color}
+                          strokeWidth={l.width}
+                          strokeLinejoin='bevel'
+                          strokeLinecap='round'
+                          strokeDasharray='4 3'
+                          vectorEffect='non-scaling-stroke'
+                        />
+                      )}
+                    </g>
+                  ))}
               </svg>
-              {multi.lines.map((l, li) =>
-                l.dots.map(
-                  (d, di) =>
-                    d.h !== null && (
-                      <div
-                        key={`${li}-${di}`}
-                        className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full'
-                        style={{
-                          bottom: d.h,
-                          left: d.x,
-                          border: `1.5px ${d.isGuidance ? 'dashed' : 'solid'} ${l.color}`,
-                          background: 'var(--color-bg)',
-                        }}
-                      />
-                    )
-                )
-              )}
+              {multi.lines
+                .filter(l => l.indent === 0)
+                .map((l, li) =>
+                  l.dots.map(
+                    (d, di) =>
+                      d.h !== null && (
+                        <div
+                          key={`${li}-${di}`}
+                          className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full'
+                          style={{
+                            bottom: d.h,
+                            left: d.x,
+                            border: `1.5px ${d.isGuidance ? 'dashed' : 'solid'} ${l.color}`,
+                            background: 'var(--color-bg)',
+                          }}
+                        />
+                      )
+                  )
+                )}
             </div>
           </div>
 
@@ -433,13 +444,18 @@ export function MultiSection({
               <div key={li} className='flex items-center gap-2'>
                 <span
                   className='inline-block w-2 h-0.75 flex-none rounded-sm'
-                  style={{ background: l.color }}
+                  style={{ background: l.indent ? 'transparent' : l.color }}
                 />
-                <DescribedLabel
-                  label={l.label}
-                  desc={l.desc}
+                <span
                   className='flex-none w-22 text-xs whitespace-nowrap overflow-hidden text-ellipsis text-secondary'
-                />
+                  style={
+                    l.indent
+                      ? { paddingLeft: `${l.indent * 0.75}rem` }
+                      : undefined
+                  }
+                >
+                  <DescribedLabel label={l.label} desc={l.desc} />
+                </span>
                 <div className='flex-1 flex justify-between text-xs ds-tnum'>
                   {l.dots.map((d, di) => (
                     <div

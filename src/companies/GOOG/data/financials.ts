@@ -30,6 +30,23 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Funds from operations',
+    desc: 'Net income plus non-cash adjustments: depreciation and impairment of property and equipment, amortization of intangible assets, stock-based compensation, deferred income taxes, gains and losses on debt and equity securities, and other non-cash items.',
+    values: [
+      32.736, 27.845, 43.063, 53.701, 63.297, 93.175, 93.73, 105.591, 133.705,
+      164.095,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Changes in working capital',
+    desc: 'Net changes in operating assets and liabilities: accounts receivable, income taxes, other assets, accounts payable, accrued expenses, accrued revenue share, and deferred revenue, net of effects of acquisitions.',
+    values: [
+      3.3, 9.246, 4.908, 0.819, 1.827, -1.523, -2.235, -3.845, -8.406, 0.618,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, including capital expenditures, acquisitions, and purchases and maturities of marketable securities.',
     values: [
@@ -38,12 +55,77 @@ export const cashFlowStatementLines = [
     ],
   },
   {
+    label: 'Purchase/Sale of business',
+    desc: 'Acquisitions, net of cash acquired, and purchases of intangible assets. CY22 includes the $5.4B Mandiant acquisition.',
+    values: [
+      -0.986, -0.287, -1.491, -2.515, -0.738, -2.618, -6.969, -0.495, -2.931,
+      -1.592,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Purchase/Sale of investments',
+    desc: 'Net of purchases, maturities, and sales of marketable and non-marketable securities. Large gross flows (over $100B annually in marketable securities alone) net to modest amounts because Alphabet continually rolls its treasury portfolio.',
+    values: [
+      -18.229, -19.448, -1.972, -4.017, -9.822, -8.806, 16.567, 6.734, 12.597,
+      -24.882,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of property and equipment, including data centers, servers, networking equipment, and office facilities. CY25 capex of $91.4B reflects a step-change in AI infrastructure investment.',
+    values: [
+      -10.212, -13.184, -25.139, -23.548, -22.281, -24.64, -31.485, -32.251,
+      -52.535, -91.447,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Other investing cash flow items',
+    desc: 'Other investing activities including proceeds from collection of notes receivable, cash collateral related to securities lending, and investments in reverse repurchase agreements.',
+    values: [
+      -1.738, 1.518, 0.098, 0.589, 0.068, 0.541, 1.589, -1.051, -2.667, -2.37,
+    ],
+    indent: 1,
+  },
+  {
     label: 'Financing activities',
     desc: 'Net cash used in financing activities, including share repurchases, dividends, and repayments of debt.',
     values: [
       -8.332, -8.298, -13.179, -23.209, -24.408, -61.362, -69.757, -72.093,
       -79.733, -37.388,
     ],
+  },
+  {
+    label: 'Issuance/Retirement of stocks',
+    desc: 'Repurchases of common stock plus net payments related to stock-based award activities (proceeds from employee stock plans minus tax withholding payments). Alphabet began large-scale buybacks in CY19 and has repurchased over $370B of stock since.',
+    values: [
+      -6.997, -9.012, -14.068, -23.161, -36.869, -60.436, -68.596, -71.341,
+      -74.412, -59.876,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Issuance/Retirement of debt',
+    desc: 'Proceeds from issuance of debt (net of costs) minus repayments. Alphabet routinely issues and retires commercial paper and long-term notes. CY25 net issuance of $32.1B reflects a large bond offering to fund AI infrastructure.',
+    values: [
+      -1.335, -0.086, -0.061, -0.268, 9.661, -1.236, -1.196, -0.76, 0.888,
+      32.137,
+    ],
+    indent: 1,
+  },
+  {
+    label: 'Cash dividends paid',
+    desc: 'Cash dividends paid on Class A, B, and C shares. Alphabet initiated its first-ever dividend in CY24 at $0.20 per share per quarter, increasing to $0.21 in CY25.',
+    values: [0, 0, 0, 0, 0, 0, 0, 0, -7.363, -10.049],
+    indent: 1,
+  },
+  {
+    label: 'Other financing cash flow items',
+    desc: 'Proceeds from sale of interest in consolidated entities, net, and other financing activities.',
+    values: [0, 0.8, 0.95, 0.22, 2.8, 0.31, 0.035, 0.008, 1.154, 0.4],
+    indent: 1,
   },
   {
     label: 'Free cash flow',
