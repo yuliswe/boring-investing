@@ -101,18 +101,30 @@ const financials: RetailFinancials = {
       },
     },
   ],
+  revenueSection: {
+    kicker:
+      'Total revenue and GAAP operating income in billions with year-on-year growth rates.',
+    revenueDesc:
+      'Consolidated net revenue from all food and beverage segments worldwide.',
+    operatingIncomeDesc:
+      'GAAP operating profit. FY25 includes approximately $2.0B in impairment and restructuring charges.',
+    netIncomeDesc:
+      'GAAP net income attributable to PepsiCo. FY17 depressed by $2.5B TCJA charge; FY18 inflated by $3.4B international reorganization benefit.',
+    chartNote:
+      'Revenue grew steadily from FY16 to FY25, accelerating from FY21 onward as pricing actions offset slowing volume growth. FY25 operating income declined despite revenue growth due to impairment and restructuring charges. FY17 net income is depressed by the TCJA transition charge; FY18 is inflated by an international reorganization benefit. FY26E values are consensus analyst estimates.',
+  },
   revenue: [
-    { year: 'FY16', revenue: 62.8, operatingIncome: 9.79 },
-    { year: 'FY17', revenue: 63.53, operatingIncome: 10.28 },
-    { year: 'FY18', revenue: 64.66, operatingIncome: 10.11 },
-    { year: 'FY19', revenue: 67.16, operatingIncome: 10.29 },
-    { year: 'FY20', revenue: 70.37, operatingIncome: 10.08 },
-    { year: 'FY21', revenue: 79.47, operatingIncome: 11.16 },
-    { year: 'FY22', revenue: 86.39, operatingIncome: 11.51 },
-    { year: 'FY23', revenue: 91.47, operatingIncome: 11.99 },
-    { year: 'FY24', revenue: 91.85, operatingIncome: 12.89 },
-    { year: 'FY25', revenue: 93.93, operatingIncome: 11.5 },
-    { year: 'FY26E', revenue: 98.94, operatingIncome: 15.89 },
+    { year: 'FY16', revenue: 62.8, operatingIncome: 9.79, netIncome: 6.33 },
+    { year: 'FY17', revenue: 63.53, operatingIncome: 10.28, netIncome: 4.86 },
+    { year: 'FY18', revenue: 64.66, operatingIncome: 10.11, netIncome: 12.51 },
+    { year: 'FY19', revenue: 67.16, operatingIncome: 10.29, netIncome: 7.31 },
+    { year: 'FY20', revenue: 70.37, operatingIncome: 10.08, netIncome: 7.11 },
+    { year: 'FY21', revenue: 79.47, operatingIncome: 11.16, netIncome: 7.61 },
+    { year: 'FY22', revenue: 86.39, operatingIncome: 11.51, netIncome: 8.9 },
+    { year: 'FY23', revenue: 91.47, operatingIncome: 11.99, netIncome: 9.07 },
+    { year: 'FY24', revenue: 91.85, operatingIncome: 12.89, netIncome: 9.58 },
+    { year: 'FY25', revenue: 93.93, operatingIncome: 11.5, netIncome: 8.24 },
+    { year: 'FY26E', revenue: 98.94, operatingIncome: 15.89, netIncome: 10.96 },
   ],
   thesis: [
     "PepsiCo operates complementary snack and beverage businesses that share distribution infrastructure and shelf space, which gives it pricing power and cost efficiencies that a single-category competitor cannot replicate, and the combination of Frito-Lay's high-margin snack portfolio with the beverage business's volume stability produces consolidated operating cash flow above $12B annually.",

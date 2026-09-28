@@ -30,7 +30,19 @@ export type SoftwareFinancials = {
   estimateNote?: string;
   criticalMetrics: TrendMetric[];
   keyMetrics: TrendMetric[];
-  revenue: { year: string; revenue: number; operatingIncome: number | null }[];
+  revenue: {
+    year: string;
+    revenue: number;
+    operatingIncome: number | null;
+    netIncome?: number | null;
+  }[];
+  revenueSection?: {
+    kicker?: string;
+    chartNote?: string;
+    revenueDesc?: string;
+    operatingIncomeDesc?: string;
+    netIncomeDesc?: string;
+  };
   expenses?: {
     year: string;
     costOfRevenue: number | null;
@@ -150,6 +162,54 @@ export function SoftwareTemplate({
     chartNote:
       'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
     guidanceDesc: estimateNote,
+  });
+
+  const revSection = financials.revenueSection;
+  const revSeries: {
+    label: string;
+    desc: string;
+    values: (number | null)[];
+    format: { prefix: string; suffix: string; decimals: number };
+    total?: boolean;
+  }[] = [
+    {
+      label: 'Total revenue',
+      desc:
+        revSection?.revenueDesc ?? 'Consolidated revenue from all operations.',
+      values: financials.revenue.map(r => r.revenue),
+      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      total: true,
+    },
+    {
+      label: 'Operating income',
+      desc:
+        revSection?.operatingIncomeDesc ??
+        'Income from operations before interest and taxes.',
+      values: financials.revenue.map(r => r.operatingIncome),
+      format: { prefix: '$', suffix: 'B', decimals: 2 },
+    },
+  ];
+  if (financials.revenue.some(r => r.netIncome != null)) {
+    revSeries.push({
+      label: 'Net income',
+      desc: revSection?.netIncomeDesc ?? 'GAAP net income.',
+      values: financials.revenue.map(r => r.netIncome ?? null),
+      format: { prefix: '$', suffix: 'B', decimals: 2 },
+    });
+  }
+  softwareSections.push({
+    rank: 350,
+    id: 'revenue-total',
+    title: 'Revenue & Operating Income',
+    kicker:
+      revSection?.kicker ??
+      'Total revenue and operating income in billions with year-on-year growth rates.',
+    kind: 'multi',
+    mode: 'absolute',
+    guidanceCount: guidanceYears.length,
+    years: allYears,
+    series: revSeries,
+    chartNote: revSection?.chartNote,
   });
 
   const expenses = financials.expenses?.map(e => ({

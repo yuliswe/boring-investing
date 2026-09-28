@@ -334,6 +334,15 @@ const financials: SoftwareFinancials = {
       median10y: 29.1,
     },
   ],
+  revenueSection: {
+    kicker:
+      'Total revenue and operating income in billions with year-on-year growth rates. Operating income is revenue minus total expenses, excluding gains and losses on dispositions.',
+    revenueDesc: 'Consolidated revenue from all divisions.',
+    operatingIncomeDesc:
+      'Revenue minus total expenses, excluding gains and losses on dispositions and equity in income on unconsolidated subsidiaries. This provides a cleaner view of recurring operating profitability than GAAP Operating Profit, which in FY22 included a $1.9B gain from the sale of Engineering Solutions.',
+    chartNote:
+      'Revenue jumped 34.7% in FY22 from the IHS Markit merger (closed February 2022), but operating income initially fell as approximately $900M in new intangible amortization and merger integration costs more than offset the added revenue. Operating margins have recovered from 27.0% in FY22 toward the pre-merger level of approximately 50% as integration costs wind down. FY26E is derived from SPGI guidance.',
+  },
   revenue: [
     { year: 'FY17', revenue: 6.063, operatingIncome: 2.61 },
     { year: 'FY18', revenue: 6.258, operatingIncome: 2.79 },

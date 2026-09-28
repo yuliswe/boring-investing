@@ -114,8 +114,6 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
-const revenueYears = financials.revenue.map(r => r.year);
-
 const mcdSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
@@ -157,34 +155,6 @@ const mcdSections: SectionData[] = [
     ],
     chartNote:
       "Segment structure dates from FY17. IOM revenue is the largest segment because it aggregates several major markets where McDonald's retains company-operated restaurants alongside franchisees.",
-  },
-  {
-    rank: 350,
-    id: 'revenue-total',
-    title: 'Revenue & Operating Income',
-    kicker:
-      'Total revenue and operating income in billions with year-on-year growth rates.',
-    kind: 'multi',
-    mode: 'absolute',
-    guidanceCount: 1,
-    years: revenueYears,
-    series: [
-      {
-        label: 'Total revenue',
-        desc: 'Consolidated revenue from company-operated restaurants, franchised restaurants, and other revenue.',
-        values: financials.revenue.map(r => r.revenue),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-        total: true,
-      },
-      {
-        label: 'Operating income',
-        desc: 'Income from operations before interest and taxes.',
-        values: financials.revenue.map(r => r.operatingIncome),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
-    ],
-    chartNote:
-      'Revenue declined from FY16 to FY18 as McDonald’s refranchised thousands of restaurants, converting company-operated revenue to lower but higher-margin franchise fees. FY26E is consensus analyst estimate.',
   },
   {
     rank: 600,
