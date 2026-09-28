@@ -42,6 +42,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'LLY',
+    name: 'Eli Lilly and Company',
+    sector: 'Pharmaceuticals',
+    summary:
+      'Global pharmaceutical company anchored by tirzepatide (Mounjaro/Zepbound) with leading positions in diabetes, obesity, oncology, and immunology, reinvesting heavily in manufacturing capacity and pipeline acquisitions.',
+    template: 'software',
+  },
+  {
     symbol: 'LULU',
     name: 'Lululemon Athletica Inc.',
     sector: 'Retail',
