@@ -114,14 +114,6 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
-const revenueYears = financials.revenue.map(r => r.year);
-
-const netIncome: (number | null)[] = revenueByYear.map((rev, i) => {
-  const total = expenseLines.reduce((sum, l) => sum + (l.values[i] ?? 0), 0);
-  return +(rev - total).toFixed(2);
-});
-netIncome.push(10.96);
-
 const pepSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
@@ -165,40 +157,6 @@ const pepSections: SectionData[] = [
     ],
     chartNote:
       'Business categories bridge three segment reorganizations (FY16–FY17, FY18–FY23, FY24–FY25) by aggregating into North America Food, North America Beverages, and International. The FY21–FY22 international revenue surge reflects pricing-led growth and currency effects.',
-  },
-  {
-    rank: 350,
-    id: 'revenue-total',
-    title: 'Revenue & Operating Income',
-    kicker:
-      'Total revenue and GAAP operating income in billions with year-on-year growth rates.',
-    kind: 'multi',
-    mode: 'absolute',
-    guidanceCount: 1,
-    years: revenueYears,
-    series: [
-      {
-        label: 'Total revenue',
-        desc: 'Consolidated net revenue from all food and beverage segments worldwide.',
-        values: financials.revenue.map(r => r.revenue),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-        total: true,
-      },
-      {
-        label: 'Operating income',
-        desc: 'GAAP operating profit. FY25 includes approximately $2.0B in impairment and restructuring charges.',
-        values: financials.revenue.map(r => r.operatingIncome),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
-      {
-        label: 'Net income',
-        desc: 'GAAP net income attributable to PepsiCo. FY17 depressed by $2.5B TCJA charge; FY18 inflated by $3.4B international reorganization benefit.',
-        values: netIncome,
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
-    ],
-    chartNote:
-      'Revenue grew steadily from FY16 to FY25, accelerating from FY21 onward as pricing actions offset slowing volume growth. FY25 operating income declined despite revenue growth due to impairment and restructuring charges. FY17 net income is depressed by the TCJA transition charge; FY18 is inflated by an international reorganization benefit. FY26E values are consensus analyst estimates.',
   },
   {
     rank: 600,

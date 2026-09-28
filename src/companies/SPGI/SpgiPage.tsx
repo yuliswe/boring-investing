@@ -152,37 +152,8 @@ function buildCashFlowStatementSection(): SectionData {
 }
 
 const segmentYears = ['FY22', 'FY23', 'FY24', 'FY25'];
-const revenueYears = financials.revenue.map(r => r.year);
 
 const spgiSections: SectionData[] = [
-  {
-    rank: 350,
-    id: 'revenue-total',
-    title: 'Revenue & Operating Income',
-    kicker:
-      'Total revenue and operating income in billions with year-on-year growth rates. Operating income is revenue minus total expenses, excluding gains and losses on dispositions.',
-    kind: 'multi',
-    mode: 'absolute',
-    guidanceCount: 1,
-    years: revenueYears,
-    series: [
-      {
-        label: 'Total revenue',
-        desc: 'Consolidated revenue from all divisions.',
-        values: financials.revenue.map(r => r.revenue),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-        total: true,
-      },
-      {
-        label: 'Operating income',
-        desc: 'Revenue minus total expenses, excluding gains and losses on dispositions and equity in income on unconsolidated subsidiaries. This provides a cleaner view of recurring operating profitability than GAAP Operating Profit, which in FY22 included a $1.9B gain from the sale of Engineering Solutions.',
-        values: financials.revenue.map(r => r.operatingIncome),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
-    ],
-    chartNote:
-      'Revenue jumped 34.7% in FY22 from the IHS Markit merger (closed February 2022), but operating income initially fell as approximately $900M in new intangible amortization and merger integration costs more than offset the added revenue. Operating margins have recovered from 27.0% in FY22 toward the pre-merger level of approximately 50% as integration costs wind down. FY26E is derived from SPGI guidance.',
-  },
   buildExpensesSection(),
   buildCashFlowStatementSection(),
   {

@@ -211,17 +211,38 @@ const financials: SoftwareFinancials = {
       },
     },
   ],
+  revenueSection: {
+    kicker:
+      'Total revenue, operating income, and net income in billions with year-on-year growth rates. FY17–FY18 include the Elanco animal health business; FY19 onward is pharmaceutical operations only.',
+    revenueDesc: 'Consolidated revenue from all product sales.',
+    operatingIncomeDesc:
+      'Income from operations before interest, other income, and taxes. Depressed in years with large acquired IPR&D charges ($3.8B in FY23, $3.3B in FY24).',
+    netIncomeDesc:
+      'GAAP net income. FY17 was a net loss due to a $2.4B TCJA charge. FY23 depressed by $3.8B in acquired IPR&D.',
+    chartNote:
+      'Revenue dropped from $24.6B (FY18) to $22.3B (FY19) due to the Elanco animal health spin-off, not an organic decline. FY22–FY23 revenue growth accelerated with the Mounjaro launch (June 2022). FY25 operating income surged to $26.3B as tirzepatide revenue scaled faster than costs. FY26E revenue and net income are consensus analyst estimates.',
+  },
   revenue: [
-    { year: 'FY17', revenue: 22.871, operatingIncome: 2.145 },
-    { year: 'FY18', revenue: 24.556, operatingIncome: 3.721 },
-    { year: 'FY19', revenue: 22.32, operatingIncome: 4.974 },
-    { year: 'FY20', revenue: 24.54, operatingIncome: 6.058 },
-    { year: 'FY21', revenue: 28.318, operatingIncome: 6.357 },
-    { year: 'FY22', revenue: 28.541, operatingIncome: 7.127 },
-    { year: 'FY23', revenue: 34.124, operatingIncome: 6.458 },
-    { year: 'FY24', revenue: 45.043, operatingIncome: 12.899 },
-    { year: 'FY25', revenue: 65.179, operatingIncome: 26.302 },
-    { year: 'FY26E', revenue: 88.46, operatingIncome: null },
+    { year: 'FY17', revenue: 22.871, operatingIncome: 2.145, netIncome: -0.21 },
+    { year: 'FY18', revenue: 24.556, operatingIncome: 3.721, netIncome: 3.23 },
+    { year: 'FY19', revenue: 22.32, operatingIncome: 4.974, netIncome: 4.64 },
+    { year: 'FY20', revenue: 24.54, operatingIncome: 6.058, netIncome: 6.2 },
+    { year: 'FY21', revenue: 28.318, operatingIncome: 6.357, netIncome: 5.58 },
+    { year: 'FY22', revenue: 28.541, operatingIncome: 7.127, netIncome: 6.24 },
+    { year: 'FY23', revenue: 34.124, operatingIncome: 6.458, netIncome: 5.24 },
+    {
+      year: 'FY24',
+      revenue: 45.043,
+      operatingIncome: 12.899,
+      netIncome: 10.59,
+    },
+    {
+      year: 'FY25',
+      revenue: 65.179,
+      operatingIncome: 26.302,
+      netIncome: 20.64,
+    },
+    { year: 'FY26E', revenue: 88.46, operatingIncome: null, netIncome: 33.21 },
   ],
   thesis: [
     'Mounjaro (diabetes) and Zepbound (obesity) together generated $36.5B in FY25 revenue, more than doubling year-over-year and constituting 56% of total sales, by addressing the combined market of more than 37 million Americans with type 2 diabetes and over 100 million with obesity, which gives Lilly a long growth runway from a single molecule.',

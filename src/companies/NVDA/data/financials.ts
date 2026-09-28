@@ -302,6 +302,13 @@ const financials: SoftwareFinancials = {
       median10y: 0.97,
     },
   ],
+  revenueSection: {
+    revenueDesc: 'Consolidated revenue from all market platforms.',
+    operatingIncomeDesc:
+      'Income from operations before interest and taxes. FY23 includes a $1.35B Arm acquisition termination charge.',
+    chartNote:
+      'Revenue more than doubled in each of FY24 and FY25 as AI accelerator demand surged. FY23 operating income was depressed by the $1.35B Arm deal termination charge and a gaming revenue downturn. FY27E is consensus analyst estimate.',
+  },
   revenue: [
     { year: 'FY17', revenue: 6.91, operatingIncome: 1.93 },
     { year: 'FY18', revenue: 9.71, operatingIncome: 3.21 },

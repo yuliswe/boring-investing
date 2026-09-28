@@ -112,39 +112,9 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
-const revenueYears = financials.revenue.map(r => r.year);
-
 const llySections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
-  {
-    rank: 350,
-    id: 'revenue-total',
-    title: 'Revenue & Operating Income',
-    kicker:
-      'Total revenue and operating income in billions with year-on-year growth rates. FY17–FY18 include the Elanco animal health business; FY19 onward is pharmaceutical operations only.',
-    kind: 'multi',
-    mode: 'absolute',
-    guidanceCount: 1,
-    years: revenueYears,
-    series: [
-      {
-        label: 'Total revenue',
-        desc: 'Consolidated revenue from all product sales.',
-        values: financials.revenue.map(r => r.revenue),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-        total: true,
-      },
-      {
-        label: 'Operating income',
-        desc: 'Income from operations before interest, other income, and taxes. Depressed in years with large acquired IPR&D charges ($3.8B in FY23, $3.3B in FY24).',
-        values: financials.revenue.map(r => r.operatingIncome),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
-    ],
-    chartNote:
-      'Revenue dropped from $24.6B (FY18) to $22.3B (FY19) due to the Elanco animal health spin-off, not an organic decline. FY22–FY23 revenue growth accelerated with the Mounjaro launch (June 2022). FY25 operating income surged to $26.3B as tirzepatide revenue scaled faster than costs. FY26E revenue is the consensus estimate from 28 analysts.',
-  },
   {
     rank: 400,
     id: 'revenue',

@@ -133,6 +133,12 @@ const financials: RetailFinancials = {
       },
     },
   ],
+  revenueSection: {
+    revenueDesc:
+      'Consolidated revenue from company-operated restaurants, franchised restaurants, and other revenue.',
+    chartNote:
+      "Revenue declined from FY16 to FY18 as McDonald's refranchised thousands of restaurants, converting company-operated revenue to lower but higher-margin franchise fees. FY26E is consensus analyst estimate.",
+  },
   revenue: [
     { year: 'FY16', revenue: 24.62, operatingIncome: 7.75 },
     { year: 'FY17', revenue: 22.82, operatingIncome: 9.55 },

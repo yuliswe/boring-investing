@@ -114,8 +114,6 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
-const revenueYears = financials.revenue.map(r => r.year);
-
 const nvdaSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
@@ -178,34 +176,6 @@ const nvdaSections: SectionData[] = [
     ],
     chartNote:
       "Data Center revenue accelerated sharply from FY24 onward as hyperscale cloud providers adopted NVIDIA's H100 and subsequent GPU architectures for AI workloads. Gaming revenue dipped in FY23 due to post-COVID normalization and crypto inventory overhang.",
-  },
-  {
-    rank: 350,
-    id: 'revenue-total',
-    title: 'Revenue & Operating Income',
-    kicker:
-      'Total revenue and operating income in billions with year-on-year growth rates.',
-    kind: 'multi',
-    mode: 'absolute',
-    guidanceCount: 1,
-    years: revenueYears,
-    series: [
-      {
-        label: 'Total revenue',
-        desc: 'Consolidated revenue from all market platforms.',
-        values: financials.revenue.map(r => r.revenue),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-        total: true,
-      },
-      {
-        label: 'Operating income',
-        desc: 'Income from operations before interest and taxes. FY23 includes a $1.35B Arm acquisition termination charge.',
-        values: financials.revenue.map(r => r.operatingIncome),
-        format: { prefix: '$', suffix: 'B', decimals: 2 },
-      },
-    ],
-    chartNote:
-      'Revenue more than doubled in each of FY24 and FY25 as AI accelerator demand surged. FY23 operating income was depressed by the $1.35B Arm deal termination charge and a gaming revenue downturn. FY27E is consensus analyst estimate.',
   },
   {
     rank: 600,
