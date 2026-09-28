@@ -267,8 +267,7 @@ function computeMulti(
           dot.delta = '';
           dot.deltaColor = '';
         }
-      } else {
-        dot.value = '—';
+      } else if (cur !== null) {
         dot.delta = '';
         dot.deltaColor = '';
       }

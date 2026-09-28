@@ -140,6 +140,7 @@ function buildCashFlowStatementSection(): SectionData {
     kind: 'multi',
     years: cashFlowStatementYears,
     mode: 'absolute',
+    guidanceCount: 1,
     series: cashFlowStatementLines.map(l => ({
       ...l,
       format: billionFormat,

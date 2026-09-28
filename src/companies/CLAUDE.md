@@ -88,9 +88,13 @@ cash flow statement as filed:
    negative for mature companies returning capital).
 5. **Free cash flow** — operating activities minus capital expenditures.
 
-Do not include forward-year estimates in this section, because consensus
-estimates for the individual cash flow statement lines are rarely available.
-Use only completed fiscal years.
+Forward-year estimates are welcome on any line where a credible source
+exists — for example, capital-expenditure guidance from the company, or a
+consensus estimate for operating cash flow or free cash flow. Use `null`
+for lines that have no credible estimate so that the chart and table show
+a gap rather than a fabricated number. The same sourcing rules that apply
+to historical data apply here: every estimate must come from a verifiable
+source (management guidance, consensus aggregator), never from memory.
 
 See `src/companies/MA/` for the reference implementation.
 

@@ -181,92 +181,99 @@ const financials: SoftwareFinancials = {
 
 export default financials;
 
-export const cashFlowStatementYears = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
+export const cashFlowStatementYears = [
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+  'FY26E',
+];
 
 export const cashFlowStatementLines = [
   {
     label: 'Net cash flow',
     desc: 'Net change in cash and equivalents for the year, including exchange rate effects.',
-    values: [0.005, 0.048, 0.473, 0.696, 1.109],
+    values: [0.005, 0.048, 0.473, 0.696, 1.109, null],
   },
   {
     label: 'Operating activities',
     desc: 'Net cash provided by operating activities, starting from net income and adjusted for non-cash charges (primarily amortization of acquired intangible assets) and working capital changes.',
-    values: [1.3, 1.297, 1.779, 2.196, 2.732],
+    values: [1.3, 1.297, 1.779, 2.196, 2.732, null],
   },
   {
     label: 'Funds from operations',
     desc: 'Net income plus non-cash adjustments: amortization of intangible assets ($1.18B in FY25), depreciation, IRGA/TSS membership liability revaluation, foreign exchange losses, impairments, finance costs, equity method revaluations, and bargain purchase gains.',
-    values: [1.255, 1.357, 1.815, 2.241, 2.738],
+    values: [1.255, 1.357, 1.815, 2.241, 2.738, null],
     indent: 1,
   },
   {
     label: 'Changes in working capital',
     desc: 'Net change in accounts receivable, inventory, accounts payable, unearned revenue, and other operating assets and liabilities.',
-    values: [0.045, -0.06, -0.036, -0.045, -0.006],
+    values: [0.045, -0.06, -0.036, -0.045, -0.006, null],
     indent: 1,
   },
   {
     label: 'Investing activities',
     desc: 'Net cash used in investing activities, dominated by cash paid for acquisitions rather than capital expenditures. CSU typically deploys more than $1B annually on acquisitions.',
-    values: [-1.238, -1.694, -1.639, -1.567, -1.881],
+    values: [-1.238, -1.694, -1.639, -1.567, -1.881, null],
   },
   {
     label: 'Purchase/Sale of business',
     desc: 'Net cash used in acquisitions of businesses: cash paid to acquire vertical market software companies minus cash obtained with those businesses at closing.',
-    values: [-1.183, -1.566, -1.695, -1.519, -1.34],
+    values: [-1.183, -1.566, -1.695, -1.519, -1.34, null],
     indent: 1,
   },
   {
     label: 'Purchase/Sale of investments',
     desc: 'Net purchases and sales of investment securities. FY25 includes the $260M equity-method investment in Asseco Poland and other strategic investments.',
-    values: [-0.031, -0.091, 0.096, -0.001, -0.53],
+    values: [-0.031, -0.091, 0.096, -0.001, -0.53, null],
     indent: 1,
   },
   {
     label: 'Capital expenditures',
     desc: 'Purchases of property, plant and equipment. Minimal relative to operating cash flow, as CSU is an asset-light software business.',
-    values: [-0.029, -0.041, -0.042, -0.067, -0.068],
+    values: [-0.029, -0.041, -0.042, -0.067, -0.068, -0.09],
     indent: 1,
   },
   {
     label: 'Other investing cash flow items',
     desc: 'Proceeds from sale of property and equipment and other investing activities.',
-    values: [0.005, 0.004, 0.002, 0.02, 0.057],
+    values: [0.005, 0.004, 0.002, 0.02, 0.057, null],
     indent: 1,
   },
   {
     label: 'Financing activities',
     desc: 'Net cash provided by (used in) financing activities, including proceeds from and repayment of credit facilities, dividends, and subsidiary equity transactions.',
-    values: [-0.041, 0.483, 0.316, 0.114, 0.156],
+    values: [-0.041, 0.483, 0.316, 0.114, 0.156, null],
   },
   {
     label: 'Issuance/Retirement of stocks',
     desc: 'CSU does not repurchase shares and has maintained a stable share count of approximately 21.2 million shares. Subsidiary equity transactions (Topicus, Lumine) are classified in other financing items.',
-    values: [0, 0, 0, 0, 0],
+    values: [0, 0, 0, 0, 0, null],
     indent: 1,
   },
   {
     label: 'Issuance/Retirement of debt',
     desc: 'Net proceeds from credit facilities and other borrowings minus repayments. CSU and its subsidiaries (including Topicus and Lumine) use non-recourse revolving credit facilities to fund acquisitions.',
-    values: [0.095, 0.693, 0.548, 0.587, 0.439],
+    values: [0.095, 0.693, 0.548, 0.587, 0.439, null],
     indent: 1,
   },
   {
     label: 'Cash dividends paid',
     desc: 'Dividends paid to common shareholders of CSI. CSU has maintained a fixed dividend of $4.00 per share since FY14.',
-    values: [-0.085, -0.085, -0.085, -0.085, -0.085],
+    values: [-0.085, -0.085, -0.085, -0.085, -0.085, -0.08],
     indent: 1,
   },
   {
     label: 'Other financing cash flow items',
     desc: 'Lease payments, subsidiary minority interest transactions, and other financing activities. FY24 was elevated by subsidiary equity transactions related to the Lumine corporate reorganization.',
-    values: [-0.051, -0.125, -0.147, -0.388, -0.198],
+    values: [-0.051, -0.125, -0.147, -0.388, -0.198, null],
     indent: 1,
   },
   {
     label: 'Free cash flow',
     desc: 'Operating cash flow minus capital expenditures (property, plant and equipment). Capital expenditures are minimal relative to operating cash flow, as CSU is an asset-light software business.',
-    values: [1.271, 1.256, 1.737, 2.129, 2.664],
+    values: [1.271, 1.256, 1.737, 2.129, 2.664, 2.97],
   },
 ];
