@@ -148,6 +148,47 @@ export const cashFlowStatementLines = [
   },
 ];
 
+export const offBalanceSheetCommitments = {
+  asOf: 'April 26, 2026 (Q1 FY27 10-Q)',
+  columns: ['Total', 'FY27', 'FY28–31', 'FY32+'],
+  rows: [
+    {
+      label: 'Mfg, supply & capacity',
+      desc: 'Agreements with foundry and packaging partners (primarily TSMC) for wafer fabrication and assembly. This figure grew nearly 6× from $16.1B a year earlier, driven by TSMC’s requirement for longer contract terms and upfront payments to fund custom fabrication capacity for next-generation architectures.\nThese are contractual obligations to pay regardless of whether end-market demand materializes.',
+      values: ['-$119.0B', '-$95.0B', '-$24.0B', '—'],
+    },
+    {
+      label: 'Leases not yet commenced',
+      desc: 'Signed but not yet started operating leases, primarily for data centers to support R&D, with terms of 3 to 20 years. Expected to commence between Q2 FY27 and FY33.\nBecause the leases have not commenced, they are not recognized as right-of-use assets or lease liabilities on the balance sheet. For comparison, leases already on the balance sheet carry $5.6B in future minimum payments.',
+      values: ['-$32.4B', '—', '—', '—'],
+    },
+    {
+      label: 'Cloud service agreements',
+      desc: 'Multi-year contracts with cloud providers (likely AWS, Azure, GCP) to support NVIDIA’s R&D workloads.\nFY28–31 total is the sum of $7.0B (FY28) + $7.0B (FY29) + $5.0B (FY30) + $3.0B (FY31).',
+      values: ['-$30.0B', '-$6.0B', '-$22.0B', '-$2.0B'],
+    },
+    {
+      label: 'Investment commitments',
+      desc: 'Committed but unfunded investments in infrastructure funds and strategic ventures, expected to be deployed through the remainder of FY27. The $27B also represents NVIDIA’s stated maximum loss exposure.\nCompleted investments ($99B as of July 2026, including the $30B OpenAI stake and $2B CoreWeave investment) are already on the balance sheet and not included here.',
+      values: ['-$27.0B', '-$27.0B', '—', '—'],
+    },
+    {
+      label: 'Other vendor commitments',
+      desc: 'Includes technology licensing and other service agreements. The filing names a significant, nonrefundable IP licensing arrangement with Groq, Inc.\nThe majority is payable through FY27.',
+      values: ['-$6.0B', '-~$6.0B', '—', '—'],
+    },
+    {
+      label: 'Facility lease guarantees',
+      desc: 'Guarantees on facility leases for partners, with maximum gross exposure of $3.5B that reduces as partners make payments over 5 to 7 years.\nIf a partner defaults, NVIDIA is liable for the remaining lease payments.',
+      values: ['-$3.5B', '—', '—', '—'],
+    },
+    {
+      label: 'Total',
+      values: ['-~$217.9B', '≤-$134.0B', '—', '—'],
+    },
+  ],
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   estimateNote:

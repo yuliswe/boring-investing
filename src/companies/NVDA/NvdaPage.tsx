@@ -9,6 +9,7 @@ import financials, {
   expenseLines,
   cashFlowStatementYears,
   cashFlowStatementLines,
+  offBalanceSheetCommitments,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -117,6 +118,18 @@ function buildCashFlowStatementSection(): SectionData {
 const nvdaSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
+  {
+    rank: 570,
+    id: 'off-balance-sheet',
+    title: 'Off-Balance-Sheet Commitments',
+    kicker: `Contractual obligations not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Manufacturing commitments grew nearly 6× year-over-year, driven by TSMC’s requirement for longer contract terms and upfront payments to fund custom fabrication capacity.`,
+    kind: 'table',
+    firstColumn: 'Category',
+    columns: offBalanceSheetCommitments.columns,
+    rows: offBalanceSheetCommitments.rows,
+    tableNote:
+      'Leases not yet commenced ($32.4B) are spread across FY27–FY33, primarily for data centers, with terms of 3–20 years. Facility lease guarantees ($3.5B max exposure) reduce over 5–7 years as partners make payments. The $24.0B manufacturing balance for FY28–31 is not broken down by individual year in the filing. Cloud service FY28–31 is the sum of $7.0B + $7.0B + $5.0B + $3.0B. Investment commitments include pledged but unfunded equity stakes; completed investments ($99B as of July 2026, including the $30B OpenAI stake) are on the balance sheet and not shown here.',
+  },
   {
     rank: 400,
     id: 'revenue',

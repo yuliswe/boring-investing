@@ -70,6 +70,7 @@ export type FilingEntryData = {
 
 export type TableRowData = {
   label: string;
+  desc?: string;
   values: string[];
 };
 
