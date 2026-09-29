@@ -10,6 +10,14 @@ export type Stock = {
 
 export const STOCKS: Stock[] = [
   {
+    symbol: 'AMZN',
+    name: 'Amazon.com, Inc.',
+    sector: 'Technology',
+    summary:
+      'Global technology company operating the largest e-commerce marketplace and the leading cloud infrastructure platform (AWS), with expanding advertising, streaming, and AI businesses.',
+    template: 'software',
+  },
+  {
     symbol: 'ADBE',
     name: 'Adobe Inc.',
     sector: 'Software',
