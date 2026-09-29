@@ -6,6 +6,7 @@ import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
+  offBalanceSheetCommitments,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -61,6 +62,18 @@ function buildCashFlowStatementSection(): SectionData {
 }
 
 const googSections: SectionData[] = [
+  {
+    rank: 570,
+    id: 'off-balance-sheet',
+    title: 'Off-Balance-Sheet Commitments',
+    kicker: `Contractual obligations not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Fixed or guaranteed commitments reached $707B, driven by long-term supply agreements for AI infrastructure components, while uncommenced data center leases grew to $85B.`,
+    kind: 'table',
+    firstColumn: 'Category',
+    columns: offBalanceSheetCommitments.columns,
+    rows: offBalanceSheetCommitments.rows,
+    tableNote:
+      "The $707B supply & infrastructure figure includes energy take-or-pay contracts (terms of 2–26 years, through 2054) and content licenses ($7.7B as of Q3 2025, declining). Short-term and long-term amounts for supply & infrastructure are from the filing's $200.7B/$610.3B split across total purchase commitments; the long-term figure is net of the short-term. Financial guarantees also include $7.6B in power equipment supplier guarantees and $24.1B agreed but not finalized. The capital funding commitment is contingent on milestones through 2030 and is accounted for as an equity derivative.",
+  },
   {
     rank: 400,
     id: 'revenue',

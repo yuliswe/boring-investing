@@ -499,4 +499,35 @@ const financials: SoftwareFinancials = {
   ],
 };
 
+export const offBalanceSheetCommitments = {
+  asOf: 'June 30, 2026 (Q2 2026 10-Q)',
+  columns: ['Total', 'Short-term', 'Long-term'],
+  rows: [
+    {
+      label: 'Supply & infrastructure',
+      desc: 'Long-term supply agreements to secure future production capacity for technical infrastructure components and inventory, primarily chips and networking hardware. This is the largest single category and the main driver of the $707B in fixed or guaranteed commitments disclosed in the filing.\nFulfillment extends through 2030.',
+      values: ['-$707.0B', '-$200.7B', '-$506.3B'],
+    },
+    {
+      label: 'Leases not yet commenced',
+      desc: 'Signed but not yet started leases, largely tied to data center expansion. Not recognized as right-of-use assets or lease liabilities until commencement.\nGrew from $58.5B at year-end 2025 as Alphabet accelerated its AI infrastructure build-out.',
+      values: ['-$85.2B', '—', '—'],
+    },
+    {
+      label: 'Financial guarantees',
+      desc: 'Backstops underwriting data center construction obligations for third-party entities, with maximum potential exposure extending up to 15 years.\nIn addition, Alphabet has agreed to $7.6B in power equipment supplier guarantees (through September 2026) and $24.1B in additional guarantees that were agreed but not yet finalized.',
+      values: ['-$43.8B', '—', '—'],
+    },
+    {
+      label: 'Capital funding commitment',
+      desc: 'Future capital funding commitment to a private company, contingent on operational and financial milestones through 2030, accounted for as an equity derivative.\nThis represents the unfunded, milestone-contingent portion of a larger investment arrangement.',
+      values: ['-$20.0B', '—', '—'],
+    },
+    {
+      label: 'Total',
+      values: ['-~$856.0B', '—', '—'],
+    },
+  ],
+};
+
 export default financials;
