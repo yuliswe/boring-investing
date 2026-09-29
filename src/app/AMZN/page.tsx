@@ -1,7 +1,12 @@
+import type { Metadata } from 'next';
+import { getStock } from '@/lib/stocks';
 import { AmznPage } from '@/companies/AMZN/AmznPage';
 
-export const metadata = {
-  title: 'AMZN — Amazon.com, Inc.',
+const stock = getStock('AMZN')!;
+
+export const metadata: Metadata = {
+  title: `${stock.symbol} — ${stock.name}`,
+  description: stock.summary,
 };
 
 export default function Page() {
