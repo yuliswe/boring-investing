@@ -148,6 +148,41 @@ export const cashFlowStatementLines = [
   },
 ];
 
+export const offBalanceSheetCommitments = {
+  asOf: 'April 26, 2026 (Q1 FY27 10-Q)',
+  columns: ['Total', 'FY27', 'FY28–31', 'FY32+'],
+  rows: [
+    {
+      label: 'Mfg, supply & capacity',
+      values: ['$119.0B', '$95.0B', '$24.0B', '—'],
+    },
+    {
+      label: 'Leases not yet commenced',
+      values: ['$32.4B', '—', '—', '—'],
+    },
+    {
+      label: 'Cloud service agreements',
+      values: ['$30.0B', '$6.0B', '$22.0B', '$2.0B'],
+    },
+    {
+      label: 'Investment commitments',
+      values: ['$27.0B', '$27.0B', '—', '—'],
+    },
+    {
+      label: 'Other vendor commitments',
+      values: ['$6.0B', '~$6.0B', '—', '—'],
+    },
+    {
+      label: 'Facility lease guarantees',
+      values: ['$3.5B', '—', '—', '—'],
+    },
+    {
+      label: 'Total',
+      values: ['~$217.9B', '≥$134.0B', '—', '—'],
+    },
+  ],
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   estimateNote:
