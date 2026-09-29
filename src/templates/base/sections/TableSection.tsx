@@ -1,4 +1,5 @@
 import type { TableRowData } from '../types';
+import { DescribedLabel } from '../LabelPopover';
 
 export function TableSection({
   firstColumn,
@@ -28,7 +29,9 @@ export function TableSection({
           <tbody>
             {rows.map((r, i) => (
               <tr key={i}>
-                <td className='ds-tnum'>{r.label}</td>
+                <td className='ds-tnum'>
+                  <DescribedLabel label={r.label} desc={r.desc} />
+                </td>
                 {r.values.map((v, j) => (
                   <td key={j} className='text-right ds-tnum'>
                     {v}
