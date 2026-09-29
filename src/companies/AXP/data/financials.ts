@@ -218,7 +218,7 @@ const financials: SoftwareFinancials = {
       operatingIncome: 13.795,
       netIncome: 10.833,
     },
-    { year: 'FY26E', revenue: 79.45, operatingIncome: null, netIncome: null },
+    { year: 'FY26E', revenue: 79.45, operatingIncome: null, netIncome: 12.39 },
   ],
   thesis: [
     'American Express operates a closed-loop payment network in which it acts as both the card issuer and the payment processor, giving it direct relationships with cardholders and merchants, unique transaction-level data, and the ability to earn revenue from both sides of every transaction, which is a structural advantage that open-loop networks like Visa and Mastercard do not have.',
