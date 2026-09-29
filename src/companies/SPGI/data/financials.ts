@@ -340,20 +340,22 @@ const financials: SoftwareFinancials = {
     revenueDesc: 'Consolidated revenue from all divisions.',
     operatingIncomeDesc:
       'Revenue minus total expenses, excluding gains and losses on dispositions and equity in income on unconsolidated subsidiaries. This provides a cleaner view of recurring operating profitability than GAAP Operating Profit, which in FY22 included a $1.9B gain from the sale of Engineering Solutions.',
+    netIncomeDesc:
+      'GAAP net income. Post-merger (FY22 onward) depressed by approximately $1B per year in non-cash amortization of IHS Markit intangible assets. FY22 includes a $1.9B gain on the Engineering Solutions sale.',
     chartNote:
       'Revenue jumped 34.7% in FY22 from the IHS Markit merger (closed February 2022), but operating income initially fell as approximately $900M in new intangible amortization and merger integration costs more than offset the added revenue. Operating margins have recovered from 27.0% in FY22 toward the pre-merger level of approximately 50% as integration costs wind down. FY26E is derived from SPGI guidance.',
   },
   revenue: [
-    { year: 'FY17', revenue: 6.063, operatingIncome: 2.61 },
-    { year: 'FY18', revenue: 6.258, operatingIncome: 2.79 },
-    { year: 'FY19', revenue: 6.699, operatingIncome: 3.226 },
-    { year: 'FY20', revenue: 7.442, operatingIncome: 3.617 },
-    { year: 'FY21', revenue: 8.297, operatingIncome: 4.221 },
-    { year: 'FY22', revenue: 11.181, operatingIncome: 3.019 },
-    { year: 'FY23', revenue: 12.497, operatingIncome: 4.054 },
-    { year: 'FY24', revenue: 14.208, operatingIncome: 5.478 },
-    { year: 'FY25', revenue: 15.336, operatingIncome: 6.177 },
-    { year: 'FY26E', revenue: 15.6, operatingIncome: null },
+    { year: 'FY17', revenue: 6.063, operatingIncome: 2.61, netIncome: 1.46 },
+    { year: 'FY18', revenue: 6.258, operatingIncome: 2.79, netIncome: 1.91 },
+    { year: 'FY19', revenue: 6.699, operatingIncome: 3.226, netIncome: 2.1 },
+    { year: 'FY20', revenue: 7.442, operatingIncome: 3.617, netIncome: 2.33 },
+    { year: 'FY21', revenue: 8.297, operatingIncome: 4.221, netIncome: 3.01 },
+    { year: 'FY22', revenue: 11.181, operatingIncome: 3.019, netIncome: 3.25 },
+    { year: 'FY23', revenue: 12.497, operatingIncome: 4.054, netIncome: 2.62 },
+    { year: 'FY24', revenue: 14.208, operatingIncome: 5.478, netIncome: 3.85 },
+    { year: 'FY25', revenue: 15.336, operatingIncome: 6.177, netIncome: 4.46 },
+    { year: 'FY26E', revenue: 15.6, operatingIncome: null, netIncome: 5.01 },
   ],
   thesis: [
     'S&P Global operates essential financial infrastructure, including credit ratings, market data, analytics, benchmarks, and commodity price assessments, that its customers cannot easily replace, producing subscription-like recurring revenue with strong pricing power.',

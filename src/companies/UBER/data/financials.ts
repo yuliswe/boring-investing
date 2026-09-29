@@ -156,15 +156,19 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'GAAP net income. Swings sharply on mark-to-market gains and losses from equity stakes in Aurora, Grab, Didi, and Joby. FY22 includes a $7.5B unrealised loss; FY24 includes large gains and a deferred tax asset valuation allowance release.',
+  },
   revenue: [
-    { year: 'FY19', revenue: 13.0, operatingIncome: -8.6 },
-    { year: 'FY20', revenue: 11.1, operatingIncome: -4.9 },
-    { year: 'FY21', revenue: 17.5, operatingIncome: -3.8 },
-    { year: 'FY22', revenue: 31.9, operatingIncome: -1.8 },
-    { year: 'FY23', revenue: 37.3, operatingIncome: 1.1 },
-    { year: 'FY24', revenue: 44.0, operatingIncome: 2.8 },
-    { year: 'FY25', revenue: 52.0, operatingIncome: 5.6 },
-    { year: 'FY26E', revenue: 57.9, operatingIncome: 8.47 },
+    { year: 'FY19', revenue: 13.0, operatingIncome: -8.6, netIncome: -8.5 },
+    { year: 'FY20', revenue: 11.1, operatingIncome: -4.9, netIncome: -6.75 },
+    { year: 'FY21', revenue: 17.5, operatingIncome: -3.8, netIncome: -0.49 },
+    { year: 'FY22', revenue: 31.9, operatingIncome: -1.8, netIncome: -9.16 },
+    { year: 'FY23', revenue: 37.3, operatingIncome: 1.1, netIncome: 1.9 },
+    { year: 'FY24', revenue: 44.0, operatingIncome: 2.8, netIncome: 9.86 },
+    { year: 'FY25', revenue: 52.0, operatingIncome: 5.6, netIncome: 10.04 },
+    { year: 'FY26E', revenue: 57.9, operatingIncome: 8.47, netIncome: 6.02 },
   ],
   expenses: [
     {

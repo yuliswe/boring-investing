@@ -42,18 +42,22 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'IFRS net income attributable to CSU shareholders. Depressed relative to cash earnings by ~$1.2B annually in amortization of acquired intangible assets. FY23 was negative due to $0.9B in non-operating charges (IRGA revaluations and impairments).',
+  },
   revenue: [
-    { year: 'FY16', revenue: 2.13, operatingIncome: 0.34 },
-    { year: 'FY17', revenue: 2.48, operatingIncome: 0.39 },
-    { year: 'FY18', revenue: 3.06, operatingIncome: 0.48 },
-    { year: 'FY19', revenue: 3.49, operatingIncome: 0.51 },
-    { year: 'FY20', revenue: 3.97, operatingIncome: 0.63 },
-    { year: 'FY21', revenue: 5.11, operatingIncome: 0.87 },
-    { year: 'FY22', revenue: 6.62, operatingIncome: 0.92 },
-    { year: 'FY23', revenue: 8.41, operatingIncome: 1.18 },
-    { year: 'FY24', revenue: 10.07, operatingIncome: 1.47 },
-    { year: 'FY25', revenue: 11.62, operatingIncome: 1.93 },
-    { year: 'FY26E', revenue: 13.82, operatingIncome: 2.1 },
+    { year: 'FY16', revenue: 2.13, operatingIncome: 0.34, netIncome: null },
+    { year: 'FY17', revenue: 2.48, operatingIncome: 0.39, netIncome: 0.2 },
+    { year: 'FY18', revenue: 3.06, operatingIncome: 0.48, netIncome: 0.35 },
+    { year: 'FY19', revenue: 3.49, operatingIncome: 0.51, netIncome: 0.24 },
+    { year: 'FY20', revenue: 3.97, operatingIncome: 0.63, netIncome: 0.33 },
+    { year: 'FY21', revenue: 5.11, operatingIncome: 0.87, netIncome: 0.05 },
+    { year: 'FY22', revenue: 6.62, operatingIncome: 0.92, netIncome: 0.4 },
+    { year: 'FY23', revenue: 8.41, operatingIncome: 1.18, netIncome: -0.1 },
+    { year: 'FY24', revenue: 10.07, operatingIncome: 1.47, netIncome: 0.59 },
+    { year: 'FY25', revenue: 11.62, operatingIncome: 1.93, netIncome: 0.38 },
+    { year: 'FY26E', revenue: 13.82, operatingIncome: 2.1, netIncome: null },
   ],
   expenses: [
     {

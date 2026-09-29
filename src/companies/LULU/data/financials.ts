@@ -286,18 +286,22 @@ const financials: RetailFinancials = {
       },
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'GAAP net income. FY22 depressed by $0.4B in MIRROR-related impairment and restructuring charges. FY26E consensus from 30 analysts (stockanalysis.com).',
+  },
   revenue: [
-    { year: 'FY16', revenue: 2.34, operatingIncome: 0.42 },
-    { year: 'FY17', revenue: 2.65, operatingIncome: 0.46 },
-    { year: 'FY18', revenue: 3.29, operatingIncome: 0.71 },
-    { year: 'FY19', revenue: 3.98, operatingIncome: 0.89 },
-    { year: 'FY20', revenue: 4.4, operatingIncome: 0.82 },
-    { year: 'FY21', revenue: 6.26, operatingIncome: 1.33 },
-    { year: 'FY22', revenue: 8.11, operatingIncome: 1.33 },
-    { year: 'FY23', revenue: 9.62, operatingIncome: 2.13 },
-    { year: 'FY24', revenue: 10.59, operatingIncome: 2.51 },
-    { year: 'FY25', revenue: 11.1, operatingIncome: 2.21 },
-    { year: 'FY26E', revenue: 10.46, operatingIncome: 1.51 },
+    { year: 'FY16', revenue: 2.34, operatingIncome: 0.42, netIncome: 0.3 },
+    { year: 'FY17', revenue: 2.65, operatingIncome: 0.46, netIncome: 0.26 },
+    { year: 'FY18', revenue: 3.29, operatingIncome: 0.71, netIncome: 0.48 },
+    { year: 'FY19', revenue: 3.98, operatingIncome: 0.89, netIncome: 0.64 },
+    { year: 'FY20', revenue: 4.4, operatingIncome: 0.82, netIncome: 0.59 },
+    { year: 'FY21', revenue: 6.26, operatingIncome: 1.33, netIncome: 0.98 },
+    { year: 'FY22', revenue: 8.11, operatingIncome: 1.33, netIncome: 0.85 },
+    { year: 'FY23', revenue: 9.62, operatingIncome: 2.13, netIncome: 1.55 },
+    { year: 'FY24', revenue: 10.59, operatingIncome: 2.51, netIncome: 1.81 },
+    { year: 'FY25', revenue: 11.1, operatingIncome: 2.21, netIncome: 1.58 },
+    { year: 'FY26E', revenue: 10.46, operatingIncome: 1.51, netIncome: 1.08 },
   ],
   expenses: [
     {

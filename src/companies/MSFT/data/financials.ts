@@ -394,18 +394,27 @@ const financials: SoftwareFinancials = {
       },
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'GAAP net income. FY18 depressed by $13.7B Tax Cuts and Jobs Act charge.',
+  },
   revenue: [
-    { year: 'FY17', revenue: 96.6, operatingIncome: 29.0 },
-    { year: 'FY18', revenue: 110.4, operatingIncome: 35.1 },
-    { year: 'FY19', revenue: 125.8, operatingIncome: 43.0 },
-    { year: 'FY20', revenue: 143.0, operatingIncome: 53.0 },
-    { year: 'FY21', revenue: 168.1, operatingIncome: 69.9 },
-    { year: 'FY22', revenue: 198.3, operatingIncome: 83.4 },
-    { year: 'FY23', revenue: 211.9, operatingIncome: 88.5 },
-    { year: 'FY24', revenue: 245.1, operatingIncome: 109.4 },
-    { year: 'FY25', revenue: 281.7, operatingIncome: 128.5 },
-    { year: 'FY26', revenue: 331.8, operatingIncome: 155.2 },
-    { year: 'FY27E', revenue: 391.0, operatingIncome: 182.2 },
+    { year: 'FY17', revenue: 96.6, operatingIncome: 29.0, netIncome: 25.49 },
+    { year: 'FY18', revenue: 110.4, operatingIncome: 35.1, netIncome: 16.58 },
+    { year: 'FY19', revenue: 125.8, operatingIncome: 43.0, netIncome: 39.22 },
+    { year: 'FY20', revenue: 143.0, operatingIncome: 53.0, netIncome: 44.27 },
+    { year: 'FY21', revenue: 168.1, operatingIncome: 69.9, netIncome: 61.27 },
+    { year: 'FY22', revenue: 198.3, operatingIncome: 83.4, netIncome: 72.76 },
+    { year: 'FY23', revenue: 211.9, operatingIncome: 88.5, netIncome: 72.36 },
+    { year: 'FY24', revenue: 245.1, operatingIncome: 109.4, netIncome: 88.14 },
+    { year: 'FY25', revenue: 281.7, operatingIncome: 128.5, netIncome: 101.83 },
+    { year: 'FY26', revenue: 331.8, operatingIncome: 155.2, netIncome: 133.75 },
+    {
+      year: 'FY27E',
+      revenue: 391.0,
+      operatingIncome: 182.2,
+      netIncome: 162.27,
+    },
   ],
   expenses: [
     {
