@@ -547,4 +547,35 @@ const financials: SoftwareFinancials = {
   ],
 };
 
+export const offBalanceSheetCommitments = {
+  asOf: 'June 30, 2026 (FY2026 10-K)',
+  columns: ['Total', '< 1 Year', '> 1 Year'],
+  rows: [
+    {
+      label: 'Leases not yet commenced',
+      desc: 'Signed but not yet started leases, primarily for data centers, that will commence between FY27 and FY33 with terms of 1 to 20 years.\nBecause these leases have not commenced, they are not recognized as right-of-use assets or lease liabilities on the balance sheet. This figure grew from $92.7B a year earlier as Microsoft accelerated its AI infrastructure build-out.',
+      values: ['-$329.1B', '—', '—'],
+    },
+    {
+      label: 'Purchase commitments',
+      desc: 'Primarily data-center-related open purchase orders and take-or-pay contracts for hardware, components, and services. Excludes items classified as construction commitments.\nThe vast majority ($169.0B) is due within one year, reflecting the short-cycle nature of hardware procurement.',
+      values: ['-$194.1B', '-$169.0B', '-$25.1B'],
+    },
+    {
+      label: 'Construction commitments',
+      desc: 'Obligations for data center construction and build-out projects. These are separate from purchase commitments and cover contracted but not yet completed construction work.',
+      values: ['-$34.6B', '—', '—'],
+    },
+    {
+      label: 'OpenAI investment',
+      desc: "Remaining unfunded portion of Microsoft's total $13.0B funding commitment to OpenAI, of which $11.9B had been funded as of June 30, 2026.\nCompleted funding is already recognized on the balance sheet.",
+      values: ['-$1.1B', '-$1.1B', '—'],
+    },
+    {
+      label: 'Total',
+      values: ['-~$558.9B', '—', '—'],
+    },
+  ],
+};
+
 export default financials;

@@ -6,6 +6,7 @@ import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
+  offBalanceSheetCommitments,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -61,6 +62,18 @@ function buildCashFlowStatementSection(): SectionData {
 }
 
 const msftSections: SectionData[] = [
+  {
+    rank: 570,
+    id: 'off-balance-sheet',
+    title: 'Off-Balance-Sheet Commitments',
+    kicker: `Contractual obligations not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Uncommenced data center leases more than tripled year-over-year to $329B as Microsoft accelerated its AI infrastructure build-out, now exceeding annual revenue ($332B).`,
+    kind: 'table',
+    firstColumn: 'Category',
+    columns: offBalanceSheetCommitments.columns,
+    rows: offBalanceSheetCommitments.rows,
+    tableNote:
+      'Leases not yet commenced ($329.1B) will begin between FY27 and FY33 with terms of 1 to 20 years; no year-by-year maturity is disclosed. Construction commitments ($34.6B) are for contracted but incomplete data center build-out; the filing does not break them out by maturity. The OpenAI remaining commitment ($1.1B) is part of a $13.0B total funding arrangement. Purchase commitments are primarily data-center hardware and take-or-pay supply contracts.',
+  },
   {
     rank: 400,
     id: 'revenue',
