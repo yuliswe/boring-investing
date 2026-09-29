@@ -1,7 +1,6 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 export const expenseYears = [
-  'FY17',
   'FY18',
   'FY19',
   'FY20',
@@ -13,41 +12,39 @@ export const expenseYears = [
 ];
 
 export const revenueByYear = [
-  36.878, 40.338, 43.556, 36.087, 42.38, 52.862, 60.515, 65.949, 72.229,
+  40.338, 43.556, 36.087, 42.38, 52.862, 60.515, 65.949, 72.229,
 ];
 
 export const expenseLines = [
   {
     label: 'Card member rewards and services',
     desc: "Cost of rewards programs (Membership Rewards points, cash back, airline miles), insurance, airport lounge access, and other card member benefits. AXP's largest expense line, growing with billed business volume and richer reward offerings.",
-    values: [
-      10.079, 11.473, 12.662, 9.271, 13.0, 16.961, 19.335, 21.381, 24.466,
-    ],
+    values: [11.473, 12.662, 9.271, 13.0, 16.961, 19.335, 21.381, 24.466],
   },
   {
     label: 'Marketing and business development',
     desc: 'Card acquisition costs, co-brand partner payments, loyalty coalition expenses, advertising, and promotional activities.',
-    values: [5.722, 6.477, 7.125, 6.747, 9.053, 10.401, 10.87, 11.926, 12.709],
+    values: [6.477, 7.125, 6.747, 9.053, 10.401, 10.87, 11.926, 12.709],
   },
   {
     label: 'Salaries and employee benefits',
     desc: 'Compensation, benefits, and related costs for approximately 80,000 employees worldwide.',
-    values: [5.258, 5.25, 5.911, 5.718, 6.24, 7.252, 8.067, 8.198, 9.016],
+    values: [5.25, 5.911, 5.718, 6.24, 7.252, 8.067, 8.198, 9.016],
   },
   {
     label: 'Other, net',
     desc: 'Technology and development, professional services, occupancy, communications, and other operating expenses net of miscellaneous income.',
-    values: [5.634, 5.664, 5.856, 5.325, 4.817, 6.481, 6.807, 6.364, 6.987],
+    values: [5.664, 5.856, 5.325, 4.817, 6.481, 6.807, 6.364, 6.987],
   },
   {
     label: 'Provisions for credit losses',
     desc: 'Net charge for expected credit losses on card member loans and receivables. Negative in FY21 because AXP released COVID-era reserves as credit performance improved faster than expected.',
-    values: [2.76, 3.352, 3.573, 4.73, -1.419, 2.182, 4.923, 5.185, 5.256],
+    values: [3.352, 3.573, 4.73, -1.419, 2.182, 4.923, 5.185, 5.256],
   },
   {
     label: 'Income tax expense',
-    desc: 'Provision for income taxes. FY17 includes a $2.6B charge for the Tax Cuts and Jobs Act transition tax on accumulated foreign earnings.',
-    values: [4.677, 1.201, 1.67, 1.161, 2.629, 2.071, 2.139, 2.766, 2.962],
+    desc: 'Provision for income taxes.',
+    values: [1.201, 1.67, 1.161, 2.629, 2.071, 2.139, 2.766, 2.962],
   },
 ];
 
@@ -68,7 +65,7 @@ export const cashFlowStatementLines = [
     label: 'Net cash flow',
     desc: 'Net change in cash including exchange rate effects.',
     values: [
-      7.769, -5.455, -3.362, 8.519, -10.937, 11.886, 12.682, -5.956, 7.152,
+      7.719, -5.455, -3.362, 8.519, -10.937, 11.886, 12.682, -5.956, 7.152,
     ],
   },
   {
@@ -80,9 +77,17 @@ export const cashFlowStatementLines = [
     label: 'Investing activities',
     desc: "Net cash used in investing activities, dominated by growth in card member loans and changes in investment securities. Unlike non-financial companies, AXP's investing activities reflect expansion of its lending portfolio.",
     values: [
-      -18.242, -19.615, -16.707, 11.632, -10.529, -33.689, -24.433, -24.402,
+      -18.273, -19.615, -16.707, 11.632, -10.529, -33.689, -24.433, -24.402,
       -22.891,
     ],
+  },
+  {
+    label: 'Capital expenditures',
+    desc: 'Purchases of premises and equipment. A small fraction of operating cash flow ($1–2.4B versus $6–21B), reflecting that AXP is a financial company whose growth capital goes into the card member loan portfolio rather than physical assets.',
+    values: [
+      -1.062, -1.31, -1.645, -1.478, -1.638, -1.856, -1.565, -1.917, -2.426,
+    ],
+    indent: 1,
   },
   {
     label: 'Financing activities',
@@ -95,7 +100,7 @@ export const cashFlowStatementLines = [
     label: 'Free cash flow',
     desc: 'Operating cash flow minus capital expenditures (property and equipment).',
     values: [
-      12.478, 7.62, 11.987, 4.113, 13.095, 19.224, 16.996, 12.139, 16.003,
+      12.478, 7.62, 11.987, 4.113, 13.007, 19.223, 16.994, 12.133, 16.002,
     ],
   },
 ];
@@ -103,33 +108,33 @@ export const cashFlowStatementLines = [
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   estimateNote:
-    'FY26E EPS of $17.59 is the consensus analyst estimate as of September 2026. FY26E revenue of $79.45B is from company guidance (narrowed in Q2 2026). P/E recalculates from the adjusted price.',
+    'FY26E EPS of $17.67 and net income of $12.0B are consensus analyst estimates from 23 analysts as of September 2026. FY26E revenue of $79.49B is the consensus estimate. P/E recalculates from the adjusted price.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
       desc: 'Year-end price divided by GAAP diluted EPS.',
-      values: [33.2, 12.1, 15.6, 32.1, 16.3, 15.0, 16.7, 21.2, 24.1, 17.3],
+      values: [30.0, 11.0, 14.5, 30.3, 15.6, 14.5, 16.4, 21.1, 19.3, 17.3],
       format: { decimals: 1 },
       invertColor: true,
-      median10y: 17.0,
+      median10y: 15.6,
       guidanceCount: 1,
       yearNotes: {
         FY17: 'GAAP EPS of $2.99 was depressed by a $2.6B Tax Cuts and Jobs Act charge, inflating the P/E.',
         FY20: 'P/E elevated because COVID-19 depressed EPS while the market priced in recovery.',
         FY26E:
-          'Calculated from $304.13 divided by consensus GAAP diluted EPS of $17.59.',
+          'Calculated from $305.29 divided by consensus GAAP diluted EPS of $17.67.',
       },
     },
     {
       label: 'P/FCF ratio',
       desc: 'Year-end price divided by free cash flow per share (operating cash flow minus capital expenditures).',
-      values: [7.0, 10.7, 8.6, 23.7, 9.9, 5.8, 8.1, 17.4, 16.1],
+      values: [6.4, 9.8, 8.0, 22.4, 9.5, 5.6, 8.0, 17.3, 12.9],
       format: { decimals: 1 },
       invertColor: true,
-      median10y: 9.9,
+      median10y: 9.5,
       yearNotes: {
         FY20: 'FCF per share dropped as COVID-19 reduced operating cash flow and credit loss provisions consumed cash.',
-        FY22: 'P/FCF compressed because strong operating cash flow (driven by provision release recovery and deposit growth) boosted FCF per share to $25.56.',
+        FY22: 'P/FCF compressed because strong operating cash flow boosted FCF per share to $25.56.',
       },
     },
   ],
@@ -137,9 +142,9 @@ const financials: SoftwareFinancials = {
     {
       label: 'Diluted EPS',
       desc: 'GAAP diluted earnings per share.',
-      values: [2.99, 7.91, 7.99, 3.77, 10.02, 9.85, 11.21, 14.01, 15.38, 17.59],
+      values: [2.99, 7.91, 7.99, 3.77, 10.02, 9.85, 11.21, 14.01, 15.38, 17.67],
       format: { prefix: '$', decimals: 2 },
-      median10y: 9.94,
+      median10y: 9.85,
       guidanceCount: 1,
       yearNotes: {
         FY17: 'Depressed by $2.6B Tax Cuts and Jobs Act transition tax charge.',
@@ -150,9 +155,9 @@ const financials: SoftwareFinancials = {
     {
       label: 'Free cash flow per share',
       desc: 'Operating cash flow minus capital expenditures, divided by diluted shares outstanding.',
-      values: [14.09, 8.87, 14.44, 5.1, 16.58, 25.56, 23.09, 17.03, 22.99],
+      values: [14.09, 8.87, 14.44, 5.1, 16.46, 25.56, 23.09, 17.02, 22.99],
       format: { prefix: '$', decimals: 2 },
-      median10y: 16.58,
+      median10y: 16.46,
     },
     {
       label: 'Pretax margin %',
@@ -181,7 +186,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'FCF margin %',
       desc: 'Free cash flow as a share of total revenues net of interest expense. Volatile because operating cash flow reflects working capital swings in card member receivables and deposit changes.',
-      values: [33.8, 18.9, 27.5, 11.4, 30.9, 36.4, 28.1, 18.4, 22.1],
+      values: [33.8, 18.9, 27.5, 11.4, 30.7, 36.4, 28.1, 18.4, 22.1],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 27.5,
@@ -199,7 +204,12 @@ const financials: SoftwareFinancials = {
     { year: 'FY19', revenue: 43.556, operatingIncome: 8.429, netIncome: 6.759 },
     { year: 'FY20', revenue: 36.087, operatingIncome: 4.296, netIncome: 3.135 },
     { year: 'FY21', revenue: 42.38, operatingIncome: 10.689, netIncome: 8.06 },
-    { year: 'FY22', revenue: 52.862, operatingIncome: 9.585, netIncome: 7.514 },
+    {
+      year: 'FY22',
+      revenue: 52.862,
+      operatingIncome: 9.585,
+      netIncome: 7.514,
+    },
     {
       year: 'FY23',
       revenue: 60.515,
@@ -218,7 +228,7 @@ const financials: SoftwareFinancials = {
       operatingIncome: 13.795,
       netIncome: 10.833,
     },
-    { year: 'FY26E', revenue: 79.45, operatingIncome: null, netIncome: 12.39 },
+    { year: 'FY26E', revenue: 79.49, operatingIncome: null, netIncome: 12.0 },
   ],
   thesis: [
     'American Express operates a closed-loop payment network in which it acts as both the card issuer and the payment processor, giving it direct relationships with cardholders and merchants, unique transaction-level data, and the ability to earn revenue from both sides of every transaction, which is a structural advantage that open-loop networks like Visa and Mastercard do not have.',

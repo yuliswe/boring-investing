@@ -25,7 +25,7 @@ const hero: HeroData = {
   name: 'American Express Company',
   sector: 'Financial Services',
   tags: ['Large Cap', 'Dividend'],
-  price: '$304.13',
+  price: '$305.29',
   changePct: 0,
   priceNote: 'close, 29 September',
   summary:
@@ -34,12 +34,12 @@ const hero: HeroData = {
 
 const priceConfig: PriceConfig = {
   symbol: 'AXP',
-  defaultPrice: 304.13,
+  defaultPrice: 305.29,
   currency: '$',
-  referenceClose: 304.13,
+  referenceClose: 305.29,
 };
 
-const EPS_EST = 17.59;
+const EPS_EST = 17.67;
 
 function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
@@ -93,7 +93,7 @@ function buildExpensesSection(): SectionData {
     invert: true,
     baseLabel: '0%',
     warning:
-      'FY17 income tax expense includes a $2.6B Tax Cuts and Jobs Act transition tax charge, spiking the tax line to 12.7% of revenue. FY21 provisions for credit losses were negative ($1.4B benefit) because AXP released COVID-era reserves.',
+      'FY21 provisions for credit losses were negative ($1.4B benefit) because AXP released COVID-era reserves. FY20 provisions spiked to $4.7B (13.1% of revenue) as COVID-19 elevated expected credit losses.',
     series: [
       {
         label: 'Total expenses',
@@ -112,7 +112,7 @@ function buildExpensesSection(): SectionData {
       })),
     ],
     chartNote:
-      'Card member rewards and services is the largest expense at 27–34% of revenue, reflecting the cost of premium reward programs that drive card member spending. Marketing and business development grew from 16% to 18% of revenue as AXP invested in card acquisition and co-brand partnerships. Provisions for credit losses swung from 13% of revenue in FY20 (COVID) to −3% in FY21 (reserve release) before normalising around 7–8%. FY17 total expenses reached 93% of revenue because of the $2.6B TCJA tax charge. Deltas are additive (pp); lower is better, so a fall shows green.',
+      'Card member rewards and services is the largest expense at 28–34% of revenue, reflecting the cost of premium reward programs that drive card member spending. Marketing and business development has been stable at 16–18% of revenue. Provisions for credit losses swung from 13% of revenue in FY20 (COVID) to −3% in FY21 (reserve release) before normalising around 7–8%. Total expenses declined from 83% of revenue in FY18 to 85% in FY25. Deltas are additive (pp); lower is better, so a fall shows green.',
   };
 }
 
@@ -166,7 +166,7 @@ const axpSections: SectionData[] = [
         desc: 'Total revenues net of interest expense, the top-line revenue metric AXP reports.',
         values: [
           36.878, 40.338, 43.556, 36.087, 42.38, 52.862, 60.515, 65.949, 72.229,
-          79.45,
+          79.49,
         ],
         format: { prefix: '$', suffix: 'B', decimals: 1 },
         total: true,
@@ -207,7 +207,7 @@ const axpSections: SectionData[] = [
       },
     ],
     chartNote:
-      "Non-interest revenue fell 20% in FY20 as COVID-19 reduced card member spending, then recovered strongly with a spend-led recovery from FY21 onward. Net interest income has been the faster-growing component since FY22, driven by expansion of the card member lending portfolio and higher market interest rates, growing from $9.9B in FY22 to $17.4B in FY25. Net interest income's share of total revenue rose from 17.5% in FY17 to 24.0% in FY25. FY26E total is from company guidance; segment-level estimates are not shown.",
+      "Non-interest revenue fell 20% in FY20 as COVID-19 reduced card member spending, then recovered strongly with a spend-led recovery from FY21 onward. Net interest income has been the faster-growing component since FY22, driven by expansion of the card member lending portfolio and higher market interest rates, growing from $9.9B in FY22 to $17.4B in FY25. Net interest income's share of total revenue rose from 17.5% in FY17 to 24.0% in FY25. FY26E total is the consensus estimate; segment-level estimates are not shown.",
   },
   buildExpensesSection(),
   buildCashFlowStatementSection(),

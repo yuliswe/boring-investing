@@ -40,12 +40,13 @@ Analytical method: [software](../../methods/software.md)
   25.2% of revenue.
 
 - **Expense categories.** AXP reports these expense lines between total revenues
-  and pretax income: card member rewards and services (the largest line at 27-34%
-  of revenue), marketing and business development, salaries and employee
-  benefits, other (net), and provisions for credit losses. "Card member rewards
-  and services" is computed as the residual of total non-interest expenses minus
-  the other three operating expense lines, because the XBRL data does not tag it
-  with a standard us-gaap label.
+  and pretax income: card member rewards, card member services, marketing and
+  business development, salaries and employee benefits, other (net), and
+  provisions for credit losses. The page combines "card member rewards" and
+  "card member services" into a single line because both are direct costs of the
+  card member value proposition. The expense section starts from FY2018 because
+  the FY2017 expense line items were restated under ASC 606 and the restated
+  breakdown by category is not available from the filings.
 
 - **Cash flow structure.** AXP's cash flow statement differs from non-financial
   companies. Investing activities are dominated by growth in the card member loan
