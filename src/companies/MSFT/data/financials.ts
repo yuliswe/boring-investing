@@ -273,6 +273,38 @@ export const cashFlowStatementLines = [
   },
 ];
 
+export const offBalanceSheetCommitments = {
+  asOf: 'June 30, 2026 (FY26 10-K)',
+  columns: ['Total', 'FY27', 'FY28+'],
+  rows: [
+    {
+      label: 'Leases not yet commenced',
+      desc: 'Non-cancelable datacenter and facility leases signed but not yet started, with commencement dates from FY27 through FY33 and terms of 1 to 20 years. Up from $92.7B a year earlier, driven by AI infrastructure buildout.',
+      values: ['-$329.1B', '—', '—'],
+    },
+    {
+      label: 'Purchase commitments',
+      desc: 'Datacenter-related open purchase orders and take-or-pay contracts not classified as construction commitments. These primarily fund AI and cloud infrastructure buildout including server equipment, networking gear, and related components.',
+      values: ['-$194.1B', '-$169.0B', '-$25.1B'],
+    },
+    {
+      label: 'Construction commitments',
+      desc: 'Contractual obligations for datacenter and facility construction not yet completed or accepted.',
+      values: ['-$34.6B', '-$29.8B', '-$4.7B'],
+    },
+    {
+      label: 'OpenAI investment',
+      desc: 'Remaining unfunded commitment under the $13.0B total funding arrangement with OpenAI.',
+      values: ['-$1.1B', '—', '—'],
+    },
+    {
+      label: 'Total',
+      desc: 'Sum of all off-balance-sheet commitments. Year-by-year totals are incomplete because most categories lack a maturity breakdown in the filing.',
+      values: ['-$558.9B', '≤-$198.8B', '≤-$29.8B'],
+    },
+  ],
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   criticalMetrics: [
@@ -544,37 +576,6 @@ const financials: SoftwareFinancials = {
     'Azure keeps compounding as enterprises migrate workloads to the cloud, and it now anchors the fastest-growing segment.',
     'Microsoft 365 and the Copilot add-ons turn a large installed base into expanding per-seat revenue.',
     'Durable operating margins and heavy free cash flow fund buybacks, a growing dividend, and continued AI infrastructure investment.',
-  ],
-};
-
-export const offBalanceSheetCommitments = {
-  asOf: 'June 30, 2026 (FY2026 10-K)',
-  columns: ['Total', '< 1 Year', '> 1 Year'],
-  rows: [
-    {
-      label: 'Leases not yet commenced',
-      desc: 'Signed but not yet started leases, primarily for data centers, that will commence between FY27 and FY33 with terms of 1 to 20 years.\nBecause these leases have not commenced, they are not recognized as right-of-use assets or lease liabilities on the balance sheet. This figure grew from $92.7B a year earlier as Microsoft accelerated its AI infrastructure build-out.',
-      values: ['-$329.1B', '—', '—'],
-    },
-    {
-      label: 'Purchase commitments',
-      desc: 'Primarily data-center-related open purchase orders and take-or-pay contracts for hardware, components, and services. Excludes items classified as construction commitments.\nThe vast majority ($169.0B) is due within one year, reflecting the short-cycle nature of hardware procurement.',
-      values: ['-$194.1B', '-$169.0B', '-$25.1B'],
-    },
-    {
-      label: 'Construction commitments',
-      desc: 'Obligations for data center construction and build-out projects. These are separate from purchase commitments and cover contracted but not yet completed construction work.',
-      values: ['-$34.6B', '—', '—'],
-    },
-    {
-      label: 'OpenAI investment',
-      desc: "Remaining unfunded portion of Microsoft's total $13.0B funding commitment to OpenAI, of which $11.9B had been funded as of June 30, 2026.\nCompleted funding is already recognized on the balance sheet.",
-      values: ['-$1.1B', '-$1.1B', '—'],
-    },
-    {
-      label: 'Total',
-      values: ['-~$558.9B', '—', '—'],
-    },
   ],
 };
 
