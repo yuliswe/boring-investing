@@ -136,21 +136,23 @@ const financials: RetailFinancials = {
   revenueSection: {
     revenueDesc:
       'Consolidated revenue from company-operated restaurants, franchised restaurants, and other revenue.',
+    netIncomeDesc:
+      'GAAP net income. FY17 depressed by a $1.2B TCJA transition tax charge. FY22 includes a ~$1B charge from the sale of the Russia business.',
     chartNote:
       "Revenue declined from FY16 to FY18 as McDonald's refranchised thousands of restaurants, converting company-operated revenue to lower but higher-margin franchise fees. FY26E is consensus analyst estimate.",
   },
   revenue: [
-    { year: 'FY16', revenue: 24.62, operatingIncome: 7.75 },
-    { year: 'FY17', revenue: 22.82, operatingIncome: 9.55 },
-    { year: 'FY18', revenue: 21.03, operatingIncome: 8.82 },
-    { year: 'FY19', revenue: 21.08, operatingIncome: 9.07 },
-    { year: 'FY20', revenue: 19.21, operatingIncome: 7.32 },
-    { year: 'FY21', revenue: 23.22, operatingIncome: 10.36 },
-    { year: 'FY22', revenue: 23.18, operatingIncome: 9.37 },
-    { year: 'FY23', revenue: 25.49, operatingIncome: 11.65 },
-    { year: 'FY24', revenue: 25.92, operatingIncome: 11.71 },
-    { year: 'FY25', revenue: 26.89, operatingIncome: 12.39 },
-    { year: 'FY26E', revenue: 28.2, operatingIncome: 13.33 },
+    { year: 'FY16', revenue: 24.62, operatingIncome: 7.75, netIncome: 4.68 },
+    { year: 'FY17', revenue: 22.82, operatingIncome: 9.55, netIncome: 5.18 },
+    { year: 'FY18', revenue: 21.03, operatingIncome: 8.82, netIncome: 5.93 },
+    { year: 'FY19', revenue: 21.08, operatingIncome: 9.07, netIncome: 6.03 },
+    { year: 'FY20', revenue: 19.21, operatingIncome: 7.32, netIncome: 4.73 },
+    { year: 'FY21', revenue: 23.22, operatingIncome: 10.36, netIncome: 7.55 },
+    { year: 'FY22', revenue: 23.18, operatingIncome: 9.37, netIncome: 6.19 },
+    { year: 'FY23', revenue: 25.49, operatingIncome: 11.65, netIncome: 8.46 },
+    { year: 'FY24', revenue: 25.92, operatingIncome: 11.71, netIncome: 8.22 },
+    { year: 'FY25', revenue: 26.89, operatingIncome: 12.39, netIncome: 8.55 },
+    { year: 'FY26E', revenue: 28.2, operatingIncome: 13.33, netIncome: 9.09 },
   ],
   thesis: [
     "McDonald's franchise-heavy model converts more than 80% of franchised revenue into profit before corporate overhead, because franchisees bear the food, labor, and most occupancy costs while McDonald's collects rent and royalties on a base of 45,000 restaurants.",

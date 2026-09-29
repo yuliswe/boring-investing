@@ -377,18 +377,22 @@ const financials: SoftwareFinancials = {
       },
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'GAAP net income. FY20 inflated by a $1.1B one-time tax benefit from an intra-entity IP transfer. FY24 depressed by the $1B Figma termination fee.',
+  },
   revenue: [
-    { year: 'FY16', revenue: 5.9, operatingIncome: 1.5 },
-    { year: 'FY17', revenue: 7.3, operatingIncome: 2.2 },
-    { year: 'FY18', revenue: 9.0, operatingIncome: 2.8 },
-    { year: 'FY19', revenue: 11.2, operatingIncome: 3.3 },
-    { year: 'FY20', revenue: 12.9, operatingIncome: 4.2 },
-    { year: 'FY21', revenue: 15.8, operatingIncome: 5.8 },
-    { year: 'FY22', revenue: 17.6, operatingIncome: 6.1 },
-    { year: 'FY23', revenue: 19.4, operatingIncome: 6.7 },
-    { year: 'FY24', revenue: 21.5, operatingIncome: 6.7 },
-    { year: 'FY25', revenue: 23.8, operatingIncome: 8.7 },
-    { year: 'FY26E', revenue: 26.61, operatingIncome: 11.97 },
+    { year: 'FY16', revenue: 5.9, operatingIncome: 1.5, netIncome: 1.0 },
+    { year: 'FY17', revenue: 7.3, operatingIncome: 2.2, netIncome: 1.5 },
+    { year: 'FY18', revenue: 9.0, operatingIncome: 2.8, netIncome: 2.3 },
+    { year: 'FY19', revenue: 11.2, operatingIncome: 3.3, netIncome: 2.3 },
+    { year: 'FY20', revenue: 12.9, operatingIncome: 4.2, netIncome: 4.6 },
+    { year: 'FY21', revenue: 15.8, operatingIncome: 5.8, netIncome: 4.2 },
+    { year: 'FY22', revenue: 17.6, operatingIncome: 6.1, netIncome: 3.9 },
+    { year: 'FY23', revenue: 19.4, operatingIncome: 6.7, netIncome: 4.1 },
+    { year: 'FY24', revenue: 21.5, operatingIncome: 6.7, netIncome: 4.2 },
+    { year: 'FY25', revenue: 23.8, operatingIncome: 8.7, netIncome: 6.2 },
+    { year: 'FY26E', revenue: 26.61, operatingIncome: 11.97, netIncome: 7.24 },
   ],
   expenses: [
     {

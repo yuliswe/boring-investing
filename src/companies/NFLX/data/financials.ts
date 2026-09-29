@@ -376,18 +376,22 @@ const financials: SoftwareFinancials = {
       },
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'GAAP net income. FY17 benefited from a tax credit due to excess stock-based compensation deductions.',
+  },
   revenue: [
-    { year: 'FY16', revenue: 8.83, operatingIncome: 0.38 },
-    { year: 'FY17', revenue: 11.69, operatingIncome: 0.84 },
-    { year: 'FY18', revenue: 15.79, operatingIncome: 1.61 },
-    { year: 'FY19', revenue: 20.16, operatingIncome: 2.6 },
-    { year: 'FY20', revenue: 25.0, operatingIncome: 4.59 },
-    { year: 'FY21', revenue: 29.7, operatingIncome: 6.19 },
-    { year: 'FY22', revenue: 31.62, operatingIncome: 5.63 },
-    { year: 'FY23', revenue: 33.72, operatingIncome: 6.95 },
-    { year: 'FY24', revenue: 39.0, operatingIncome: 10.42 },
-    { year: 'FY25', revenue: 45.18, operatingIncome: 13.33 },
-    { year: 'FY26E', revenue: 51.2, operatingIncome: 16.13 },
+    { year: 'FY16', revenue: 8.83, operatingIncome: 0.38, netIncome: 0.19 },
+    { year: 'FY17', revenue: 11.69, operatingIncome: 0.84, netIncome: 0.56 },
+    { year: 'FY18', revenue: 15.79, operatingIncome: 1.61, netIncome: 1.21 },
+    { year: 'FY19', revenue: 20.16, operatingIncome: 2.6, netIncome: 1.87 },
+    { year: 'FY20', revenue: 25.0, operatingIncome: 4.59, netIncome: 2.76 },
+    { year: 'FY21', revenue: 29.7, operatingIncome: 6.19, netIncome: 5.12 },
+    { year: 'FY22', revenue: 31.62, operatingIncome: 5.63, netIncome: 4.49 },
+    { year: 'FY23', revenue: 33.72, operatingIncome: 6.95, netIncome: 5.41 },
+    { year: 'FY24', revenue: 39.0, operatingIncome: 10.42, netIncome: 8.71 },
+    { year: 'FY25', revenue: 45.18, operatingIncome: 13.33, netIncome: 10.98 },
+    { year: 'FY26E', revenue: 51.2, operatingIncome: 16.13, netIncome: 15.27 },
   ],
   expenses: [
     {

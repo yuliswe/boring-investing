@@ -351,18 +351,22 @@ const financials: SoftwareFinancials = {
       },
     },
   ],
+  revenueSection: {
+    netIncomeDesc:
+      'GAAP net income attributable to Alphabet. CY17 depressed by a $14.5B Tax Cuts and Jobs Act transition charge. CY26E is null because Q2 2026 contains a large non-operating gain that distorts annualization.',
+  },
   revenue: [
-    { year: 'CY16', revenue: 90.3, operatingIncome: 23.7 },
-    { year: 'CY17', revenue: 110.9, operatingIncome: 26.1 },
-    { year: 'CY18', revenue: 136.8, operatingIncome: 27.5 },
-    { year: 'CY19', revenue: 161.9, operatingIncome: 34.2 },
-    { year: 'CY20', revenue: 182.5, operatingIncome: 41.2 },
-    { year: 'CY21', revenue: 257.6, operatingIncome: 78.7 },
-    { year: 'CY22', revenue: 282.8, operatingIncome: 74.8 },
-    { year: 'CY23', revenue: 307.4, operatingIncome: 84.3 },
-    { year: 'CY24', revenue: 350.0, operatingIncome: 112.4 },
-    { year: 'CY25', revenue: 402.8, operatingIncome: 129.0 },
-    { year: 'CY26E', revenue: 459.4, operatingIncome: 160.9 },
+    { year: 'CY16', revenue: 90.3, operatingIncome: 23.7, netIncome: 19.5 },
+    { year: 'CY17', revenue: 110.9, operatingIncome: 26.1, netIncome: 12.8 },
+    { year: 'CY18', revenue: 136.8, operatingIncome: 27.5, netIncome: 30.6 },
+    { year: 'CY19', revenue: 161.9, operatingIncome: 34.2, netIncome: 34.3 },
+    { year: 'CY20', revenue: 182.5, operatingIncome: 41.2, netIncome: 40.3 },
+    { year: 'CY21', revenue: 257.6, operatingIncome: 78.7, netIncome: 76.0 },
+    { year: 'CY22', revenue: 282.8, operatingIncome: 74.8, netIncome: 60.0 },
+    { year: 'CY23', revenue: 307.4, operatingIncome: 84.3, netIncome: 73.8 },
+    { year: 'CY24', revenue: 350.0, operatingIncome: 112.4, netIncome: 100.1 },
+    { year: 'CY25', revenue: 402.8, operatingIncome: 129.0, netIncome: 132.1 },
+    { year: 'CY26E', revenue: 459.4, operatingIncome: 160.9, netIncome: null },
   ],
   expenses: [
     {
