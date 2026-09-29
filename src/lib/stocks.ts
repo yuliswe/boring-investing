@@ -10,6 +10,14 @@ export type Stock = {
 
 export const STOCKS: Stock[] = [
   {
+    symbol: 'AXP',
+    name: 'American Express Company',
+    sector: 'Financial Services',
+    summary:
+      'Closed-loop payment network that issues charge and credit cards directly to consumers and businesses, earning revenue from merchant discount fees, card member fees, interest on card member loans, and travel and lifestyle services.',
+    template: 'software',
+  },
+  {
     symbol: 'AMZN',
     name: 'Amazon.com, Inc.',
     sector: 'Technology',
