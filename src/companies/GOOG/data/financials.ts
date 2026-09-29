@@ -240,6 +240,43 @@ export const cashFlowStatementLines = [
   },
 ];
 
+export const offBalanceSheetCommitments = {
+  asOf: 'June 30, 2026 (Q2 CY26 10-Q)',
+  columns: ['Total', '≤1 yr', '>1 yr'],
+  rows: [
+    {
+      label: 'Supply & infrastructure',
+      desc: 'Long-term supply agreements for chips, components, and technical infrastructure; energy take-or-pay contracts extending through 2054; content licensing agreements; and open purchase orders for datacenter equipment. Hardware commitments extend through 2030. Fixed or guaranteed commitments account for $707B of the total.',
+      values: ['-$811.0B', '-$200.7B', '-$610.3B'],
+    },
+    {
+      label: 'Leases not yet commenced',
+      desc: 'Signed datacenter and facility leases that have not yet started, primarily for AI and cloud infrastructure expansion.',
+      values: ['-$85.2B', '—', '—'],
+    },
+    {
+      label: 'Credit derivatives',
+      desc: 'Credit-derivative backstops backing datacenter payment obligations, with terms of up to 15 years. Represents maximum exposure, not expected cash outflows.',
+      values: ['-$43.8B', '—', '—'],
+    },
+    {
+      label: 'Capital funding',
+      desc: 'Future capital funding commitment with a private company for infrastructure partnerships through 2030, contingent on milestones. Accounted for as an equity derivative.',
+      values: ['-$20.0B', '—', '—'],
+    },
+    {
+      label: 'Financial guarantees',
+      desc: 'Guarantees for supplier equipment purchases ($7.6B) plus $24.1B in agreed but not yet finalized guarantees backing data center obligations.',
+      values: ['-$31.7B', '—', '—'],
+    },
+    {
+      label: 'Total',
+      desc: 'Sum of all off-balance-sheet commitments. Year-by-year totals are partial because most categories lack a maturity breakdown.',
+      values: ['-$991.7B', '≤-$200.7B', '≤-$610.3B'],
+    },
+  ],
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['CY26E'],
   estimateNote:
@@ -496,37 +533,6 @@ const financials: SoftwareFinancials = {
     'Google Search dominates online advertising with a self-reinforcing data and AI moat that has resisted competitive challenges for two decades.',
     'Google Cloud crossed into sustained profitability and is compounding revenue as enterprises adopt its AI platform alongside traditional cloud infrastructure.',
     'YouTube is the largest video platform by watch time, monetising through advertising, Premium subscriptions, and a growing connected-TV footprint.',
-  ],
-};
-
-export const offBalanceSheetCommitments = {
-  asOf: 'June 30, 2026 (Q2 2026 10-Q)',
-  columns: ['Total', 'Short-term', 'Long-term'],
-  rows: [
-    {
-      label: 'Supply & infrastructure',
-      desc: 'Long-term supply agreements to secure future production capacity for technical infrastructure components and inventory, primarily chips and networking hardware. This is the largest single category and the main driver of the $707B in fixed or guaranteed commitments disclosed in the filing.\nFulfillment extends through 2030.',
-      values: ['-$707.0B', '-$200.7B', '-$506.3B'],
-    },
-    {
-      label: 'Leases not yet commenced',
-      desc: 'Signed but not yet started leases, largely tied to data center expansion. Not recognized as right-of-use assets or lease liabilities until commencement.\nGrew from $58.5B at year-end 2025 as Alphabet accelerated its AI infrastructure build-out.',
-      values: ['-$85.2B', '—', '—'],
-    },
-    {
-      label: 'Financial guarantees',
-      desc: 'Backstops underwriting data center construction obligations for third-party entities, with maximum potential exposure extending up to 15 years.\nIn addition, Alphabet has agreed to $7.6B in power equipment supplier guarantees (through September 2026) and $24.1B in additional guarantees that were agreed but not yet finalized.',
-      values: ['-$43.8B', '—', '—'],
-    },
-    {
-      label: 'Capital funding commitment',
-      desc: 'Future capital funding commitment to a private company, contingent on operational and financial milestones through 2030, accounted for as an equity derivative.\nThis represents the unfunded, milestone-contingent portion of a larger investment arrangement.',
-      values: ['-$20.0B', '—', '—'],
-    },
-    {
-      label: 'Total',
-      values: ['-~$856.0B', '—', '—'],
-    },
   ],
 };
 
