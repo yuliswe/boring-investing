@@ -21,6 +21,7 @@ type TrendMetric = {
 };
 
 export type RetailFinancials = {
+  currency?: string;
   guidanceYears?: string[];
   criticalMetrics?: TrendMetric[];
   operationalMetrics?: TrendMetric[];
@@ -181,6 +182,7 @@ export function RetailTemplate({
   }
 
   const revSection = financials.revenueSection;
+  const currency = financials.currency ?? '$';
   const revSeries: {
     label: string;
     desc: string;
@@ -193,7 +195,7 @@ export function RetailTemplate({
       desc:
         revSection?.revenueDesc ?? 'Consolidated revenue from all operations.',
       values: financials.revenue.map(r => r.revenue),
-      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      format: { prefix: currency, suffix: 'B', decimals: 2 },
       total: true,
     },
     {
@@ -202,7 +204,7 @@ export function RetailTemplate({
         revSection?.operatingIncomeDesc ??
         'Income from operations before interest and taxes.',
       values: financials.revenue.map(r => r.operatingIncome),
-      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      format: { prefix: currency, suffix: 'B', decimals: 2 },
     },
   ];
   if (financials.revenue.some(r => r.netIncome != null)) {
@@ -210,7 +212,7 @@ export function RetailTemplate({
       label: 'Net income',
       desc: revSection?.netIncomeDesc ?? 'GAAP net income.',
       values: financials.revenue.map(r => r.netIncome ?? null),
-      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      format: { prefix: currency, suffix: 'B', decimals: 2 },
     });
   }
   retailSections.push({
