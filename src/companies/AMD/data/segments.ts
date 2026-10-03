@@ -1,7 +1,3 @@
-// Revenue by market in billions. AMD reported Data Center, Client, Gaming and
-// Embedded as four segments from FY22 to FY24 (recast back to FY21), then
-// merged Client and Gaming into one segment in FY25 while still disclosing
-// each market's revenue.
 const segments = {
   segments: [
     {

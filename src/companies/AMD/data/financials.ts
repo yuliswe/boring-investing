@@ -16,8 +16,6 @@ export const revenueByYear = [
   5.253, 6.475, 6.731, 9.763, 16.434, 23.601, 22.68, 25.785, 34.639,
 ];
 
-// Lines without `indent` are the top-level buckets that sum to revenue minus
-// net income; indented lines break down the bucket above them.
 export const expenseLines = [
   {
     label: 'Operating expenses',

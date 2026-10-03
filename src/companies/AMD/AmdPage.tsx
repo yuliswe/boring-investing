@@ -215,8 +215,6 @@ const footer: FooterData = {
   ],
 };
 
-// GAAP EPS is consensus net income divided by diluted shares, because the
-// published consensus EPS is non-GAAP.
 const EPS_EST = 5.64;
 const FCF_PER_SHARE_EST = 4.56;
 
