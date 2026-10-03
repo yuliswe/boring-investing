@@ -10,6 +10,14 @@ export type Stock = {
 
 export const STOCKS: Stock[] = [
   {
+    symbol: 'BRK',
+    name: 'Berkshire Hathaway Inc.',
+    sector: 'Conglomerate',
+    summary:
+      'Diversified holding company with insurance (GEICO, General Re), railroad (BNSF), energy (BH Energy), and manufacturing/service/retailing operations, alongside a concentrated public equity portfolio, managed with a focus on long-term book value compounding and disciplined capital allocation.',
+    template: 'software',
+  },
+  {
     symbol: 'AXP',
     name: 'American Express Company',
     sector: 'Financial Services',
