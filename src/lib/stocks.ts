@@ -18,6 +18,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'AMD',
+    name: 'Advanced Micro Devices, Inc.',
+    sector: 'Semiconductors',
+    summary:
+      'Fabless designer of CPUs, GPUs, and adaptive chips competing with Intel in x86 processors and with NVIDIA in AI accelerators, with a data center business that has grown to nearly half of revenue.',
+    template: 'software',
+  },
+  {
     symbol: 'AMZN',
     name: 'Amazon.com, Inc.',
     sector: 'Technology',
