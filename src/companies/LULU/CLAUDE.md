@@ -22,3 +22,9 @@ Analytical method: [retail](../../methods/retail.md)
 - **No R&D line.** As a retailer, Lululemon has no research and development
   expense on the income statement. Product development costs are embedded in
   cost of goods sold and SG&A.
+
+- **Forward estimates.** FY26E figures are consensus estimates from 30
+  analysts on stockanalysis.com. FY26E free cash flow per share divides the
+  consensus free cash flow of $891M by FY25 diluted shares (119.1M), because
+  no consensus share count is available. The forward P/E and P/FCF
+  recalculate when the user adjusts the price.

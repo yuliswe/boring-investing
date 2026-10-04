@@ -36,6 +36,51 @@ const priceConfig: PriceConfig = {
   referenceClose: 173.7529,
 };
 
+const EPS_EST = 9.61;
+const FCF_PER_SHARE_EST = 7.48;
+
+function buildDynamicFinancials(price: number) {
+  const pe = +(price / EPS_EST).toFixed(1);
+  const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
+  const valuation = financials.metricGroups!.valuation!;
+  return {
+    ...financials,
+    metricGroups: {
+      ...financials.metricGroups,
+      valuation: {
+        ...valuation,
+        metrics: valuation.metrics.map(m => {
+          if (m.label === 'P/E ratio') {
+            const values = [...m.values];
+            values[values.length - 1] = pe;
+            return {
+              ...m,
+              values,
+              yearNotes: {
+                ...m.yearNotes,
+                FY26E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST} (stockanalysis.com).`,
+              },
+            };
+          }
+          if (m.label === 'P/FCF ratio') {
+            const values = [...m.values];
+            values[values.length - 1] = pfcf;
+            return {
+              ...m,
+              values,
+              yearNotes: {
+                ...m.yearNotes,
+                FY26E: `Calculated from $${price.toFixed(2)} divided by an estimated $${FCF_PER_SHARE_EST} of free cash flow per share, which is consensus free cash flow of $891M (stockanalysis.com) over FY25 diluted shares of 119.1M.`,
+              },
+            };
+          }
+          return m;
+        }),
+      },
+    },
+  };
+}
+
 const billionFormat = { prefix: '$', suffix: 'B', decimals: 2 };
 
 function buildCashFlowStatementSection(): SectionData {
@@ -170,13 +215,14 @@ const footer: FooterData = {
 };
 
 export function LuluPage() {
-  const { hero: h, addon } = usePriceHero(hero, priceConfig);
+  const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
+  const dynamicFinancials = buildDynamicFinancials(price);
   return (
     <RetailTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
-      financials={financials}
+      financials={dynamicFinancials}
       extraSections={luluSections}
       figuresDate='1 February 2026'
       footer={footer}

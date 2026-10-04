@@ -203,89 +203,276 @@ export const cashFlowStatementLines = [
 
 const financials: RetailFinancials = {
   guidanceYears: ['FY26E'],
-  operationalMetrics: [
-    {
-      label: 'Comp store sales growth',
-      values: [6, 1, 7, 9, null, null, 16, 8, 4, 2],
-      format: { suffix: '%', decimals: 0 },
-      deltaMode: 'add',
-      median10y: 7,
-    },
-    {
-      label: 'Store count',
-      values: [406, 404, 440, 491, 521, 574, 655, 711, 767, 811],
-      format: { decimals: 0 },
-      median10y: 548,
-    },
-    {
-      label: 'Gross margin',
-      values: [
-        51.2, 52.8, 55.2, 55.9, 56.0, 57.7, 55.4, 58.3, 59.2, 56.6, 55.5,
+  metricGroups: {
+    valuation: {
+      metrics: [
+        {
+          label: 'P/E ratio',
+          desc: 'Share price divided by diluted earnings per share.\nHow it is calculated: the NASDAQ closing price on the last trading day of each fiscal year, divided by that year’s diluted EPS. FY26E uses the live price and consensus EPS.\nWhat to watch for: compare the ratio with its own history rather than with other sectors. Earnings fall in bad years, which pushes the ratio up, so a high P/E in a weak year does not mean the stock is expensive.',
+          values: [
+            30.2, 41.6, 40.5, 48.6, 73.0, 42.2, 46.5, 39.2, 28.3, 13.2, 18.2,
+          ],
+          format: { decimals: 1 },
+          invertColor: true,
+          median10y: 41.1,
+          guidanceCount: 1,
+          yearNotes: {
+            FY17: 'Diluted EPS fell to $1.90 on the U.S. tax-reform transition charge and the ivivva restructuring.',
+            FY20: 'Earnings dipped during pandemic store closures while the share price rose 37%.',
+            FY25: 'The share price fell 58% during the year as Americas revenue declined 1%.',
+            FY26E:
+              'Calculated from $174.50 divided by consensus diluted EPS of $9.61 (stockanalysis.com).',
+          },
+        },
+        {
+          label: 'P/FCF ratio',
+          desc: 'Share price divided by free cash flow per share.\nHow it is calculated: the NASDAQ closing price on the last trading day of each fiscal year, divided by free cash flow (operating cash flow minus capital expenditures) per diluted share. Under US GAAP, operating lease payments stay in operating cash flow, so free cash flow already covers rent and needs no lease adjustment.\nWhat to watch for: a ratio well below its own median suggests the price assumes little growth. Free cash flow swings with inventory, so read single years with care.',
+          values: [
+            38.7, 32.5, 37.9, 81.2, 74.9, 41.4, 121.4, 36.9, 32.4, 22.5, 23.3,
+          ],
+          format: { decimals: 1 },
+          invertColor: true,
+          median10y: 38.3,
+          guidanceCount: 1,
+          yearNotes: {
+            FY19: 'Free cash flow fell to $386M as operating cash flow dipped and capital spending rose, while the share price rose 64%.',
+            FY22: 'Free cash flow fell to $328M as inventory grew 50% and capital spending rose to $639M, so the ratio is inflated.',
+            FY26E:
+              'Calculated from $174.50 divided by an estimated $7.48 of free cash flow per share.',
+          },
+        },
       ],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 56.0,
-      guidanceCount: 1,
-      yearNotes: {
-        FY26E: 'Consensus analyst estimate (30 analysts, stockanalysis.com).',
-      },
     },
-    {
-      label: 'Inventory turnover',
-      values: [3.9, 4.0, 4.0, 3.8, 3.3, 3.3, 3.0, 2.9, 3.1, 3.1],
-      format: { suffix: '×', decimals: 1 },
-      median10y: 3.3,
-    },
-  ],
-  keyMetrics: [
-    {
-      label: 'Diluted EPS',
-      values: [
-        2.21, 1.9, 3.61, 4.93, 4.5, 7.49, 6.68, 12.2, 14.64, 13.26, 9.61,
+    demand: {
+      metrics: [
+        {
+          label: 'Comparable sales growth',
+          desc: 'Sales growth from stores open at least a full year and from e-commerce, which separates demand from the effect of new openings.\nHow it is calculated: as reported by Lululemon in the annual 10-K.\nWhat to watch for: comps below inflation for several years mean the brand is losing pull. Revenue growth that comes only from new stores while comps stall is a warning.',
+          values: [6, 1, 7, 9, null, null, 16, 8, 4, 2],
+          format: { suffix: '%', decimals: 0 },
+          deltaMode: 'add',
+          median10y: 7,
+        },
+        {
+          label: 'Revenue share outside the Americas',
+          desc: 'Share of net revenue from China Mainland and the rest of the world, outside the United States, Canada and Mexico.\nHow it is calculated: net revenue minus Americas revenue from the segment note, divided by net revenue. China Mainland alone was 15.8% of revenue in FY25, up from 6.9% in FY21, the first year it was disclosed separately.\nWhat to watch for: international markets, led by China Mainland, carry the growth story while the Americas mature, so this share should keep rising. A stall would mean the main growth engine is slowing.',
+          values: [7.3, 9.3, 10.9, 12.0, 14.2, 15.3, 15.9, 20.7, 25.1, 29.3],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 14.8,
+          yearNotes: {
+            FY24: 'Mexico moved into the Americas segment after the September 2024 acquisition of the Mexico franchise partner. Before that, sales to the partner were booked in Canada, so they were already inside the Americas.',
+          },
+        },
+        {
+          label: 'Digital share of revenue',
+          desc: 'Share of net revenue from e-commerce, reported as direct to consumer before FY23.\nHow it is calculated: e-commerce revenue from the channel note, divided by net revenue.\nWhat to watch for: a rising share is usually healthy, but digital orders carry shipping and return costs that store sales do not, so a rising share can weigh on margins.',
+          values: [19.3, 21.8, 26.1, 28.6, 51.9, 44.4, 45.6, 44.8, 43.2, 44.3],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 43.8,
+          yearNotes: {
+            FY20: 'Stores were closed for much of the year during the pandemic, so e-commerce briefly made up more than half of revenue.',
+          },
+        },
       ],
-      format: { prefix: '$', decimals: 2 },
-      median10y: 5.81,
-      guidanceCount: 1,
     },
-    {
-      label: 'ROE %',
-      values: [25.4, 17.5, 31.8, 38.0, 26.1, 36.8, 29.0, 42.0, 42.4, 34.0],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 32.9,
+    pricing: {
+      metrics: [
+        {
+          label: 'Gross margin',
+          desc: 'Share of net revenue left after cost of goods sold.\nHow it is calculated: (net revenue − cost of goods sold) ÷ net revenue. Lululemon includes occupancy, depreciation and distribution costs in cost of goods sold.\nWhat to watch for: a fall of 100 bp or more alongside talk of markdowns signals lost pricing power. Because occupancy sits in cost of goods sold, gross margin also rises with sales volume as fixed rent is spread over more revenue, so part of any gain is operating leverage rather than pricing.',
+          values: [
+            51.2, 52.8, 55.2, 55.9, 56.0, 57.7, 55.4, 58.3, 59.2, 56.6, 55.5,
+          ],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 56.0,
+          guidanceCount: 1,
+          yearNotes: {
+            FY26E:
+              'Consensus analyst estimate (30 analysts, stockanalysis.com).',
+          },
+        },
+        {
+          label: 'Inventory turnover',
+          desc: 'How many times a year inventory sells through.\nHow it is calculated: cost of goods sold ÷ the average of opening and closing inventory.\nWhat to watch for: a steady decline means merchandise is moving more slowly. Cost of goods sold includes occupancy, so the level reads higher than a pure merchandise turnover. Compare it with Lululemon’s own history rather than with other retailers.',
+          values: [3.9, 4.0, 4.0, 3.8, 3.3, 3.3, 3.0, 2.9, 3.1, 3.1],
+          format: { suffix: '×', decimals: 1 },
+          median10y: 3.3,
+        },
+        {
+          label: 'Inventory growth minus sales growth',
+          desc: 'How much faster inventory is growing than sales.\nHow it is calculated: the year-over-year % change in year-end inventory minus the year-over-year % change in net revenue, in percentage points.\nWhat to watch for: a gap above roughly +10 pp usually leads to markdowns within two or three quarters, which makes this the earliest warning in the sector. A negative gap means inventory is being run down relative to sales.',
+          values: [-8.7, -2.6, -1.3, 7.1, 14.2, 7.2, 20.1, -27.2, -1.1, 13.1],
+          format: { suffix: 'pp', decimals: 1 },
+          deltaMode: 'add',
+          invertColor: true,
+          median10y: 3.0,
+          yearNotes: {
+            FY20: 'Inventory rose 25% while pandemic store closures held revenue growth to 11%.',
+            FY22: 'Inventory grew 50% to $1.45B while revenue grew 30%.',
+            FY25: 'Inventory grew 18% to $1.70B while revenue grew 5%, and gross margin fell 260 bp.',
+          },
+        },
+      ],
     },
-    {
-      label: 'Debt to equity',
-      values: [0.0, 0.0, 0.45, 0.38, 0.31, 0.32, 0.34, 0.33, 0.36, 0.36],
-      format: { decimals: 2 },
-      invertColor: true,
-      median10y: 0.34,
+    stores: {
+      metrics: [
+        {
+          label: 'Store count',
+          desc: 'Company-operated stores open at fiscal year end.\nHow it is calculated: as reported in the annual 10-K.\nWhat to watch for: a flat Americas store count is fine while international markets are early, but it shifts the growth story to comps. Growth that comes mostly from new stores while comps stall means the existing fleet is weakening.',
+          values: [406, 404, 440, 491, 521, 574, 655, 711, 767, 811],
+          format: { decimals: 0 },
+          median10y: 548,
+        },
+        {
+          label: 'Net store openings',
+          desc: 'Stores added during the year, net of closures.\nHow it is calculated: year-end store count minus the prior year-end count.\nWhat to watch for: a faster opening pace needs stable revenue per store behind it. If openings rise while revenue per store falls, the new locations are weaker than the existing ones.',
+          values: [43, -2, 36, 51, 30, 53, 81, 56, 56, 44],
+          format: { decimals: 0 },
+          median10y: 47.5,
+          yearNotes: {
+            FY16: 'Calculated from 363 stores at the end of FY15.',
+            FY17: 'The ivivva restructuring closed 48 of the 55 ivivva stores.',
+            FY24: 'Includes 14 stores that came with the September 2024 acquisition of the Mexico franchise partner.',
+          },
+        },
+        {
+          label: 'Revenue per store',
+          desc: 'Company-operated store revenue per average store, in millions of US dollars. Lululemon does not report sales per square foot, so this stands in for it.\nHow it is calculated: company-operated store revenue from the channel note ÷ the average of opening and closing store count.\nWhat to watch for: this should hold or rise as the fleet grows. A fall means new stores are less productive or are cannibalizing older ones.',
+          values: [4.4, 4.5, 5.0, 5.4, 3.3, 5.2, 5.9, 6.5, 6.8, 6.4],
+          format: { prefix: '$', suffix: 'M', decimals: 1 },
+          median10y: 5.3,
+          yearNotes: {
+            FY20: 'Stores were closed for much of the year during the pandemic.',
+            FY25: 'Store revenue rose 1% while the average store count rose 7%.',
+          },
+        },
+        {
+          label: 'Capex as % of revenue',
+          desc: 'Capital spending as a share of net revenue.\nHow it is calculated: purchases of property and equipment ÷ net revenue.\nWhat to watch for: Lululemon’s capital spending goes mainly to new and renovated stores, distribution centres and technology, so a spike signals an expansion push that should later show up in store count and revenue.',
+          values: [6.4, 6.0, 6.9, 7.1, 5.2, 6.3, 7.9, 6.8, 6.5, 6.1, 6.6],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 6.5,
+          guidanceCount: 1,
+          yearNotes: {
+            FY26E:
+              'The FY26E capital expenditure estimate of $690M shown in the Cash Flow section, over consensus revenue of $10.46B.',
+          },
+        },
+      ],
     },
-    {
-      label: 'Net margin',
-      values: [12.9, 9.8, 14.7, 16.2, 13.4, 15.6, 10.5, 16.1, 17.1, 14.2, 10.3],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 14.5,
-      guidanceCount: 1,
-      yearNotes: {
-        FY26E:
-          'Derived from consensus net income of $1.08B and consensus revenue of $10.46B (30 analysts, stockanalysis.com).',
-      },
+    margins: {
+      series: [
+        {
+          label: 'Operating margin',
+          desc: 'Income from operations ÷ net revenue.\nWhat to watch for: judge it against the mid-cycle level rather than the peak. A rise while revenue grows is operating leverage, and a fall usually traces back to gross margin or SG&A.',
+          values: [
+            18.0, 17.2, 21.5, 22.3, 18.6, 21.3, 16.4, 22.2, 23.7, 19.9, 14.4,
+          ],
+        },
+        {
+          label: 'Net margin',
+          desc: 'Net income ÷ net revenue.\nWhat to watch for: the gap to operating margin is mostly tax. FY17 includes the U.S. tax-reform transition charge, and FY22 includes the impairment of the MIRROR (lululemon Studio) acquisition.',
+          values: [
+            12.9, 9.8, 14.7, 16.2, 13.4, 15.6, 10.5, 16.1, 17.1, 14.2, 10.3,
+          ],
+        },
+        {
+          label: 'FCF margin',
+          desc: 'Free cash flow ÷ net revenue, where free cash flow is operating cash flow minus capital expenditures. Under US GAAP, operating lease payments stay in operating cash flow, so this already covers rent.\nWhat to watch for: when this line falls below net margin, earnings are not turning into cash, usually because inventory is absorbing working capital, as in FY22 and FY25.',
+          values: [
+            10.1, 12.5, 15.7, 9.7, 13.0, 15.9, 4.0, 17.1, 15.0, 8.3, 8.5,
+          ],
+        },
+      ],
+      chartNote:
+        'FY26E figures are consensus estimates from 30 analysts (stockanalysis.com): revenue of $10.46B, operating income of $1.51B, net income of $1.08B and free cash flow of $891M. Deltas are additive (pp).',
     },
-    {
-      label: 'Free cash flow margin',
-      values: [null, null, null, null, null, 17.8, -1.3, 13.8, 16.3, 6.0, 8.5],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 13.8,
-      guidanceCount: 1,
-      yearNotes: {
-        FY26E:
-          'Derived from consensus free cash flow of $891M and consensus revenue of $10.46B (30 analysts, stockanalysis.com).',
-      },
+    returns: {
+      metrics: [
+        {
+          label: 'Lease-adjusted ROIC',
+          desc: 'After-tax operating profit as a share of the capital invested in the business, with operating lease liabilities counted as debt.\nHow it is calculated: income from operations plus the implied interest on operating leases (average lease liability × weighted-average discount rate), × (1 − effective tax rate), divided by the average of opening and closing invested capital, where invested capital is stockholders’ equity plus debt plus operating lease liabilities minus cash. It starts in FY19, when ASC 842 put operating leases on the balance sheet.\nWhat to watch for: a level sustained above about 15% points to a real franchise. A decline while the store base grows means new stores earn less than the old ones. This replaces ROE, which ignores lease liabilities and is inflated by buybacks.',
+          values: [null, null, null, 46.7, 32.0, 43.4, 32.1, 48.2, 49.5, 36.3],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 43.4,
+          yearNotes: {
+            FY19: 'Opening invested capital uses the $651M of operating lease liabilities recognized on adoption of ASC 842.',
+            FY20: 'Pandemic store closures cut income from operations by 8%.',
+            FY22: 'Income from operations includes the $408M impairment of the MIRROR (lululemon Studio) acquisition.',
+          },
+        },
+        {
+          label: 'Diluted EPS',
+          desc: 'Net income per diluted share.\nHow it is calculated: as reported. FY26E is the consensus estimate.\nWhat to watch for: compare EPS growth with net income growth. The difference comes from buybacks and dilution.',
+          values: [
+            2.21, 1.9, 3.61, 4.93, 4.5, 7.49, 6.68, 12.2, 14.64, 13.26, 9.61,
+          ],
+          format: { prefix: '$', decimals: 2 },
+          median10y: 5.81,
+          guidanceCount: 1,
+          yearNotes: {
+            FY26E:
+              'Consensus analyst estimate (30 analysts, stockanalysis.com).',
+          },
+        },
+        {
+          label: 'Free cash flow per share',
+          desc: 'Free cash flow per diluted share.\nHow it is calculated: (operating cash flow − capital expenditures) ÷ diluted weighted average shares. Under US GAAP, operating lease payments are already inside operating cash flow.\nWhat to watch for: over a cycle this should track diluted EPS.',
+          values: [
+            1.73, 2.43, 3.86, 2.95, 4.39, 7.63, 2.56, 12.94, 12.78, 7.74, 7.48,
+          ],
+          format: { prefix: '$', decimals: 2 },
+          median10y: 4.13,
+          guidanceCount: 1,
+          yearNotes: {
+            FY22: 'Inventory grew 50% and capital spending rose to $639M.',
+            FY26E:
+              'Consensus free cash flow of $891M (stockanalysis.com) over FY25 diluted shares of 119.1M.',
+          },
+        },
+        {
+          label: 'FCF conversion',
+          desc: 'Free cash flow as a share of net income.\nHow it is calculated: free cash flow ÷ net income.\nWhat to watch for: over a cycle it should sit near or above 100%. Single years swing with inventory, and a run of years well below 100% means reported earnings overstate the cash the business produces.',
+          values: [78, 128, 107, 60, 97, 102, 38, 106, 87, 58, 83],
+          format: { suffix: '%', decimals: 0 },
+          deltaMode: 'add',
+          median10y: 92,
+          guidanceCount: 1,
+          yearNotes: {
+            FY22: 'Inventory grew 50% and capital spending rose to $639M, while the MIRROR impairment, a non-cash charge, lowered net income.',
+            FY25: 'Operating cash flow fell 30% to $1.60B as inventory grew 18%.',
+            FY26E:
+              'Consensus free cash flow of $891M over consensus net income of $1.08B.',
+          },
+        },
+        {
+          label: 'Diluted share count',
+          desc: 'Diluted weighted average shares outstanding, in millions.\nHow it is calculated: from the earnings-per-share note to the financial statements.\nWhat to watch for: buybacks should shrink the count over time. A rising count means stock-based compensation is diluting shareholders faster than repurchases offset it.',
+          values: [
+            137.3, 136.2, 134.0, 131.0, 130.9, 130.3, 128.0, 127.1, 123.9,
+            119.1,
+          ],
+          format: { suffix: 'M', decimals: 1 },
+          invertColor: true,
+          median10y: 130.6,
+        },
+        {
+          label: 'Net cash',
+          desc: 'Cash and cash equivalents minus borrowings at fiscal year end, in billions of US dollars. Lululemon has no borrowings, so this equals its cash. Operating lease liabilities are left out here and counted in lease-adjusted ROIC instead.\nHow it is calculated: cash and cash equivalents minus total borrowings.\nWhat to watch for: net cash is the cushion that lets a fashion retailer get through a product miss without diluting shareholders or halting expansion.',
+          values: [0.73, 0.99, 0.88, 1.09, 1.15, 1.26, 1.15, 2.24, 1.98, 1.81],
+          format: { prefix: '$', suffix: 'B', decimals: 2 },
+          median10y: 1.15,
+        },
+      ],
+      chartNote:
+        'Source: filed annual statements. Lease-adjusted ROIC starts in FY19, when ASC 842 put operating leases on the balance sheet. 10Y median shown as dashed line.',
     },
-  ],
+  },
   revenueSection: {
     netIncomeDesc:
       'GAAP net income. FY22 depressed by $0.4B in MIRROR-related impairment and restructuring charges. FY26E consensus from 30 analysts (stockanalysis.com).',
