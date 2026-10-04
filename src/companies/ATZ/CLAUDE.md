@@ -47,4 +47,7 @@ Analytical method: [retail](../../methods/retail.md)
   and the revenue used for margin estimates (CA$4.71B) are MarketScreener
   consensus. No comparable forward estimate of income from operations is
   available, because the consensus EBIT excludes stock-based compensation.
-  The forward P/E and P/FCF recalculate when the user adjusts the price.
+  FY27E free cash flow after leases subtracts an assumed CA$81M of lease
+  payments (the FY24–FY26 average) from the consensus free cash flow, because
+  no forward estimate of lease payments exists. The forward P/E and P/FCF
+  after leases recalculate when the user adjusts the price.

@@ -42,40 +42,47 @@ const priceConfig: PriceConfig = {
 };
 
 const EPS_EST = 4.69;
-const FCF_PER_SHARE_EST = 5.34;
+const FCF_AFTER_LEASES_PER_SHARE_EST = 4.66;
 
 function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
-  const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
+  const pfcf = +(price / FCF_AFTER_LEASES_PER_SHARE_EST).toFixed(1);
+  const valuation = financials.metricGroups!.valuation!;
   return {
     ...financials,
-    criticalMetrics: financials.criticalMetrics!.map(m => {
-      if (m.label === 'P/E ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = pe;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from CA$${price.toFixed(2)} divided by consensus diluted EPS of CA$${EPS_EST} (MarketScreener).`,
-          },
-        };
-      }
-      if (m.label === 'P/FCF ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = pfcf;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from CA$${price.toFixed(2)} divided by consensus free cash flow per share of CA$${FCF_PER_SHARE_EST} (MarketScreener).`,
-          },
-        };
-      }
-      return m;
-    }),
+    metricGroups: {
+      ...financials.metricGroups,
+      valuation: {
+        ...valuation,
+        metrics: valuation.metrics.map(m => {
+          if (m.label === 'P/E ratio') {
+            const values = [...m.values];
+            values[values.length - 1] = pe;
+            return {
+              ...m,
+              values,
+              yearNotes: {
+                ...m.yearNotes,
+                FY27E: `Calculated from CA$${price.toFixed(2)} divided by consensus diluted EPS of CA$${EPS_EST} (MarketScreener).`,
+              },
+            };
+          }
+          if (m.label === 'P/FCF after leases') {
+            const values = [...m.values];
+            values[values.length - 1] = pfcf;
+            return {
+              ...m,
+              values,
+              yearNotes: {
+                ...m.yearNotes,
+                FY27E: `Calculated from CA$${price.toFixed(2)} divided by an estimated CA$${FCF_AFTER_LEASES_PER_SHARE_EST} of free cash flow after leases per share, which is MarketScreener consensus free cash flow of CA$637.7M less an assumed CA$81M of lease payments (the FY24–FY26 average), over 119.5M diluted shares.`,
+              },
+            };
+          }
+          return m;
+        }),
+      },
+    },
   };
 }
 

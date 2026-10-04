@@ -11,6 +11,7 @@ import type {
 
 type TrendMetric = {
   label: string;
+  desc?: string;
   values: (number | null)[];
   format?: { prefix?: string; suffix?: string; decimals?: number };
   invertColor?: boolean;
@@ -20,12 +21,73 @@ type TrendMetric = {
   yearNotes?: Record<string, string>;
 };
 
+type MetricGroup = {
+  metrics: TrendMetric[];
+  chartNote?: string;
+};
+
+type MarginSeries = {
+  label: string;
+  desc?: string;
+  values: (number | null)[];
+};
+
+export type RetailMetricGroups = {
+  valuation?: MetricGroup;
+  demand?: MetricGroup;
+  pricing?: MetricGroup;
+  stores?: MetricGroup;
+  margins?: { series: MarginSeries[]; chartNote?: string };
+  returns?: MetricGroup;
+};
+
+const METRIC_GROUP_SECTIONS = [
+  {
+    key: 'valuation',
+    rank: 200,
+    title: 'Valuation',
+    kicker:
+      'What the market price assumes, measured against earnings and against free cash flow after lease payments.',
+    chartNote:
+      'Lower is cheaper on all ratios. 10Y median shown as dashed line.',
+  },
+  {
+    key: 'demand',
+    rank: 250,
+    title: 'Demand and Brand Health',
+    kicker:
+      'Whether customers still want the product, and where the growth is coming from.',
+  },
+  {
+    key: 'pricing',
+    rank: 420,
+    title: 'Pricing Power and Inventory Discipline',
+    kicker:
+      'Whether the brand sells at full price, and whether inventory is growing faster than demand, which is how markdowns start.',
+  },
+  {
+    key: 'stores',
+    rank: 430,
+    title: 'Store Growth and Economics',
+    kicker:
+      'How fast the store base is growing, how productive each store is, and how much capital the expansion consumes.',
+  },
+  {
+    key: 'returns',
+    rank: 530,
+    title: 'Returns and Capital Allocation',
+    kicker:
+      'What the business earns on the capital invested in it, how much of its earnings arrive as cash, and how much of that reaches each share.',
+  },
+] as const;
+
 export type RetailFinancials = {
   currency?: string;
   guidanceYears?: string[];
   criticalMetrics?: TrendMetric[];
   operationalMetrics?: TrendMetric[];
   keyMetrics?: TrendMetric[];
+  metricGroups?: RetailMetricGroups;
   revenue: {
     year: string;
     revenue: number;
@@ -119,6 +181,7 @@ export function RetailTemplate({
       kind: 'trends',
       panels: financials.criticalMetrics.map(m => ({
         label: m.label,
+        desc: m.desc,
         years: m.guidanceCount ? allYears : years,
         values: m.values,
         format: m.format,
@@ -143,6 +206,7 @@ export function RetailTemplate({
       kind: 'trends',
       panels: financials.operationalMetrics.map(m => ({
         label: m.label,
+        desc: m.desc,
         years: m.guidanceCount ? allYears : years,
         values: m.values,
         format: m.format,
@@ -167,6 +231,7 @@ export function RetailTemplate({
       kind: 'trends',
       panels: financials.keyMetrics.map(m => ({
         label: m.label,
+        desc: m.desc,
         years: m.guidanceCount ? allYears : years,
         values: m.values,
         format: m.format,
@@ -178,6 +243,48 @@ export function RetailTemplate({
       })),
       chartNote:
         'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
+    });
+  }
+
+  const groups = financials.metricGroups ?? {};
+  for (const def of METRIC_GROUP_SECTIONS) {
+    const group = groups[def.key];
+    if (!group) continue;
+    retailSections.push({
+      rank: def.rank,
+      id: def.key,
+      title: def.title,
+      kicker: def.kicker,
+      kind: 'trends',
+      panels: group.metrics.map(m => ({
+        ...m,
+        years: m.guidanceCount ? allYears : years,
+      })),
+      chartNote:
+        group.chartNote ??
+        ('chartNote' in def
+          ? def.chartNote
+          : 'Source: filed annual statements. FY = fiscal year. 10Y median shown as dashed line.'),
+    });
+  }
+
+  if (groups.margins) {
+    retailSections.push({
+      rank: 450,
+      id: 'margins',
+      title: 'Margins',
+      kicker:
+        'Operating, net and free-cash-flow margins as a share of revenue. The gaps between the lines show how much of each revenue dollar survives as profit and how much as cash.',
+      kind: 'multi',
+      mode: 'share',
+      years: allYears,
+      guidanceCount: guidanceYears.length,
+      baseLabel: '0%',
+      series: groups.margins.series.map(s => ({
+        ...s,
+        format: { suffix: '%', decimals: 1 },
+      })),
+      chartNote: groups.margins.chartNote,
     });
   }
 

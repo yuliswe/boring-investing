@@ -3,148 +3,267 @@ import type { RetailFinancials } from '@/templates/RetailTemplate';
 const financials: RetailFinancials = {
   currency: 'CA$',
   guidanceYears: ['FY27E'],
-  criticalMetrics: [
-    {
-      label: 'P/E ratio',
-      values: [25.6, 24.5, 27.3, 176.4, 36.2, 25.7, 51.1, 37.4, 37.7, 25.7],
-      format: { decimals: 1 },
-      invertColor: true,
-      median10y: 36.2,
-      guidanceCount: 1,
-      yearNotes: {
-        FY21: 'Boutique closures during the COVID-19 pandemic cut diluted EPS to CA$0.17, so the ratio is not meaningful for this year.',
-        FY24: 'Diluted EPS fell to CA$0.69 as gross margin dropped 310 bp on normalized markdowns, product-cost inflation and pre-opening lease costs.',
-        FY27E:
-          'Calculated from CA$120.72 divided by consensus diluted EPS of CA$4.69 (MarketScreener).',
-      },
+  metricGroups: {
+    valuation: {
+      metrics: [
+        {
+          label: 'P/E ratio',
+          desc: 'Share price divided by diluted earnings per share.\nHow it is calculated: the TSX closing price on the last trading day of each fiscal year, divided by that year’s diluted EPS. FY27E uses the live price and consensus EPS.\nWhat to watch for: compare the ratio with its own history rather than with other sectors. Earnings collapse in trough years such as FY21 and FY24, which pushes the ratio up, so a high P/E in a bad year does not mean the stock is expensive.',
+          values: [25.6, 24.5, 27.3, 176.4, 36.2, 25.7, 51.1, 37.4, 37.7, 25.7],
+          format: { decimals: 1 },
+          invertColor: true,
+          median10y: 36.2,
+          guidanceCount: 1,
+          yearNotes: {
+            FY21: 'Boutique closures during the COVID-19 pandemic cut diluted EPS to CA$0.17, so the ratio is not meaningful for this year.',
+            FY24: 'Diluted EPS fell to CA$0.69 as gross margin dropped 310 bp on normalized markdowns, product-cost inflation and pre-opening lease costs.',
+            FY27E:
+              'Calculated from CA$120.72 divided by consensus diluted EPS of CA$4.69 (MarketScreener).',
+          },
+        },
+        {
+          label: 'P/FCF after leases',
+          desc: 'Share price divided by free cash flow per share after lease payments.\nHow it is calculated: the TSX closing price on the last trading day of each fiscal year, divided by free cash flow after leases per diluted share. Free cash flow after leases is operating cash flow minus capital expenditures minus lease principal payments.\nWhat to watch for: a ratio well below its own median suggests the price assumes little growth. Under IFRS 16, reported free cash flow leaves lease principal out from FY20 onward, so the reported ratio flatters the stock. This version subtracts it and is comparable with FY18–FY19.',
+          values: [38.4, 56.6, 21.9, 105.8, 26.1, null, 43.3, 98.5, 29.8, 25.9],
+          format: { decimals: 1 },
+          invertColor: true,
+          median10y: 40.9,
+          guidanceCount: 1,
+          yearNotes: {
+            FY21: 'Pandemic closures cut free cash flow after leases to CA$32M, so the ratio is inflated.',
+            FY23: 'Free cash flow after leases was negative (CA$-0.12B) as inventory rose by CA$260M, so the ratio is not meaningful.',
+            FY25: 'Capital expenditures rose to CA$277M with the U.S. boutique build-out and lease payments reached CA$100M, which cut free cash flow after leases to CA$79M.',
+            FY27E:
+              'Calculated from CA$120.72 divided by an estimated CA$4.66 of free cash flow after leases per share.',
+          },
+        },
+      ],
     },
-    {
-      label: 'P/FCF ratio',
-      values: [36.9, 56.6, 14.3, 45.4, 21.1, null, 22.1, 43.6, 26.8, 22.6],
-      format: { decimals: 1 },
-      invertColor: true,
-      median10y: 31.9,
-      guidanceCount: 1,
-      yearNotes: {
-        FY20: 'From FY20 onward IFRS 16 moves lease principal payments out of operating cash flow and into financing, which lifts free cash flow by roughly CA$50–100M a year.',
-        FY23: 'Free cash flow was negative (CA$-0.05B) as inventory rose by CA$260M, so the ratio is not meaningful.',
-        FY27E:
-          'Calculated from CA$120.72 divided by consensus free cash flow per share of CA$5.34 (MarketScreener consensus free cash flow of CA$637.7M over 119.5M diluted shares).',
-      },
+    demand: {
+      metrics: [
+        {
+          label: 'Comparable sales growth',
+          desc: 'Sales growth from boutiques open at least a full year and from digital, which separates demand from the effect of new openings.\nHow it is calculated: as reported by Aritzia in the annual MD&A.\nWhat to watch for: comps below inflation for several years mean the brand is losing pull. Revenue growth that comes only from new boutiques while comps stall is a warning.',
+          values: [6.6, 9.8, 7.6, null, null, 28.2, -1.0, 11.0, 26.5],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 9.8,
+          yearNotes: {
+            FY21: 'Not reported, because pandemic boutique closures made the comparable base meaningless.',
+            FY22: 'Not reported, because pandemic boutique closures made the comparable base meaningless.',
+          },
+        },
+        {
+          label: 'U.S. share of revenue',
+          desc: 'Share of net revenue from clients in the United States.\nHow it is calculated: U.S. revenue from the geographic note to the financial statements, divided by total net revenue.\nWhat to watch for: most new boutiques open in the United States, so this share should keep rising while the expansion works. A stall would mean the growth story is fading, because Canada is a mature market.',
+          values: [26.2, 30.3, 34.4, 34.0, 45.2, 51.1, 52.6, 57.8, 61.5],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 45.2,
+        },
+        {
+          label: 'Digital share of revenue',
+          desc: 'Share of net revenue from aritzia.com and the Aritzia app.\nHow it is calculated: digital revenue divided by boutique plus digital revenue, from the channel note to the financial statements, which starts in FY20.\nWhat to watch for: a rising share is usually healthy, but digital orders carry shipping and return costs that boutique sales do not, so a rising share can weigh on margins.',
+          values: [null, null, 23.1, 49.7, 37.8, 35.1, 33.7, 34.7, 35.0],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 35.0,
+          yearNotes: {
+            FY21: 'Boutiques were closed for much of the year, so digital briefly made up half of revenue.',
+          },
+        },
+      ],
     },
-  ],
-  operationalMetrics: [
-    {
-      label: 'Comparable sales growth',
-      values: [6.6, 9.8, 7.6, null, null, 28.2, -1.0, 11.0, 26.5],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 9.8,
-      yearNotes: {
-        FY21: 'Not reported, because pandemic boutique closures made the comparable base meaningless.',
-        FY22: 'Not reported, because pandemic boutique closures made the comparable base meaningless.',
-      },
+    pricing: {
+      metrics: [
+        {
+          label: 'Gross margin',
+          desc: 'Share of net revenue left after cost of goods sold.\nHow it is calculated: (net revenue − cost of goods sold) ÷ net revenue. Aritzia includes boutique occupancy and distribution costs in cost of goods sold.\nWhat to watch for: a fall of 100 bp or more alongside talk of markdowns signals lost pricing power. Because rent sits in cost of goods sold, gross margin also rises with sales volume as fixed occupancy is spread over more revenue, so part of any gain is operating leverage rather than pricing.',
+          values: [39.8, 39.2, 41.1, 36.5, 43.8, 41.6, 38.5, 43.1, 44.9, 46.9],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 41.1,
+          guidanceCount: 1,
+          yearNotes: {
+            FY27E:
+              'Management guidance midpoint of a 175–225 bp increase over FY26 (Q1 FY27 release, 9 July 2026).',
+          },
+        },
+        {
+          label: 'Inventory turnover',
+          desc: 'How many times a year inventory sells through.\nHow it is calculated: cost of goods sold ÷ the average of opening and closing inventory.\nWhat to watch for: a steady decline means merchandise is moving more slowly. Cost of goods sold includes occupancy, so the level reads higher than a pure merchandise turnover. Compare it with Aritzia’s own history rather than with other retailers.',
+          values: [5.9, 5.6, 5.6, 4.1, 4.4, 3.8, 3.5, 4.3, 4.7],
+          format: { suffix: '×', decimals: 1 },
+          median10y: 4.4,
+          yearNotes: {
+            FY23: 'Inventory more than doubled to CA$468M at year end, and the company cut it by 27% during FY24.',
+          },
+        },
+        {
+          label: 'Inventory growth minus sales growth',
+          desc: 'How much faster inventory is growing than sales.\nHow it is calculated: the year-over-year % change in year-end inventory minus the year-over-year % change in net revenue, in percentage points.\nWhat to watch for: a gap above roughly +10 pp usually leads to markdowns within two or three quarters, which makes this the earliest warning in the sector. A negative gap means inventory is being run down relative to sales.',
+          values: [-5.1, 24.7, -28.3, 95.3, -53.2, 77.8, -33.5, -5.9, -4.7],
+          format: { suffix: 'pp', decimals: 1 },
+          deltaMode: 'add',
+          invertColor: true,
+          median10y: -5.1,
+          yearNotes: {
+            FY21: 'Revenue fell 13% during pandemic closures while inventory rose 83% ahead of reopening, so the gap is distorted.',
+            FY22: 'Revenue rebounded 74% after boutiques reopened, while inventory grew 21%.',
+            FY23: 'Inventory more than doubled to CA$468M while revenue grew 47%, ahead of the FY24 markdowns that cut gross margin by 310 bp.',
+          },
+        },
+      ],
     },
-    {
-      label: 'Boutique count',
-      values: [85, 91, 96, 101, 106, 114, 119, 130, 144],
-      format: { decimals: 0 },
-      median10y: 106,
-      yearNotes: {
-        FY23: 'Excludes the four Reigning Champ boutiques acquired with CYC Design Corporation.',
-      },
+    stores: {
+      metrics: [
+        {
+          label: 'Boutique count',
+          desc: 'Aritzia boutiques open at fiscal year end, excluding the four Reigning Champ boutiques.\nHow it is calculated: as reported in the annual MD&A.\nWhat to watch for: growth that comes mostly from new boutiques while comps stall means the existing fleet is weakening.',
+          values: [85, 91, 96, 101, 106, 114, 119, 130, 144],
+          format: { decimals: 0 },
+          median10y: 106,
+          yearNotes: {
+            FY23: 'Excludes the four Reigning Champ boutiques acquired with CYC Design Corporation.',
+          },
+        },
+        {
+          label: 'Net boutique openings',
+          desc: 'Boutiques added during the year, net of closures.\nHow it is calculated: year-end boutique count minus the prior year-end count.\nWhat to watch for: a faster opening pace needs stable revenue per boutique behind it. If openings rise while revenue per boutique falls, the new locations are weaker than the existing ones.',
+          values: [6, 6, 5, 5, 5, 8, 5, 11, 14],
+          format: { decimals: 0 },
+          median10y: 6,
+          yearNotes: {
+            FY18: 'Calculated from 79 boutiques at the end of FY17.',
+          },
+        },
+        {
+          label: 'Revenue per boutique',
+          desc: 'Boutique-channel revenue per average boutique, in millions of Canadian dollars. Aritzia does not disclose sales per square foot, so this stands in for it.\nHow it is calculated: retail-channel revenue ÷ the average of opening and closing boutique count. It starts in FY20, when the channel split was first disclosed.\nWhat to watch for: this should hold or rise as the fleet grows. A fall means new boutiques are less productive or are cannibalizing older ones. Retail revenue includes the Reigning Champ boutiques that the count excludes, which lifts the figure slightly from FY22.',
+          values: [null, null, 8.1, 4.4, 9.0, 13.0, 13.3, 14.4, 17.6],
+          format: { prefix: 'CA$', suffix: 'M', decimals: 1 },
+          median10y: 13.0,
+          yearNotes: {
+            FY21: 'Boutiques were closed for much of the year during the pandemic.',
+            FY22: 'Some boutiques were still closed or capacity-limited during the first half of the year.',
+          },
+        },
+        {
+          label: 'Capex as % of revenue',
+          desc: 'Capital spending as a share of net revenue.\nHow it is calculated: purchases of property and equipment plus purchases of intangible assets, divided by net revenue.\nWhat to watch for: Aritzia’s capital spending is almost entirely new and repositioned boutiques, distribution centres and technology, so a spike signals an expansion push that should later show up in boutique count and revenue.',
+          values: [8.9, 7.1, 4.9, 5.9, 4.5, 5.7, 7.6, 10.1, 7.7, 5.4],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 7.1,
+          guidanceCount: 1,
+          yearNotes: {
+            FY27E:
+              'Management guidance of about CA$250M over the guided revenue midpoint of CA$4.65B.',
+          },
+        },
+      ],
     },
-    {
-      label: 'Gross margin',
-      values: [39.8, 39.2, 41.1, 36.5, 43.8, 41.6, 38.5, 43.1, 44.9, 46.9],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 41.1,
-      guidanceCount: 1,
-      yearNotes: {
-        FY27E:
-          'Management guidance midpoint of a 175–225 bp increase over FY26 (Q1 FY27 release, 9 July 2026).',
-      },
+    margins: {
+      series: [
+        {
+          label: 'Operating margin',
+          desc: 'Income from operations ÷ net revenue, after cost of goods sold, SG&A and stock-based compensation.\nWhat to watch for: judge it against the mid-cycle level rather than the peak. A rise while revenue grows is operating leverage, and a fall usually traces back to gross margin.',
+          values: [12.7, 13.3, 15.5, 6.0, 15.8, 13.1, 6.8, 10.8, 14.2, null],
+        },
+        {
+          label: 'Net margin',
+          desc: 'Net income ÷ net revenue.\nWhat to watch for: the gap to operating margin is finance expense, other income and tax. FY25 and FY26 include gains on equity derivatives that hedge share-unit liabilities, which lift net margin without any change in the business.',
+          values: [7.7, 9.0, 9.2, 2.2, 10.5, 8.5, 3.4, 7.6, 10.3, 11.9],
+        },
+        {
+          label: 'FCF margin after leases',
+          desc: 'Free cash flow after lease payments ÷ net revenue, where free cash flow after leases is operating cash flow minus capital expenditures minus lease principal payments.\nWhat to watch for: when this line falls below net margin, earnings are not turning into cash, usually because inventory is absorbing working capital, as in FY23.',
+          values: [5.1, 3.9, 11.5, 3.7, 14.7, -5.6, 4.0, 2.9, 13.1, 11.8],
+        },
+      ],
+      chartNote:
+        'Free cash flow after leases is comparable across all years, because rent sat in operating cash flow before IFRS 16 and lease principal is subtracted after it. FY27E net margin uses MarketScreener consensus net income of CA$562.2M over consensus revenue of CA$4.71B. FY27E free cash flow after leases is consensus free cash flow of CA$637.7M less an assumed CA$81M of lease payments, the FY24–FY26 average. No comparable forward operating margin is available, because the consensus EBIT excludes stock-based compensation. Deltas are additive (pp).',
     },
-    {
-      label: 'Inventory turnover',
-      values: [5.9, 5.6, 5.6, 4.1, 4.4, 3.8, 3.5, 4.3, 4.7],
-      format: { suffix: '×', decimals: 1 },
-      median10y: 4.4,
-      yearNotes: {
-        FY23: 'Inventory more than doubled to CA$468M at year end, and the company cut it by 27% during FY24.',
-      },
+    returns: {
+      metrics: [
+        {
+          label: 'Lease-adjusted ROIC',
+          desc: 'After-tax operating profit as a share of the capital invested in the business, with lease liabilities counted as debt.\nHow it is calculated: income from operations × (1 − effective tax rate), divided by the average of opening and closing invested capital, where invested capital is shareholders’ equity plus bank debt plus lease liabilities minus cash. It starts in FY20, when IFRS 16 put lease liabilities on the balance sheet.\nWhat to watch for: a level sustained above about 15% points to a real franchise. A decline while the boutique base grows means new boutiques earn less than the old ones. This replaces ROE, which ignores lease liabilities and is inflated by buybacks.',
+          values: [null, null, 13.3, 4.7, 21.8, 19.1, 7.7, 13.3, 22.2],
+          format: { suffix: '%', decimals: 1 },
+          deltaMode: 'add',
+          median10y: 13.3,
+          yearNotes: {
+            FY20: 'Opening invested capital uses the CA$494M of lease liabilities recognized on the IFRS 16 transition.',
+            FY21: 'Pandemic boutique closures cut income from operations to CA$51M.',
+            FY24: 'Income from operations nearly halved on normalized markdowns, product-cost inflation and pre-opening lease costs.',
+          },
+        },
+        {
+          label: 'Diluted EPS',
+          desc: 'Net income per diluted share.\nHow it is calculated: as reported. FY27E is the consensus estimate.\nWhat to watch for: compare EPS growth with net income growth. The difference comes from buybacks and dilution.',
+          values: [0.49, 0.67, 0.81, 0.17, 1.36, 1.63, 0.69, 1.78, 3.2, 4.69],
+          format: { prefix: 'CA$', decimals: 2 },
+          median10y: 0.81,
+          guidanceCount: 1,
+          yearNotes: {
+            FY27E: 'Consensus analyst estimate (MarketScreener).',
+          },
+        },
+        {
+          label: 'FCF per share after leases',
+          desc: 'Free cash flow after lease payments per diluted share.\nHow it is calculated: (operating cash flow − capital expenditures − lease principal payments) ÷ diluted weighted average shares.\nWhat to watch for: over a cycle this should track diluted EPS. Reported free cash flow per share leaves lease principal out from FY20 onward under IFRS 16, so it overstates the cash available to shareholders.',
+          values: [0.33, 0.29, 1.01, 0.28, 1.89, -1.08, 0.81, 0.68, 4.05, 4.66],
+          format: { prefix: 'CA$', decimals: 2 },
+          median10y: 0.68,
+          guidanceCount: 1,
+          yearNotes: {
+            FY23: 'Negative because the inventory build absorbed CA$229M of working capital.',
+            FY26: 'Lease payments are reported net of lease incentives received. They fell to CA$54M from CA$100M in FY25 even though the boutique count grew, so this year is likely flattered.',
+            FY27E:
+              'Consensus free cash flow of CA$637.7M (MarketScreener) less an assumed CA$81M of lease payments, the FY24–FY26 average, over 119.5M diluted shares.',
+          },
+        },
+        {
+          label: 'FCF conversion',
+          desc: 'Free cash flow after leases as a share of net income.\nHow it is calculated: free cash flow after lease payments ÷ net income.\nWhat to watch for: over a cycle it should sit near or above 100%. Single years swing with inventory, and a run of years well below 100% means reported earnings overstate the cash the business produces.',
+          values: [67, 43, 125, 166, 140, -66, 118, 38, 127, 99],
+          format: { suffix: '%', decimals: 0 },
+          deltaMode: 'add',
+          median10y: 118,
+          guidanceCount: 1,
+          yearNotes: {
+            FY21: 'Net income was only CA$19M during pandemic closures, so the ratio is inflated.',
+            FY23: 'Negative because the inventory build absorbed CA$229M of working capital.',
+            FY27E:
+              'Estimated free cash flow after leases of CA$557M over consensus net income of CA$562M.',
+          },
+        },
+        {
+          label: 'Diluted share count',
+          desc: 'Diluted weighted average shares outstanding, in millions.\nHow it is calculated: from the earnings-per-share note to the financial statements.\nWhat to watch for: buybacks should shrink the count over time. A rising count means stock-based compensation is diluting shareholders faster than repurchases offset it.',
+          values: [
+            116.3, 117.4, 112.1, 112.8, 115.8, 115.3, 114.2, 116.7, 119.5,
+          ],
+          format: { suffix: 'M', decimals: 1 },
+          invertColor: true,
+          median10y: 115.8,
+        },
+        {
+          label: 'Net cash',
+          desc: 'Cash and cash equivalents minus bank debt at fiscal year end, in billions of Canadian dollars. Lease liabilities are left out here and counted in lease-adjusted ROIC instead.\nHow it is calculated: cash and cash equivalents minus the carrying value of term loans.\nWhat to watch for: net cash is the cushion that lets a fashion retailer get through a product miss without diluting shareholders or halting expansion.',
+          values: [-0.01, 0.03, 0.04, 0.07, 0.27, 0.09, 0.16, 0.29, 0.59],
+          format: { prefix: 'CA$', suffix: 'B', decimals: 2 },
+          median10y: 0.09,
+          yearNotes: {
+            FY18: 'A term loan of CA$119M exceeded cash. The last CA$75M was repaid in FY22.',
+          },
+        },
+      ],
+      chartNote:
+        'Source: filed annual statements. Lease-adjusted ROIC starts in FY20, when IFRS 16 put lease liabilities on the balance sheet. 10Y median shown as dashed line.',
     },
-    {
-      label: 'U.S. share of revenue',
-      values: [26.2, 30.3, 34.4, 34.0, 45.2, 51.1, 52.6, 57.8, 61.5],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 45.2,
-    },
-  ],
-  keyMetrics: [
-    {
-      label: 'Diluted EPS',
-      values: [0.49, 0.67, 0.81, 0.17, 1.36, 1.63, 0.69, 1.78, 3.2, 4.69],
-      format: { prefix: 'CA$', decimals: 2 },
-      median10y: 0.81,
-      guidanceCount: 1,
-      yearNotes: {
-        FY27E: 'Consensus analyst estimate (MarketScreener).',
-      },
-    },
-    {
-      label: 'Free cash flow per share',
-      values: [0.34, 0.29, 1.55, 0.66, 2.34, -0.44, 1.6, 1.53, 4.5, 5.34],
-      format: { prefix: 'CA$', decimals: 2 },
-      median10y: 1.53,
-      guidanceCount: 1,
-      yearNotes: {
-        FY27E:
-          'Consensus free cash flow of CA$637.7M (MarketScreener) over 119.5M diluted shares.',
-      },
-    },
-    {
-      label: 'ROE %',
-      values: [23.4, 23.9, 25.7, 5.6, 35.2, 30.8, 10.6, 21.8, 31.1],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 23.9,
-    },
-    {
-      label: 'Operating margin',
-      values: [12.7, 13.3, 15.5, 6.0, 15.8, 13.1, 6.8, 10.8, 14.2],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 13.1,
-    },
-    {
-      label: 'Net margin',
-      values: [7.7, 9.0, 9.2, 2.2, 10.5, 8.5, 3.4, 7.6, 10.3, 11.9],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 8.5,
-      guidanceCount: 1,
-      yearNotes: {
-        FY27E:
-          'Derived from consensus net income of CA$562.2M and consensus revenue of CA$4.71B (MarketScreener).',
-      },
-    },
-    {
-      label: 'Free cash flow margin',
-      values: [5.3, 3.9, 17.8, 8.7, 18.2, -2.3, 7.8, 6.5, 14.5, 13.5],
-      format: { suffix: '%', decimals: 1 },
-      deltaMode: 'add',
-      median10y: 7.8,
-      guidanceCount: 1,
-      yearNotes: {
-        FY20: 'From FY20 onward IFRS 16 moves lease principal payments into financing, which lifts free cash flow.',
-        FY27E:
-          'Derived from consensus free cash flow of CA$637.7M and consensus revenue of CA$4.71B (MarketScreener).',
-      },
-    },
-  ],
+  },
   revenueSection: {
     kicker:
       'Net revenue, income from operations and net income in billions of Canadian dollars, with year-on-year growth rates.',
