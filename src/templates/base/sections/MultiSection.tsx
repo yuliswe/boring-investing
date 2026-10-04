@@ -58,6 +58,10 @@ function niceStep(range: number): number {
   return nice * mag;
 }
 
+function tableMinWidth(yearCount: number): string {
+  return yearCount > 12 ? `${yearCount * 6.5}rem` : '48rem';
+}
+
 function computeMulti(
   series: MultiSeriesData[],
   years: string[],
@@ -338,7 +342,7 @@ export function MultiSection({
       </div>
 
       <div className='overflow-x-auto'>
-        <div style={{ minWidth: '48rem' }}>
+        <div style={{ minWidth: tableMinWidth(multi.years.length) }}>
           <div className='flex mt-4 border-b border-divider'>
             <div
               className='flex-none'

@@ -29,7 +29,16 @@ export type SoftwareFinancials = {
   guidanceYears?: string[];
   estimateNote?: string;
   criticalMetrics: TrendMetric[];
+  criticalSection?: {
+    title?: string;
+    kicker?: string;
+    chartNote?: string;
+  };
   keyMetrics: TrendMetric[];
+  keySection?: {
+    kicker?: string;
+    chartNote?: string;
+  };
   revenue: {
     year: string;
     revenue: number;
@@ -119,8 +128,9 @@ export function SoftwareTemplate({
   softwareSections.push({
     rank: 200,
     id: 'critical',
-    title: 'Critical Metrics',
+    title: financials.criticalSection?.title ?? 'Critical Metrics',
     kicker:
+      financials.criticalSection?.kicker ??
       'Valuation ratios that signal whether the market price is justified by earnings and cash flow.',
     kind: 'trends',
     panels: financials.criticalMetrics.map(m => ({
@@ -136,6 +146,7 @@ export function SoftwareTemplate({
       yearNotes: m.yearNotes,
     })),
     chartNote:
+      financials.criticalSection?.chartNote ??
       'Lower is cheaper on all three. 10Y median shown as dashed line.',
     guidanceDesc: estimateNote,
   });
@@ -145,6 +156,7 @@ export function SoftwareTemplate({
     id: 'key',
     title: 'Key Metrics',
     kicker:
+      financials.keySection?.kicker ??
       'Profitability, returns, leverage and margins with ten-year trend and 10Y median.',
     kind: 'trends',
     panels: financials.keyMetrics.map(m => ({
@@ -160,6 +172,7 @@ export function SoftwareTemplate({
       yearNotes: m.yearNotes,
     })),
     chartNote:
+      financials.keySection?.chartNote ??
       'Source: filed annual statements. FY = fiscal year. Percentage deltas are additive (pp).',
     guidanceDesc: estimateNote,
   });
