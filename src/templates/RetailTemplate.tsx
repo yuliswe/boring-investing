@@ -155,21 +155,7 @@ export function RetailTemplate({
     ? financials.expenses.filter(e => guidanceSet.has(e.year)).length
     : 0;
 
-  const retailSections: SectionData[] = [
-    {
-      rank: 100,
-      id: 'method',
-      title: 'Method',
-      kicker:
-        'How this company was read, and what the sections below will and will not tell you.',
-      kind: 'prose',
-      paragraphs: [
-        'Every page here is built the same way. We read the last ten annual filings before the most recent quarter, take each figure from the audited statements rather than the press release, and set it beside its own decade — so a good year cannot pass for a good business.',
-        'For a retailer the income statement is only half the story: store count, comparable-store sales growth, gross margin, and inventory turnover reveal whether revenue growth comes from opening doors or from selling more through the doors already open. Both matter, but the second kind compounds without the capital cost of the first.',
-        'Nothing is scored, ranked or rated. What follows is the record, the balance sheet, the store economics, and the filings, in that order, with the judgement left to you. Prices are delayed fifteen minutes and marked with a dagger.',
-      ],
-    },
-  ];
+  const retailSections: SectionData[] = [];
 
   if (financials.criticalMetrics) {
     retailSections.push({
