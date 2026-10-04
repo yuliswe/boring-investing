@@ -34,19 +34,6 @@ const years = ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'];
 
 const baseSections: SectionData[] = [
   {
-    rank: 100,
-    id: 'method',
-    title: 'Method',
-    kicker:
-      'How this company was read, and what the sections below will and will not tell you.',
-    kind: 'prose',
-    paragraphs: [
-      'Every page here is built the same way. We read the last ten annual filings before the most recent quarter, take each figure from the audited statements rather than the press release, and set it beside its own decade — so a good year cannot pass for a good business.',
-      'Where a number only means something next to somebody else’s — an earnings multiple, a margin, a return on equity — we show the three closest listed competitors and the sector median on their latest reported figures, and say how far apart the period ends are.',
-      'Nothing is scored, ranked or rated. What follows is the record, the balance sheet, the management and the filings, in that order, with the judgement left to you. Prices are delayed fifteen minutes and marked with a dagger.',
-    ],
-  },
-  {
     rank: 200,
     id: 'critical',
     title: 'Critical Metrics',

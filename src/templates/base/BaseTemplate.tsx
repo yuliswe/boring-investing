@@ -596,7 +596,6 @@ export function BaseTemplate({
             footer={
               footer || {
                 links: [
-                  { label: 'Method', href: '#method' },
                   { label: 'Sources', href: '#' },
                   { label: 'Corrections', href: '#' },
                 ],
