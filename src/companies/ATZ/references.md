@@ -35,8 +35,25 @@ and the
   free cash flow per diluted share.
 - Inventory turnover is cost of goods sold over the average of opening and
   closing inventory.
-- ROE is net income over the average of opening and closing shareholders'
-  equity.
+- Free cash flow after leases is free cash flow minus lease principal
+  payments (net of lease incentives) from the financing section of the cash
+  flow statement. It drives P/FCF after leases, FCF per share after leases,
+  the FCF margin after leases and FCF conversion.
+- Lease-adjusted ROIC is income from operations times one minus the
+  effective tax rate, over the average of opening and closing invested
+  capital (shareholders' equity plus term loans plus lease liabilities minus
+  cash). FY20 opening invested capital uses the CA$493.5M of lease
+  liabilities recognized on the IFRS 16 transition.
+- Inventory growth minus sales growth uses year-end inventory and net
+  revenue, including FY17 inventory (CA$74.2M) and revenue (CA$667.2M) from
+  the FY18 statements.
+- Revenue per boutique is retail-channel revenue over the average of opening
+  and closing boutique count. Net openings use 79 boutiques at the end of
+  FY17, from the FY18 MD&A.
+- Year-end inventory, cash, term loans, lease liabilities, equity and
+  diluted weighted average shares come from the balance sheets and EPS notes
+  of the financial statements listed above. Year-end closing prices come
+  from Yahoo Finance (ATZ.TO).
 
 ## Forward estimates
 
