@@ -82,6 +82,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'LEN',
+    name: 'Lennar Corporation',
+    sector: 'Homebuilding',
+    summary:
+      'US homebuilder of single-family homes with mortgage, title and insurance businesses serving its buyers, valued here on price-to-tangible-book and full-cycle return on equity against D.R. Horton, PulteGroup and NVR.',
+    template: 'software',
+  },
+  {
     symbol: 'LLY',
     name: 'Eli Lilly and Company',
     sector: 'Pharmaceuticals',
