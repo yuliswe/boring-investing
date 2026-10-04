@@ -42,6 +42,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'ATZ',
+    name: 'Aritzia Inc.',
+    sector: 'Retail',
+    summary:
+      'Canadian design house selling its own exclusive women’s fashion brands through company-owned boutiques and digital, with the United States now its largest and fastest-growing market.',
+    template: 'retail',
+  },
+  {
     symbol: 'CSU',
     name: 'Constellation Software Inc.',
     sector: 'Software',

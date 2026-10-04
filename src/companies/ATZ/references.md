@@ -1,0 +1,49 @@
+# ATZ — Data sources
+
+All historical figures are taken from Aritzia's audited annual consolidated
+financial statements and annual MD&As, published on
+[investors.aritzia.com](https://investors.aritzia.com/financial-reports/default.aspx)
+and on SEDAR+. Amounts are in thousands of Canadian dollars in the filings and
+are converted to billions on the page. Where a later filing presents a prior
+year as a comparative, the later presentation is used.
+
+## Financial statements
+
+- [FY26 financial statements](https://s21.q4cdn.com/489771965/files/doc_financials/2026/q4/Aritzia-Inc-Q4-2026-FS.pdf) (FY26, FY25)
+- [FY24 financial statements](https://s21.q4cdn.com/489771965/files/doc_financials/2024/q4/Aritzia-Inc-Q4-2024-FS.pdf) (FY24, FY23)
+- [FY22 financial statements](https://s21.q4cdn.com/489771965/files/doc_financials/2022/q4/Aritzia-Inc-Q4-2022-FS.pdf) (FY22, FY21)
+- [FY20 financial statements](https://s21.q4cdn.com/489771965/files/doc_financials/2020/q4/Aritzia-Inc.-Q4-2020-FS.pdf) (FY20, FY19)
+- [FY18 financial statements](https://s21.q4cdn.com/489771965/files/doc_financials/2018/q4/Aritzia-Inc-Feb-2018-05092018-SEDAR-FINAL.PDF) (FY18, FY17 opening balances)
+
+The odd-year statements (FY19, FY21, FY23, FY25) were used to read the
+geographic and channel revenue notes and the FY19 debt balance.
+
+## Operating metrics
+
+Comparable sales growth and boutique counts come from the annual MD&As, for
+example the
+[FY26 MD&A](https://s21.q4cdn.com/489771965/files/doc_financials/2026/q4/Aritzia-Inc-Q4-2026-MDA.pdf)
+and the
+[FY24 MD&A](https://s21.q4cdn.com/489771965/files/doc_financials/2024/q4/Aritzia-Inc-Q4-2024-MDA.pdf).
+
+## Derived metrics
+
+- Free cash flow is operating cash flow minus purchases of property and
+  equipment and of intangible assets.
+- P/E and P/FCF use the TSX closing price on the last trading day of each
+  fiscal year, from Yahoo Finance (ATZ.TO), divided by diluted EPS and by
+  free cash flow per diluted share.
+- Inventory turnover is cost of goods sold over the average of opening and
+  closing inventory.
+- ROE is net income over the average of opening and closing shareholders'
+  equity.
+
+## Forward estimates
+
+- Management guidance for FY27 (revenue, gross margin, capital expenditures)
+  from the
+  [Q1 FY27 results release](https://investors.aritzia.com/investor-news/press-release-details/2026/Aritzia-Reports-First-Quarter-Fiscal-2027-Financial-Results/default.aspx)
+  dated 9 July 2026.
+- Consensus EPS, net income, free cash flow and revenue from
+  [MarketScreener](https://www.marketscreener.com/quote/stock/ARITZIA-INC-31497418/finances/),
+  retrieved 2 October 2026.
