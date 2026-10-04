@@ -122,6 +122,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'MU',
+    name: 'Micron Technology, Inc.',
+    sector: 'Semiconductors',
+    summary:
+      'Integrated manufacturer of DRAM, NAND flash, and high-bandwidth memory for data centers, PCs, phones, and cars, with profits that swing with the memory price cycle.',
+    template: 'software',
+  },
+  {
     symbol: 'NVDA',
     name: 'NVIDIA Corporation',
     sector: 'Semiconductors',
