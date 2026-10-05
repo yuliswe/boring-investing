@@ -82,6 +82,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'JNJ',
+    name: 'Johnson & Johnson',
+    sector: 'Pharmaceuticals & Medical Devices',
+    summary:
+      'Healthcare company selling prescription medicines (Innovative Medicine) and medical devices (MedTech), with steady free cash flow, a dividend raised every year, and earnings that swing with talc litigation accruals.',
+    template: 'software',
+  },
+  {
     symbol: 'LEN',
     name: 'Lennar Corporation',
     sector: 'Homebuilding',
