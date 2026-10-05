@@ -98,6 +98,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'KO',
+    name: 'The Coca-Cola Company',
+    sector: 'Beverages',
+    summary:
+      'Owner of Coca-Cola and many other drink brands that mostly sells concentrate to independent bottlers, earning high margins on little capital and paying a dividend raised every year, with recent free cash flow cut by a one-time IRS deposit and the final fairlife payment.',
+    template: 'software',
+  },
+  {
     symbol: 'LEN',
     name: 'Lennar Corporation',
     sector: 'Homebuilding',
