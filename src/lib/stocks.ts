@@ -74,6 +74,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'GRGD',
+    name: 'Groupe Dynamite Inc.',
+    sector: 'Retail',
+    summary:
+      'Montreal-based retailer of its own Garage and Dynamite women’s apparel brands through company-owned stores and online, with nearly all new stores opening in the United States, now more than half of revenue.',
+    template: 'retail',
+  },
+  {
     symbol: 'MCD',
     name: "McDonald's Corporation",
     sector: 'Restaurants',
