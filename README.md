@@ -87,8 +87,9 @@ method that decides which metrics a page emphasizes.
 
 ## Where the numbers come from
 
-Every historical figure is transcribed from a company's own filings, such as
-its 10-K, its 10-Q, or the equivalent annual report for a Canadian company.
+Every historical figure is parsed by LLM automation from a company's own
+filings, such as its 10-K, its 10-Q, or the equivalent annual report for a
+Canadian company.
 Share prices come from public market data. Forward-year estimates come from
 management guidance where a company gives it, and from analyst consensus
 otherwise. When no credible estimate exists, the page leaves a gap instead of
@@ -99,8 +100,8 @@ approximation.
 
 Boring Investing is an educational research notebook. It does not give buy,
 sell, or hold recommendations, and nothing on the site is investment advice.
-The figures are transcribed by hand and may contain errors, so check the linked
-filings before relying on any number.
+The figures are parsed by LLM automation and may contain errors, so check the
+linked filings before relying on any number.
 
 ## For developers
 
