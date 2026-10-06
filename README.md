@@ -1,116 +1,108 @@
 # Boring Investing
 
-Boring Investing is a personal research notebook for long-term, value-oriented
-stock analysis, published as a static website on GitHub Pages. Each company gets
-one page that lays out roughly a decade of its filed financials as charts and
-tables, so that a reader can judge the quality of the business and what the
-current price assumes about it. The site makes no buy or sell recommendations.
+**[Open the site →](https://yuliswe.github.io/boring-investing/)**
 
-The site currently covers 26 companies, from software and semiconductors (MSFT,
-GOOG, ADBE, CSU, NVDA, AMD) to payments (MA, AXP), retail (LULU, ATZ, GRGD),
-consumer brands (PEP, MCD), healthcare (LLY, JNJ), homebuilding (LEN), and
-Berkshire Hathaway. The home page lists all of them.
+Boring Investing is a free library of one-page company analyses written for
+long-term, value-oriented investors. Each page takes about ten years of a
+company's reported financials and lays them out as charts and tables, so that
+you can judge two things quickly: whether the business is a good one, and how
+much of that quality the current share price already assumes.
 
-## How the analysis works
+The name is deliberate. The site does not cover price momentum, earnings-day
+surprises, or price targets. It covers the slow-moving facts that decide
+long-run returns, such as margins, returns on capital, cash generation, and
+what management does with the cash.
 
-Every page follows a written method for its kind of business, and those methods
-live in `src/methods/`. The software and retail methods take a
-franchise-quality approach rather than a discounted-cash-flow model, which means
-they ask whether the business has a durable advantage that sustains high returns
-on capital instead of trying to compute a precise intrinsic value. The
-homebuilder method anchors on price-to-tangible-book instead, because a
-builder's earnings swing with the housing cycle far more than its assets do.
+## Who it is for
 
-A typical page covers the last nine completed fiscal years plus one forward
-estimate year, and it contains these sections:
+The site is meant for anyone who reads annual reports, or who would like to
+without opening a 10-K for every company. That includes individual investors
+building a watchlist, analysts who want a quick second view on a name, and
+students learning how a value investor looks at a business. Every page assumes
+you know what P/E and free cash flow are, but nothing more.
 
-- an investment thesis of three points;
-- valuation ratios (P/E, P/FCF, and PEG), which recalculate as you drag the
-  price adjuster in the page header;
-- profitability and return metrics such as ROE, ROIC, margins, and free cash
-  flow per share;
-- revenue by segment, so that weakness in one segment cannot hide behind
-  strength in another;
-- expenses as a share of revenue, following whatever line items the company
-  itself reports;
-- the cash flow statement; and
-- links to the filings the numbers came from.
+## What is covered
 
-Every figure must come from an actual filing (SEC EDGAR, 10-K, 10-Q) or a
-verifiable market-data source, and forward estimates must come from management
-guidance or analyst consensus. Nothing is filled in from memory. Most company
-folders keep a `references.md` that lists their sources, and the full data rules
-are in `src/companies/CLAUDE.md`.
+The library covers large, well-known businesses across several industries.
 
-Readers can also pin notes anywhere on a page. Those notes are stored in the
-browser's local storage, so they stay private to the reader and are not
-published.
+| Industry                    | Companies                                                 |
+| --------------------------- | --------------------------------------------------------- |
+| Software and internet       | Microsoft, Alphabet, Adobe, Amazon, Netflix               |
+| Vertical-market software    | Constellation Software, Topicus.com                       |
+| Semiconductors              | NVIDIA, AMD, Micron                                       |
+| Payments and financial data | Mastercard, American Express, S&P Global, Thomson Reuters |
+| Consumer brands             | Coca-Cola, PepsiCo, McDonald's                            |
+| Apparel retail              | Lululemon, Aritzia, Groupe Dynamite                       |
+| Healthcare                  | Eli Lilly, Johnson & Johnson                              |
+| Homebuilding                | Lennar                                                    |
+| Other                       | Berkshire Hathaway, Uber                                  |
 
-## How the code is organized
+New companies are added over time, and the site's home page always has the
+current list.
 
-The site is a Next.js App Router project exported to static HTML, styled with
-Tailwind CSS v4 and the "Ledger" design system, with charts drawn by Recharts.
+## What a company page shows
 
-```
-src/
-  methods/         One analytical method per company type, in Markdown
-  templates/       One page layout per company type (software, retail)
-  companies/<SYM>/ Data, sources, and page code for a single company
-  app/<SYM>/       Thin route files that render the company page
-  design-system/   Tokens, CSS, and shared UI components
-  charts/          Shared chart components
-  lib/stocks.ts    Registry of every company and its template
-```
+Each page opens with a short description of the business and three thesis
+points that summarize the case for owning it. The sections below that follow
+the same order on every page, so that once you have read one, you can scan the
+rest quickly.
 
-The `/components` route is a living gallery of the design system, and
-`/preview` renders a sample page with placeholder data.
+- **Valuation.** P/E, price to free cash flow, and PEG for each year, including
+  a forward estimate. You can type a different share price at the top of the
+  page, and the forward ratios update to show what the stock looks like at your
+  price. A Reset button restores the last close.
+- **Profitability and returns.** Earnings and free cash flow per share, return
+  on equity, return on invested capital, margins, and debt to equity.
+- **Revenue by segment.** Each reporting segment is charted separately, so that
+  a slowdown in one part of the business cannot hide behind growth in another.
+- **Expenses.** Every cost line as a share of revenue, using the company's own
+  categories from its income statement rather than a one-size-fits-all
+  template.
+- **Cash flow.** Operating, investing, and financing cash flows and free cash
+  flow, which show whether reported earnings turn into cash.
+- **Filings.** Links to the annual and quarterly reports the figures came from.
 
-Most pages are written with Claude Code, so the project instructions in
-`CLAUDE.md` files double as the contributor guide. The root `CLAUDE.md`
-explains where code belongs and how to add a stock, and the `CLAUDE.md` files
-under `src/companies/` and `src/templates/` define the data rules and the
-section types.
+Most metrics have a small popover that explains how each is calculated and what to
+watch for. You can also pin your own notes anywhere on a page. Those notes stay
+in your browser and are never shared or uploaded.
 
-## Development
+## How companies are judged
 
-### First-time setup on macOS
+Different businesses need different yardsticks, so each industry has a written
+method that decides which metrics a page emphasizes.
 
-The repository provisions its own Node.js into `.nodevenv` through Poetry and
-nodeenv, so only Python 3.10 or later, Poetry, and Homebrew need to be
-installed globally.
+- **Most companies**, including software, semiconductors, payments, and
+  healthcare, are judged on franchise quality. The question is whether the
+  business has a durable advantage that keeps returns on capital high, rather
+  than what a discounted-cash-flow model says it is worth to the dollar.
+- **Retailers and store-based consumer brands**, such as Lululemon, PepsiCo,
+  and McDonald's, are judged on six things: valuation, brand health, pricing
+  power and inventory discipline, store economics, margins, and capital
+  allocation. A brand can fade within a few years, so the method looks for
+  early signs of weakness before they reach the income statement.
+- **Homebuilders** are valued on price to tangible book and on return on equity
+  across a full housing cycle. P/E misleads for builders, because their
+  earnings look cheapest at the peak of the cycle and most expensive at the
+  bottom.
 
-1. Add these lines to `~/.zshrc` so that the project's own `.zshrc` loads when
-   you enter the directory:
+## Where the numbers come from
 
-   ```
-   # Source .zshrc from current directory if it exists
-   [ "$PWD" != "$HOME" ] && [ -f "$PWD/.zshrc" ] && source "$PWD/.zshrc"
-   ```
+Every historical figure is transcribed from a company's own filings, such as
+its 10-K, its 10-Q, or the equivalent annual report for a Canadian company.
+Share prices come from public market data. Forward-year estimates come from
+management guidance where a company gives it, and from analyst consensus
+otherwise. When no credible estimate exists, the page leaves a gap instead of
+filling in a guess, and nothing on the site is filled in from memory or
+approximation.
 
-2. Run `./initenv.bash` once.
-3. Open a new terminal session.
+## Important note
 
-### Commands
+Boring Investing is an educational research notebook. It does not give buy,
+sell, or hold recommendations, and nothing on the site is investment advice.
+The figures are transcribed by hand and may contain errors, so check the linked
+filings before relying on any number.
 
-| Command             | What it does                                   |
-| ------------------- | ---------------------------------------------- |
-| `npm run dev`       | Starts the dev server at http://localhost:3000 |
-| `npm run build`     | Builds the static export into `out/`           |
-| `npm run typecheck` | Type-checks the project with `tsc --noEmit`    |
-| `npm run lint`      | Runs ESLint over the flat config               |
-| `npm test`          | Runs the Jest test suite                       |
+## For developers
 
-### Adding a company
-
-Register the company in `src/lib/stocks.ts` and choose a template. Then
-transcribe its filed figures into `src/companies/<SYMBOL>/data/`, and add a
-route file at `src/app/<SYMBOL>/page.tsx`. `MA` is the reference implementation
-for the expense and cash flow sections, and `TRI` is the reference for
-price-reactive valuation metrics.
-
-## Deployment
-
-The workflow in `.github/workflows/deploy.yml` builds the export and publishes
-it to GitHub Pages on every push to the `release` branch. The site is served
-from `/boring-investing`, and `next.config.mjs` sets the matching base path for
-production builds.
+The site is open source. See [docs/DEV.md](docs/DEV.md) for how it is built,
+how to run it locally, and how to add a company.
