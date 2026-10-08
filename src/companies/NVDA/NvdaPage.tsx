@@ -10,6 +10,7 @@ import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
   offBalanceSheetCommitments,
+  debtFundedDemand,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -122,13 +123,26 @@ const nvdaSections: SectionData[] = [
     rank: 570,
     id: 'off-balance-sheet',
     title: 'Off-Balance-Sheet Commitments',
-    kicker: `Contractual obligations not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Manufacturing commitments grew nearly 6× year-over-year, driven by TSMC’s requirement for longer contract terms and upfront payments to fund custom fabrication capacity.`,
+    kicker: `Contractual commitments and guarantees not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Supply commitments rose from $119B to $279B in one quarter, and in August NVIDIA guaranteed up to $105B of an OpenAI data center’s lease payments.`,
     kind: 'table',
     firstColumn: 'Category',
     columns: offBalanceSheetCommitments.columns,
     rows: offBalanceSheetCommitments.rows,
     tableNote:
-      'Leases not yet commenced ($32.4B) are spread across FY27–FY33, primarily for data centers, with terms of 3–20 years. Facility lease guarantees ($3.5B max exposure) reduce over 5–7 years as partners make payments. The $24.0B manufacturing balance for FY28–31 is not broken down by individual year in the filing. Cloud service FY28–31 is the sum of $7.0B + $7.0B + $5.0B + $3.0B. Investment commitments include pledged but unfunded equity stakes; completed investments ($99B as of July 2026, including the $30B OpenAI stake) are on the balance sheet and not shown here.',
+      'FY27 is the remainder of the fiscal year after July 26, 2026. The first five rows make up the $366B the filing reports as total commitments, and the AI cloud agreements and third-party leases are reported separately as $56B of additional commitments. Guarantee amounts are maximum exposures without a payment schedule, so the FY columns of the total exclude them. The SB Energy guarantees were signed in August 2026, after the quarter closed, and are disclosed in the same 10-Q.',
+  },
+  {
+    rank: 575,
+    id: 'debt-funded-demand',
+    title: 'Debt-Funded Demand',
+    kicker:
+      'Debt that customers have raised, or are raising, to buy NVIDIA chips. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
+    kind: 'table',
+    firstColumn: 'Borrower',
+    columns: debtFundedDemand.columns,
+    rows: debtFundedDemand.rows,
+    tableNote:
+      'This list covers the deals identified so far and is not exhaustive. It counts only third-party debt. Demand that NVIDIA funds with its own money, such as the $25B of equity commitments above or the reported but unsigned talks to finance about $350B of OpenAI chip purchases, is excluded. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
   },
   {
     rank: 400,

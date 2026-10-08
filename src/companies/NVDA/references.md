@@ -41,3 +41,30 @@
 - FY22-FY26: stockanalysis.com/stocks/nvda/financials/cash-flow-statement/
 - FY17-FY21: Q4 CFO Commentary 8-K filings (annual summaries)
 - FY20 capex ($489M): from SEC 10-K filing search results
+
+## Off-balance-sheet commitments and guarantees
+
+- Q2 FY27 10-Q (quarter ended July 26, 2026), Note 10, Commitments and
+  Contingencies, including the SB Energy Corp. guarantees signed in August 2026
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm>
+- 8-K of August 17, 2026, describing the SB Energy / OpenAI residual value
+  guarantees
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm>
+
+## Debt-funded demand
+
+- SpaceX $40B financing (October 2026, proposed):
+  <https://thenextweb.com/news/spacex-40bn-debt-nvidia-chips-apollo>,
+  <https://www.fool.com/investing/2026/10/07/spacex-reportedly-wants-to-borrow-usd40-billion-for-nvidia-chips-despite-a-usd100-billion-cash-pile/>
+- SpaceX credit ratings (June 18, 2026):
+  <https://www.investing.com/news/stock-market-news/spacex-gets-investmentgrade-ratings-with-stable-outlook-from-top-agencies-4750942>
+- NVIDIA's $21B SpaceX stake (13F, August 2026):
+  <https://www.cnbc.com/2026/08/14/nvidia-discloses-21-billion-stake-in-spacex-at-end-of-second-quarter.html>
+- Apollo / Valor Compute Infrastructure $3.5B (January 7, 2026):
+  <https://finance.yahoo.com/news/apollo-backs-5-4-billion-130000749.html>
+- Apollo $3.4B xAI chip-leasing loan (February 2026):
+  <https://techfundingnews.com/apollo-3-4b-loan-xai-nvidia-chips/>
+- CoreWeave $2.3B H100-collateralized facility (August 3, 2023):
+  <https://finance.yahoo.com/news/coreweave-raises-2-3-billion-130901488.html>
+- CoreWeave $7.5B facility (May 17, 2024):
+  <https://www.prnewswire.com/news-releases/coreweave-secures-7-5-billion-debt-financing-facility-led-by-blackstone-and-magnetar-302148876.html>

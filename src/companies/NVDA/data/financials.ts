@@ -149,42 +149,87 @@ export const cashFlowStatementLines = [
 ];
 
 export const offBalanceSheetCommitments = {
-  asOf: 'April 26, 2026 (Q1 FY27 10-Q)',
+  asOf: 'July 26, 2026 (Q2 FY27 10-Q)',
   columns: ['Total', 'FY27', 'FY28–31', 'FY32+'],
   rows: [
     {
-      label: 'Mfg, supply & capacity',
-      desc: 'Agreements with foundry and packaging partners (primarily TSMC) for wafer fabrication and assembly. This figure grew nearly 6× from $16.1B a year earlier, driven by TSMC’s requirement for longer contract terms and upfront payments to fund custom fabrication capacity for next-generation architectures.\nThese are contractual obligations to pay regardless of whether end-market demand materializes.',
-      values: ['-$119.0B', '-$95.0B', '-$24.0B', '—'],
-    },
-    {
-      label: 'Leases not yet commenced',
-      desc: 'Signed but not yet started operating leases, primarily for data centers to support R&D, with terms of 3 to 20 years. Expected to commence between Q2 FY27 and FY33.\nBecause the leases have not commenced, they are not recognized as right-of-use assets or lease liabilities on the balance sheet. For comparison, leases already on the balance sheet carry $5.6B in future minimum payments.',
-      values: ['-$32.4B', '—', '—', '—'],
+      label: 'Supply & capacity',
+      desc: 'Commitments to suppliers, primarily for memory and manufacturing capacity for current and future architectures. The balance rose from $119B in the prior quarter to $279B.\nNVIDIA says some of these agreements can be cancelled, rescheduled, or adjusted before firm orders are placed, though changes may carry extra costs.',
+      values: ['-$279.0B', '-$92.0B', '-$186.0B', '-$1.0B'],
     },
     {
       label: 'Cloud service agreements',
-      desc: 'Multi-year contracts with cloud providers (likely AWS, Azure, GCP) to support NVIDIA’s R&D workloads.\nFY28–31 total is the sum of $7.0B (FY28) + $7.0B (FY29) + $5.0B (FY30) + $3.0B (FY31).',
-      values: ['-$30.0B', '-$6.0B', '-$22.0B', '-$2.0B'],
+      desc: 'Cloud capacity NVIDIA rents for its own R&D, including its Nemotron, Cosmos, and GR00T open models and autonomous vehicle software.\nFY28–31 is the sum of $8B + $7B + $6B + $4B.',
+      values: ['-$29.0B', '-$3.0B', '-$25.0B', '-$1.0B'],
     },
     {
-      label: 'Investment commitments',
-      desc: 'Committed but unfunded investments in infrastructure funds and strategic ventures, expected to be deployed through the remainder of FY27. The $27B also represents NVIDIA’s stated maximum loss exposure.\nCompleted investments ($99B as of July 2026, including the $30B OpenAI stake and $2B CoreWeave investment) are already on the balance sheet and not included here.',
-      values: ['-$27.0B', '-$27.0B', '—', '—'],
+      label: 'Leases not yet commenced',
+      desc: 'Signed data center leases that NVIDIA will use for engineering, design, and testing, with terms of up to 20 years, expected to begin between Q3 FY27 and FY33.\nBecause the leases have not commenced, they are not yet recognized as lease liabilities.',
+      values: ['-$25.0B', '—', '-$5.0B', '-$20.0B'],
     },
     {
-      label: 'Other vendor commitments',
-      desc: 'Includes technology licensing and other service agreements. The filing names a significant, nonrefundable IP licensing arrangement with Groq, Inc.\nThe majority is payable through FY27.',
-      values: ['-$6.0B', '-~$6.0B', '—', '—'],
+      label: 'Equity investments',
+      desc: 'Committed but unfunded investments in AI model makers, infrastructure financiers, and other private companies, subject to contingencies.\nInvestments already made sit on the balance sheet as $42.8B of marketable and $51.2B of non-marketable equity securities, and are not included here.',
+      values: ['-$25.0B', '-$18.0B', '-$7.0B', '—'],
     },
     {
-      label: 'Facility lease guarantees',
-      desc: 'Guarantees on facility leases for partners, with maximum gross exposure of $3.5B that reduces as partners make payments over 5 to 7 years.\nIf a partner defaults, NVIDIA is liable for the remaining lease payments.',
-      values: ['-$3.5B', '—', '—', '—'],
+      label: 'Capital expenditures',
+      desc: 'Obligations for data center equipment and infrastructure used in engineering and manufacturing.',
+      values: ['-$8.0B', '-$7.0B', '-$1.0B', '—'],
+    },
+    {
+      label: 'AI cloud agreements',
+      desc: 'AI clouds buy NVIDIA systems and NVIDIA commits to rent capacity back, which the clouds can stop providing and sell to third parties at better rates. The commitment shrinks as third parties or NVIDIA use the capacity, and NVIDIA shares in third-party revenue if certain criteria are met.\nThe filing lists this outside its $366B commitments table, as an additional commitment.',
+      values: ['-$36.0B', '—', '-$27.0B', '-$9.0B'],
+    },
+    {
+      label: 'Third-party data center leases',
+      desc: 'Leases of about 15 years that NVIDIA signed and expects to reassign to third parties, commencing between FY28 and FY29.\nThe filing lists this outside its $366B commitments table, as an additional commitment.',
+      values: ['-$20.0B', '—', '-$3.0B', '-$17.0B'],
+    },
+    {
+      label: 'SB Energy guarantees (OpenAI)',
+      desc: 'Signed in August 2026, these guarantees cover defined portions of the lease and power payments owed by an OpenAI affiliate on about 4.25 GW of data center capacity at SB Energy’s PORTS campus in Pike County, Ohio. They pay out only on certain tenant defaults, and OpenAI has agreed to reimburse NVIDIA for anything it pays.\nExposure starts as each of nine construction phases is completed, beginning in FY29, and declines over each phase’s 20-year lease. The guarantees end early if OpenAI earns a satisfactory credit rating. NVIDIA also holds an option to back about 3.8 GW more.',
+      values: ['≤-$105.0B', '—', '—', '—'],
+    },
+    {
+      label: 'Land, power & shell guarantees',
+      desc: 'Guarantees of select AI cloud partners’ data center lease payments if they default. Maximum exposure falls as partners pay down their leases over 5 to 7 years, and partners have placed $712M in escrow against it.',
+      values: ['≤-$3.5B', '—', '—', '—'],
     },
     {
       label: 'Total',
-      values: ['-~$217.9B', '≤-$134.0B', '—', '—'],
+      values: ['≤-$530.5B', '-$120.0B', '-$254.0B', '-$48.0B'],
+    },
+  ],
+};
+
+export const debtFundedDemand = {
+  columns: ['Debt', 'Date', 'Status', 'NVIDIA link'],
+  rows: [
+    {
+      label: 'SpaceX / SpaceXAI',
+      desc: 'About $10B of bank loans and $30B of investment-grade bonds to buy NVIDIA chips for SpaceXAI data centers, led by Apollo with Pimco in talks. The Financial Times and Bloomberg describe the talks as early-stage, with closing expected in 2027.\nSpaceX is rated Baa1 by Moody’s, BBB+ by Fitch, and BBB by S&P. NVIDIA holds 122.8M SpaceX shares, worth about $21B at the end of Q2 FY27, from its $10B xAI investment in January 2026.',
+      values: ['$40.0B', 'Oct 2026', 'Proposed', '$21B equity stake'],
+    },
+    {
+      label: 'Valor Compute Infrastructure (xAI)',
+      desc: 'Apollo provided $3.5B toward Valor’s $5.4B purchase of NVIDIA GB200 systems, which the vehicle leases to xAI on a triple net basis.\nNVIDIA is an anchor limited partner in the vehicle, so part of this demand is funded with NVIDIA’s own money.',
+      values: ['$3.5B', 'Jan 2026', 'Closed', 'Anchor LP'],
+    },
+    {
+      label: 'xAI chip-leasing vehicle',
+      desc: 'A $3.4B Apollo loan to a vehicle that buys NVIDIA chips and leases them to xAI, arranged by Valor Equity Partners.',
+      values: ['$3.4B', 'Feb 2026', 'Reported', '—'],
+    },
+    {
+      label: 'CoreWeave',
+      desc: 'Two debt facilities led by Blackstone and Magnetar: $2.3B in August 2023, the first collateralized by NVIDIA H100s, and $7.5B in May 2024 to build out compute for signed contracts. CoreWeave has borrowed more since, so this row understates its total.\nNVIDIA owns about 11% of CoreWeave and has agreed to buy any CoreWeave capacity that goes unsold through April 2032, worth at least $6.3B.',
+      values: ['$9.8B', '2023–24', 'Closed', '~11% stake'],
+    },
+    {
+      label: 'Total',
+      values: ['$56.7B', '', '$16.7B closed', ''],
     },
   ],
 };
