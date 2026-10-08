@@ -116,9 +116,52 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
+function buildRevenueMinusInvestingSection(): SectionData {
+  const investing = cashFlowStatementLines.find(
+    l => l.label === 'Investing activities'
+  )!;
+  const years = cashFlowStatementYears.filter(
+    (_, i) => investing.values[i] !== null
+  );
+  const adjusted = (field: 'revenue' | 'operatingIncome') =>
+    years.map(year => {
+      const income = financials.revenue.find(r => r.year === year)![field]!;
+      const investingFlow =
+        investing.values[cashFlowStatementYears.indexOf(year)]!;
+      return +(income + investingFlow).toFixed(2);
+    });
+  return {
+    rank: 565,
+    id: 'revenue-minus-investing',
+    title: 'Revenue Minus Investment Activities',
+    kicker:
+      'Revenue and operating income after treating the cash NVIDIA spends on investing activities as circular financing, on the view that some of that money returns as revenue when the companies it funds buy NVIDIA chips.',
+    kind: 'multi',
+    years,
+    mode: 'absolute',
+    series: [
+      {
+        label: 'Adjusted revenue',
+        desc: 'Revenue minus the net cash used in investing activities from the cash flow statement.',
+        values: adjusted('revenue'),
+        format: billionFormat,
+      },
+      {
+        label: 'Adjusted operating income',
+        desc: 'Operating income minus the net cash used in investing activities from the cash flow statement.',
+        values: adjusted('operatingIncome'),
+        format: billionFormat,
+      },
+    ],
+    chartNote:
+      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers.',
+  };
+}
+
 const nvdaSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
+  buildRevenueMinusInvestingSection(),
   {
     rank: 570,
     id: 'off-balance-sheet',
