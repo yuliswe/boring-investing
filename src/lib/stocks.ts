@@ -154,6 +154,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'PG',
+    name: 'The Procter & Gamble Company',
+    sector: 'Consumer Staples',
+    summary:
+      'Maker of everyday household and personal care brands such as Tide, Pampers, and Gillette across five segments, with operating margins of 22%–24% since FY20, a dividend raised for 70 consecutive years, and slowing sales growth.',
+    template: 'software',
+  },
+  {
     symbol: 'MU',
     name: 'Micron Technology, Inc.',
     sector: 'Semiconductors',
