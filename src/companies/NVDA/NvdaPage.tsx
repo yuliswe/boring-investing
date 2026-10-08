@@ -137,7 +137,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
       return +(income + investingFlow).toFixed(2);
     });
   return {
-    rank: 565,
+    rank: 375,
     id: 'revenue-minus-investing',
     title: 'Revenue Minus Investment Activities',
     kicker:
