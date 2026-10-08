@@ -123,6 +123,13 @@ function buildRevenueMinusInvestingSection(): SectionData {
   const forwardDeduction =
     offBalanceSheetCommitments.dueInFY27 + debtFundedDemand.total;
   const years = cashFlowStatementYears;
+  const forward = financials.revenue.find(r => r.year === 'FY27E')!;
+  const billions = (v: number) => `$${v.toFixed(2)}B`;
+  const forwardMath = [
+    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.dueInFY27)} of off-balance-sheet commitments due in FY27 and the ${billions(debtFundedDemand.total)} of debt-funded demand, a total of ${billions(forwardDeduction)}.`,
+    `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
+    `Adjusted operating income = ${billions(forward.operatingIncome!)} consensus operating income − ${billions(forwardDeduction)} = ${billions(forward.operatingIncome! - forwardDeduction)}.`,
+  ].join('\n');
   const adjusted = (field: 'revenue' | 'operatingIncome') =>
     years.map((year, i) => {
       const income = financials.revenue.find(r => r.year === year)![field]!;
@@ -139,16 +146,17 @@ function buildRevenueMinusInvestingSection(): SectionData {
     years,
     mode: 'absolute',
     guidanceCount: 1,
+    guidanceDesc: forwardMath,
     series: [
       {
         label: 'Adjusted revenue',
-        desc: `Revenue minus the net cash used in investing activities from the cash flow statement.\nFY27E is consensus revenue minus the $${offBalanceSheetCommitments.dueInFY27.toFixed(1)}B of off-balance-sheet commitments due in FY27 and the $${debtFundedDemand.total.toFixed(1)}B of debt-funded demand.`,
+        desc: 'Revenue minus the net cash used in investing activities from the cash flow statement.',
         values: adjusted('revenue'),
         format: billionFormat,
       },
       {
         label: 'Adjusted operating income',
-        desc: `Operating income minus the net cash used in investing activities from the cash flow statement.\nFY27E is consensus operating income minus the same $${forwardDeduction.toFixed(1)}B.`,
+        desc: 'Operating income minus the net cash used in investing activities from the cash flow statement.',
         values: adjusted('operatingIncome'),
         format: billionFormat,
       },
