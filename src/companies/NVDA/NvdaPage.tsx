@@ -120,14 +120,13 @@ function buildRevenueMinusInvestingSection(): SectionData {
   const investing = cashFlowStatementLines.find(
     l => l.label === 'Investing activities'
   )!;
-  const years = cashFlowStatementYears.filter(
-    (_, i) => investing.values[i] !== null
-  );
+  const forwardDeduction =
+    offBalanceSheetCommitments.dueInFY27 + debtFundedDemand.total;
+  const years = cashFlowStatementYears;
   const adjusted = (field: 'revenue' | 'operatingIncome') =>
-    years.map(year => {
+    years.map((year, i) => {
       const income = financials.revenue.find(r => r.year === year)![field]!;
-      const investingFlow =
-        investing.values[cashFlowStatementYears.indexOf(year)]!;
+      const investingFlow = investing.values[i] ?? -forwardDeduction;
       return +(income + investingFlow).toFixed(2);
     });
   return {
@@ -139,22 +138,23 @@ function buildRevenueMinusInvestingSection(): SectionData {
     kind: 'multi',
     years,
     mode: 'absolute',
+    guidanceCount: 1,
     series: [
       {
         label: 'Adjusted revenue',
-        desc: 'Revenue minus the net cash used in investing activities from the cash flow statement.',
+        desc: `Revenue minus the net cash used in investing activities from the cash flow statement.\nFY27E is consensus revenue minus the $${offBalanceSheetCommitments.dueInFY27.toFixed(1)}B of off-balance-sheet commitments due in FY27 and the $${debtFundedDemand.total.toFixed(1)}B of debt-funded demand.`,
         values: adjusted('revenue'),
         format: billionFormat,
       },
       {
         label: 'Adjusted operating income',
-        desc: 'Operating income minus the net cash used in investing activities from the cash flow statement.',
+        desc: `Operating income minus the net cash used in investing activities from the cash flow statement.\nFY27E is consensus operating income minus the same $${forwardDeduction.toFixed(1)}B.`,
         values: adjusted('operatingIncome'),
         format: billionFormat,
       },
     ],
     chartNote:
-      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers.',
+      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the FY27 column of the off-balance-sheet commitments, which is mostly supply purchases, and the full debt-funded demand total, which includes deals from earlier years and SpaceX’s proposed loan.',
   };
 }
 

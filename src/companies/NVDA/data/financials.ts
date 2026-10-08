@@ -150,6 +150,7 @@ export const cashFlowStatementLines = [
 
 export const offBalanceSheetCommitments = {
   asOf: 'July 26, 2026 (Q2 FY27 10-Q)',
+  dueInFY27: 120.0,
   columns: ['Total', 'FY27', 'FY28–31', 'FY32+'],
   rows: [
     {
@@ -205,6 +206,7 @@ export const offBalanceSheetCommitments = {
 };
 
 export const debtFundedDemand = {
+  total: 56.7,
   columns: ['Debt', 'Date', 'Status', 'NVIDIA link'],
   rows: [
     {
@@ -237,7 +239,7 @@ export const debtFundedDemand = {
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   estimateNote:
-    'FY27E values use consensus analyst estimates from stockanalysis.com (53 analysts as of September 2026). Revenue, EPS, and FCF are consensus figures. P/E and P/FCF recalculate from the adjusted price.',
+    'FY27E values use consensus analyst estimates from stockanalysis.com (53 analysts as of September 2026). Revenue, EPS, and FCF are consensus figures. Operating income is the consensus of 54 analysts as of October 2026. P/E and P/FCF recalculate from the adjusted price.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
@@ -413,7 +415,12 @@ const financials: SoftwareFinancials = {
       operatingIncome: 130.39,
       netIncome: 120.06,
     },
-    { year: 'FY27E', revenue: 411.56, operatingIncome: null, netIncome: 242.9 },
+    {
+      year: 'FY27E',
+      revenue: 411.56,
+      operatingIncome: 268.86,
+      netIncome: 242.9,
+    },
   ],
   thesis: [
     'NVIDIA dominates the AI accelerator market with a vertically integrated platform spanning hardware (GPUs, networking) and software (CUDA, cuDNN, TensorRT), creating an ecosystem moat that locks in developers and enterprise customers.',
