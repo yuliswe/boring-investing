@@ -102,7 +102,7 @@ dev server before building, or clear `.next` if pages render stale output.
 ## Adding a company
 
 1. Register the company in `src/lib/stocks.ts` and choose a template.
-2. Transcribe its filed figures into `src/companies/<SYMBOL>/data/`, typed
+2. Parse its filed figures into `src/companies/<SYMBOL>/data/`, typed
    against the template's data shape and exported with `export default`.
 3. Write the page component in `src/companies/<SYMBOL>/`, and put any sections
    unique to that company under its `components/` folder.
