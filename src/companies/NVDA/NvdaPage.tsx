@@ -120,7 +120,8 @@ const investingLine = cashFlowStatementLines.find(
   l => l.label === 'Investing activities'
 )!;
 const forwardDeduction =
-  offBalanceSheetCommitments.dueInFY27 + debtFundedDemand.total;
+  offBalanceSheetCommitments.equityInvestmentsDueInFY27 +
+  debtFundedDemand.total;
 
 function circularDeduction(year: string): number | null {
   const i = cashFlowStatementYears.indexOf(year);
@@ -142,7 +143,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
   const forward = financials.revenue.find(r => r.year === 'FY27E')!;
   const billions = (v: number) => `$${v.toFixed(2)}B`;
   const forwardMath = [
-    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.dueInFY27)} of off-balance-sheet commitments due in FY27 and the ${billions(debtFundedDemand.total)} of debt-funded demand, a total of ${billions(forwardDeduction)}.`,
+    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(debtFundedDemand.total)} of debt-funded demand, a total of ${billions(forwardDeduction)}.`,
     `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
     `Adjusted operating income = ${billions(forward.operatingIncome!)} consensus operating income − ${billions(forwardDeduction)} = ${billions(forward.operatingIncome! - forwardDeduction)}.`,
   ].join('\n');
@@ -177,7 +178,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
       },
     ],
     chartNote:
-      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the FY27 column of the off-balance-sheet commitments, which is mostly supply purchases, and the full debt-funded demand total, which includes deals from earlier years and SpaceX’s proposed loan.',
+      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA has committed to make in FY27 and the full debt-funded demand total, which includes deals from earlier years and SpaceX’s proposed loan. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
   };
 }
 
@@ -343,7 +344,7 @@ const negativeAdjustedNote =
 
 const adjustedEpsMetric = {
   label: 'Adjusted diluted EPS',
-  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the FY27 off-balance-sheet commitments and the debt-funded demand total.',
+  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments committed for FY27 and the debt-funded demand total.',
   values: metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const eps = dilutedEps.values[i];

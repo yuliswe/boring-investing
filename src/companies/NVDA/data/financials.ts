@@ -150,7 +150,7 @@ export const cashFlowStatementLines = [
 
 export const offBalanceSheetCommitments = {
   asOf: 'July 26, 2026 (Q2 FY27 10-Q)',
-  dueInFY27: 120.0,
+  equityInvestmentsDueInFY27: 18.0,
   columns: ['Total', 'FY27', 'FY28–31', 'FY32+'],
   rows: [
     {
