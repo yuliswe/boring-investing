@@ -292,6 +292,11 @@ export const circularOutflowLines = [
     values: [0, 0, 0, 0, 0, 13.0, 2.944],
   },
   {
+    label: 'Corporate bonds',
+    desc: 'The yearly increase in NVIDIA’s holdings of corporate debt securities, from the fair value tables in its 10-Ks. Years when holdings fell count as zero. The filings do not name the issuers beyond “highly-rated corporations and financial institutions”, so this counts all corporate bonds as an upper bound.\nHoldings were $0.59B (FY20), $4.44B (FY21), $9.97B (FY22), $4.80B (FY23), $10.15B (FY24), $18.53B (FY25), $15.50B (FY26), and none as of July 26, 2026. Treasury and agency bonds and money market funds are excluded.',
+    values: [3.852, 5.53, 0, 5.355, 8.374, 0, 0],
+  },
+  {
     label: 'Third-party debt',
     desc: 'Debt that lenders provided to customers to buy NVIDIA hardware, placed in the fiscal year each deal closed or was signed. It counts GPU-backed loans and the corporate debt of AI clouds and AI labs, which is spent mostly on compute.\nData center construction debt (such as Stargate sites and Meta’s Hyperion) and hyperscaler bonds (such as Oracle’s) are excluded, because the tenant or issuer buys GPUs separately. Facility sizes are counted, not amounts drawn. FY27E covers deals through October 8, 2026, and excludes SpaceX’s proposed $40B financing.',
     values: [0, 0, 0, 2.3, 8.0, 21.44, 61.93],
@@ -301,12 +306,12 @@ export const circularOutflowLines = [
 export const circularOutflowYearDetails: Record<string, string> = {
   FY21: 'Acquisitions are almost entirely Mellanox. Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
   FY22: 'Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
-  FY23: 'Equity stakes are purchases of non-marketable equity securities.',
+  FY23: 'Equity stakes are purchases of non-marketable equity securities. Corporate bond holdings fell this year, so corporate bonds count as zero.',
   FY24: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $2.3B facility from August 2023, the first collateralized by NVIDIA H100s.',
   FY25: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $7.5B facility from May 2024 and Lambda’s $0.5B GPU-backed loan from April 2024.',
-  FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted. Third-party debt is $6.6B of GPU-backed loans (Valor Compute Infrastructure for xAI $3.5B, CoreWeave $2.6B, Lambda $0.3B, Crusoe $0.2B) plus $14.8B of AI cloud and AI lab corporate debt (CoreWeave notes and convertibles $6.3B, xAI $5.0B, Nebius $2.75B, Crusoe $0.75B).',
+  FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted. Third-party debt is $6.6B of GPU-backed loans (Valor Compute Infrastructure for xAI $3.5B, CoreWeave $2.6B, Lambda $0.3B, Crusoe $0.2B) plus $14.8B of AI cloud and AI lab corporate debt (CoreWeave notes and convertibles $6.3B, xAI $5.0B, Nebius $2.75B, Crusoe $0.75B). Corporate bond holdings fell this year, so corporate bonds count as zero.',
   FY27E:
-    'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt runs through October 8, 2026: $42.2B of GPU-backed loans (CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $19.7B of AI cloud corporate debt (CoreWeave $9.95B, Nebius $9.75B). SpaceX’s proposed $40B financing is not counted.',
+    'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt runs through October 8, 2026: $42.2B of GPU-backed loans (CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $19.7B of AI cloud corporate debt (CoreWeave $9.95B, Nebius $9.75B). SpaceX’s proposed $40B financing is not counted. NVIDIA held no corporate bonds as of July 26, 2026.',
 };
 
 export const circularFinancingDeals = {

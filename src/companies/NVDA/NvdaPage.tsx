@@ -212,7 +212,7 @@ function buildCleanRevenueSection(): SectionData {
     id: 'clean-revenue',
     title: 'Clean Revenue',
     kicker:
-      'Revenue after subtracting the cash NVIDIA sends to potential GPU buyers through equity stakes, acquisitions, and license payments, and the debt lenders provide to customers to buy NVIDIA hardware, on the view that all of it returns as NVIDIA revenue.',
+      'Revenue after subtracting the cash NVIDIA sends to potential GPU buyers through equity stakes, acquisitions, license payments, and corporate bond purchases, and the debt lenders provide to customers to buy NVIDIA hardware, on the view that all of it returns as NVIDIA revenue.',
     kind: 'multi',
     years: circularOutflowYears,
     mode: 'absolute',
@@ -261,7 +261,7 @@ function buildCircularFinancingSection(): SectionData {
     id: 'circular-financing',
     title: 'Circular Financing and Third-Party Debt Financing',
     kicker:
-      'Cash NVIDIA sends to third parties that can buy NVIDIA GPUs, through equity stakes, acquisitions, and license payments, plus debt that lenders provide to customers to buy NVIDIA chips. Bond purchases, capital expenditures, and supplier payments are excluded, because that money does not reach potential customers.',
+      'Cash NVIDIA sends to third parties that can buy NVIDIA GPUs, through equity stakes, acquisitions, license payments, and corporate bond purchases, plus debt that lenders provide to customers to buy NVIDIA chips. Treasury and agency bonds, capital expenditures, and supplier payments are excluded, because that money does not reach potential customers.',
     kind: 'multi',
     years: circularOutflowYears,
     mode: 'absolute',
@@ -270,7 +270,7 @@ function buildCircularFinancingSection(): SectionData {
     series: [
       {
         label: 'Total',
-        desc: 'Sum of the equity stakes, acquisitions, license payments, and third-party debt below.',
+        desc: 'Sum of the equity stakes, acquisitions, license payments, corporate bonds, and third-party debt below.',
         values: totals,
         format: billionFormat,
         bold: true,
@@ -278,7 +278,7 @@ function buildCircularFinancingSection(): SectionData {
       ...circularOutflowLines.map(l => ({ ...l, format: billionFormat })),
     ],
     chartNote:
-      'NVIDIA’s outflows are gross cash paid, before any proceeds from selling stakes, and no loans to customers or guarantee payouts appear in the filings. Third-party debt counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, and excludes data center construction debt and hyperscaler bonds. Click a year to see what it includes and its share of revenue.',
+      'NVIDIA’s outflows are gross cash paid, before any proceeds from selling stakes, and no loans to customers or guarantee payouts appear in the filings. Third-party debt counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, and excludes data center construction debt and hyperscaler bonds. Corporate bonds count the yearly increase in holdings, because the filings do not split purchases between corporate and government bonds. Click a year to see what it includes and its share of revenue.',
   };
 }
 
