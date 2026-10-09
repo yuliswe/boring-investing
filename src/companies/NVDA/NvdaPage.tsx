@@ -193,24 +193,24 @@ const circularTotals = circularOutflowYears.map(
     +circularOutflowLines.reduce((sum, l) => sum + l.values[i], 0).toFixed(3)
 );
 
-function buildCleanRevenueSection(): SectionData {
+function buildRevenueExcludingCircularSection(): SectionData {
   const revenues = circularOutflowYears.map(
     year => financials.revenue.find(r => r.year === year)!.revenue
   );
-  const clean = revenues.map((r, i) => +(r - circularTotals[i]).toFixed(2));
+  const excluding = revenues.map((r, i) => +(r - circularTotals[i]).toFixed(2));
   const yearNotes = Object.fromEntries(
     circularOutflowYears.map((year, i) => [
       year,
       [
-        `Revenue $${revenues[i].toFixed(2)}B − circular financing and third-party debt $${circularTotals[i].toFixed(2)}B = $${clean[i].toFixed(2)}B.`,
-        `Clean revenue is ${((clean[i] / revenues[i]) * 100).toFixed(1)}% of reported revenue. The Circular Financing and Third-Party Debt Financing chart shows what the deduction includes.`,
+        `Revenue $${revenues[i].toFixed(2)}B − circular financing and third-party debt $${circularTotals[i].toFixed(2)}B = $${excluding[i].toFixed(2)}B.`,
+        `Revenue excluding circular financing is ${((excluding[i] / revenues[i]) * 100).toFixed(1)}% of reported revenue. The Circular Financing and Third-Party Debt Financing chart shows what the deduction includes.`,
       ].join('\n'),
     ])
   );
   return {
     rank: 380,
-    id: 'clean-revenue',
-    title: 'Clean Revenue',
+    id: 'revenue-excluding-circular-financing',
+    title: 'Revenue Excluding Circular Financing',
     kicker:
       'Revenue after subtracting the cash NVIDIA sends to potential GPU buyers through equity stakes, acquisitions, license payments, and corporate bond purchases, and the debt lenders provide to customers to buy NVIDIA hardware, on the view that all of it returns as NVIDIA revenue.',
     kind: 'multi',
@@ -226,15 +226,15 @@ function buildCleanRevenueSection(): SectionData {
         format: billionFormat,
       },
       {
-        label: 'Clean revenue',
+        label: 'Revenue excluding circular financing',
         desc: 'Revenue minus the yearly total in the Circular Financing and Third-Party Debt Financing chart.',
-        values: clean,
+        values: excluding,
         format: billionFormat,
         bold: true,
       },
     ],
     chartNote:
-      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through October 8, 2026, so clean revenue is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
+      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through October 8, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
   };
 }
 
@@ -300,7 +300,7 @@ const nvdaSections: SectionData[] = [
     tableNote:
       'The counted rows add up to the chart’s equity, acquisition, and Groq lines across FY21–FY27E. Amounts the filings report but no named deal explains appear as unattributed rows, and their range follows the disputed xAI amount. FY27 includes commitments for the rest of the year. Rows marked not counted are public stakes that the filings mix with debt securities, deals that have not closed, letters of intent, and options. “GPU buyer?” records whether the counterparty buys or rents NVIDIA hardware.',
   },
-  buildCleanRevenueSection(),
+  buildRevenueExcludingCircularSection(),
   {
     rank: 570,
     id: 'off-balance-sheet',
