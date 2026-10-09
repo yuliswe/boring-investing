@@ -14,6 +14,7 @@ import financials, {
   circularOutflowYears,
   circularOutflowLines,
   circularOutflowYearDetails,
+  circularFinancingDeals,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -286,6 +287,19 @@ const nvdaSections: SectionData[] = [
   buildCashFlowStatementSection(),
   buildRevenueMinusInvestingSection(),
   buildCircularFinancingSection(),
+  {
+    rank: 585,
+    id: 'circular-financing-deals',
+    title: 'Circular Financing Deals',
+    kicker:
+      'The deals behind the equity stakes, acquisitions, and license payments in the chart above, from FY21 through FY27E. NVIDIA’s filings report only totals, so the named deals come from company announcements and press reports.',
+    kind: 'table',
+    firstColumn: 'Counterparty',
+    columns: circularFinancingDeals.columns,
+    rows: circularFinancingDeals.rows,
+    tableNote:
+      'The counted rows add up to the chart’s equity, acquisition, and Groq lines across FY21–FY27E. Amounts the filings report but no named deal explains appear as unattributed rows, and their range follows the disputed xAI amount. FY27 includes commitments for the rest of the year. Rows marked not counted are public stakes that the filings mix with debt securities, deals that have not closed, letters of intent, and options. “GPU buyer?” records whether the counterparty buys or rents NVIDIA hardware.',
+  },
   buildCleanRevenueSection(),
   {
     rank: 570,

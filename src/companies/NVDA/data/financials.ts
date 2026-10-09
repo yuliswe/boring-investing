@@ -309,6 +309,101 @@ export const circularOutflowYearDetails: Record<string, string> = {
     'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt runs through October 8, 2026: $42.2B of GPU-backed loans (CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $19.7B of AI cloud corporate debt (CoreWeave $9.95B, Nebius $9.75B). SpaceX’s proposed $40B financing is not counted.',
 };
 
+export const circularFinancingDeals = {
+  columns: ['Amount', 'Fiscal year', 'Type', 'GPU buyer?'],
+  rows: [
+    {
+      label: 'OpenAI',
+      desc: 'NVIDIA’s $30.0B share of OpenAI’s $122B round, which closed on March 31, 2026.\nThis is separate from the September 2025 letter of intent to invest up to $100B, which was never funded and is listed below as not counted.',
+      values: ['$30.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Groq',
+      desc: 'A non-exclusive license and hiring deal with total consideration of $17.0B: $13.0B paid at closing in December 2025 (investing activities) and $2.94B paid in the first half of FY27 (financing activities), with the rest due within a year.',
+      values: ['$15.94B', 'FY26–27', 'License', 'No'],
+    },
+    {
+      label: 'xAI',
+      desc: 'NVIDIA invested in xAI’s round that closed on January 6, 2026. Bloomberg reported up to $2B through a special purpose vehicle, while later reports put it at $10B, and xAI did not disclose NVIDIA’s share. The stake later converted into SpaceX shares.',
+      values: ['$2.0–10.0B', 'FY26', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Mellanox',
+      desc: 'NVIDIA acquired Mellanox in April 2020 for about $7B in deal value. The amount shown is FY21’s net cash paid for acquisitions, which is almost entirely Mellanox. NVIDIA consolidates Mellanox’s revenue after the deal.',
+      values: ['$8.52B', 'FY21', 'Acquisition', 'n/a'],
+    },
+    {
+      label: 'Intel',
+      desc: 'A $5.0B purchase of Intel common stock at $23.28 a share, completed in December 2025, alongside a product partnership.',
+      values: ['$5.0B', 'FY26', 'Equity', 'No'],
+    },
+    {
+      label: 'Suppliers',
+      desc: 'Equity in companies that supply NVIDIA rather than buy from it: Coherent $2.0B and Lumentum $2.0B (March 2026), Marvell $2.0B of convertible preferred stock (March 2026), and Corning $0.5B of pre-funded warrants (May 2026). NVIDIA also has multi-billion purchase commitments to Coherent and Lumentum.',
+      values: ['$6.5B', 'FY27', 'Equity', 'No'],
+    },
+    {
+      label: 'CoreWeave',
+      desc: 'A $2.0B purchase of CoreWeave stock at $87.20 a share on January 26, 2026, the first day of FY27. CoreWeave runs its cloud on NVIDIA hardware.',
+      values: ['$2.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Nebius',
+      desc: 'A $2.0B purchase of pre-funded warrants at $94.94 a share in March 2026. Nebius is building a Rubin-based cloud.',
+      values: ['$2.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'SB Energy',
+      desc: 'A $1.5B equity investment committed in August 2026 alongside the guarantees for OpenAI’s Ohio campus, which will exclusively host NVIDIA AI infrastructure. A further $1.5B purchase was reported in September 2026 and is not counted.',
+      values: ['$1.5B', 'FY27', 'Equity', 'Indirect'],
+    },
+    {
+      label: 'Nscale',
+      desc: 'A reported $1.0B commitment to Nscale’s $3.1B convertible round in September 2026. Nscale is an AI cloud built on NVIDIA hardware.',
+      values: ['$1.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Reflection AI',
+      desc: 'A reported investment of about $0.8B in Reflection AI’s $2B round in October 2025.',
+      values: ['$0.8B', 'FY26', 'Equity', 'Unclear'],
+    },
+    {
+      label: 'Smaller acquisitions',
+      desc: 'FY25: Run:ai ($0.7B), Deci ($0.3B), and OctoAI (about $0.25B), whose reported deal values exceed net cash paid because part was paid in stock or offset by cash acquired. FY26: Gretel, Lepton AI (an NVIDIA GPU cloud), CentML, and Enfabrica, which was structured as a license and hiring deal paid in cash and stock. FY27: Illumex, Kumo, and others, mostly undisclosed. FY22–FY24 deals were small.',
+      values: ['$3.24B', 'FY22–27', 'Acquisition', 'Mostly n/a'],
+    },
+    {
+      label: 'Unattributed private stakes',
+      desc: 'The part of the filed equity totals that no reported deal explains: FY21–FY25 private stakes ($2.49B), FY26 non-marketable purchases not explained by xAI and Reflection AI ($6.7B–$14.7B, which likely includes some of NVIDIA’s Anthropic commitment of up to $10B), and the first half of FY27 ($1.9B). The range moves with the disputed xAI amount.',
+      values: ['$11.1–19.1B', 'FY21–27', 'Equity', 'Unknown'],
+    },
+    {
+      label: 'Unattributed commitments',
+      desc: 'Equity investments NVIDIA committed to make in the rest of FY27, per the Q2 FY27 10-Q, beyond the SB Energy and Nscale commitments above. The filing describes them as investments in AI model makers, infrastructure financiers, and other private companies.',
+      values: ['$15.5B', 'FY27', 'Equity', 'Unknown'],
+    },
+    {
+      label: 'Total counted',
+      values: ['$113.1B', 'FY21–27', '', ''],
+    },
+    {
+      label: 'Not counted: Synopsys and Nokia',
+      desc: 'Synopsys $2.0B at $414.79 a share (December 2025) and Nokia $1.0B at $6.01 a share (November 2025). Both are public stakes whose cash is mixed with debt securities in the FY26 cash flow statement, so the chart leaves them out. Nokia adopts NVIDIA’s Aerial RAN, and Synopsys says it has no commitment to buy GPUs.',
+      values: ['$3.0B', 'FY26', 'Equity', 'Partly'],
+    },
+    {
+      label: 'Not counted: Hugging Face',
+      desc: 'An acquisition for about $11.9B plus up to $1.0B of retention awards, signed in September 2026 and expected to close in the first half of calendar 2027.',
+      values: ['$11.9B', 'FY28?', 'Acquisition', 'Unclear'],
+    },
+    {
+      label: 'Not counted: options and intentions',
+      desc: 'The unfunded OpenAI letter of intent for up to $100B (September 2025), reported talks to invest up to $10B in Anthropic’s IPO (September 2026), an IREN option for up to $2.1B (May 2026), and the unexercised $2.7B of Corning warrants.',
+      values: ['Up to $114.8B', '—', 'Mixed', 'Mostly yes'],
+    },
+  ],
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   estimateNote:

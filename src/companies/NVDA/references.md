@@ -114,3 +114,35 @@
     <https://www.unite.ai/nscale-closes-3b-in-term-loans/>
   - IREN: <https://www.globenewswire.com/news-release/2026/06/01/3304211/0/en/iren-closes-3-65bn-investment-grade-gpu-financing.html>
   - Zankore: <https://cryptobriefing.com/zankore-3b-loan-nvidia-chips/>
+
+## Circular financing deals
+
+- OpenAI $30B (March 2026): <https://letsdatascience.com/blog/nvidia-40-billion-ai-equity-investments-2026-openai-corning-iren>;
+  letter of intent: <https://nvidianews.nvidia.com/news/openai-and-nvidia-announce-strategic-partnership-to-deploy-10gw-of-nvidia-systems>
+- Groq $17.0B consideration: FY26 10-K Note 2 (link above)
+- xAI: <https://fnex.com/xai-secures-funding-with-nvidia/>,
+  <https://finance.yahoo.com/technology/ai/articles/nvidia-turned-ai-startup-bet-172215753.html>
+- Mellanox: <https://nvidianews.nvidia.com/news/nvidia-completes-acquisition-of-mellanox-creating-major-force-driving-next-gen-data-centers>
+- Intel: <https://www.pymnts.com/news/artificial-intelligence/2025/nvidia-finalizes-5-billion-purchase-of-intel-shares/>
+- Coherent: <https://www.sec.gov/Archives/edgar/data/820318/000119312526084366/d42735dex991.htm>;
+  Lumentum: <https://www.sec.gov/Archives/edgar/data/1633978/000119312526085412/d41019dex991.htm>;
+  Marvell: <https://www.sec.gov/Archives/edgar/data/1835632/000119312526134462/d113606dex991.htm>;
+  Corning: <https://www.cnbc.com/2026/05/06/nvidia-corning-optical-factories-nc-texas-ai.html>
+- CoreWeave $2B: <https://nvidianews.nvidia.com/news/nvidia-and-coreweave-strengthen-collaboration-to-accelerate-buildout-of-ai-factories>
+- Nebius $2B: <https://www.sec.gov/Archives/edgar/data/1513845/000110465926026163/tm268532d1_ex99-1.htm>
+- SB Energy: <https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000069/sbeoainvidia-portsrelease.htm>,
+  <https://energynow.com/2026/09/nvidia-buying-an-additional-1-5-billion-in-sb-energy-shares-ahead-of-ipo/>
+- Nscale $1B: <https://www.el-fondo.com/en/news/nvidia-commits-1-billion-to-ai-cloud-firm-nscale>
+- Reflection AI: <https://cryptobriefing.com/nvidia-reflection-ai-800m-open-source/>
+- Acquisitions: Run:ai <https://siliconangle.com/2024/12/30/nvidia-completes-700m-runai-acquisition-following-antitrust-scrutiny/>,
+  Deci <https://ats.org/ats-news/nvidia-to-acquire-deci-for-300-million/>,
+  OctoAI <https://www.forbes.com/sites/janakirammsv/2024/09/30/nvidia-acquires-octoai-to-dominate-enterprise-generative-ai-solutions/>,
+  Lepton AI <https://siliconangle.com/2025/03/27/report-nvidia-close-acquiring-ai-cloud-provider-lepton-ai-nine-figure-deal/>,
+  CentML <https://thelogic.co/news/exclusive/nvidias-deal-centml-us400m/>,
+  Enfabrica <https://www.networkworld.com/article/4060214/nvidia-reportedly-acquires-enfabrica-ceo-and-chip-technology-license.html>,
+  Kumo <https://fortune.com/2026/06/03/nvidia-snaps-up-kumo-ai-in-latest-acquisition/>
+- Not counted: Synopsys <https://investor.synopsys.com/news/news-details/2025/NVIDIA-and-Synopsys-Announce-Strategic-Partnership-to-Revolutionize-Engineering-and-Design/default.aspx>,
+  Nokia <https://www.investing.com/news/company-news/nokia-completes-directed-share-issuance-to-nvidia-93CH-4355080>,
+  Hugging Face 8-K <https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000078/nvda-20260902.htm>,
+  Anthropic <https://www.anthropic.com/news/microsoft-nvidia-anthropic-announce-strategic-partnerships>,
+  IREN <https://www.investing.com/news/stock-market-news/nvidia-to-invest-up-to-21-billion-in-iren-as-part-of-ai-data-center-deal-4670343>
