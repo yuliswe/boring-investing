@@ -264,8 +264,8 @@ export const circularOutflowLines = [
   },
   {
     label: 'Third-party debt',
-    desc: 'Debt that lenders provided to customers to buy NVIDIA chips, placed in the fiscal year each deal closed. These are the deals in the Debt-Funded Demand table, so the line is not exhaustive.\nSpaceX’s proposed $40B financing is expected to close in calendar 2027, most likely after FY27 ends, and is not counted.',
-    values: [0, 0, 0, 2.3, 7.5, 3.5, 3.4],
+    desc: 'Debt that lenders provided to customers to buy NVIDIA hardware, placed in the fiscal year each deal closed or was signed. It counts GPU-backed loans and the corporate debt of AI clouds and AI labs, which is spent mostly on compute.\nData center construction debt (such as Stargate sites and Meta’s Hyperion) and hyperscaler bonds (such as Oracle’s) are excluded, because the tenant or issuer buys GPUs separately. Facility sizes are counted, not amounts drawn. FY27E covers deals through October 8, 2026, and excludes SpaceX’s proposed $40B financing.',
+    values: [0, 0, 0, 2.3, 8.0, 21.44, 61.93],
   },
 ];
 
@@ -274,10 +274,10 @@ export const circularOutflowYearDetails: Record<string, string> = {
   FY22: 'Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
   FY23: 'Equity stakes are purchases of non-marketable equity securities.',
   FY24: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $2.3B facility from August 2023, the first collateralized by NVIDIA H100s.',
-  FY25: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $7.5B facility from May 2024.',
-  FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted. Third-party debt is Apollo’s $3.5B for Valor Compute Infrastructure, which leases NVIDIA GB200 systems to xAI, from January 2026.',
+  FY25: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $7.5B facility from May 2024 and Lambda’s $0.5B GPU-backed loan from April 2024.',
+  FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted. Third-party debt is $6.6B of GPU-backed loans (Valor Compute Infrastructure for xAI $3.5B, CoreWeave $2.6B, Lambda $0.3B, Crusoe $0.2B) plus $14.8B of AI cloud and AI lab corporate debt (CoreWeave notes and convertibles $6.3B, xAI $5.0B, Nebius $2.75B, Crusoe $0.75B).',
   FY27E:
-    'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt is Apollo’s $3.4B loan to an xAI chip-leasing vehicle from February 2026. SpaceX’s proposed $40B financing is expected to close in calendar 2027, most likely after FY27 ends, and is not counted.',
+    'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt runs through October 8, 2026: $42.2B of GPU-backed loans (CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $19.7B of AI cloud corporate debt (CoreWeave $9.95B, Nebius $9.75B). SpaceX’s proposed $40B financing is not counted.',
 };
 
 const financials: SoftwareFinancials = {

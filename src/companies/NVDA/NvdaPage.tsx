@@ -228,7 +228,7 @@ function buildCircularFinancingSection(): SectionData {
       ...circularOutflowLines.map(l => ({ ...l, format: billionFormat })),
     ],
     chartNote:
-      'NVIDIA’s outflows are gross cash paid, before any proceeds from selling stakes, and no loans to customers or guarantee payouts appear in the filings. Third-party debt covers only the deals in the Debt-Funded Demand table. Click a year to see what it includes and its share of revenue.',
+      'NVIDIA’s outflows are gross cash paid, before any proceeds from selling stakes, and no loans to customers or guarantee payouts appear in the filings. Third-party debt counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, and excludes data center construction debt and hyperscaler bonds. Click a year to see what it includes and its share of revenue.',
   };
 }
 

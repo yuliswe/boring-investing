@@ -82,3 +82,35 @@
   10-Q cash flow statement (link above)
 - Intel $5.0B stake, completed December 26, 2025:
   <https://www.investing.com/news/sec-filings/intel-completes-5-billion-private-stock-sale-to-nvidia-93CH-4423685>
+- Third-party debt, FY24–FY27 (GPU-backed loans and AI cloud and AI lab
+  corporate debt; deal sizes as announced):
+  - CoreWeave: DDTL 1.0 <https://www.prnewswire.com/news-releases/coreweave-secures-2-3-billion-debt-financing-facility-led-by-magnetar-capital-and-blackstone-to-meet-surging-demand-and-ongoing-expansion-of-specialized-cloud-infrastructure-to-power-ai-301892706.html>,
+    DDTL 2.0 <https://www.blackstone.com/news/press/coreweave-secures-7-5-billion-debt-financing-facility-led-by-blackstone-and-magnetar/>,
+    DDTL 3.0 <https://www.sec.gov/Archives/edgar/data/1769628/000176962825000033/ddtl30pressrelease-ex991x6.htm>,
+    DDTL 4.0 <https://investors.coreweave.com/news/news-details/2026/CoreWeave-Closes-Landmark-8-5-Billion-Financing-Facility-Achieving-First-Investment-Grade-Rated-GPU-backed-Financing/default.aspx>,
+    DDTL 5.0 <https://www.businesswire.com/news/home/20260518337916/en/CoreWeave-Closes-$3.1-Billion-Loan-Facility-Expanding-Access-to-Public-Markets-for-GPU-Backed-Financing>,
+    DDTL 5.5 <https://www.sec.gov/Archives/edgar/data/1769628/000176962826000357/ex991pr.htm>,
+    2025 notes <https://www.tipranks.com/news/company-announcements/coreweave-issues-2-billion-in-senior-notes>,
+    <https://www.businesswire.com/news/home/20250728330303/en/CoreWeave-Announces-Closing-of-$1750-million-of-Senior-Notes-Offering>,
+    convertibles <https://www.davispolk.com/experience/coreweave-26-billion-convertible-senior-notes-offering>,
+    <https://www.lw.com/en/news/latham-advises-on-coreweave-debt-offerings>,
+    <https://www.kirkland.com/news/press-release/2026/04/kirkland-advises-coreweave-on-2-75-billion-notes-offerings>,
+    <https://investors.coreweave.com/news/news-details/2026/CoreWeave-Prices-Upsized-3-7-Billion-Convertible-Senior-Notes-Offering/default.aspx>
+  - Lambda: <https://www.theregister.com/2024/04/05/lambda_500m_loan/>,
+    <https://lambda.ai/blog/lambda-closes-1-billion-senior-secured-credit-facility>,
+    <https://lambda.ai/blog/lambda-closes-926-million-senior-secured-term-loan-b-facility>,
+    <https://convergedigest.com/lambda-1-008b-fixed-rate-loan-gpu-deployments/>
+  - Crusoe: <https://www.crusoe.ai/resources/newsroom/upper90-closes-usd225m-credit-facility-to-crusoe-to-expand-ai-cloud>,
+    <https://www.globenewswire.com/news-release/2025/06/11/3097837/0/en/crusoe-secures-750-million-credit-facility-from-brookfield-to-accelerate-the-development-of-energy-first-ai-factories.html>
+  - xAI: <https://www.investing.com/news/economy-news/morgan-stanley-markets-5-billion-for-elon-muskowned-xai-in-loans-bonds-sources-say-4087899>,
+    Valor <https://finance.yahoo.com/news/apollo-backs-5-4-billion-130000749.html>,
+    <https://techfundingnews.com/apollo-3-4b-loan-xai-nvidia-chips/>
+  - Nebius: <https://nebius.com/newsroom/nebius-provides-financing-update>,
+    <https://www.sec.gov/Archives/edgar/data/1513845/000110465926029863/tm268409d3_ex99-1.htm>,
+    <https://www.sec.gov/Archives/edgar/data/0001513845/000110465926098590/tm2623513d1_ex99-1.htm>,
+    <https://thenextweb.com/news/nebius-775-million-gpu-backed-debt-financing>
+  - Firmus: <https://www.techpartner.news/news/firmus-secures-us10-billion-in-financing-623486>
+  - Nscale: <https://www.nscale.com/press-releases/nscale-signs-1-4bn-delayed-draw-term-loan>,
+    <https://www.unite.ai/nscale-closes-3b-in-term-loans/>
+  - IREN: <https://www.globenewswire.com/news-release/2026/06/01/3304211/0/en/iren-closes-3-65bn-investment-grade-gpu-financing.html>
+  - Zankore: <https://cryptobriefing.com/zankore-3b-loan-nvidia-chips/>
