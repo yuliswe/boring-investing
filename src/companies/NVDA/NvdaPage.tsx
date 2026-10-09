@@ -151,10 +151,11 @@ function buildRevenueMinusInvestingSection(): SectionData {
   const forwardMath = [
     `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(forwardThirdPartyDebt)} of third-party debt that customers raised in FY27 to buy NVIDIA hardware, a total of ${billions(forwardDeduction)}.`,
     `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
-    `Adjusted operating income = ${billions(forward.operatingIncome!)} consensus operating income − ${billions(forwardDeduction)} = ${billions(forward.operatingIncome! - forwardDeduction)}.`,
     `Adjusted net income = ${billions(forward.netIncome!)} consensus net income − ${billions(forwardDeduction)} = ${billions(forward.netIncome! - forwardDeduction)}.`,
   ].join('\n');
-  const adjusted = (field: 'revenue' | 'operatingIncome' | 'netIncome') =>
+  const reported = (field: 'revenue' | 'netIncome') =>
+    years.map(year => financials.revenue.find(r => r.year === year)![field]!);
+  const adjusted = (field: 'revenue' | 'netIncome') =>
     years.map(year => {
       const income = financials.revenue.find(r => r.year === year)![field]!;
       return +(income - circularDeduction(year)!).toFixed(2);
@@ -164,7 +165,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
     id: 'revenue-minus-investing',
     title: 'Revenue Minus Investment Activities',
     kicker:
-      'Revenue, operating income, and net income after treating the cash NVIDIA spends on investing activities as circular financing, on the view that some of that money returns as revenue when the companies it funds buy NVIDIA chips.',
+      'Revenue and net income after treating the cash NVIDIA spends on investing activities as circular financing, on the view that some of that money returns as revenue when the companies it funds buy NVIDIA chips.',
     kind: 'multi',
     years,
     mode: 'absolute',
@@ -174,9 +175,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
       {
         label: 'Revenue',
         desc: 'Revenue as reported. FY27E is the consensus estimate.',
-        values: years.map(
-          year => financials.revenue.find(r => r.year === year)!.revenue
-        ),
+        values: reported('revenue'),
         format: billionFormat,
       },
       {
@@ -184,11 +183,12 @@ function buildRevenueMinusInvestingSection(): SectionData {
         desc: 'Revenue minus the net cash used in investing activities from the cash flow statement.',
         values: adjusted('revenue'),
         format: billionFormat,
+        bold: true,
       },
       {
-        label: 'Adjusted operating income',
-        desc: 'Operating income minus the net cash used in investing activities from the cash flow statement.',
-        values: adjusted('operatingIncome'),
+        label: 'Net income',
+        desc: 'Net income as reported. FY27E is the consensus estimate.',
+        values: reported('netIncome'),
         format: billionFormat,
       },
       {
@@ -196,6 +196,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
         desc: 'Net income minus the net cash used in investing activities from the cash flow statement. FY27E uses consensus net income.',
         values: adjusted('netIncome'),
         format: billionFormat,
+        bold: true,
       },
     ],
     chartNote:
