@@ -45,6 +45,15 @@
   FY26E because Netflix's large share repurchase program ($25 B authorized
   in Apr 2026) makes year-end equity projections unreliable.
 
+## Reverse DCF
+
+- Shares outstanding (4.16B): <https://stockanalysis.com/stocks/nflx/>
+- Net debt ($14.31B of short- and long-term debt minus $9.13B of cash, cash
+  equivalents, and short-term investments): Q2 2026 earnings letter,
+  <https://www.sec.gov/Archives/edgar/data/1065280/000106528026000211/ex991_q226.htm>
+- FY26E free cash flow (~$12.5B): management guidance, reaffirmed in the Q2
+  2026 letter
+
 ## Notes
 
 - D&A figures represent depreciation of property and equipment only; content
