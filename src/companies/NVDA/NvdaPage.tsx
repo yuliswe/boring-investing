@@ -223,7 +223,7 @@ function buildCircularFinancingSection(): SectionData {
         desc: 'Sum of the equity stakes, acquisitions, and license payments below.',
         values: totals,
         format: billionFormat,
-        total: true,
+        bold: true,
       },
       ...circularOutflowLines.map(l => ({ ...l, format: billionFormat })),
     ],
