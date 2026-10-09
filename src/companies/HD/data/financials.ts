@@ -1,6 +1,29 @@
 import type { RetailFinancials } from '@/templates/RetailTemplate';
 
 const financials: RetailFinancials = {
+  reverseDcf: {
+    companyName: 'Home Depot',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 12.646,
+        forward: 16.97,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    actualNote:
+      'Actual FY25 free cash flow of $12.65B, down 23% as inventory grew $1.5B.',
+    forwardNote:
+      'Consensus FY26E free cash flow of $16.97B from 33 analysts (stockanalysis.com, 6 October 2026). Home Depot gives no free cash flow guidance; it guides capital spending to about 2.5% of sales.',
+    sharesOutstanding: 0.9977,
+    netCash: -50.81,
+    netCashSource:
+      '$52.90B of debt (commercial paper, current installments and long-term debt including finance leases) minus $2.09B of cash, Q2 FY26 10-Q; $9.6B of operating lease liabilities are excluded because free cash flow is already struck after rent',
+    sharesSource:
+      '997.7M shares on the cover of the Q2 FY26 10-Q, 18 August 2026',
+  },
   guidanceYears: ['FY26E'],
   metricGroups: {
     valuation: {

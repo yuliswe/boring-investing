@@ -65,3 +65,18 @@ openings. One-off items in the year notes (Tax Act, Interline impairment,
 - Consensus free cash flow for fiscal 2026 (period ending January 2027) from
   [stockanalysis.com](https://stockanalysis.com/stocks/hd/forecast/),
   updated 6 October 2026.
+
+## Reverse DCF
+
+- Shares outstanding (0.9977B): 997,689,626 shares on the cover of the Q2
+  FY26 10-Q, as of 18 August 2026,
+  <https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000354950&type=10-Q>
+- Net cash (-50.81B): $4.25B of commercial paper, $4.70B of current
+  installments of long-term debt and $43.95B of long-term debt (including
+  finance leases), minus $2.09B of cash, at 2 August 2026 (Q2 FY26 10-Q);
+  operating lease liabilities are excluded because free cash flow is already
+  struck after rent
+- Actual value: FY25 free cash flow of $12.65B ($16.33B of operating cash
+  flow less $3.68B of capital expenditures), FY25 10-K
+- Starting value: Consensus FY26E free cash flow of $16.97B
+  (stockanalysis.com, 6 October 2026)
