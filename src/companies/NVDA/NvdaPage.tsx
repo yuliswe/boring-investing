@@ -10,6 +10,11 @@ import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
   offBalanceSheetCommitments,
+  debtFundedDemand,
+  circularOutflowYears,
+  circularOutflowLines,
+  circularOutflowYearDetails,
+  circularFinancingDeals,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -115,20 +120,247 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
+const investingLine = cashFlowStatementLines.find(
+  l => l.label === 'Investing activities'
+)!;
+const forwardThirdPartyDebt = circularOutflowLines
+  .find(l => l.label === 'Third-party debt')!
+  .values.at(-1)!;
+const forwardDeduction =
+  offBalanceSheetCommitments.equityInvestmentsDueInFY27 + forwardThirdPartyDebt;
+
+function circularDeduction(year: string): number | null {
+  const i = cashFlowStatementYears.indexOf(year);
+  if (i === -1) return null;
+  return investingLine.values[i] === null
+    ? forwardDeduction
+    : -investingLine.values[i]!;
+}
+
+function adjustedEarningsRatio(year: string): number | null {
+  const deduction = circularDeduction(year);
+  const netIncome = financials.revenue.find(r => r.year === year)?.netIncome;
+  if (deduction === null || !netIncome) return null;
+  return (netIncome - deduction) / netIncome;
+}
+
+function buildRevenueMinusInvestingSection(): SectionData {
+  const years = cashFlowStatementYears;
+  const forward = financials.revenue.find(r => r.year === 'FY27E')!;
+  const billions = (v: number) => `$${v.toFixed(2)}B`;
+  const forwardMath = [
+    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(forwardThirdPartyDebt)} of third-party debt that customers raised in FY27 to buy NVIDIA hardware, a total of ${billions(forwardDeduction)}.`,
+    `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
+    `Adjusted net income = ${billions(forward.netIncome!)} consensus net income − ${billions(forwardDeduction)} = ${billions(forward.netIncome! - forwardDeduction)}.`,
+  ].join('\n');
+  const reported = (field: 'revenue' | 'netIncome') =>
+    years.map(year => financials.revenue.find(r => r.year === year)![field]!);
+  const adjusted = (field: 'revenue' | 'netIncome') =>
+    years.map(year => {
+      const income = financials.revenue.find(r => r.year === year)![field]!;
+      return +(income - circularDeduction(year)!).toFixed(2);
+    });
+  return {
+    rank: 375,
+    id: 'revenue-minus-investing',
+    title: 'Revenue Minus Investment Activities',
+    kicker:
+      'Revenue and net income after treating the cash NVIDIA spends on investing activities as circular financing, on the view that some of that money returns as revenue when the companies it funds buy NVIDIA chips.',
+    kind: 'multi',
+    years,
+    mode: 'absolute',
+    guidanceCount: 1,
+    guidanceDesc: forwardMath,
+    series: [
+      {
+        label: 'Revenue',
+        desc: 'Revenue as reported. FY27E is the consensus estimate.',
+        values: reported('revenue'),
+        format: billionFormat,
+      },
+      {
+        label: 'Adjusted revenue',
+        desc: 'Revenue minus the net cash used in investing activities from the cash flow statement.',
+        values: adjusted('revenue'),
+        format: billionFormat,
+        bold: true,
+      },
+      {
+        label: 'Net income',
+        desc: 'Net income as reported. FY27E is the consensus estimate.',
+        values: reported('netIncome'),
+        format: billionFormat,
+      },
+      {
+        label: 'Adjusted net income',
+        desc: 'Net income minus the net cash used in investing activities from the cash flow statement. FY27E uses consensus net income.',
+        values: adjusted('netIncome'),
+        format: billionFormat,
+        bold: true,
+      },
+    ],
+    chartNote:
+      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA has committed to make in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware, through October 8, 2026. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
+  };
+}
+
+const circularTotals = circularOutflowYears.map(
+  (_, i) =>
+    +circularOutflowLines.reduce((sum, l) => sum + l.values[i], 0).toFixed(3)
+);
+
+function buildRevenueExcludingCircularSection(): SectionData {
+  const revenues = circularOutflowYears.map(
+    year => financials.revenue.find(r => r.year === year)!.revenue
+  );
+  const excluding = revenues.map((r, i) => +(r - circularTotals[i]).toFixed(2));
+  const netIncomes = circularOutflowYears.map(
+    year => financials.revenue.find(r => r.year === year)!.netIncome!
+  );
+  const netExcluding = netIncomes.map(
+    (n, i) => +(n - circularTotals[i]).toFixed(2)
+  );
+  const yearNotes = Object.fromEntries(
+    circularOutflowYears.map((year, i) => [
+      year,
+      [
+        `Revenue $${revenues[i].toFixed(2)}B − circular financing and third-party debt $${circularTotals[i].toFixed(2)}B = $${excluding[i].toFixed(2)}B, or ${((excluding[i] / revenues[i]) * 100).toFixed(1)}% of reported revenue.`,
+        `Net income $${netIncomes[i].toFixed(2)}B − $${circularTotals[i].toFixed(2)}B = $${netExcluding[i].toFixed(2)}B.`,
+        'The Circular Financing and Third-Party Debt Financing chart shows what the deduction includes.',
+      ].join('\n'),
+    ])
+  );
+  return {
+    rank: 380,
+    id: 'revenue-excluding-circular-financing',
+    title: 'Revenue Excluding Circular Financing',
+    kicker:
+      'Revenue after subtracting the cash NVIDIA sends to potential GPU buyers through equity stakes, acquisitions, license payments, and corporate bond purchases, and the debt lenders provide to customers to buy NVIDIA hardware, on the view that all of it returns as NVIDIA revenue.',
+    kind: 'multi',
+    years: circularOutflowYears,
+    mode: 'absolute',
+    guidanceCount: 1,
+    yearNotes,
+    series: [
+      {
+        label: 'Revenue',
+        desc: 'Revenue as reported. FY27E is the consensus estimate.',
+        values: revenues,
+        format: billionFormat,
+      },
+      {
+        label: 'Revenue excluding circular financing',
+        desc: 'Revenue minus the yearly total in the Circular Financing and Third-Party Debt Financing chart.',
+        values: excluding,
+        format: billionFormat,
+        bold: true,
+      },
+      {
+        label: 'Net income',
+        desc: 'Net income as reported. FY27E is the consensus estimate.',
+        values: netIncomes,
+        format: billionFormat,
+      },
+      {
+        label: 'Net income excluding circular financing',
+        desc: 'Net income minus the same yearly total, which treats every dollar of circular financing and third-party debt as a rebate that comes out of profit in full.',
+        values: netExcluding,
+        format: billionFormat,
+        bold: true,
+      },
+    ],
+    chartNote:
+      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through October 8, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
+  };
+}
+
+function buildCircularFinancingSection(): SectionData {
+  const totals = circularTotals;
+  const yearNotes = Object.fromEntries(
+    circularOutflowYears.map((year, i) => {
+      const revenue = financials.revenue.find(r => r.year === year)!.revenue;
+      const parts = circularOutflowLines
+        .filter(l => l.values[i] > 0)
+        .map(l => `${l.label} $${l.values[i].toFixed(2)}B`);
+      return [
+        year,
+        [
+          `${parts.join(' + ')} = $${totals[i].toFixed(2)}B.`,
+          `That is ${((totals[i] / revenue) * 100).toFixed(1)}% of ${year} revenue of $${revenue.toFixed(2)}B.`,
+          circularOutflowYearDetails[year],
+        ].join('\n'),
+      ];
+    })
+  );
+  return {
+    rank: 580,
+    id: 'circular-financing',
+    title: 'Circular Financing and Third-Party Debt Financing',
+    kicker:
+      'Cash NVIDIA sends to third parties that can buy NVIDIA GPUs, through equity stakes, acquisitions, license payments, and corporate bond purchases, plus debt that lenders provide to customers to buy NVIDIA chips. Treasury and agency bonds, capital expenditures, and supplier payments are excluded, because that money does not reach potential customers.',
+    kind: 'multi',
+    years: circularOutflowYears,
+    mode: 'absolute',
+    guidanceCount: 1,
+    yearNotes,
+    series: [
+      {
+        label: 'Total',
+        desc: 'Sum of the equity stakes, acquisitions, license payments, corporate bonds, and third-party debt below.',
+        values: totals,
+        format: billionFormat,
+        bold: true,
+      },
+      ...circularOutflowLines.map(l => ({ ...l, format: billionFormat })),
+    ],
+    chartNote:
+      'NVIDIA’s outflows are gross cash paid, before any proceeds from selling stakes, and no loans to customers or guarantee payouts appear in the filings. Third-party debt counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, and excludes data center construction debt and hyperscaler bonds. Corporate bonds count the yearly increase in holdings, because the filings do not split purchases between corporate and government bonds. Click a year to see what it includes and its share of revenue.',
+  };
+}
+
 const nvdaSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
+  buildRevenueMinusInvestingSection(),
+  buildCircularFinancingSection(),
+  {
+    rank: 585,
+    id: 'circular-financing-deals',
+    title: 'Circular Financing Deals',
+    kicker:
+      'The deals behind the equity stakes, acquisitions, and license payments in the chart above, from FY21 through FY27E. NVIDIA’s filings report only totals, so the named deals come from company announcements and press reports.',
+    kind: 'table',
+    firstColumn: 'Counterparty',
+    columns: circularFinancingDeals.columns,
+    rows: circularFinancingDeals.rows,
+    tableNote:
+      'The counted rows add up to the chart’s equity, acquisition, and Groq lines across FY21–FY27E. Amounts the filings report but no named deal explains appear as unattributed rows, and their range follows the disputed xAI amount. FY27 includes commitments for the rest of the year. Rows marked not counted are public stakes that the filings mix with debt securities, deals that have not closed, letters of intent, and options. “GPU buyer?” records whether the counterparty buys or rents NVIDIA hardware.',
+  },
+  buildRevenueExcludingCircularSection(),
   {
     rank: 570,
     id: 'off-balance-sheet',
     title: 'Off-Balance-Sheet Commitments',
-    kicker: `Contractual obligations not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Manufacturing commitments grew nearly 6× year-over-year, driven by TSMC’s requirement for longer contract terms and upfront payments to fund custom fabrication capacity.`,
+    kicker: `Contractual commitments and guarantees not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Supply commitments rose from $119B to $279B in one quarter, and in August NVIDIA guaranteed up to $105B of an OpenAI data center’s lease payments.`,
     kind: 'table',
     firstColumn: 'Category',
     columns: offBalanceSheetCommitments.columns,
     rows: offBalanceSheetCommitments.rows,
     tableNote:
-      'Leases not yet commenced ($32.4B) are spread across FY27–FY33, primarily for data centers, with terms of 3–20 years. Facility lease guarantees ($3.5B max exposure) reduce over 5–7 years as partners make payments. The $24.0B manufacturing balance for FY28–31 is not broken down by individual year in the filing. Cloud service FY28–31 is the sum of $7.0B + $7.0B + $5.0B + $3.0B. Investment commitments include pledged but unfunded equity stakes; completed investments ($99B as of July 2026, including the $30B OpenAI stake) are on the balance sheet and not shown here.',
+      'FY27 is the remainder of the fiscal year after July 26, 2026. The first five rows make up the $366B the filing reports as total commitments, and the AI cloud agreements and third-party leases are reported separately as $56B of additional commitments. Guarantee amounts are maximum exposures without a payment schedule, so the FY columns of the total exclude them. The SB Energy guarantees were signed in August 2026, after the quarter closed, and are disclosed in the same 10-Q.',
+  },
+  {
+    rank: 575,
+    id: 'debt-funded-demand',
+    title: 'Debt-Funded Demand',
+    kicker:
+      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through October 8, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
+    kind: 'table',
+    firstColumn: 'Borrower',
+    columns: debtFundedDemand.columns,
+    rows: debtFundedDemand.rows,
+    tableNote:
+      'The table counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, which matches the third-party debt line in the chart below. Data center construction debt, such as Stargate sites and Meta’s Hyperion, and hyperscaler bonds, such as Oracle’s, are excluded because the tenant or issuer buys GPUs separately. NVIDIA links are shown only where verified. The list covers deals of about $0.2B and up and is not exhaustive. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
   },
   {
     rank: 400,
@@ -248,6 +480,57 @@ const EPS_EST = 9.31;
 const FCF_PER_SHARE_EST = 8.03;
 const PRIOR_EPS = 4.9;
 
+const metricYears = financials.revenue.map(r => r.year);
+const dilutedEps = financials.keyMetrics.find(m => m.label === 'Diluted EPS')!;
+const historicalPe = financials.criticalMetrics.find(
+  m => m.label === 'P/E ratio'
+)!;
+const forwardRatio = adjustedEarningsRatio('FY27E')!;
+const forwardNetIncome = financials.revenue.find(
+  r => r.year === 'FY27E'
+)!.netIncome!;
+const adjustedEpsEst = EPS_EST * forwardRatio;
+const negativeAdjustedNote =
+  'Not meaningful, because adjusted net income was negative after the deduction.';
+
+const adjustedEpsMetric = {
+  label: 'Adjusted diluted EPS',
+  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments committed for FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware.',
+  values: metricYears.map((year, i) => {
+    const ratio = adjustedEarningsRatio(year);
+    const eps = dilutedEps.values[i];
+    return ratio === null || eps === null ? null : +(eps * ratio).toFixed(2);
+  }),
+  format: { prefix: '$', decimals: 2 },
+  guidanceCount: 1,
+  yearNotes: {
+    FY27E: `Consensus EPS of $${EPS_EST} × adjusted net income of $${(forwardNetIncome - forwardDeduction).toFixed(2)}B ÷ consensus net income of $${forwardNetIncome.toFixed(2)}B = $${adjustedEpsEst.toFixed(2)}.`,
+  },
+};
+
+function buildAdjustedPeMetric(price: number) {
+  const values = metricYears.map((year, i) => {
+    const ratio = adjustedEarningsRatio(year);
+    const pe = historicalPe.values[i];
+    if (ratio === null || pe === null || ratio <= 0) return null;
+    return +(pe / ratio).toFixed(1);
+  });
+  values[values.length - 1] = +(price / adjustedEpsEst).toFixed(1);
+  return {
+    label: 'Adjusted P/E ratio',
+    desc: 'Price at fiscal year-end divided by adjusted diluted EPS, which removes the same circular-financing deduction as adjusted revenue.',
+    values,
+    format: { decimals: 1 },
+    invertColor: true,
+    guidanceCount: 1,
+    yearNotes: {
+      FY21: negativeAdjustedNote,
+      FY22: negativeAdjustedNote,
+      FY27E: `Calculated from $${price.toFixed(2)} divided by adjusted diluted EPS of $${adjustedEpsEst.toFixed(2)}.`,
+    },
+  };
+}
+
 function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
   const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
@@ -255,45 +538,52 @@ function buildDynamicFinancials(price: number) {
   const peg = +(pe / epsGrowth).toFixed(2);
   return {
     ...financials,
-    criticalMetrics: financials.criticalMetrics.map(m => {
-      if (m.label === 'P/E ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = pe;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
-          },
-        };
-      }
-      if (m.label === 'P/FCF ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = pfcf;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
-          },
-        };
-      }
-      if (m.label === 'PEG ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = peg;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
-          },
-        };
-      }
-      return m;
-    }),
+    keyMetrics: financials.keyMetrics.flatMap(m =>
+      m === dilutedEps ? [m, adjustedEpsMetric] : [m]
+    ),
+    criticalMetrics: financials.criticalMetrics
+      .map(m => {
+        if (m.label === 'P/E ratio') {
+          const values = [...m.values];
+          values[values.length - 1] = pe;
+          return {
+            ...m,
+            values,
+            yearNotes: {
+              ...m.yearNotes,
+              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
+            },
+          };
+        }
+        if (m.label === 'P/FCF ratio') {
+          const values = [...m.values];
+          values[values.length - 1] = pfcf;
+          return {
+            ...m,
+            values,
+            yearNotes: {
+              ...m.yearNotes,
+              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
+            },
+          };
+        }
+        if (m.label === 'PEG ratio') {
+          const values = [...m.values];
+          values[values.length - 1] = peg;
+          return {
+            ...m,
+            values,
+            yearNotes: {
+              ...m.yearNotes,
+              FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
+            },
+          };
+        }
+        return m;
+      })
+      .flatMap(m =>
+        m.label === 'P/E ratio' ? [m, buildAdjustedPeMetric(price)] : [m]
+      ),
   };
 }
 

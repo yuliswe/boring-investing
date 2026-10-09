@@ -293,6 +293,7 @@ export function MultiSection({
   baseLabel,
   chartNote,
   guidanceDesc,
+  yearNotes,
 }: {
   series: MultiSeriesData[];
   years: string[];
@@ -302,6 +303,7 @@ export function MultiSection({
   baseLabel?: string;
   chartNote?: string;
   guidanceDesc?: string;
+  yearNotes?: Record<string, string>;
 }) {
   const multi = computeMulti(
     series,
@@ -437,16 +439,18 @@ export function MultiSection({
             <span className='flex-none w-2' />
             <span className='flex-none w-22' />
             <div className='flex-1 flex justify-between'>
-              {multi.years.map((y, i) => (
-                <div key={y} className='flex-1 text-center'>
-                  {i >= multi.years.length - multi.guidanceCount &&
-                  guidanceDesc ? (
-                    <DescribedLabel label={y} desc={guidanceDesc} />
-                  ) : (
-                    y
-                  )}
-                </div>
-              ))}
+              {multi.years.map((y, i) => {
+                const desc =
+                  yearNotes?.[y] ??
+                  (i >= multi.years.length - multi.guidanceCount
+                    ? guidanceDesc
+                    : undefined);
+                return (
+                  <div key={y} className='flex-1 text-center'>
+                    {desc ? <DescribedLabel label={y} desc={desc} /> : y}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

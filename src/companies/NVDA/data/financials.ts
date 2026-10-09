@@ -149,42 +149,262 @@ export const cashFlowStatementLines = [
 ];
 
 export const offBalanceSheetCommitments = {
-  asOf: 'April 26, 2026 (Q1 FY27 10-Q)',
+  asOf: 'July 26, 2026 (Q2 FY27 10-Q)',
+  equityInvestmentsDueInFY27: 18.0,
   columns: ['Total', 'FY27', 'FY28–31', 'FY32+'],
   rows: [
     {
-      label: 'Mfg, supply & capacity',
-      desc: 'Agreements with foundry and packaging partners (primarily TSMC) for wafer fabrication and assembly. This figure grew nearly 6× from $16.1B a year earlier, driven by TSMC’s requirement for longer contract terms and upfront payments to fund custom fabrication capacity for next-generation architectures.\nThese are contractual obligations to pay regardless of whether end-market demand materializes.',
-      values: ['-$119.0B', '-$95.0B', '-$24.0B', '—'],
-    },
-    {
-      label: 'Leases not yet commenced',
-      desc: 'Signed but not yet started operating leases, primarily for data centers to support R&D, with terms of 3 to 20 years. Expected to commence between Q2 FY27 and FY33.\nBecause the leases have not commenced, they are not recognized as right-of-use assets or lease liabilities on the balance sheet. For comparison, leases already on the balance sheet carry $5.6B in future minimum payments.',
-      values: ['-$32.4B', '—', '—', '—'],
+      label: 'Supply & capacity',
+      desc: 'Commitments to suppliers, primarily for memory and manufacturing capacity for current and future architectures. The balance rose from $119B in the prior quarter to $279B.\nNVIDIA says some of these agreements can be cancelled, rescheduled, or adjusted before firm orders are placed, though changes may carry extra costs.',
+      values: ['-$279.0B', '-$92.0B', '-$186.0B', '-$1.0B'],
     },
     {
       label: 'Cloud service agreements',
-      desc: 'Multi-year contracts with cloud providers (likely AWS, Azure, GCP) to support NVIDIA’s R&D workloads.\nFY28–31 total is the sum of $7.0B (FY28) + $7.0B (FY29) + $5.0B (FY30) + $3.0B (FY31).',
-      values: ['-$30.0B', '-$6.0B', '-$22.0B', '-$2.0B'],
+      desc: 'Cloud capacity NVIDIA rents for its own R&D, including its Nemotron, Cosmos, and GR00T open models and autonomous vehicle software.\nFY28–31 is the sum of $8B + $7B + $6B + $4B.',
+      values: ['-$29.0B', '-$3.0B', '-$25.0B', '-$1.0B'],
     },
     {
-      label: 'Investment commitments',
-      desc: 'Committed but unfunded investments in infrastructure funds and strategic ventures, expected to be deployed through the remainder of FY27. The $27B also represents NVIDIA’s stated maximum loss exposure.\nCompleted investments ($99B as of July 2026, including the $30B OpenAI stake and $2B CoreWeave investment) are already on the balance sheet and not included here.',
-      values: ['-$27.0B', '-$27.0B', '—', '—'],
+      label: 'Leases not yet commenced',
+      desc: 'Signed data center leases that NVIDIA will use for engineering, design, and testing, with terms of up to 20 years, expected to begin between Q3 FY27 and FY33.\nBecause the leases have not commenced, they are not yet recognized as lease liabilities.',
+      values: ['-$25.0B', '—', '-$5.0B', '-$20.0B'],
     },
     {
-      label: 'Other vendor commitments',
-      desc: 'Includes technology licensing and other service agreements. The filing names a significant, nonrefundable IP licensing arrangement with Groq, Inc.\nThe majority is payable through FY27.',
-      values: ['-$6.0B', '-~$6.0B', '—', '—'],
+      label: 'Equity investments',
+      desc: 'Committed but unfunded investments in AI model makers, infrastructure financiers, and other private companies, subject to contingencies.\nInvestments already made sit on the balance sheet as $42.8B of marketable and $51.2B of non-marketable equity securities, and are not included here.',
+      values: ['-$25.0B', '-$18.0B', '-$7.0B', '—'],
     },
     {
-      label: 'Facility lease guarantees',
-      desc: 'Guarantees on facility leases for partners, with maximum gross exposure of $3.5B that reduces as partners make payments over 5 to 7 years.\nIf a partner defaults, NVIDIA is liable for the remaining lease payments.',
-      values: ['-$3.5B', '—', '—', '—'],
+      label: 'Capital expenditures',
+      desc: 'Obligations for data center equipment and infrastructure used in engineering and manufacturing.',
+      values: ['-$8.0B', '-$7.0B', '-$1.0B', '—'],
+    },
+    {
+      label: 'AI cloud agreements',
+      desc: 'AI clouds buy NVIDIA systems and NVIDIA commits to rent capacity back, which the clouds can stop providing and sell to third parties at better rates. The commitment shrinks as third parties or NVIDIA use the capacity, and NVIDIA shares in third-party revenue if certain criteria are met.\nThe filing lists this outside its $366B commitments table, as an additional commitment.',
+      values: ['-$36.0B', '—', '-$27.0B', '-$9.0B'],
+    },
+    {
+      label: 'Third-party data center leases',
+      desc: 'Leases of about 15 years that NVIDIA signed and expects to reassign to third parties, commencing between FY28 and FY29.\nThe filing lists this outside its $366B commitments table, as an additional commitment.',
+      values: ['-$20.0B', '—', '-$3.0B', '-$17.0B'],
+    },
+    {
+      label: 'SB Energy guarantees (OpenAI)',
+      desc: 'Signed in August 2026, these guarantees cover defined portions of the lease and power payments owed by an OpenAI affiliate on about 4.25 GW of data center capacity at SB Energy’s PORTS campus in Pike County, Ohio. They pay out only on certain tenant defaults, and OpenAI has agreed to reimburse NVIDIA for anything it pays.\nExposure starts as each of nine construction phases is completed, beginning in FY29, and declines over each phase’s 20-year lease. The guarantees end early if OpenAI earns a satisfactory credit rating. NVIDIA also holds an option to back about 3.8 GW more.',
+      values: ['≤-$105.0B', '—', '—', '—'],
+    },
+    {
+      label: 'Land, power & shell guarantees',
+      desc: 'Guarantees of select AI cloud partners’ data center lease payments if they default. Maximum exposure falls as partners pay down their leases over 5 to 7 years, and partners have placed $712M in escrow against it.',
+      values: ['≤-$3.5B', '—', '—', '—'],
     },
     {
       label: 'Total',
-      values: ['-~$217.9B', '≤-$134.0B', '—', '—'],
+      values: ['≤-$530.5B', '-$120.0B', '-$254.0B', '-$48.0B'],
+    },
+  ],
+};
+
+export const debtFundedDemand = {
+  columns: ['Debt', 'Fiscal years', 'Status', 'NVIDIA link'],
+  rows: [
+    {
+      label: 'CoreWeave',
+      desc: 'GPU-backed delayed-draw term loans: $2.3B (FY24, the first collateralized by NVIDIA H100s), $7.5B (FY25), $2.6B (FY26), and $8.5B, $3.1B, and $2.6B (FY27). Senior notes and convertibles: $6.34B (FY26) and $9.95B (FY27).\nNVIDIA owns about 11% of CoreWeave and has agreed to buy any CoreWeave capacity that goes unsold through April 2032, worth at least $6.3B. Some notes refinanced earlier debt.',
+      values: ['$42.9B', 'FY24–27', 'Closed', '~11% stake'],
+    },
+    {
+      label: 'Nebius',
+      desc: 'Convertible notes of $2.75B (FY26), $4.0B (FY27), and $5.75B (FY27), plus a $0.775B GPU-backed facility (FY27).',
+      values: ['$13.3B', 'FY26–27', 'Closed', '—'],
+    },
+    {
+      label: 'xAI',
+      desc: 'Notes and term loans of $5.0B (FY26). Apollo provided $3.5B to Valor Compute Infrastructure, which leases NVIDIA GB200 systems to xAI (FY26), and lent $3.4B to a second chip-leasing vehicle (FY27).\nNVIDIA is an anchor limited partner in Valor Compute Infrastructure, and its xAI investment became a SpaceX stake after the merger.',
+      values: ['$11.9B', 'FY26–27', 'Closed', 'Anchor LP'],
+    },
+    {
+      label: 'Firmus',
+      desc: 'A $10.0B facility from Blackstone and Coatue for NVIDIA-based AI factories in Australia (FY27). The facility is committed, and the amount drawn is not disclosed.',
+      values: ['$10.0B', 'FY27', 'Committed', '—'],
+    },
+    {
+      label: 'Nscale',
+      desc: 'A $1.4B delayed-draw term loan (FY27) and $3.05B of term loans for Texas and North Carolina sites (FY27) to deploy Blackwell and Rubin systems.',
+      values: ['$4.45B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'IREN',
+      desc: 'A $3.645B investment-grade GPU financing tied to its Microsoft contract (FY27).',
+      values: ['$3.6B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'Lambda',
+      desc: 'A $0.5B GPU-backed loan (FY25), a revolver of $0.275B (FY26) upsized by $0.725B (FY27), a $0.926B term loan B (FY27), and a $1.008B delayed-draw term loan for Microsoft deployments (FY27).',
+      values: ['$3.4B', 'FY25–27', 'Closed', '—'],
+    },
+    {
+      label: 'Zankore',
+      desc: 'A $3.1B loan from ING, Natixis, QNB, and UOB to buy NVIDIA chips in Indonesia (FY27).',
+      values: ['$3.1B', 'FY27', 'Signed', '—'],
+    },
+    {
+      label: 'Crusoe',
+      desc: 'A $0.225B credit facility for NVIDIA GPUs (FY26) and a $0.75B facility from Brookfield (FY26).',
+      values: ['$1.0B', 'FY26', 'Closed', '—'],
+    },
+    {
+      label: 'SpaceX / SpaceXAI',
+      desc: 'About $10B of bank loans and $30B of investment-grade bonds to buy NVIDIA chips, led by Apollo with Pimco in talks. The talks are early-stage, with closing expected in calendar 2027, so this row is not counted in the closed total or in the chart.\nSpaceX is rated Baa1 by Moody’s, BBB+ by Fitch, and BBB by S&P. NVIDIA holds 122.8M SpaceX shares, worth about $21B at the end of Q2 FY27.',
+      values: ['$40.0B', 'FY28?', 'Proposed', '$21B equity stake'],
+    },
+    {
+      label: 'Total',
+      values: ['$133.7B', '', '$93.7B counted', ''],
+    },
+  ],
+};
+
+export const circularOutflowYears = [
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+  'FY26',
+  'FY27E',
+];
+
+export const circularOutflowLines = [
+  {
+    label: 'Equity stakes',
+    desc: 'Cash paid for equity in other companies, such as AI model makers, AI clouds, and infrastructure financiers.\nFY21 and FY22 are “Investments and other, net”, the only line the filings give for those years. FY26 adds the $5.0B Intel stake to $17.5B of private equity purchases. FY27E is $42.4B of equity purchases in the first half plus the $18.0B of equity investments committed for the rest of the year.',
+    values: [0.034, 0.024, 0.085, 0.862, 1.486, 22.502, 60.404],
+  },
+  {
+    label: 'Acquisitions',
+    desc: 'Cash paid to buy companies, net of the cash they held. FY21 is almost entirely Mellanox, whose revenue NVIDIA consolidates after the deal.\nFY27E is the first half only, because NVIDIA does not disclose acquisition commitments.',
+    values: [8.524, 0.263, 0.049, 0.083, 1.007, 1.535, 0.298],
+  },
+  {
+    label: 'Groq license',
+    desc: 'Payments for the non-exclusive license agreement with Groq, Inc. FY26 was reported in investing activities, and the first-half FY27 payment was reported in financing activities.',
+    values: [0, 0, 0, 0, 0, 13.0, 2.944],
+  },
+  {
+    label: 'Corporate bonds',
+    desc: 'The yearly increase in NVIDIA’s holdings of corporate debt securities, from the fair value tables in its 10-Ks. Years when holdings fell count as zero. The filings do not name the issuers beyond “highly-rated corporations and financial institutions”, so this counts all corporate bonds as an upper bound.\nHoldings were $0.59B (FY20), $4.44B (FY21), $9.97B (FY22), $4.80B (FY23), $10.15B (FY24), $18.53B (FY25), $15.50B (FY26), and none as of July 26, 2026. Treasury and agency bonds and money market funds are excluded.',
+    values: [3.852, 5.53, 0, 5.355, 8.374, 0, 0],
+  },
+  {
+    label: 'Third-party debt',
+    desc: 'Debt that lenders provided to customers to buy NVIDIA hardware, placed in the fiscal year each deal closed or was signed. It counts GPU-backed loans and the corporate debt of AI clouds and AI labs, which is spent mostly on compute.\nData center construction debt (such as Stargate sites and Meta’s Hyperion) and hyperscaler bonds (such as Oracle’s) are excluded, because the tenant or issuer buys GPUs separately. Facility sizes are counted, not amounts drawn. FY27E covers deals through October 8, 2026, and excludes SpaceX’s proposed $40B financing.',
+    values: [0, 0, 0, 2.3, 8.0, 21.44, 61.93],
+  },
+];
+
+export const circularOutflowYearDetails: Record<string, string> = {
+  FY21: 'Acquisitions are almost entirely Mellanox. Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
+  FY22: 'Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
+  FY23: 'Equity stakes are purchases of non-marketable equity securities. Corporate bond holdings fell this year, so corporate bonds count as zero.',
+  FY24: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $2.3B facility from August 2023, the first collateralized by NVIDIA H100s.',
+  FY25: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $7.5B facility from May 2024 and Lambda’s $0.5B GPU-backed loan from April 2024.',
+  FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted. Third-party debt is $6.6B of GPU-backed loans (Valor Compute Infrastructure for xAI $3.5B, CoreWeave $2.6B, Lambda $0.3B, Crusoe $0.2B) plus $14.8B of AI cloud and AI lab corporate debt (CoreWeave notes and convertibles $6.3B, xAI $5.0B, Nebius $2.75B, Crusoe $0.75B). Corporate bond holdings fell this year, so corporate bonds count as zero.',
+  FY27E:
+    'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt runs through October 8, 2026: $42.2B of GPU-backed loans (CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $19.7B of AI cloud corporate debt (CoreWeave $9.95B, Nebius $9.75B). SpaceX’s proposed $40B financing is not counted. NVIDIA held no corporate bonds as of July 26, 2026.',
+};
+
+export const circularFinancingDeals = {
+  columns: ['Amount', 'Fiscal year', 'Type', 'GPU buyer?'],
+  rows: [
+    {
+      label: 'OpenAI',
+      desc: 'NVIDIA’s $30.0B share of OpenAI’s $122B round, which closed on March 31, 2026.\nThis is separate from the September 2025 letter of intent to invest up to $100B, which was never funded and is listed below as not counted.',
+      values: ['$30.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Groq',
+      desc: 'A non-exclusive license and hiring deal with total consideration of $17.0B: $13.0B paid at closing in December 2025 (investing activities) and $2.94B paid in the first half of FY27 (financing activities), with the rest due within a year.',
+      values: ['$15.94B', 'FY26–27', 'License', 'No'],
+    },
+    {
+      label: 'xAI',
+      desc: 'NVIDIA invested in xAI’s round that closed on January 6, 2026. Bloomberg reported up to $2B through a special purpose vehicle, while later reports put it at $10B, and xAI did not disclose NVIDIA’s share. The stake later converted into SpaceX shares.',
+      values: ['$2.0–10.0B', 'FY26', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Mellanox',
+      desc: 'NVIDIA acquired Mellanox in April 2020 for about $7B in deal value. The amount shown is FY21’s net cash paid for acquisitions, which is almost entirely Mellanox. NVIDIA consolidates Mellanox’s revenue after the deal.',
+      values: ['$8.52B', 'FY21', 'Acquisition', 'n/a'],
+    },
+    {
+      label: 'Intel',
+      desc: 'A $5.0B purchase of Intel common stock at $23.28 a share, completed in December 2025, alongside a product partnership.',
+      values: ['$5.0B', 'FY26', 'Equity', 'No'],
+    },
+    {
+      label: 'Suppliers',
+      desc: 'Equity in companies that supply NVIDIA rather than buy from it: Coherent $2.0B and Lumentum $2.0B (March 2026), Marvell $2.0B of convertible preferred stock (March 2026), and Corning $0.5B of pre-funded warrants (May 2026). NVIDIA also has multi-billion purchase commitments to Coherent and Lumentum.',
+      values: ['$6.5B', 'FY27', 'Equity', 'No'],
+    },
+    {
+      label: 'CoreWeave',
+      desc: 'A $2.0B purchase of CoreWeave stock at $87.20 a share on January 26, 2026, the first day of FY27. CoreWeave runs its cloud on NVIDIA hardware.',
+      values: ['$2.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Nebius',
+      desc: 'A $2.0B purchase of pre-funded warrants at $94.94 a share in March 2026. Nebius is building a Rubin-based cloud.',
+      values: ['$2.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'SB Energy',
+      desc: 'A $1.5B equity investment committed in August 2026 alongside the guarantees for OpenAI’s Ohio campus, which will exclusively host NVIDIA AI infrastructure. A further $1.5B purchase was reported in September 2026 and is not counted.',
+      values: ['$1.5B', 'FY27', 'Equity', 'Indirect'],
+    },
+    {
+      label: 'Nscale',
+      desc: 'A reported $1.0B commitment to Nscale’s $3.1B convertible round in September 2026. Nscale is an AI cloud built on NVIDIA hardware.',
+      values: ['$1.0B', 'FY27', 'Equity', 'Yes'],
+    },
+    {
+      label: 'Reflection AI',
+      desc: 'A reported investment of about $0.8B in Reflection AI’s $2B round in October 2025.',
+      values: ['$0.8B', 'FY26', 'Equity', 'Unclear'],
+    },
+    {
+      label: 'Smaller acquisitions',
+      desc: 'FY25: Run:ai ($0.7B), Deci ($0.3B), and OctoAI (about $0.25B), whose reported deal values exceed net cash paid because part was paid in stock or offset by cash acquired. FY26: Gretel, Lepton AI (an NVIDIA GPU cloud), CentML, and Enfabrica, which was structured as a license and hiring deal paid in cash and stock. FY27: Illumex, Kumo, and others, mostly undisclosed. FY22–FY24 deals were small.',
+      values: ['$3.24B', 'FY22–27', 'Acquisition', 'Mostly n/a'],
+    },
+    {
+      label: 'Unattributed private stakes',
+      desc: 'The part of the filed equity totals that no reported deal explains: FY21–FY25 private stakes ($2.49B), FY26 non-marketable purchases not explained by xAI and Reflection AI ($6.7B–$14.7B, which likely includes some of NVIDIA’s Anthropic commitment of up to $10B), and the first half of FY27 ($1.9B). The range moves with the disputed xAI amount.',
+      values: ['$11.1–19.1B', 'FY21–27', 'Equity', 'Unknown'],
+    },
+    {
+      label: 'Unattributed commitments',
+      desc: 'Equity investments NVIDIA committed to make in the rest of FY27, per the Q2 FY27 10-Q, beyond the SB Energy and Nscale commitments above. The filing describes them as investments in AI model makers, infrastructure financiers, and other private companies.',
+      values: ['$15.5B', 'FY27', 'Equity', 'Unknown'],
+    },
+    {
+      label: 'Total counted',
+      values: ['$113.1B', 'FY21–27', '', ''],
+    },
+    {
+      label: 'Not counted: Synopsys and Nokia',
+      desc: 'Synopsys $2.0B at $414.79 a share (December 2025) and Nokia $1.0B at $6.01 a share (November 2025). Both are public stakes whose cash is mixed with debt securities in the FY26 cash flow statement, so the chart leaves them out. Nokia adopts NVIDIA’s Aerial RAN, and Synopsys says it has no commitment to buy GPUs.',
+      values: ['$3.0B', 'FY26', 'Equity', 'Partly'],
+    },
+    {
+      label: 'Not counted: Hugging Face',
+      desc: 'An acquisition for about $11.9B plus up to $1.0B of retention awards, signed in September 2026 and expected to close in the first half of calendar 2027.',
+      values: ['$11.9B', 'FY28?', 'Acquisition', 'Unclear'],
+    },
+    {
+      label: 'Not counted: options and intentions',
+      desc: 'The unfunded OpenAI letter of intent for up to $100B (September 2025), reported talks to invest up to $10B in Anthropic’s IPO (September 2026), an IREN option for up to $2.1B (May 2026), and the unexercised $2.7B of Corning warrants.',
+      values: ['Up to $114.8B', '—', 'Mixed', 'Mostly yes'],
     },
   ],
 };
@@ -192,7 +412,7 @@ export const offBalanceSheetCommitments = {
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   estimateNote:
-    'FY27E values use consensus analyst estimates from stockanalysis.com (53 analysts as of September 2026). Revenue, EPS, and FCF are consensus figures. P/E and P/FCF recalculate from the adjusted price.',
+    'FY27E values use consensus analyst estimates from stockanalysis.com (53 analysts as of September 2026). Revenue, EPS, and FCF are consensus figures. Operating income is the consensus of 54 analysts as of October 2026. P/E and P/FCF recalculate from the adjusted price.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
@@ -368,7 +588,12 @@ const financials: SoftwareFinancials = {
       operatingIncome: 130.39,
       netIncome: 120.06,
     },
-    { year: 'FY27E', revenue: 411.56, operatingIncome: null, netIncome: 242.9 },
+    {
+      year: 'FY27E',
+      revenue: 411.56,
+      operatingIncome: 268.86,
+      netIncome: 242.9,
+    },
   ],
   thesis: [
     'NVIDIA dominates the AI accelerator market with a vertically integrated platform spanning hardware (GPUs, networking) and software (CUDA, cuDNN, TensorRT), creating an ecosystem moat that locks in developers and enterprise customers.',
