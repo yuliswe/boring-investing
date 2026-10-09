@@ -209,9 +209,9 @@ function buildCircularFinancingSection(): SectionData {
   return {
     rank: 580,
     id: 'circular-financing',
-    title: 'Circular Financing',
+    title: 'Circular Financing and Third-Party Debt Financing',
     kicker:
-      'Cash NVIDIA sends to third parties that can buy NVIDIA GPUs, through equity stakes, acquisitions, and license payments. Bond purchases, capital expenditures, and supplier payments are excluded, because that money does not reach potential customers.',
+      'Cash NVIDIA sends to third parties that can buy NVIDIA GPUs, through equity stakes, acquisitions, and license payments, plus debt that lenders provide to customers to buy NVIDIA chips. Bond purchases, capital expenditures, and supplier payments are excluded, because that money does not reach potential customers.',
     kind: 'multi',
     years: circularOutflowYears,
     mode: 'absolute',
@@ -220,7 +220,7 @@ function buildCircularFinancingSection(): SectionData {
     series: [
       {
         label: 'Total',
-        desc: 'Sum of the equity stakes, acquisitions, and license payments below.',
+        desc: 'Sum of the equity stakes, acquisitions, license payments, and third-party debt below.',
         values: totals,
         format: billionFormat,
         bold: true,
@@ -228,7 +228,7 @@ function buildCircularFinancingSection(): SectionData {
       ...circularOutflowLines.map(l => ({ ...l, format: billionFormat })),
     ],
     chartNote:
-      'Amounts are gross cash paid, before any proceeds from selling stakes. No loans to customers or guarantee payouts appear in the filings. Click a year to see what it includes and its share of revenue.',
+      'NVIDIA’s outflows are gross cash paid, before any proceeds from selling stakes, and no loans to customers or guarantee payouts appear in the filings. Third-party debt covers only the deals in the Debt-Funded Demand table. Click a year to see what it includes and its share of revenue.',
   };
 }
 
