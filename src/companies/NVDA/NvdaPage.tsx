@@ -152,8 +152,9 @@ function buildRevenueMinusInvestingSection(): SectionData {
     `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(forwardThirdPartyDebt)} of third-party debt that customers raised in FY27 to buy NVIDIA hardware, a total of ${billions(forwardDeduction)}.`,
     `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
     `Adjusted operating income = ${billions(forward.operatingIncome!)} consensus operating income − ${billions(forwardDeduction)} = ${billions(forward.operatingIncome! - forwardDeduction)}.`,
+    `Adjusted net income = ${billions(forward.netIncome!)} consensus net income − ${billions(forwardDeduction)} = ${billions(forward.netIncome! - forwardDeduction)}.`,
   ].join('\n');
-  const adjusted = (field: 'revenue' | 'operatingIncome') =>
+  const adjusted = (field: 'revenue' | 'operatingIncome' | 'netIncome') =>
     years.map(year => {
       const income = financials.revenue.find(r => r.year === year)![field]!;
       return +(income - circularDeduction(year)!).toFixed(2);
@@ -182,6 +183,12 @@ function buildRevenueMinusInvestingSection(): SectionData {
         values: adjusted('operatingIncome'),
         format: billionFormat,
       },
+      {
+        label: 'Adjusted net income',
+        desc: 'Net income minus the net cash used in investing activities from the cash flow statement. FY27E uses consensus net income.',
+        values: adjusted('netIncome'),
+        format: billionFormat,
+      },
     ],
     chartNote:
       'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA has committed to make in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware, through October 8, 2026. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
@@ -198,12 +205,19 @@ function buildRevenueExcludingCircularSection(): SectionData {
     year => financials.revenue.find(r => r.year === year)!.revenue
   );
   const excluding = revenues.map((r, i) => +(r - circularTotals[i]).toFixed(2));
+  const netIncomes = circularOutflowYears.map(
+    year => financials.revenue.find(r => r.year === year)!.netIncome!
+  );
+  const netExcluding = netIncomes.map(
+    (n, i) => +(n - circularTotals[i]).toFixed(2)
+  );
   const yearNotes = Object.fromEntries(
     circularOutflowYears.map((year, i) => [
       year,
       [
-        `Revenue $${revenues[i].toFixed(2)}B − circular financing and third-party debt $${circularTotals[i].toFixed(2)}B = $${excluding[i].toFixed(2)}B.`,
-        `Revenue excluding circular financing is ${((excluding[i] / revenues[i]) * 100).toFixed(1)}% of reported revenue. The Circular Financing and Third-Party Debt Financing chart shows what the deduction includes.`,
+        `Revenue $${revenues[i].toFixed(2)}B − circular financing and third-party debt $${circularTotals[i].toFixed(2)}B = $${excluding[i].toFixed(2)}B, or ${((excluding[i] / revenues[i]) * 100).toFixed(1)}% of reported revenue.`,
+        `Net income $${netIncomes[i].toFixed(2)}B − $${circularTotals[i].toFixed(2)}B = $${netExcluding[i].toFixed(2)}B.`,
+        'The Circular Financing and Third-Party Debt Financing chart shows what the deduction includes.',
       ].join('\n'),
     ])
   );
@@ -229,6 +243,19 @@ function buildRevenueExcludingCircularSection(): SectionData {
         label: 'Revenue excluding circular financing',
         desc: 'Revenue minus the yearly total in the Circular Financing and Third-Party Debt Financing chart.',
         values: excluding,
+        format: billionFormat,
+        bold: true,
+      },
+      {
+        label: 'Net income',
+        desc: 'Net income as reported. FY27E is the consensus estimate.',
+        values: netIncomes,
+        format: billionFormat,
+      },
+      {
+        label: 'Net income excluding circular financing',
+        desc: 'Net income minus the same yearly total, which treats every dollar of circular financing and third-party debt as a rebate that comes out of profit in full.',
+        values: netExcluding,
         format: billionFormat,
         bold: true,
       },
