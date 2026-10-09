@@ -116,12 +116,28 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
+const investingLine = cashFlowStatementLines.find(
+  l => l.label === 'Investing activities'
+)!;
+const forwardDeduction =
+  offBalanceSheetCommitments.dueInFY27 + debtFundedDemand.total;
+
+function circularDeduction(year: string): number | null {
+  const i = cashFlowStatementYears.indexOf(year);
+  if (i === -1) return null;
+  return investingLine.values[i] === null
+    ? forwardDeduction
+    : -investingLine.values[i]!;
+}
+
+function adjustedEarningsRatio(year: string): number | null {
+  const deduction = circularDeduction(year);
+  const netIncome = financials.revenue.find(r => r.year === year)?.netIncome;
+  if (deduction === null || !netIncome) return null;
+  return (netIncome - deduction) / netIncome;
+}
+
 function buildRevenueMinusInvestingSection(): SectionData {
-  const investing = cashFlowStatementLines.find(
-    l => l.label === 'Investing activities'
-  )!;
-  const forwardDeduction =
-    offBalanceSheetCommitments.dueInFY27 + debtFundedDemand.total;
   const years = cashFlowStatementYears;
   const forward = financials.revenue.find(r => r.year === 'FY27E')!;
   const billions = (v: number) => `$${v.toFixed(2)}B`;
@@ -131,10 +147,9 @@ function buildRevenueMinusInvestingSection(): SectionData {
     `Adjusted operating income = ${billions(forward.operatingIncome!)} consensus operating income − ${billions(forwardDeduction)} = ${billions(forward.operatingIncome! - forwardDeduction)}.`,
   ].join('\n');
   const adjusted = (field: 'revenue' | 'operatingIncome') =>
-    years.map((year, i) => {
+    years.map(year => {
       const income = financials.revenue.find(r => r.year === year)![field]!;
-      const investingFlow = investing.values[i] ?? -forwardDeduction;
-      return +(income + investingFlow).toFixed(2);
+      return +(income - circularDeduction(year)!).toFixed(2);
     });
   return {
     rank: 375,
@@ -313,6 +328,57 @@ const EPS_EST = 9.31;
 const FCF_PER_SHARE_EST = 8.03;
 const PRIOR_EPS = 4.9;
 
+const metricYears = financials.revenue.map(r => r.year);
+const dilutedEps = financials.keyMetrics.find(m => m.label === 'Diluted EPS')!;
+const historicalPe = financials.criticalMetrics.find(
+  m => m.label === 'P/E ratio'
+)!;
+const forwardRatio = adjustedEarningsRatio('FY27E')!;
+const forwardNetIncome = financials.revenue.find(
+  r => r.year === 'FY27E'
+)!.netIncome!;
+const adjustedEpsEst = EPS_EST * forwardRatio;
+const negativeAdjustedNote =
+  'Not meaningful, because adjusted net income was negative after the deduction.';
+
+const adjustedEpsMetric = {
+  label: 'Adjusted diluted EPS',
+  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the FY27 off-balance-sheet commitments and the debt-funded demand total.',
+  values: metricYears.map((year, i) => {
+    const ratio = adjustedEarningsRatio(year);
+    const eps = dilutedEps.values[i];
+    return ratio === null || eps === null ? null : +(eps * ratio).toFixed(2);
+  }),
+  format: { prefix: '$', decimals: 2 },
+  guidanceCount: 1,
+  yearNotes: {
+    FY27E: `Consensus EPS of $${EPS_EST} × adjusted net income of $${(forwardNetIncome - forwardDeduction).toFixed(2)}B ÷ consensus net income of $${forwardNetIncome.toFixed(2)}B = $${adjustedEpsEst.toFixed(2)}.`,
+  },
+};
+
+function buildAdjustedPeMetric(price: number) {
+  const values = metricYears.map((year, i) => {
+    const ratio = adjustedEarningsRatio(year);
+    const pe = historicalPe.values[i];
+    if (ratio === null || pe === null || ratio <= 0) return null;
+    return +(pe / ratio).toFixed(1);
+  });
+  values[values.length - 1] = +(price / adjustedEpsEst).toFixed(1);
+  return {
+    label: 'Adjusted P/E ratio',
+    desc: 'Price at fiscal year-end divided by adjusted diluted EPS, which removes the same circular-financing deduction as adjusted revenue.',
+    values,
+    format: { decimals: 1 },
+    invertColor: true,
+    guidanceCount: 1,
+    yearNotes: {
+      FY21: negativeAdjustedNote,
+      FY22: negativeAdjustedNote,
+      FY27E: `Calculated from $${price.toFixed(2)} divided by adjusted diluted EPS of $${adjustedEpsEst.toFixed(2)}.`,
+    },
+  };
+}
+
 function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
   const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
@@ -320,45 +386,52 @@ function buildDynamicFinancials(price: number) {
   const peg = +(pe / epsGrowth).toFixed(2);
   return {
     ...financials,
-    criticalMetrics: financials.criticalMetrics.map(m => {
-      if (m.label === 'P/E ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = pe;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
-          },
-        };
-      }
-      if (m.label === 'P/FCF ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = pfcf;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
-          },
-        };
-      }
-      if (m.label === 'PEG ratio') {
-        const values = [...m.values];
-        values[values.length - 1] = peg;
-        return {
-          ...m,
-          values,
-          yearNotes: {
-            ...m.yearNotes,
-            FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
-          },
-        };
-      }
-      return m;
-    }),
+    keyMetrics: financials.keyMetrics.flatMap(m =>
+      m === dilutedEps ? [m, adjustedEpsMetric] : [m]
+    ),
+    criticalMetrics: financials.criticalMetrics
+      .map(m => {
+        if (m.label === 'P/E ratio') {
+          const values = [...m.values];
+          values[values.length - 1] = pe;
+          return {
+            ...m,
+            values,
+            yearNotes: {
+              ...m.yearNotes,
+              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
+            },
+          };
+        }
+        if (m.label === 'P/FCF ratio') {
+          const values = [...m.values];
+          values[values.length - 1] = pfcf;
+          return {
+            ...m,
+            values,
+            yearNotes: {
+              ...m.yearNotes,
+              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
+            },
+          };
+        }
+        if (m.label === 'PEG ratio') {
+          const values = [...m.values];
+          values[values.length - 1] = peg;
+          return {
+            ...m,
+            values,
+            yearNotes: {
+              ...m.yearNotes,
+              FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
+            },
+          };
+        }
+        return m;
+      })
+      .flatMap(m =>
+        m.label === 'P/E ratio' ? [m, buildAdjustedPeMetric(price)] : [m]
+      ),
   };
 }
 
