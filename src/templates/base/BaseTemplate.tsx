@@ -68,6 +68,7 @@ function SectionContent({ section }: { section: SectionData }) {
           baseLabel={section.baseLabel}
           chartNote={section.chartNote}
           guidanceDesc={section.guidanceDesc}
+          yearNotes={section.yearNotes}
         />
       );
     case 'table':

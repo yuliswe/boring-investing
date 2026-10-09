@@ -143,6 +143,7 @@ type MultiSectionData = {
   chartNote?: string;
   guidanceCount?: number;
   guidanceDesc?: string;
+  yearNotes?: Record<string, string>;
 };
 
 type PeersSectionData = {

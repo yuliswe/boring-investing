@@ -68,3 +68,17 @@
   <https://finance.yahoo.com/news/coreweave-raises-2-3-billion-130901488.html>
 - CoreWeave $7.5B facility (May 17, 2024):
   <https://www.prnewswire.com/news-releases/coreweave-secures-7-5-billion-debt-financing-facility-led-by-blackstone-and-magnetar-302148876.html>
+
+## Circular financing
+
+- FY23–FY26 equity purchases, acquisitions, and the Groq payment: SEC XBRL
+  company facts (`PaymentsToAcquireEquitySecuritiesFvNi`,
+  `PaymentsToAcquireBusinessesNetOfCashAcquired`,
+  `PaymentsToAcquireBusinessTwoNetOfCashAcquired`)
+  <https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json>
+- FY21–FY22 "Investments and other, net": FY23 10-K cash flow statement
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581023000017/nvda-20230129.htm>
+- First-half FY27 equity purchases, acquisitions, and Groq payment: Q2 FY27
+  10-Q cash flow statement (link above)
+- Intel $5.0B stake, completed December 26, 2025:
+  <https://www.investing.com/news/sec-filings/intel-completes-5-billion-private-stock-sale-to-nvidia-93CH-4423685>

@@ -236,6 +236,45 @@ export const debtFundedDemand = {
   ],
 };
 
+export const circularOutflowYears = [
+  'FY21',
+  'FY22',
+  'FY23',
+  'FY24',
+  'FY25',
+  'FY26',
+  'FY27E',
+];
+
+export const circularOutflowLines = [
+  {
+    label: 'Equity stakes',
+    desc: 'Cash paid for equity in other companies, such as AI model makers, AI clouds, and infrastructure financiers.\nFY21 and FY22 are “Investments and other, net”, the only line the filings give for those years. FY26 adds the $5.0B Intel stake to $17.5B of private equity purchases. FY27E is $42.4B of equity purchases in the first half plus the $18.0B of equity investments committed for the rest of the year.',
+    values: [0.034, 0.024, 0.085, 0.862, 1.486, 22.502, 60.404],
+  },
+  {
+    label: 'Acquisitions',
+    desc: 'Cash paid to buy companies, net of the cash they held. FY21 is almost entirely Mellanox, whose revenue NVIDIA consolidates after the deal.\nFY27E is the first half only, because NVIDIA does not disclose acquisition commitments.',
+    values: [8.524, 0.263, 0.049, 0.083, 1.007, 1.535, 0.298],
+  },
+  {
+    label: 'Groq license',
+    desc: 'Payments for the non-exclusive license agreement with Groq, Inc. FY26 was reported in investing activities, and the first-half FY27 payment was reported in financing activities.',
+    values: [0, 0, 0, 0, 0, 13.0, 2.944],
+  },
+];
+
+export const circularOutflowYearDetails: Record<string, string> = {
+  FY21: 'Acquisitions are almost entirely Mellanox. Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
+  FY22: 'Equity stakes are “Investments and other, net”, because the filing does not report equity purchases separately.',
+  FY23: 'Equity stakes are purchases of non-marketable equity securities.',
+  FY24: 'Equity stakes are purchases of non-marketable equity securities.',
+  FY25: 'Equity stakes are purchases of non-marketable equity securities.',
+  FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted.',
+  FY27E:
+    'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only.',
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY27E'],
   estimateNote:

@@ -11,6 +11,9 @@ import financials, {
   cashFlowStatementLines,
   offBalanceSheetCommitments,
   debtFundedDemand,
+  circularOutflowYears,
+  circularOutflowLines,
+  circularOutflowYearDetails,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -182,10 +185,58 @@ function buildRevenueMinusInvestingSection(): SectionData {
   };
 }
 
+function buildCircularFinancingSection(): SectionData {
+  const totals = circularOutflowYears.map(
+    (_, i) =>
+      +circularOutflowLines.reduce((sum, l) => sum + l.values[i], 0).toFixed(3)
+  );
+  const yearNotes = Object.fromEntries(
+    circularOutflowYears.map((year, i) => {
+      const revenue = financials.revenue.find(r => r.year === year)!.revenue;
+      const parts = circularOutflowLines
+        .filter(l => l.values[i] > 0)
+        .map(l => `${l.label} $${l.values[i].toFixed(2)}B`);
+      return [
+        year,
+        [
+          `${parts.join(' + ')} = $${totals[i].toFixed(2)}B.`,
+          `That is ${((totals[i] / revenue) * 100).toFixed(1)}% of ${year} revenue of $${revenue.toFixed(2)}B.`,
+          circularOutflowYearDetails[year],
+        ].join('\n'),
+      ];
+    })
+  );
+  return {
+    rank: 580,
+    id: 'circular-financing',
+    title: 'Circular Financing',
+    kicker:
+      'Cash NVIDIA sends to third parties that can buy NVIDIA GPUs, through equity stakes, acquisitions, and license payments. Bond purchases, capital expenditures, and supplier payments are excluded, because that money does not reach potential customers.',
+    kind: 'multi',
+    years: circularOutflowYears,
+    mode: 'absolute',
+    guidanceCount: 1,
+    yearNotes,
+    series: [
+      {
+        label: 'Total',
+        desc: 'Sum of the equity stakes, acquisitions, and license payments below.',
+        values: totals,
+        format: billionFormat,
+        total: true,
+      },
+      ...circularOutflowLines.map(l => ({ ...l, format: billionFormat })),
+    ],
+    chartNote:
+      'Amounts are gross cash paid, before any proceeds from selling stakes. No loans to customers or guarantee payouts appear in the filings. Click a year to see what it includes and its share of revenue.',
+  };
+}
+
 const nvdaSections: SectionData[] = [
   buildExpensesSection(),
   buildCashFlowStatementSection(),
   buildRevenueMinusInvestingSection(),
+  buildCircularFinancingSection(),
   {
     rank: 570,
     id: 'off-balance-sheet',
