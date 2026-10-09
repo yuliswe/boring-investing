@@ -48,3 +48,9 @@
   stockanalysis.com/stocks/mu/forecast/ (43 analysts as of 2 October 2026)
 - Diluted share count (~1.15B) for per-share and net income derivations:
   FQ1-27 guidance in the Q4 FY2026 earnings release
+
+## Reverse DCF
+
+- Shares outstanding (1.13B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/mu/>
+- Net cash (38.26B): $43.43B of cash, cash equivalents, and short-term investments minus $5.18B of debt, FY26 results; $30.0B of long-term marketable investments are excluded
+- Starting value: Consensus FY27E free cash flow of $140.37B, as in the Cash Flow section.

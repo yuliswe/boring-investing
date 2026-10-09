@@ -30,3 +30,9 @@
 - Operating cash flow, CapEx, cash taxes paid, working capital changes:
   10-K cash flow statements and stockanalysis.com/stocks/mcd/financials/cash-flow-statement/
 - D&A and SBC: 10-K cash flow statement supplemental disclosures
+
+## Reverse DCF
+
+- Shares outstanding (0.7076B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/mcd/>
+- Net cash (-39.04B): $39.86B of debt minus $0.82B of cash, Q2 2026 10-Q; $14.7B of lease liabilities are excluded because free cash flow is already struck after rent
+- Starting value: Consensus FY26E free cash flow of $7.29B (stockanalysis.com, 8 October 2026).

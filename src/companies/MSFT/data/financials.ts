@@ -306,6 +306,41 @@ export const offBalanceSheetCommitments = {
 };
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Microsoft',
+    actualYear: 'FY26',
+    forwardYear: 'FY27E',
+    metric: 'cash flow',
+    metricShort: 'Cash flow',
+    paths: [
+      {
+        label: 'Free cash flow',
+        column: 'Free cash flow',
+        phrase: 'on consensus free cash flow',
+        actual: 66.987,
+        forward: 32.34,
+      },
+      {
+        label: 'After-tax operating income',
+        column: 'After-tax op. income',
+        phrase: 'on after-tax operating income',
+        actual: 127.26,
+        forward: 149.4,
+      },
+    ],
+    startNote: 'FY27E consensus',
+    actualNote:
+      'Actual FY26 free cash flow of $66.99B, and operating income of $155.2B less 18% tax.',
+    forwardNote:
+      'Consensus FY27E free cash flow of $32.34B, roughly halved by AI capital spending, and consensus operating income of $182.2B less 18% tax.',
+    sharesOutstanding: 7.43,
+    netCash: 36.55,
+    netCashSource:
+      '$76.84B of cash, cash equivalents, and short-term investments minus $40.29B of debt, FY26 10-K; $66.6B of data-centre finance leases are excluded',
+    assumptionNote:
+      'After-tax operating income applies an 18% tax rate to operating income. It stands in for the cash the business would produce if capital spending fell to the level of depreciation.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY27E'],
   criticalMetrics: [
     {

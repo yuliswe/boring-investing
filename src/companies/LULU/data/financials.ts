@@ -202,6 +202,25 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: RetailFinancials = {
+  reverseDcf: {
+    companyName: 'lululemon',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 0.92,
+        forward: 0.918,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $0.918B from 31 analysts (stockanalysis.com, October 2026), with earnings guided down and capital spending raised for a distribution centre.',
+    sharesOutstanding: 0.1107,
+    netCash: 1.39,
+    netCashSource: '$1.39B of cash and no debt, Q2 FY26 report',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   metricGroups: {
     valuation: {

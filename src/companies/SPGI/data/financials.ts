@@ -259,6 +259,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'S&P Global',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 5.456,
+        forward: 5.4,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $5.40B, which includes Mobility for the first half only; management’s mixed-perimeter outlook is $5.3–5.5B.',
+    sharesOutstanding: 0.2948,
+    netCash: -9.0,
+    netCashSource:
+      'pro forma for the Mobility spin-off on 1 July 2026: $13.18B of debt minus $4.14B of cash, Q2 2026 10-Q',
+    assumptionNote:
+      'About $0.3B a year of free cash flow goes to CME’s minority stake in the indices business.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E EPS uses the midpoint of SPGI GAAP diluted EPS guidance of $16.35-$16.60 (Q2 2026 earnings release, reaffirmed post-Mobility spin-off). FY26E FCF per share is estimated from SPGI H2 2026 adjusted FCF guidance of $2.9-3.1B and H1 2026 cash flow. FY26E revenue is derived from SPGI guidance of 5.9-7.9% revenue growth. P/E and P/FCF recalculate from the adjusted price.',

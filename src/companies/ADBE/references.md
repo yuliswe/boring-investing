@@ -55,3 +55,9 @@ year-end date. Adobe's fiscal year ends the Friday nearest 30 November.
 - The forward P/E, P/FCF, and PEG ratios use these consensus estimates with
   the default stock price, and recalculate reactively when the price adjuster
   changes.
+
+## Reverse DCF
+
+- Shares outstanding (0.3892B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/adbe/>
+- Net cash (-0.75B): $6.39B of debt minus $5.64B of cash, cash equivalents, and short-term investments, Q3 FY26 10-Q
+- Starting value: Consensus FY26E free cash flow of $10.44B from 34 analysts (stockanalysis.com, October 2026).

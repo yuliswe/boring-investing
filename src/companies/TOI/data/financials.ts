@@ -1,6 +1,32 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Topicus.com',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    reportingCurrency: '€',
+    fxRate: 1.595,
+    fxSource: 'Bank of Canada, 8 October 2026',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 0.403,
+        forward: 0.39,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of €0.39B from 3 analysts (stockanalysis.com, October 2026).',
+    sharesOutstanding: 0.1298,
+    sharesSource:
+      '83.3M subordinate voting shares plus 46.5M exchangeable Topicus Coop units, Q1 2026 statements',
+    netCash: -0.144,
+    netCashSource:
+      '€0.47B of term loans and revolver minus €0.32B of cash, Q2 2026 report',
+    assumptionNote:
+      'Free cash flow ignores about €0.06B a year of lease and interest payments.',
+  },
   guidanceYears: ['FY26E'],
   criticalMetrics: [
     {

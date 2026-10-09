@@ -96,3 +96,9 @@ lines.
 - PEG is null for CY16–CY20 because computing the trailing five-year EPS
   CAGR requires pre-CY16 data that is outside the XBRL filing range for
   Alphabet's current CIK (0001652044).
+
+## Reverse DCF
+
+- Shares outstanding (12.23B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/goog/>
+- Net cash (142.3B): $242.5B of cash, cash equivalents, and marketable securities minus $100.2B of debt, Q2 2026 10-Q; non-marketable stakes are excluded
+- Starting value: Consensus CY26E free cash flow of $7.78B, crushed by $195–205B of guided capital spending, and consensus operating income of $160.9B less 18% tax.

@@ -1,7 +1,12 @@
 'use client';
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
-import type { HeroData, FooterData, SectionData } from '@/templates/base';
+import type {
+  HeroData,
+  FooterData,
+  SectionData,
+  ReverseDcfData,
+} from '@/templates/base';
 import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   expenseYears,
@@ -477,37 +482,6 @@ const footer: FooterData = {
   ],
 };
 
-const {
-  discountRate,
-  terminalGrowth,
-  explicitYears,
-  sharesOutstanding,
-  netCash,
-} = reverseDcfInputs;
-
-function dcfEnterpriseValue(firstYearFcf: number, growth: number): number {
-  let pv = 0;
-  let fcf = firstYearFcf;
-  for (let t = 1; t <= explicitYears; t++) {
-    if (t > 1) fcf *= 1 + growth;
-    pv += fcf / (1 + discountRate) ** t;
-  }
-  const terminal =
-    (fcf * (1 + terminalGrowth)) / (discountRate - terminalGrowth);
-  return pv + terminal / (1 + discountRate) ** explicitYears;
-}
-
-function impliedGrowth(firstYearFcf: number, enterpriseValue: number): number {
-  let lo = -0.5;
-  let hi = 2;
-  for (let i = 0; i < 100; i++) {
-    const mid = (lo + hi) / 2;
-    if (dcfEnterpriseValue(firstYearFcf, mid) > enterpriseValue) hi = mid;
-    else lo = mid;
-  }
-  return (lo + hi) / 2;
-}
-
 function fcfScenarios() {
   const fcf = cashFlowStatementLines.find(l => l.label === 'Free cash flow')!;
   const debt = circularOutflowLines.find(l => l.label === 'Third-party debt')!;
@@ -528,73 +502,37 @@ function fcfScenarios() {
   };
 }
 
-function buildReverseDcfSections(price: number): SectionData[] {
-  const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
+function buildReverseDcf(): ReverseDcfData {
   const { labels, actual, forward } = fcfScenarios();
-  const enterpriseValue = price * sharesOutstanding - netCash;
-  const growths = forward.map(f => impliedGrowth(f, enterpriseValue));
-  const pathYears = [
-    'FY26',
-    ...Array.from({ length: explicitYears }, (_, t) => `FY${27 + t}E`),
+  const phrases = [
+    'on reported free cash flow',
+    'after removing circular financing',
+    'after also removing third-party debt',
   ];
-  const paths = forward.map((f, s) => [
-    +actual[s].toFixed(2),
-    ...Array.from(
-      { length: explicitYears },
-      (_, t) => +(f * (1 + growths[s]) ** t).toFixed(2)
-    ),
-  ]);
-  const lastYear = pathYears.at(-1)!;
-  const assumptions = `Discount rate ${pct(discountRate)}, terminal growth ${pct(terminalGrowth)} after ${lastYear}, ${sharesOutstanding}B shares (${reverseDcfInputs.sharesSource}), and $${netCash}B of net cash (${reverseDcfInputs.netCashSource}). NVIDIA’s equity stakes are given no value, consistent with treating them as circular financing.`;
-  const perShare = (f: number, g: number) =>
-    `$${((dcfEnterpriseValue(f, g) + netCash) / sharesOutstanding).toFixed(0)}`;
-  return [
-    {
-      rank: 700,
-      id: 'reverse-dcf',
-      title: `Reverse DCF at ${discountRate * 100}%`,
-      kicker: `The free cash flow growth that today’s $${price.toFixed(2)} share price requires at a ${pct(discountRate)} discount rate: ${pct(growths[0])} a year on reported free cash flow, ${pct(growths[1])} after removing circular financing, and ${pct(growths[2])} after also removing third-party debt. Each path starts from FY27E consensus free cash flow and grows at its implied rate for nine more years.`,
-      kind: 'multi',
-      years: pathYears,
-      mode: 'absolute',
-      guidanceCount: explicitYears,
-      yearNotes: {
-        FY26: `Actual FY26 free cash flow: $${actual[0].toFixed(2)}B reported, $${actual[1].toFixed(2)}B after removing NVIDIA’s circular outflows, and $${actual[2].toFixed(2)}B after also removing third-party debt.`,
-        FY27E: `Consensus FY27E free cash flow of $${forward[0].toFixed(2)}B, minus $${(forward[0] - forward[1]).toFixed(2)}B of NVIDIA’s circular outflows and $${(forward[1] - forward[2]).toFixed(2)}B of third-party debt for the stricter paths.`,
-        [lastYear]: `The ${lastYear} free cash flow that the current price implies: $${paths[0].at(-1)!.toFixed(0)}B, $${paths[1].at(-1)!.toFixed(0)}B, and $${paths[2].at(-1)!.toFixed(0)}B. Whichever starting point you use, the price requires roughly the same cash flow a decade out.`,
-      },
-      series: labels.map((label, s) => ({
-        label,
-        desc: `Grows at ${pct(growths[s])} a year after FY27E, the rate at which the discounted cash flows equal today’s enterprise value of $${enterpriseValue.toFixed(0)}B.`,
-        values: paths[s],
-        format: { prefix: '$', suffix: 'B', decimals: 0 },
-        bold: s === 0,
-      })),
-      chartNote: `${assumptions} The implied rates recalculate when the price is adjusted.`,
-    },
-    {
-      rank: 710,
-      id: 'reverse-dcf-values',
-      title: `Value per Share at ${discountRate * 100}%`,
-      kicker: `What one NVIDIA share is worth at a ${pct(discountRate)} discount rate for a range of free cash flow growth rates, compared with the current price of $${price.toFixed(2)}.`,
-      kind: 'table',
-      firstColumn: 'FCF growth, FY28–FY36',
-      columns: ['Reported', 'Excl. circular', 'Excl. circular + debt'],
-      rows: [
-        ...reverseDcfInputs.scenarioGrowthRates.map(g => ({
-          label: `${(g * 100).toFixed(0)}% a year`,
-          values: forward.map(f => perShare(f, g)),
-        })),
-        {
-          label: `Growth implied by $${price.toFixed(2)}`,
-          desc: 'The growth rate at which the value per share equals the current price.',
-          values: growths.map(pct),
-        },
-      ],
-      tableNote: assumptions,
-    },
-  ];
+  const columns = ['Reported', 'Excl. circular', 'Excl. circular + debt'];
+  return {
+    ...reverseDcfInputs,
+    companyName: 'NVIDIA',
+    actualYear: 'FY26',
+    forwardYear: 'FY27E',
+    paths: labels.map((label, s) => ({
+      label,
+      column: columns[s],
+      phrase: phrases[s],
+      actual: +actual[s].toFixed(2),
+      forward: forward[s],
+    })),
+    startNote: 'FY27E consensus free cash flow',
+    actualNote: `Actual FY26 free cash flow: $${actual[0].toFixed(2)}B reported, $${actual[1].toFixed(2)}B after removing NVIDIA’s circular outflows, and $${actual[2].toFixed(2)}B after also removing third-party debt.`,
+    forwardNote: `Consensus FY27E free cash flow of $${forward[0].toFixed(2)}B, minus $${(forward[0] - forward[1]).toFixed(2)}B of NVIDIA’s circular outflows and $${(forward[1] - forward[2]).toFixed(2)}B of third-party debt for the stricter paths.`,
+    impliedNoteSuffix:
+      'Whichever starting point you use, the price requires roughly the same cash flow a decade out.',
+    assumptionNote:
+      'NVIDIA’s equity stakes are given no value, consistent with treating them as circular financing.',
+  };
 }
+
+const reverseDcf = buildReverseDcf();
 
 const EPS_EST = 9.31;
 const FCF_PER_SHARE_EST = 8.03;
@@ -658,6 +596,7 @@ function buildDynamicFinancials(price: number) {
   const peg = +(pe / epsGrowth).toFixed(2);
   return {
     ...financials,
+    reverseDcf,
     keyMetrics: financials.keyMetrics.flatMap(m =>
       m === dilutedEps ? [m, adjustedEpsMetric] : [m]
     ),
@@ -716,7 +655,7 @@ export function NvdaPage() {
       hero={h}
       heroAddon={addon}
       financials={dynamicFinancials}
-      extraSections={[...nvdaSections, ...buildReverseDcfSections(price)]}
+      extraSections={nvdaSections}
       figuresDate='last Sunday of January'
       footer={footer}
     />

@@ -7,6 +7,26 @@ const adjustedNotes: Record<string, string> = {
 };
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Thomson Reuters',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 2.017,
+        forward: 2.1,
+      },
+    ],
+    startNote: 'management’s FY26E free cash flow guidance',
+    forwardNote:
+      'Management guidance of about $2.1B of FY26 free cash flow, unchanged at Q2 2026.',
+    sharesOutstanding: 0.4332,
+    netCash: -2.36,
+    netCashSource:
+      '$2.94B of debt minus $0.58B of cash, Q2 2026 report; lease liabilities are excluded',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   criticalMetrics: [
     {

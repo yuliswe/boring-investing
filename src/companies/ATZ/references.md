@@ -64,3 +64,9 @@ and the
 - Consensus EPS, net income, free cash flow and revenue from
   [MarketScreener](https://www.marketscreener.com/quote/stock/ARITZIA-INC-31497418/finances/),
   retrieved 2 October 2026.
+
+## Reverse DCF
+
+- Shares outstanding (0.1146B): stockanalysis.com, October 2026, <https://stockanalysis.com/quote/tsx/atz/>
+- Net cash (0.528B): CA$0.53B of cash and no borrowings, Q2 FY27 report
+- Starting value: Consensus FY27E free cash flow of CA$0.719B from 7 analysts (stockanalysis.com, 8 October 2026), above the CA$0.638B in the Cash Flow section after revenue guidance was raised at Q2.

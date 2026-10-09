@@ -240,6 +240,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Coca-Cola',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 5.296,
+        forward: 12.4,
+      },
+    ],
+    startNote: 'management’s FY26E free cash flow guidance',
+    actualNote:
+      'Actual FY25 free cash flow of $5.30B, after the $6.1B fairlife contingent payment; about $11.4B without it.',
+    forwardNote:
+      'Management guidance of about $12.4B of FY26 free cash flow ($14.6B of operating cash flow less $2.2B of capital spending), raised at Q2 2026.',
+    sharesOutstanding: 4.3,
+    netCash: -27.17,
+    netCashSource:
+      '$43.54B of debt minus $16.37B of cash, short-term investments, and marketable securities, Q2 2026 10-Q; equity-method stakes are excluded',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E revenue of $49.72B is the consensus analyst estimate from stockanalysis.com as of 30 September 2026, because Coca-Cola guides organic and comparable revenue growth rather than a dollar figure. FY26E EPS of $3.29 applies the midpoint of Coca-Cola’s comparable (non-GAAP) EPS growth guidance of 9% to 10%, raised on 28 July 2026, to FY25 comparable EPS of $3.00; the company does not guide GAAP EPS. FY26E free cash flow of $12.4B is company guidance ($14.6B of operating cash flow less $2.2B of capital expenditures). P/E and P/FCF recalculate from the adjusted price.',

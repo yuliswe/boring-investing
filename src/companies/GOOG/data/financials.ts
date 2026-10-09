@@ -278,6 +278,41 @@ export const offBalanceSheetCommitments = {
 };
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Alphabet',
+    actualYear: 'CY25',
+    forwardYear: 'CY26E',
+    metric: 'cash flow',
+    metricShort: 'Cash flow',
+    paths: [
+      {
+        label: 'Free cash flow',
+        column: 'Free cash flow',
+        phrase: 'on consensus free cash flow',
+        actual: 73.266,
+        forward: 7.78,
+      },
+      {
+        label: 'After-tax operating income',
+        column: 'After-tax op. income',
+        phrase: 'on after-tax operating income',
+        actual: 105.78,
+        forward: 131.94,
+      },
+    ],
+    startNote: 'CY26E consensus',
+    actualNote:
+      'Actual CY25 free cash flow of $73.27B, and operating income of $129.0B less 18% tax.',
+    forwardNote:
+      'Consensus CY26E free cash flow of $7.78B, crushed by $195–205B of guided capital spending, and consensus operating income of $160.9B less 18% tax.',
+    sharesOutstanding: 12.23,
+    netCash: 142.3,
+    netCashSource:
+      '$242.5B of cash, cash equivalents, and marketable securities minus $100.2B of debt, Q2 2026 10-Q; non-marketable stakes are excluded',
+    assumptionNote:
+      'Net income is not used because 2026 includes more than $130B of gains on equity investments. After-tax operating income applies an 18% tax rate to operating income. It stands in for the cash the business would produce if capital spending fell to the level of depreciation.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['CY26E'],
   estimateNote:
     'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income, capex) are annualized from filed H1 2026 10-Q reports. EPS, FCF per share, and FCF margin use consensus analyst estimates. Net margin and P/FCF are omitted for CY26E because $80B+ in non-operating gains inflates net income well above operating income, and the resulting P/FCF of ~490 is not a meaningful valuation metric. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',

@@ -80,3 +80,10 @@ income ÷ revenue. FCF margin = FCF ÷ revenue.
   P/FCF ratio better reflects the company's cash economics.
 - The FY20 operating income is an estimate and should be verified against the
   filed financial statements.
+
+## Reverse DCF
+
+- Shares outstanding (0.02119B): stockanalysis.com, October 2026, <https://stockanalysis.com/quote/tsx/csu/>
+- Net cash (-2.5B): US$4.20B of debt (US$1.47B with recourse to CSI, including the debentures, plus US$2.72B without) and US$1.19B of IRGA liability, minus US$2.89B of cash, Q2 2026 report
+- Starting value: Consensus FY26E free cash flow of US$2.97B. No consensus exists for FCFA2S, so its FY26E value annualises the US$1.08B earned in the first half of 2026.
+- FX: CA$1.424 per US$1, Bank of Canada, 8 October 2026

@@ -56,3 +56,9 @@ Store counts and comparable sales growth come from the 10-K MD&A. The fiscal
 - Consensus revenue, operating income, net income, EPS, gross margin and free
   cash flow for fiscal 2026 from 30 analysts on
   [stockanalysis.com](https://stockanalysis.com/stocks/lulu/forecast/).
+
+## Reverse DCF
+
+- Shares outstanding (0.1107B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/lulu/>
+- Net cash (1.39B): $1.39B of cash and no debt, Q2 FY26 report
+- Starting value: Consensus FY26E free cash flow of $0.918B from 31 analysts (stockanalysis.com, October 2026), with earnings guided down and capital spending raised for a distribution centre.

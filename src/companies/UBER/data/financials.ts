@@ -100,6 +100,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Uber',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 9.76,
+        forward: 10.49,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $10.49B, as in the Cash Flow section.',
+    sharesOutstanding: 2.04,
+    netCash: -7.33,
+    netCashSource:
+      '$12.72B of debt minus $5.39B of cash, cash equivalents, and short-term investments, Q2 2026 10-Q; about $12.5B of equity stakes are given no value',
+    assumptionNote:
+      'Free cash flow does not deduct about $1.9B a year of stock-based compensation, so it overstates owner cash flow.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   criticalMetrics: [
     {

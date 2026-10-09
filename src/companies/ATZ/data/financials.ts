@@ -1,6 +1,28 @@
 import type { RetailFinancials } from '@/templates/RetailTemplate';
 
 const financials: RetailFinancials = {
+  reverseDcf: {
+    companyName: 'Aritzia',
+    actualYear: 'FY26',
+    forwardYear: 'FY27E',
+    reportingCurrency: 'CA$',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 0.538,
+        forward: 0.719,
+      },
+    ],
+    startNote: 'consensus FY27E free cash flow',
+    forwardNote:
+      'Consensus FY27E free cash flow of CA$0.719B from 7 analysts (stockanalysis.com, 8 October 2026), above the CA$0.638B in the Cash Flow section after revenue guidance was raised at Q2.',
+    sharesOutstanding: 0.1146,
+    netCash: 0.528,
+    netCashSource: 'CA$0.53B of cash and no borrowings, Q2 FY27 report',
+    assumptionNote:
+      'Under IFRS 16, free cash flow leaves out about CA$0.1B a year of lease principal.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   currency: 'CA$',
   guidanceYears: ['FY27E'],
   metricGroups: {
