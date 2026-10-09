@@ -43,3 +43,9 @@ the latest filing that presents a given year:
 - Revenue $50.88B, net income $9.35B, free cash flow $7.56B, non-GAAP EPS
   $7.58: stockanalysis.com/stocks/amd/forecast/ (49 analysts, as of
   30 September 2026).
+
+## Reverse DCF
+
+- Shares outstanding (1.63B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/amd/>
+- Net cash (9.89B): $13.11B of cash, cash equivalents, and short-term investments minus $3.23B of debt, Q2 2026 10-Q
+- Starting value: Consensus FY26E free cash flow of $7.56B, as in the Cash Flow section.

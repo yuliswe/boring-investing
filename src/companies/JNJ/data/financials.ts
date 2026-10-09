@@ -249,6 +249,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Johnson & Johnson',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 19.698,
+        forward: 23.62,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $23.62B (stockanalysis.com, 8 October 2026). Johnson & Johnson gives no free cash flow guidance.',
+    sharesOutstanding: 2.41,
+    netCash: -28.28,
+    netCashSource:
+      '$49.04B of debt minus $20.76B of cash, cash equivalents, and marketable securities, Q2 2026 10-Q',
+    assumptionNote:
+      'An unresolved talc settlement could swing any single year’s free cash flow.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E revenue of $101.1B is the midpoint of Johnson & Johnson’s reported-sales guidance, raised on 15 July 2026. FY26E EPS of $11.68 is the midpoint of its adjusted (non-GAAP) EPS guidance, which excludes intangible amortization and special items; the company does not guide GAAP EPS. FY26E free cash flow of $25.15B is the consensus analyst estimate from stockanalysis.com as of 2 October 2026. P/E and P/FCF recalculate from the adjusted price.',

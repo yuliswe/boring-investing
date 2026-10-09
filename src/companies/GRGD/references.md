@@ -68,3 +68,9 @@ inventory is not in the filed statements.
   FY26).
 - The current price (CA$53.78, 2 October 2026) and prior close (CA$52.98)
   come from [Yahoo Finance](https://finance.yahoo.com/quote/GRGD.TO/).
+
+## Reverse DCF
+
+- Shares outstanding (0.1088B): stockanalysis.com, October 2026, <https://stockanalysis.com/quote/tsx/grgd/>
+- Net cash (0.032B): CA$0.03B of cash with the revolver undrawn, Q2 FY26 MD&A
+- Starting value: Consensus FY26E free cash flow of CA$0.333B from 12 analysts (stockanalysis.com, October 2026).

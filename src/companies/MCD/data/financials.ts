@@ -1,6 +1,26 @@
 import type { RetailFinancials } from '@/templates/RetailTemplate';
 
 const financials: RetailFinancials = {
+  reverseDcf: {
+    companyName: 'McDonald’s',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 7.186,
+        forward: 7.29,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $7.29B (stockanalysis.com, 8 October 2026).',
+    sharesOutstanding: 0.7076,
+    netCash: -39.04,
+    netCashSource:
+      '$39.86B of debt minus $0.82B of cash, Q2 2026 10-Q; $14.7B of lease liabilities are excluded because free cash flow is already struck after rent',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   criticalMetrics: [
     {

@@ -220,6 +220,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Micron',
+    actualYear: 'FY26',
+    forwardYear: 'FY27E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 58.963,
+        forward: 140.37,
+      },
+    ],
+    startNote: 'consensus FY27E free cash flow',
+    forwardNote:
+      'Consensus FY27E free cash flow of $140.37B, as in the Cash Flow section.',
+    sharesOutstanding: 1.13,
+    netCash: 38.26,
+    netCashSource:
+      '$43.43B of cash, cash equivalents, and short-term investments minus $5.18B of debt, FY26 results; $30.0B of long-term marketable investments are excluded',
+    assumptionNote:
+      'Memory is deeply cyclical and FY27E sits near the top of a pricing cycle (free cash flow was -$6.1B in FY23), so the starting year is likely above a normal level.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY27E'],
   estimateNote:
     'FY27E values use consensus analyst estimates from stockanalysis.com (43 analysts as of 2 October 2026). Revenue, EPS, and FCF are consensus figures; net income and per-share FCF use the ~1.15B diluted shares in management’s FQ1-27 guidance. P/E and P/FCF recalculate from the adjusted price.',

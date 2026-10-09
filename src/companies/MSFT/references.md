@@ -67,3 +67,9 @@ proportionally, so they represent the cash portion of each cost category.
 - All dollar figures in `data/financials.json` and `data/segments.json` are
   in billions of USD, rounded to one decimal.
 - Figures are fiscal-year values (Microsoft's fiscal year ends 30 June).
+
+## Reverse DCF
+
+- Shares outstanding (7.43B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/msft/>
+- Net cash (36.55B): $76.84B of cash, cash equivalents, and short-term investments minus $40.29B of debt, FY26 10-K; $66.6B of data-centre finance leases are excluded
+- Starting value: Consensus FY27E free cash flow of $32.34B, roughly halved by AI capital spending, and consensus operating income of $182.2B less 18% tax.

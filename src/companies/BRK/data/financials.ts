@@ -101,6 +101,30 @@ export const expenseLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Berkshire Hathaway',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    metric: 'operating earnings',
+    metricShort: 'Op. earnings',
+    paths: [
+      {
+        label: 'Operating earnings',
+        actual: 44.49,
+        forward: 46.4,
+      },
+    ],
+    startNote: 'consensus FY26E operating earnings',
+    forwardNote:
+      'Consensus FY26E operating earnings of about $46.4B (operating EPS of $32,482 per Class A share); the first half of 2026 produced $24.33B.',
+    sharesOutstanding: 2.14,
+    sharesSource: 'Class B equivalents, stockanalysis.com, October 2026',
+    netCash: 0,
+    netCashSource:
+      'set to zero because operating earnings already include interest and dividends on the $365.5B of cash and Treasury bills, which $177.5B of insurance float helps fund',
+    assumptionNote:
+      'Operating earnings replace free cash flow because Berkshire’s capital spending mostly funds regulated rail and utility assets; they exclude investment gains.',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E operating EPS of $22.93 and revenue of $418.3B are from a single analyst estimate (StockAnalysis, September 2026). Berkshire does not provide earnings guidance, and analyst coverage is extremely thin. GAAP net income for FY26E ($44.5B) is from the consensus GAAP EPS of $20.61 (Seeking Alpha), but GAAP earnings are dominated by unpredictable investment gains and losses and should not be used for valuation.',

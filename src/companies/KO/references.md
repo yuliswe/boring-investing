@@ -40,3 +40,9 @@
   guidance in the Q2 2026 earnings release
 - Revenue ($49.72B): stockanalysis.com/stocks/ko/forecast/ (consensus as of
   30 September 2026)
+
+## Reverse DCF
+
+- Shares outstanding (4.3B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/ko/>
+- Net cash (-27.17B): $43.54B of debt minus $16.37B of cash, short-term investments, and marketable securities, Q2 2026 10-Q; equity-method stakes are excluded
+- Starting value: Management guidance of about $12.4B of FY26 free cash flow ($14.6B of operating cash flow less $2.2B of capital spending), raised at Q2 2026.

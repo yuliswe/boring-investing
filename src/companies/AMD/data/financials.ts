@@ -198,6 +198,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'AMD',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 6.735,
+        forward: 7.56,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $7.56B, as in the Cash Flow section.',
+    sharesOutstanding: 1.63,
+    netCash: 9.89,
+    netCashSource:
+      '$13.11B of cash, cash equivalents, and short-term investments minus $3.23B of debt, Q2 2026 10-Q',
+    assumptionNote:
+      'Free cash flow lags a revenue ramp of more than 40% a year, so the starting year understates steady-state cash generation.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E values use consensus analyst estimates from stockanalysis.com (49 analysts as of 30 September 2026). Consensus EPS there is non-GAAP, so the GAAP EPS shown here is consensus net income of $9.35B divided by the 1.659B diluted shares from the Q2 2026 10-Q. P/E and P/FCF recalculate from the adjusted price.',

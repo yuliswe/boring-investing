@@ -7,6 +7,7 @@ import type {
   HeroData,
   FooterData,
   SectionData,
+  ReverseDcfData,
 } from '@/templates/base';
 
 type TrendMetric = {
@@ -82,6 +83,7 @@ const METRIC_GROUP_SECTIONS = [
 ] as const;
 
 export type RetailFinancials = {
+  reverseDcf?: ReverseDcfData;
   currency?: string;
   guidanceYears?: string[];
   criticalMetrics?: TrendMetric[];
@@ -339,6 +341,7 @@ export function RetailTemplate({
       deducedExpenseLines={financials.expensesDeducedLines}
       expensesGuidanceCount={expensesGuidanceCount}
       cashFlow={financials.cashFlow}
+      reverseDcf={financials.reverseDcf}
       figuresDate={figuresDate}
       footer={footer}
     >

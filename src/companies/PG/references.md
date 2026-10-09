@@ -46,3 +46,9 @@
   release (midpoints, see `CLAUDE.md`)
 - For reference, stockanalysis.com consensus as of 1 October 2026 was FY27
   revenue of $88.81B and EPS of $6.98, with no free cash flow consensus shown.
+
+## Reverse DCF
+
+- Shares outstanding (2.32B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/pg/>
+- Net cash (-24.2B): $34.14B of debt minus $9.94B of cash, FY26 10-K
+- Starting value: FY27E free cash flow of $14.46B, derived from guidance of 85–90% adjusted free cash flow productivity on 1–5% EPS growth; consensus is higher at $15.49B.

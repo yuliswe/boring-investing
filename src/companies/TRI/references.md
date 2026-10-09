@@ -49,3 +49,9 @@
   and SEC filings for continuing operations.
 - Capital expenditures for FY17–FY18 ($519M and $576M) are from the FY18
   Q4 earnings release, restated for continuing operations.
+
+## Reverse DCF
+
+- Shares outstanding (0.4332B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/tri/>
+- Net cash (-2.36B): $2.94B of debt minus $0.58B of cash, Q2 2026 report; lease liabilities are excluded
+- Starting value: Management guidance of about $2.1B of FY26 free cash flow, unchanged at Q2 2026.

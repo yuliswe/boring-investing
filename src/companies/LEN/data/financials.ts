@@ -227,6 +227,37 @@ export const peers = {
 };
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Lennar',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Consensus free cash flow',
+        column: 'Consensus',
+        phrase: 'from consensus FY26E free cash flow',
+        actual: 0.028,
+        forward: 0.632,
+      },
+      {
+        label: 'Normalised free cash flow',
+        column: 'Normalised',
+        phrase: 'from normalised free cash flow',
+        actual: 0.028,
+        forward: 2.33,
+      },
+    ],
+    startNote: 'either consensus FY26E free cash flow or the FY17–FY25 average',
+    forwardNote:
+      'Consensus FY26E free cash flow of $0.63B, near the bottom of the land cycle, and a normalised $2.33B, the FY17–FY25 average.',
+    sharesOutstanding: 0.2379,
+    netCash: -3.15,
+    netCashSource:
+      '$4.30B of homebuilding debt minus $1.15B of homebuilding cash, Q3 FY26 10-Q; mortgage warehouse debt is excluded because loans held for sale back it',
+    assumptionNote:
+      'Homebuilder free cash flow swings by billions with land and inventory spending, so a single year says more about the land cycle than about earning power.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E revenue of $31.54B and net income of $1.17B are consensus analyst estimates from stockanalysis.com (S&P Global, as of 1 October 2026). Consensus EPS there is adjusted, so the GAAP EPS shown here is consensus net income divided by the 237.9M shares outstanding on the Q3 FY26 10-Q. Homes delivered is the midpoint of Lennar’s FY26 guidance of 80,000 to 81,000 homes from its Q3 FY26 earnings release. FY26E P/TBV uses tangible book value at 31 August 2026 and recalculates from the adjusted price.',

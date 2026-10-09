@@ -55,3 +55,9 @@ latest filing that presents a given year:
   (S&P Global, updated 1 October 2026).
 - FY26 delivery guidance of 80,000 to 81,000 homes: Q3 FY26 earnings release,
   8-K Exhibit 99.1 (0001628280-26-062287), filed 16 September 2026.
+
+## Reverse DCF
+
+- Shares outstanding (0.2379B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/len/>
+- Net cash (-3.15B): $4.30B of homebuilding debt minus $1.15B of homebuilding cash, Q3 FY26 10-Q; mortgage warehouse debt is excluded because loans held for sale back it
+- Starting value: Consensus FY26E free cash flow of $0.63B, near the bottom of the land cycle, and a normalised $2.33B, the FY17–FY25 average.

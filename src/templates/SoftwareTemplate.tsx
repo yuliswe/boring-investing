@@ -7,6 +7,7 @@ import type {
   HeroData,
   FooterData,
   SectionData,
+  ReverseDcfData,
 } from '@/templates/base';
 
 type TrendMetric = {
@@ -26,6 +27,7 @@ export type SegmentData<T extends { year: string }> = {
 };
 
 export type SoftwareFinancials = {
+  reverseDcf?: ReverseDcfData;
   guidanceYears?: string[];
   estimateNote?: string;
   criticalMetrics: TrendMetric[];
@@ -230,6 +232,7 @@ export function SoftwareTemplate({
       expensesGuidanceCount={expensesGuidanceCount}
       guidanceDesc={estimateNote}
       cashFlow={financials.cashFlow}
+      reverseDcf={financials.reverseDcf}
       figuresDate={figuresDate}
       footer={footer}
     >

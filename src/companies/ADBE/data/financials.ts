@@ -250,6 +250,26 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Adobe',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 9.852,
+        forward: 10.44,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $10.44B from 34 analysts (stockanalysis.com, October 2026).',
+    sharesOutstanding: 0.3892,
+    netCash: -0.75,
+    netCashSource:
+      '$6.39B of debt minus $5.64B of cash, cash equivalents, and short-term investments, Q3 FY26 10-Q',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   criticalMetrics: [
     {

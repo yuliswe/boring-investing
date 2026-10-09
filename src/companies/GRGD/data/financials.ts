@@ -1,6 +1,28 @@
 import type { RetailFinancials } from '@/templates/RetailTemplate';
 
 const financials: RetailFinancials = {
+  reverseDcf: {
+    companyName: 'Groupe Dynamite',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    reportingCurrency: 'CA$',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 0.335,
+        forward: 0.333,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of CA$0.333B from 12 analysts (stockanalysis.com, October 2026).',
+    sharesOutstanding: 0.1088,
+    netCash: 0.032,
+    netCashSource: 'CA$0.03B of cash with the revolver undrawn, Q2 FY26 MD&A',
+    assumptionNote:
+      'Under IFRS 16, free cash flow leaves out lease principal, so it overstates the cash available to owners.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   currency: 'CA$',
   guidanceYears: ['FY26E'],
   metricGroups: {

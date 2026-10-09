@@ -37,3 +37,9 @@
   the Q2 2026 earnings release
 - Free cash flow ($25.15B): stockanalysis.com/stocks/jnj/forecast/
   (consensus as of 2 October 2026)
+
+## Reverse DCF
+
+- Shares outstanding (2.41B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/jnj/>
+- Net cash (-28.28B): $49.04B of debt minus $20.76B of cash, cash equivalents, and marketable securities, Q2 2026 10-Q
+- Starting value: Consensus FY26E free cash flow of $23.62B (stockanalysis.com, 8 October 2026). Johnson & Johnson gives no free cash flow guidance.

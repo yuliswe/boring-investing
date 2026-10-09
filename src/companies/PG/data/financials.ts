@@ -215,6 +215,25 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Procter & Gamble',
+    actualYear: 'FY26',
+    forwardYear: 'FY27E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 15.147,
+        forward: 14.46,
+      },
+    ],
+    startNote: 'FY27E free cash flow implied by management guidance',
+    forwardNote:
+      'FY27E free cash flow of $14.46B, derived from guidance of 85–90% adjusted free cash flow productivity on 1–5% EPS growth; consensus is higher at $15.49B.',
+    sharesOutstanding: 2.32,
+    netCash: -24.2,
+    netCashSource: '$34.14B of debt minus $9.94B of cash, FY26 10-K',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY27E'],
   estimateNote:
     'FY27E figures come from P&G’s fiscal 2027 guidance, issued 29 July 2026. Revenue of $88.77B applies the 2% midpoint of the 1%–3% all-in sales growth range to FY26 net sales. EPS of $6.82 applies the 3% midpoint of the 1%–5% GAAP diluted EPS growth range to FY26 EPS of $6.62. Free cash flow of $14.46B applies the 87.5% midpoint of the 85%–90% adjusted free cash flow productivity range to the net earnings that EPS implies at FY26 diluted shares. P/E and P/FCF recalculate from the adjusted price.',

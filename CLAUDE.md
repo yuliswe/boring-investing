@@ -73,7 +73,10 @@ public/
    the object directly.
 3. Create `src/app/<SYMBOL>/page.tsx` that imports the data and renders the
    chosen template. Use `MSFT` as the reference implementation.
-4. Add any stock-only sections under `src/companies/<SYMBOL>/components/`.
+4. Fill in `reverseDcf` on the financials object (shares outstanding, net
+   cash, the latest actual and forward-year free cash flow, with sources in
+   `references.md`), so the base template renders the reverse DCF sections.
+5. Add any stock-only sections under `src/companies/<SYMBOL>/components/`.
 
 ## Imports and paths
 

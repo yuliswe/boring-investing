@@ -3,6 +3,7 @@
 import { Banner, Tag, Text, ThemeToggle } from '@/design-system';
 import type { ReactNode } from 'react';
 import { LabelPopoverProvider } from './LabelPopover';
+import { buildReverseDcfSections, type ReverseDcfData } from './reverseDcf';
 import type {
   NavbarData,
   HeroData,
@@ -496,6 +497,7 @@ export type BaseTemplateProps = {
   expensesGuidanceCount?: number;
   guidanceDesc?: string;
   cashFlow?: CashFlowRowData[];
+  reverseDcf?: ReverseDcfData;
   figuresDate?: string;
   footer?: FooterData;
   children?: ReactNode;
@@ -515,6 +517,7 @@ export function BaseTemplate({
   expensesGuidanceCount = 0,
   guidanceDesc,
   cashFlow,
+  reverseDcf,
   figuresDate,
   footer,
   children,
@@ -541,6 +544,10 @@ export function BaseTemplate({
         )
       );
     }
+  }
+
+  if (reverseDcf) {
+    baseSections.push(...buildReverseDcfSections(reverseDcf, hero.price));
   }
 
   const merged = [...sections, ...baseSections, ...(childSections || [])].sort(

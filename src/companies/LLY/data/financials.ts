@@ -121,6 +121,28 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Eli Lilly',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 8.97,
+        forward: 23.13,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $23.13B (stockanalysis.com, 8 October 2026); the first half of 2026 produced $10.76B.',
+    sharesOutstanding: 0.891,
+    netCash: -45.9,
+    netCashSource:
+      '$54.91B of debt minus $9.01B of cash, cash equivalents, and short-term investments, Q2 2026 10-Q',
+    assumptionNote:
+      'Capital spending of more than $10B a year on incretin manufacturing holds free cash flow below its steady-state level.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     "FY26E revenue of $88.46B is the consensus analyst estimate from 28 analysts as of September 2026. FY26E GAAP diluted EPS of $36.93 is the consensus from 27 analysts. Lilly's own guidance (raised Q2 2026) is revenue of $85–87B and non-GAAP EPS of $35.50–$36.50. P/E recalculates from the adjusted price.",

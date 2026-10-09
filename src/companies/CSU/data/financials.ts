@@ -1,6 +1,44 @@
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Constellation Software',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    reportingCurrency: 'US$',
+    fxRate: 1.424,
+    fxSource: 'Bank of Canada, 8 October 2026',
+    metric: 'cash flow',
+    metricShort: 'Cash flow',
+    paths: [
+      {
+        label: 'Free cash flow',
+        column: 'Free cash flow',
+        phrase: 'on consolidated free cash flow',
+        actual: 2.664,
+        forward: 2.97,
+      },
+      {
+        label: 'FCFA2S',
+        column: 'FCFA2S',
+        phrase: 'on free cash flow available to shareholders',
+        actual: 1.683,
+        forward: 2.156,
+      },
+    ],
+    startNote: 'FY26E estimates',
+    actualNote:
+      'Actual FY25 free cash flow of US$2.66B, and free cash flow available to shareholders (FCFA2S) of US$1.68B after interest, leases, the IRGA revaluation, and minority interests.',
+    forwardNote:
+      'Consensus FY26E free cash flow of US$2.97B. No consensus exists for FCFA2S, so its FY26E value annualises the US$1.08B earned in the first half of 2026.',
+    sharesOutstanding: 0.02119,
+    netCash: -2.5,
+    netCashSource:
+      'US$4.20B of debt (US$1.47B with recourse to CSI, including the debentures, plus US$2.72B without) and US$1.19B of IRGA liability, minus US$2.89B of cash, Q2 2026 report',
+    assumptionNote:
+      'Consolidated free cash flow includes all of partly owned Topicus and Lumine, so FCFA2S is closer to what belongs to Constellation shareholders.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E values use consensus analyst estimates from MarketScreener (S&P Global Market Intelligence, 12 analysts as of September 2026). Revenue, operating income, and FCFA2S are consensus figures. P/FCFA2S recalculates from the adjusted price.',

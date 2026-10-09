@@ -6,7 +6,6 @@ import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
-  reverseDcfInputs,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -179,111 +178,6 @@ const nflxSections: SectionData[] = [
   },
 ];
 
-const {
-  discountRate,
-  terminalGrowth,
-  explicitYears,
-  sharesOutstanding,
-  netDebt,
-} = reverseDcfInputs;
-
-function dcfEnterpriseValue(firstYearFcf: number, growth: number): number {
-  let pv = 0;
-  let fcf = firstYearFcf;
-  for (let t = 1; t <= explicitYears; t++) {
-    if (t > 1) fcf *= 1 + growth;
-    pv += fcf / (1 + discountRate) ** t;
-  }
-  const terminal =
-    (fcf * (1 + terminalGrowth)) / (discountRate - terminalGrowth);
-  return pv + terminal / (1 + discountRate) ** explicitYears;
-}
-
-function impliedGrowth(firstYearFcf: number, enterpriseValue: number): number {
-  let lo = -0.5;
-  let hi = 2;
-  for (let i = 0; i < 100; i++) {
-    const mid = (lo + hi) / 2;
-    if (dcfEnterpriseValue(firstYearFcf, mid) > enterpriseValue) hi = mid;
-    else lo = mid;
-  }
-  return (lo + hi) / 2;
-}
-
-function buildReverseDcfSections(price: number): SectionData[] {
-  const pct = (v: number) => `${(v * 100).toFixed(1)}%`;
-  const fcf = cashFlowStatementLines.find(l => l.label === 'Free cash flow')!;
-  const fcfAt = (year: string) =>
-    fcf.values[cashFlowStatementYears.indexOf(year)]!;
-  const actual = fcfAt('FY25');
-  const forward = fcfAt('FY26E');
-  const enterpriseValue = price * sharesOutstanding + netDebt;
-  const growth = impliedGrowth(forward, enterpriseValue);
-  const pathYears = [
-    'FY25',
-    ...Array.from({ length: explicitYears }, (_, t) => `FY${26 + t}E`),
-  ];
-  const path = [
-    actual,
-    ...Array.from(
-      { length: explicitYears },
-      (_, t) => +(forward * (1 + growth) ** t).toFixed(2)
-    ),
-  ];
-  const lastYear = pathYears.at(-1)!;
-  const assumptions = `Discount rate ${pct(discountRate)}, terminal growth ${pct(terminalGrowth)} after ${lastYear}, ${sharesOutstanding}B shares (${reverseDcfInputs.sharesSource}), and $${netDebt}B of net debt (${reverseDcfInputs.netDebtSource}).`;
-  const perShare = (g: number) =>
-    `$${((dcfEnterpriseValue(forward, g) - netDebt) / sharesOutstanding).toFixed(0)}`;
-  return [
-    {
-      rank: 700,
-      id: 'reverse-dcf',
-      title: `Reverse DCF at ${discountRate * 100}%`,
-      kicker: `The free cash flow growth that today’s $${price.toFixed(2)} share price requires at a ${pct(discountRate)} discount rate: ${pct(growth)} a year. The path starts from management’s FY26E free cash flow guidance and grows at the implied rate for nine more years.`,
-      kind: 'multi',
-      years: pathYears,
-      mode: 'absolute',
-      guidanceCount: explicitYears,
-      yearNotes: {
-        FY25: `Actual FY25 free cash flow of $${actual.toFixed(2)}B.`,
-        FY26E: `Management guidance of about $${forward.toFixed(1)}B of FY26 free cash flow, reaffirmed in the Q2 2026 letter.`,
-        [lastYear]: `The ${lastYear} free cash flow that the current price implies: $${path.at(-1)!.toFixed(0)}B.`,
-      },
-      series: [
-        {
-          label: 'Free cash flow',
-          desc: `Grows at ${pct(growth)} a year after FY26E, the rate at which the discounted cash flows equal today’s enterprise value of $${enterpriseValue.toFixed(0)}B.`,
-          values: path,
-          format: { prefix: '$', suffix: 'B', decimals: 0 },
-          bold: true,
-        },
-      ],
-      chartNote: `${assumptions} The implied rate recalculates when the price is adjusted.`,
-    },
-    {
-      rank: 710,
-      id: 'reverse-dcf-values',
-      title: `Value per Share at ${discountRate * 100}%`,
-      kicker: `What one Netflix share is worth at a ${pct(discountRate)} discount rate for a range of free cash flow growth rates, compared with the current price of $${price.toFixed(2)}.`,
-      kind: 'table',
-      firstColumn: 'FCF growth, FY27–FY35',
-      columns: ['Value per share'],
-      rows: [
-        ...reverseDcfInputs.scenarioGrowthRates.map(g => ({
-          label: `${(g * 100).toFixed(0)}% a year`,
-          values: [perShare(g)],
-        })),
-        {
-          label: `Growth implied by $${price.toFixed(2)}`,
-          desc: 'The growth rate at which the value per share equals the current price.',
-          values: [pct(growth)],
-        },
-      ],
-      tableNote: assumptions,
-    },
-  ];
-}
-
 const EPS_EST = 3.59;
 const FCF_PER_SHARE_EST = 3.02;
 const PRIOR_EPS = 2.53;
@@ -369,7 +263,7 @@ export function NflxPage() {
       hero={h}
       heroAddon={addon}
       financials={dynamicFinancials}
-      extraSections={[...nflxSections, ...buildReverseDcfSections(price)]}
+      extraSections={nflxSections}
       figuresDate='31 December'
       footer={footer}
     />

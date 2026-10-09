@@ -128,6 +128,31 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Amazon',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    metric: 'after-tax operating income',
+    metricShort: 'Earnings',
+    paths: [
+      {
+        label: 'After-tax operating income',
+        actual: 65.58,
+        forward: 90.09,
+      },
+    ],
+    startNote: 'consensus FY26E operating income after an 18% tax charge',
+    actualNote: 'FY25 operating income of $79.98B less 18% tax.',
+    forwardNote:
+      'Consensus FY26E operating income of $109.87B less 18% tax. Consensus FY26E free cash flow is about -$34B because of AI capital spending, so it cannot anchor a DCF.',
+    sharesOutstanding: 10.79,
+    netCash: -9.2,
+    netCashSource:
+      '$132.2B of debt minus $123.0B of cash, cash equivalents, and marketable securities, Q2 2026 10-Q, with lease liabilities and private stakes excluded',
+    assumptionNote:
+      'After-tax operating income applies an 18% tax rate to operating income. It stands in for the cash the business would produce if capital spending fell to the level of depreciation.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E revenue of $828.49B and diluted EPS of $8.15 are consensus analyst estimates from 55 analysts as of September 2026. FY26E operating income of $109.87B is the consensus estimate. P/E recalculates from the adjusted price.',

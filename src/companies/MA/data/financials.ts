@@ -166,6 +166,26 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'Mastercard',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 16.433,
+        forward: 16.98,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $16.98B (stockanalysis.com, October 2026).',
+    sharesOutstanding: 0.876,
+    netCash: -13.03,
+    netCashSource:
+      '$24.64B of debt minus $11.61B of cash and investments, Q2 2026 10-Q',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E EPS of $19.93 and revenue of $37.26B are consensus analyst estimates from 37 analysts as of September 2026. FY26E FCF per share is estimated from consensus free cash flow. P/E and P/FCF recalculate from the adjusted price.',

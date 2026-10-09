@@ -12,3 +12,9 @@
 - The forward P/E and P/FCF ratios use these consensus estimates with the
   default stock price, and recalculate reactively when the price adjuster
   changes.
+
+## Reverse DCF
+
+- Shares outstanding (2.04B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/uber/>
+- Net cash (-7.33B): $12.72B of debt minus $5.39B of cash, cash equivalents, and short-term investments, Q2 2026 10-Q; about $12.5B of equity stakes are given no value
+- Starting value: Consensus FY26E free cash flow of $10.49B, as in the Cash Flow section.

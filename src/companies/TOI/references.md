@@ -81,3 +81,10 @@ exchange rates. FCFA2S per share = FCFA2S ÷ diluted shares outstanding
   performance.
 - FY25 net income of €70 million was depressed by a €222 million equity method
   revaluation charge related to the Asseco Poland investment.
+
+## Reverse DCF
+
+- Shares outstanding (0.1298B): 83.3M subordinate voting shares plus 46.5M exchangeable Topicus Coop units, Q1 2026 statements, <https://stockanalysis.com/quote/tsxv/toi/>
+- Net cash (-0.144B): €0.47B of term loans and revolver minus €0.32B of cash, Q2 2026 report
+- Starting value: Consensus FY26E free cash flow of €0.39B from 3 analysts (stockanalysis.com, October 2026).
+- FX: CA$1.595 per €1, Bank of Canada, 8 October 2026

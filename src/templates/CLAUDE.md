@@ -17,6 +17,16 @@ it, computing each income-statement line as a share of revenue. When both
 D&A and SBC are stripped from the operating lines proportionally, and cash
 taxes paid, working-capital changes, and capital expenditures are added.
 
+When the financials carry `reverseDcf` (`ReverseDcfData` from
+`base/reverseDcf.ts`), `BaseTemplate` also builds "Reverse DCF at 10%" (rank 700) and "Value per Share at 10%" (rank 710). Both read the price from
+`hero.price`, so they follow the price adjuster without extra wiring. Cash
+flows, `netCash` (negative for net debt) and `sharesOutstanding` are in
+billions; cash flows and net cash are in the reporting currency, and `fxRate`
+converts them into the trading currency when the two differ. Each entry in
+`paths` is one projected cash flow series that starts from its `forward`
+value, so a company can show an adjusted measure beside reported free cash
+flow.
+
 A child template (e.g. `SoftwareTemplate`) builds its own sections from typed
 financial data and passes them as `sections` to `BaseTemplate`. Any
 stock-specific sections from the page come through as `childSections`. Both

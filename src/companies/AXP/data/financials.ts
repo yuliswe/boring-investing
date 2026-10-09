@@ -106,6 +106,30 @@ export const cashFlowStatementLines = [
 ];
 
 const financials: SoftwareFinancials = {
+  reverseDcf: {
+    companyName: 'American Express',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    metric: 'net income',
+    metricShort: 'Net income',
+    paths: [
+      {
+        label: 'Net income',
+        actual: 10.833,
+        forward: 12.0,
+      },
+    ],
+    startNote: 'consensus FY26E net income',
+    forwardNote:
+      'Consensus FY26E net income of $12.0B (EPS of $17.64), inside management’s reaffirmed guidance of $17.30–17.90.',
+    sharesOutstanding: 0.6753,
+    netCash: 0,
+    netCashSource:
+      'set to zero because cash is funded by customer deposits and debt funds card loans, so neither is surplus capital',
+    assumptionNote:
+      'Net income replaces free cash flow because a card lender’s operating cash flow swings with loan and deposit growth.',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   estimateNote:
     'FY26E EPS of $17.67 and net income of $12.0B are consensus analyst estimates from 23 analysts as of September 2026. FY26E revenue of $79.49B is the consensus estimate. P/E recalculates from the adjusted price.',

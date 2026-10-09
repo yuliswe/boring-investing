@@ -1,6 +1,26 @@
 import type { RetailFinancials } from '@/templates/RetailTemplate';
 
 const financials: RetailFinancials = {
+  reverseDcf: {
+    companyName: 'PepsiCo',
+    actualYear: 'FY25',
+    forwardYear: 'FY26E',
+    paths: [
+      {
+        label: 'Free cash flow',
+        actual: 7.67,
+        forward: 10.53,
+      },
+    ],
+    startNote: 'consensus FY26E free cash flow',
+    forwardNote:
+      'Consensus FY26E free cash flow of $10.53B, as in the Cash Flow section. Most of the increase comes from lower capital spending rather than higher earnings.',
+    sharesOutstanding: 1.36,
+    netCash: -40.72,
+    netCashSource:
+      '$51.88B of debt minus $11.16B of cash, cash equivalents, and short-term investments, Q3 2026 10-Q',
+    sharesSource: 'stockanalysis.com, October 2026',
+  },
   guidanceYears: ['FY26E'],
   criticalMetrics: [
     {

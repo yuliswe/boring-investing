@@ -315,15 +315,11 @@ export const circularOutflowYearDetails: Record<string, string> = {
 };
 
 export const reverseDcfInputs = {
-  discountRate: 0.1,
-  terminalGrowth: 0.025,
-  explicitYears: 10,
   sharesOutstanding: 24.15,
   sharesSource: 'stockanalysis.com, October 2026',
   netCash: 23.2,
   netCashSource:
     '$56.6B of cash, cash equivalents, and marketable debt securities minus $33.4B of debt, Q2 FY27 10-Q',
-  scenarioGrowthRates: [0.05, 0.1, 0.15, 0.2],
 };
 
 export const circularFinancingDeals = {
