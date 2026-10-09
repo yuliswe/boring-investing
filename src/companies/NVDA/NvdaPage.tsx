@@ -164,13 +164,21 @@ function buildRevenueMinusInvestingSection(): SectionData {
     id: 'revenue-minus-investing',
     title: 'Revenue Minus Investment Activities',
     kicker:
-      'Revenue and operating income after treating the cash NVIDIA spends on investing activities as circular financing, on the view that some of that money returns as revenue when the companies it funds buy NVIDIA chips.',
+      'Revenue, operating income, and net income after treating the cash NVIDIA spends on investing activities as circular financing, on the view that some of that money returns as revenue when the companies it funds buy NVIDIA chips.',
     kind: 'multi',
     years,
     mode: 'absolute',
     guidanceCount: 1,
     guidanceDesc: forwardMath,
     series: [
+      {
+        label: 'Revenue',
+        desc: 'Revenue as reported. FY27E is the consensus estimate.',
+        values: years.map(
+          year => financials.revenue.find(r => r.year === year)!.revenue
+        ),
+        format: billionFormat,
+      },
       {
         label: 'Adjusted revenue',
         desc: 'Revenue minus the net cash used in investing activities from the cash flow statement.',
