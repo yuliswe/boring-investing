@@ -122,9 +122,11 @@ function buildCashFlowStatementSection(): SectionData {
 const investingLine = cashFlowStatementLines.find(
   l => l.label === 'Investing activities'
 )!;
+const forwardThirdPartyDebt = circularOutflowLines
+  .find(l => l.label === 'Third-party debt')!
+  .values.at(-1)!;
 const forwardDeduction =
-  offBalanceSheetCommitments.equityInvestmentsDueInFY27 +
-  debtFundedDemand.total;
+  offBalanceSheetCommitments.equityInvestmentsDueInFY27 + forwardThirdPartyDebt;
 
 function circularDeduction(year: string): number | null {
   const i = cashFlowStatementYears.indexOf(year);
@@ -146,7 +148,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
   const forward = financials.revenue.find(r => r.year === 'FY27E')!;
   const billions = (v: number) => `$${v.toFixed(2)}B`;
   const forwardMath = [
-    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(debtFundedDemand.total)} of debt-funded demand, a total of ${billions(forwardDeduction)}.`,
+    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(forwardThirdPartyDebt)} of third-party debt that customers raised in FY27 to buy NVIDIA hardware, a total of ${billions(forwardDeduction)}.`,
     `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
     `Adjusted operating income = ${billions(forward.operatingIncome!)} consensus operating income − ${billions(forwardDeduction)} = ${billions(forward.operatingIncome! - forwardDeduction)}.`,
   ].join('\n');
@@ -181,7 +183,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
       },
     ],
     chartNote:
-      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA has committed to make in FY27 and the full debt-funded demand total, which includes deals from earlier years and SpaceX’s proposed loan. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
+      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA has committed to make in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware, through October 8, 2026. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
   };
 }
 
@@ -254,13 +256,13 @@ const nvdaSections: SectionData[] = [
     id: 'debt-funded-demand',
     title: 'Debt-Funded Demand',
     kicker:
-      'Debt that customers have raised, or are raising, to buy NVIDIA chips. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
+      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through October 8, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
     kind: 'table',
     firstColumn: 'Borrower',
     columns: debtFundedDemand.columns,
     rows: debtFundedDemand.rows,
     tableNote:
-      'This list covers the deals identified so far and is not exhaustive. It counts only third-party debt. Demand that NVIDIA funds with its own money, such as the $25B of equity commitments above or the reported but unsigned talks to finance about $350B of OpenAI chip purchases, is excluded. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
+      'The table counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, which matches the third-party debt line in the chart below. Data center construction debt, such as Stargate sites and Meta’s Hyperion, and hyperscaler bonds, such as Oracle’s, are excluded because the tenant or issuer buys GPUs separately. NVIDIA links are shown only where verified. The list covers deals of about $0.2B and up and is not exhaustive. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
   },
   {
     rank: 400,
@@ -395,7 +397,7 @@ const negativeAdjustedNote =
 
 const adjustedEpsMetric = {
   label: 'Adjusted diluted EPS',
-  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments committed for FY27 and the debt-funded demand total.',
+  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments committed for FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware.',
   values: metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const eps = dilutedEps.values[i];

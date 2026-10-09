@@ -206,32 +206,61 @@ export const offBalanceSheetCommitments = {
 };
 
 export const debtFundedDemand = {
-  total: 56.7,
-  columns: ['Debt', 'Date', 'Status', 'NVIDIA link'],
+  columns: ['Debt', 'Fiscal years', 'Status', 'NVIDIA link'],
   rows: [
     {
-      label: 'SpaceX / SpaceXAI',
-      desc: 'About $10B of bank loans and $30B of investment-grade bonds to buy NVIDIA chips for SpaceXAI data centers, led by Apollo with Pimco in talks. The Financial Times and Bloomberg describe the talks as early-stage, with closing expected in 2027.\nSpaceX is rated Baa1 by Moody’s, BBB+ by Fitch, and BBB by S&P. NVIDIA holds 122.8M SpaceX shares, worth about $21B at the end of Q2 FY27, from its $10B xAI investment in January 2026.',
-      values: ['$40.0B', 'Oct 2026', 'Proposed', '$21B equity stake'],
-    },
-    {
-      label: 'Valor Compute Infrastructure (xAI)',
-      desc: 'Apollo provided $3.5B toward Valor’s $5.4B purchase of NVIDIA GB200 systems, which the vehicle leases to xAI on a triple net basis.\nNVIDIA is an anchor limited partner in the vehicle, so part of this demand is funded with NVIDIA’s own money.',
-      values: ['$3.5B', 'Jan 2026', 'Closed', 'Anchor LP'],
-    },
-    {
-      label: 'xAI chip-leasing vehicle',
-      desc: 'A $3.4B Apollo loan to a vehicle that buys NVIDIA chips and leases them to xAI, arranged by Valor Equity Partners.',
-      values: ['$3.4B', 'Feb 2026', 'Reported', '—'],
-    },
-    {
       label: 'CoreWeave',
-      desc: 'Two debt facilities led by Blackstone and Magnetar: $2.3B in August 2023, the first collateralized by NVIDIA H100s, and $7.5B in May 2024 to build out compute for signed contracts. CoreWeave has borrowed more since, so this row understates its total.\nNVIDIA owns about 11% of CoreWeave and has agreed to buy any CoreWeave capacity that goes unsold through April 2032, worth at least $6.3B.',
-      values: ['$9.8B', '2023–24', 'Closed', '~11% stake'],
+      desc: 'GPU-backed delayed-draw term loans: $2.3B (FY24, the first collateralized by NVIDIA H100s), $7.5B (FY25), $2.6B (FY26), and $8.5B, $3.1B, and $2.6B (FY27). Senior notes and convertibles: $6.34B (FY26) and $9.95B (FY27).\nNVIDIA owns about 11% of CoreWeave and has agreed to buy any CoreWeave capacity that goes unsold through April 2032, worth at least $6.3B. Some notes refinanced earlier debt.',
+      values: ['$42.9B', 'FY24–27', 'Closed', '~11% stake'],
+    },
+    {
+      label: 'Nebius',
+      desc: 'Convertible notes of $2.75B (FY26), $4.0B (FY27), and $5.75B (FY27), plus a $0.775B GPU-backed facility (FY27).',
+      values: ['$13.3B', 'FY26–27', 'Closed', '—'],
+    },
+    {
+      label: 'xAI',
+      desc: 'Notes and term loans of $5.0B (FY26). Apollo provided $3.5B to Valor Compute Infrastructure, which leases NVIDIA GB200 systems to xAI (FY26), and lent $3.4B to a second chip-leasing vehicle (FY27).\nNVIDIA is an anchor limited partner in Valor Compute Infrastructure, and its xAI investment became a SpaceX stake after the merger.',
+      values: ['$11.9B', 'FY26–27', 'Closed', 'Anchor LP'],
+    },
+    {
+      label: 'Firmus',
+      desc: 'A $10.0B facility from Blackstone and Coatue for NVIDIA-based AI factories in Australia (FY27). The facility is committed, and the amount drawn is not disclosed.',
+      values: ['$10.0B', 'FY27', 'Committed', '—'],
+    },
+    {
+      label: 'Nscale',
+      desc: 'A $1.4B delayed-draw term loan (FY27) and $3.05B of term loans for Texas and North Carolina sites (FY27) to deploy Blackwell and Rubin systems.',
+      values: ['$4.45B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'IREN',
+      desc: 'A $3.645B investment-grade GPU financing tied to its Microsoft contract (FY27).',
+      values: ['$3.6B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'Lambda',
+      desc: 'A $0.5B GPU-backed loan (FY25), a revolver of $0.275B (FY26) upsized by $0.725B (FY27), a $0.926B term loan B (FY27), and a $1.008B delayed-draw term loan for Microsoft deployments (FY27).',
+      values: ['$3.4B', 'FY25–27', 'Closed', '—'],
+    },
+    {
+      label: 'Zankore',
+      desc: 'A $3.1B loan from ING, Natixis, QNB, and UOB to buy NVIDIA chips in Indonesia (FY27).',
+      values: ['$3.1B', 'FY27', 'Signed', '—'],
+    },
+    {
+      label: 'Crusoe',
+      desc: 'A $0.225B credit facility for NVIDIA GPUs (FY26) and a $0.75B facility from Brookfield (FY26).',
+      values: ['$1.0B', 'FY26', 'Closed', '—'],
+    },
+    {
+      label: 'SpaceX / SpaceXAI',
+      desc: 'About $10B of bank loans and $30B of investment-grade bonds to buy NVIDIA chips, led by Apollo with Pimco in talks. The talks are early-stage, with closing expected in calendar 2027, so this row is not counted in the closed total or in the chart.\nSpaceX is rated Baa1 by Moody’s, BBB+ by Fitch, and BBB by S&P. NVIDIA holds 122.8M SpaceX shares, worth about $21B at the end of Q2 FY27.',
+      values: ['$40.0B', 'FY28?', 'Proposed', '$21B equity stake'],
     },
     {
       label: 'Total',
-      values: ['$56.7B', '', '$16.7B closed', ''],
+      values: ['$133.7B', '', '$93.7B counted', ''],
     },
   ],
 };
