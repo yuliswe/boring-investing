@@ -236,6 +236,18 @@ export const cashFlowStatementLines = [
   },
 ];
 
+export const reverseDcfInputs = {
+  discountRate: 0.1,
+  terminalGrowth: 0.025,
+  explicitYears: 10,
+  sharesOutstanding: 4.16,
+  sharesSource: 'stockanalysis.com, October 2026',
+  netDebt: 5.18,
+  netDebtSource:
+    '$14.31B of debt minus $9.13B of cash, cash equivalents, and short-term investments, Q2 2026 10-Q',
+  scenarioGrowthRates: [0.05, 0.1, 0.15, 0.2],
+};
+
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   criticalMetrics: [
