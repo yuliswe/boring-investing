@@ -187,11 +187,58 @@ function buildRevenueMinusInvestingSection(): SectionData {
   };
 }
 
-function buildCircularFinancingSection(): SectionData {
-  const totals = circularOutflowYears.map(
-    (_, i) =>
-      +circularOutflowLines.reduce((sum, l) => sum + l.values[i], 0).toFixed(3)
+const circularTotals = circularOutflowYears.map(
+  (_, i) =>
+    +circularOutflowLines.reduce((sum, l) => sum + l.values[i], 0).toFixed(3)
+);
+
+function buildCleanRevenueSection(): SectionData {
+  const revenues = circularOutflowYears.map(
+    year => financials.revenue.find(r => r.year === year)!.revenue
   );
+  const clean = revenues.map((r, i) => +(r - circularTotals[i]).toFixed(2));
+  const yearNotes = Object.fromEntries(
+    circularOutflowYears.map((year, i) => [
+      year,
+      [
+        `Revenue $${revenues[i].toFixed(2)}B − circular financing and third-party debt $${circularTotals[i].toFixed(2)}B = $${clean[i].toFixed(2)}B.`,
+        `Clean revenue is ${((clean[i] / revenues[i]) * 100).toFixed(1)}% of reported revenue. The Circular Financing and Third-Party Debt Financing chart shows what the deduction includes.`,
+      ].join('\n'),
+    ])
+  );
+  return {
+    rank: 380,
+    id: 'clean-revenue',
+    title: 'Clean Revenue',
+    kicker:
+      'Revenue after subtracting the cash NVIDIA sends to potential GPU buyers through equity stakes, acquisitions, and license payments, and the debt lenders provide to customers to buy NVIDIA hardware, on the view that all of it returns as NVIDIA revenue.',
+    kind: 'multi',
+    years: circularOutflowYears,
+    mode: 'absolute',
+    guidanceCount: 1,
+    yearNotes,
+    series: [
+      {
+        label: 'Revenue',
+        desc: 'Revenue as reported. FY27E is the consensus estimate.',
+        values: revenues,
+        format: billionFormat,
+      },
+      {
+        label: 'Clean revenue',
+        desc: 'Revenue minus the yearly total in the Circular Financing and Third-Party Debt Financing chart.',
+        values: clean,
+        format: billionFormat,
+        bold: true,
+      },
+    ],
+    chartNote:
+      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through October 8, 2026, so clean revenue is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
+  };
+}
+
+function buildCircularFinancingSection(): SectionData {
+  const totals = circularTotals;
   const yearNotes = Object.fromEntries(
     circularOutflowYears.map((year, i) => {
       const revenue = financials.revenue.find(r => r.year === year)!.revenue;
@@ -239,6 +286,7 @@ const nvdaSections: SectionData[] = [
   buildCashFlowStatementSection(),
   buildRevenueMinusInvestingSection(),
   buildCircularFinancingSection(),
+  buildCleanRevenueSection(),
   {
     rank: 570,
     id: 'off-balance-sheet',
