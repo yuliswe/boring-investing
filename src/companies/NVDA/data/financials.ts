@@ -314,6 +314,18 @@ export const circularOutflowYearDetails: Record<string, string> = {
     'Equity stakes are $42.40B paid in the first half plus $18.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first half only. Third-party debt runs through October 8, 2026: $42.2B of GPU-backed loans (CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $19.7B of AI cloud corporate debt (CoreWeave $9.95B, Nebius $9.75B). SpaceX’s proposed $40B financing is not counted. NVIDIA held no corporate bonds as of July 26, 2026.',
 };
 
+export const reverseDcfInputs = {
+  discountRate: 0.1,
+  terminalGrowth: 0.025,
+  explicitYears: 10,
+  sharesOutstanding: 24.15,
+  sharesSource: 'stockanalysis.com, October 2026',
+  netCash: 23.2,
+  netCashSource:
+    '$56.6B of cash, cash equivalents, and marketable debt securities minus $33.4B of debt, Q2 FY27 10-Q',
+  scenarioGrowthRates: [0.05, 0.1, 0.15, 0.2],
+};
+
 export const circularFinancingDeals = {
   columns: ['Amount', 'Fiscal year', 'Type', 'GPU buyer?'],
   rows: [

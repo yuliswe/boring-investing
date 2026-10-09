@@ -146,3 +146,10 @@
   Hugging Face 8-K <https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000078/nvda-20260902.htm>,
   Anthropic <https://www.anthropic.com/news/microsoft-nvidia-anthropic-announce-strategic-partnerships>,
   IREN <https://www.investing.com/news/stock-market-news/nvidia-to-invest-up-to-21-billion-in-iren-as-part-of-ai-data-center-deal-4670343>
+
+## Reverse DCF
+
+- Shares outstanding (24.15B): <https://stockanalysis.com/stocks/nvda/>
+- Net cash ($56.6B of cash, cash equivalents, and marketable debt securities
+  minus $33.4B of debt): Q2 FY27 10-Q (link above)
+- FY27E free cash flow: consensus, as in the Cash Flow section
