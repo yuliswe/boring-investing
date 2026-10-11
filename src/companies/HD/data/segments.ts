@@ -1,0 +1,80 @@
+const segments = {
+  productLine: [
+    {
+      year: 'FY17',
+      buildingMaterials: 37.296,
+      decor: 33.593,
+      hardlines: 30.015,
+      other: 0,
+    },
+    {
+      year: 'FY18',
+      buildingMaterials: 39.883,
+      decor: 36.273,
+      hardlines: 32.047,
+      other: 0,
+    },
+    {
+      year: 'FY19',
+      buildingMaterials: 39.337,
+      decor: 37.386,
+      hardlines: 33.502,
+      other: 0,
+    },
+    {
+      year: 'FY20',
+      buildingMaterials: 46.521,
+      decor: 43.415,
+      hardlines: 42.174,
+      other: 0,
+    },
+    {
+      year: 'FY21',
+      buildingMaterials: 54.99,
+      decor: 50.437,
+      hardlines: 45.73,
+      other: 0,
+    },
+    {
+      year: 'FY22',
+      buildingMaterials: 54.572,
+      decor: 54.442,
+      hardlines: 48.389,
+      other: 0,
+    },
+    {
+      year: 'FY23',
+      buildingMaterials: 52.572,
+      decor: 52.75,
+      hardlines: 47.347,
+      other: 0,
+    },
+    {
+      year: 'FY24',
+      buildingMaterials: 52.862,
+      decor: 52.525,
+      hardlines: 47.721,
+      other: 6.406,
+    },
+    {
+      year: 'FY25',
+      buildingMaterials: 52.439,
+      decor: 51.679,
+      hardlines: 47.848,
+      other: 12.717,
+    },
+  ],
+  geography: [
+    { year: 'FY17', us: 92.413, international: 8.491 },
+    { year: 'FY18', us: 99.386, international: 8.817 },
+    { year: 'FY19', us: 101.333, international: 8.892 },
+    { year: 'FY20', us: 122.158, international: 9.952 },
+    { year: 'FY21', us: 138.92, international: 12.237 },
+    { year: 'FY22', us: 144.84, international: 12.563 },
+    { year: 'FY23', us: 140.083, international: 12.586 },
+    { year: 'FY24', us: 147.007, international: 12.507 },
+    { year: 'FY25', us: 152.17, international: 12.513 },
+  ],
+};
+
+export default segments;

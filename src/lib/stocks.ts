@@ -90,6 +90,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'HD',
+    name: 'The Home Depot, Inc.',
+    sector: 'Home Improvement Retail',
+    summary:
+      'Largest home improvement retailer, with a mature base of about 2,360 stores whose comparable sales have stalled with the housing market since FY23, and growth bought instead through the debt-funded SRS and GMS acquisitions of building-products distributors for contractors.',
+    template: 'retail',
+  },
+  {
     symbol: 'JNJ',
     name: 'Johnson & Johnson',
     sector: 'Pharmaceuticals & Medical Devices',
