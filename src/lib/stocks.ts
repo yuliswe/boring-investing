@@ -58,6 +58,14 @@ export const STOCKS: Stock[] = [
     template: 'retail',
   },
   {
+    symbol: 'ENE',
+    name: 'Enron Corp.',
+    sector: 'Energy Trading',
+    summary:
+      'Defunct energy conglomerate that grew from a natural gas pipeline company into the largest energy trader in the world before collapsing into bankruptcy on 2 December 2001 in what was then the largest corporate fraud in American history, with as-filed revenue reaching $100 billion in FY2000 through gross mark-to-market accounting of trading contracts.',
+    template: 'software',
+  },
+  {
     symbol: 'CSU',
     name: 'Constellation Software Inc.',
     sector: 'Software',
