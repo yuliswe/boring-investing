@@ -60,14 +60,14 @@ function buildExpensesSection(): SectionData {
     id: 'expenses',
     title: 'Cost Analysis',
     kicker:
-      'GAAP costs and expenses as a share of revenue. The total covers all cost lines between revenue and net income. Data is from the FY1995 and FY1996 earnings releases (8-K filings) and the FY1998 earnings release; FY1997 and FY1999–FY2000 income statement details were not available in the SEC EDGAR text filings.',
+      'GAAP costs and expenses as a share of revenue, covering every line of the income statement from revenue to net income. Data is from the comparative income statements in the FY1996, FY1998, and FY2000 10-K filings. FY92 is missing operating expense and exploration detail because the FY1994 10-K (the earliest available comparative filing) does not break them out for that year. All values are pre-restatement because the November 2001 restatement adjusted net income totals but did not restate individual line items.',
     kind: 'multi',
     years: expenseYears,
     mode: 'share',
     invert: true,
     baseLabel: '0%',
     warning:
-      'FY1998 is missing exploration costs and taxes other than income because the earnings release did not break them out separately, so the total for that year understates true costs by approximately 0.5–0.7 percentage points.',
+      'FY97 total expenses reached 99.5% of revenue due to the $675M contract restructuring charge and the $941M in exploration, taxes and other operating costs, leaving only $9M of restated net income. The November 2001 restatement further reduced FY97 net income from $105M as reported to $9M, but those adjustments are not reflected in these pre-restatement line items.',
     series: [
       {
         label: 'Total costs and expenses',
@@ -96,7 +96,7 @@ function buildExpensesSection(): SectionData {
       },
     ],
     chartNote:
-      "Cost of gas, electricity and products dominated Enron's income statement at 70–84% of revenue, rising as Enron shifted from pipeline operations (where the spread was wider) to energy trading (where the spread was thin). Operating expenses ran 12–14% of revenue in the pipeline era and compressed to 8% by FY1998 as trading revenue swelled the denominator. Interest expense declined as a share of revenue from 3.8% in FY1993 to 1.8% in FY1998 even as the absolute amount nearly doubled, because revenue grew much faster than debt. The low income tax rate in FY1993 (1.7% of revenue) reflected a one-time tax rate adjustment.",
+      "Cost of gas, electricity and other products dominated Enron's income statement at 66% of revenue in FY92 and rose to 94% by FY00, as Enron shifted from pipeline operations (where the spread was wider) to energy trading (where the spread was thin). Operating expenses ran 12-14% of revenue in the pipeline era and compressed to 3% by FY00 as trading revenue swelled the denominator. Interest declined as a share of revenue from 5.1% (FY92) to 0.8% (FY00) even as the absolute amount more than doubled from $330M to $838M, because revenue grew sixteen-fold over the period.",
   };
 }
 

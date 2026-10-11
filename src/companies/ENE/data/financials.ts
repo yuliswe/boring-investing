@@ -95,7 +95,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'P/E ratio',
       desc: 'Year-end split-adjusted stock price divided by diluted EPS. FY97-FY00 use the November 2001 restated EPS, which reduced cumulative net income by $591M across those four years. Stock prices are derived from reported annual returns and the known August 2000 peak of $90.75; all figures are on a post-split basis after the August 1999 two-for-one split.',
-      values: [18.5, 21.9, 17.3, 19.1, 19.6, null, 33.6, 54.9, 85.6],
+      values: [18.5, 21.9, 17.3, 19.1, 19.6, null, 33.6, 54.9, 85.6, null],
       format: { decimals: 1 },
       invertColor: true,
       median10y: 21.9,
@@ -109,7 +109,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'Debt to equity',
       desc: 'Long-term debt divided by shareholders equity, using restated balance sheet figures for FY97-FY00. The restatement added $561-711M of previously hidden debt per year by consolidating off-balance-sheet entities. The true leverage was even higher because the restated figures still exclude billions in guarantees and prepay obligations that the bankruptcy examiner later identified.',
-      values: [null, 0.97, 0.97, 0.9, 1.31, 1.2, 1.01, 1.05],
+      values: [null, 0.97, 0.97, 0.9, 1.31, 1.2, 1.01, 1.05, 1.05, null],
       format: { decimals: 2 },
       invertColor: true,
       yearNotes: {
@@ -122,7 +122,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'Diluted EPS',
       desc: 'GAAP diluted earnings per share, split-adjusted for the August 1999 two-for-one split (earlier splits in December 1991 and August 1993 are also reflected). FY97-FY00 use the November 2001 restated figures, which reduced cumulative net income by $591M.',
-      values: [0.61, 0.63, 0.85, 0.97, 1.08, -0.01, 0.86, 0.79, 0.97],
+      values: [0.61, 0.63, 0.85, 0.97, 1.08, -0.01, 0.86, 0.79, 0.97, null],
       format: { prefix: '$', decimals: 2 },
       median10y: 0.85,
       yearNotes: {
@@ -135,7 +135,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'Book value per share',
       desc: 'Shareholders equity divided by diluted shares outstanding, split-adjusted. FY97-FY00 use restated equity, which the November 2001 restatement reduced by $313M to $1,164M per year through consolidation of off-balance-sheet entities.',
-      values: [null, 5.41, 5.91, 7.3, 8.53, 9.97, 12.2, 13.71],
+      values: [null, 5.41, 5.91, 7.3, 8.53, 9.97, 12.2, 13.71, 11.8, null],
       format: { prefix: '$', decimals: 2 },
       yearNotes: {
         FY97: 'Restated equity of $5,305M versus as-reported $5,618M.',
@@ -145,7 +145,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'Operating margin',
       desc: 'As-reported operating income as a share of total revenues. Because Enron recorded gross trading volumes as revenue, this margin collapsed from 8-10% in the pipeline era to under 2% by FY00, masking the fact that the underlying business generated only $1-2B of operating income per year.',
-      values: [9.6, 7.9, 8.0, 6.7, 5.2, 0.1, 4.4, 2.0, 1.9],
+      values: [9.6, 7.9, 8.0, 6.7, 5.2, 0.1, 4.4, 2.0, 1.9, null],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 5.2,
@@ -157,7 +157,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'Net margin',
       desc: 'Net income as a share of total revenues, using restated net income for FY97-FY00. Non-operating items (gains on asset sales, equity earnings from unconsolidated affiliates) sometimes exceeded interest expense, which is why net income exceeded operating income in FY95, FY96, and FY99.',
-      values: [4.8, 4.2, 5.0, 5.7, 4.4, 0.04, 1.9, 1.6, 0.8],
+      values: [4.8, 4.2, 5.0, 5.7, 4.4, 0.04, 1.9, 1.6, 0.8, null],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 4.2,
