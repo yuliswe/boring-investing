@@ -67,7 +67,7 @@ function buildExpensesSection(): SectionData {
     invert: true,
     baseLabel: '0%',
     warning:
-      'FY97 total expenses reached 99.5% of revenue due to the $675M contract restructuring charge and the $941M in exploration, taxes and other operating costs, leaving only $9M of restated net income. The November 2001 restatement further reduced FY97 net income from $105M as reported to $9M, but those adjustments are not reflected in these pre-restatement line items.',
+      'The total can exceed 100% in years when the listed expense lines (which include interest expense) outweigh revenue before non-operating income items (equity in earnings of unconsolidated affiliates, gains on asset sales) close the gap. FY97 reaches 105% because the $675M restructuring charge and $941M in exploration and other costs pushed listed expenses well above revenue, even though non-operating income of roughly $1B brought restated net income to $9M.',
     series: [
       {
         label: 'Total costs and expenses',
@@ -106,7 +106,7 @@ function buildCashFlowStatementSection(): SectionData {
     id: 'cashflow-statement',
     title: 'Cash Flow',
     kicker:
-      'The three sections of the cash flow statement plus free cash flow, in billions. Data is from SEC earnings releases (8-K), the FY2000 10-K, and Justice Department bankruptcy exhibits. FY2001 is omitted because no full-year cash flow statement was ever filed. The bankruptcy examiner later estimated that Enron misclassified $5B or more of financing flows as operating activities through structured prepay transactions with banks.',
+      'The three sections of the cash flow statement plus free cash flow, in billions. Data is from the comparative cash flow statements in the FY1996, FY1998, and FY2000 10-K filings. FY2001 is omitted because no full-year cash flow statement was ever filed. The bankruptcy examiner later estimated that Enron misclassified $5B or more of financing flows as operating activities through structured prepay transactions with banks.',
     kind: 'multi',
     years: cashFlowStatementYears,
     mode: 'absolute',

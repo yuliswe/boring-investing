@@ -70,7 +70,7 @@ export const expenseLines = [
   },
   {
     label: 'Exploration, taxes and other operating',
-    desc: 'Oil and gas exploration expenses, taxes other than income taxes (state, local, property), and the $675M FY97 contract restructuring charge.',
+    desc: 'Oil and gas exploration expenses and taxes other than income taxes (state, local, and property).',
     values: [null, 0.184, 0.186, 0.188, 0.226, 0.941, 0.322, 0.683, 0.28],
   },
   {
