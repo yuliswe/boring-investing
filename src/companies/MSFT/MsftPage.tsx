@@ -120,7 +120,11 @@ function buildStressTestSection(): SectionData {
   const lost = (year: string) =>
     stressTest.deductions.reduce((sum, d) => sum + (d.values[year] ?? 0), 0);
   const stressed = revenueYears.map((y, i) =>
-    stressYears.includes(y) ? +(reported[i] - lost(y)).toFixed(1) : null
+    stressYears.includes(y)
+      ? +(reported[i] - lost(y)).toFixed(1)
+      : revenueYears[i + 1] === stressYears[0]
+        ? reported[i]
+        : null
   );
   const wholeBillions = { ...billionFormat, decimals: 0 };
   const yearNote = (year: string) => {
@@ -153,7 +157,7 @@ function buildStressTestSection(): SectionData {
       },
       {
         label: 'Stressed',
-        desc: 'Revenue minus the deductions listed below.',
+        desc: `Revenue minus the deductions listed below. Starts from reported ${revenueYears[revenueYears.indexOf(stressYears[0]) - 1]} revenue, which is not adjusted.`,
         values: stressed,
         format: wholeBillions,
         bold: true,
