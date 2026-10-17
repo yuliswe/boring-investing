@@ -111,8 +111,14 @@ function buildStressTestSection(): SectionData {
       },
       {
         label: 'Stressed',
-        desc: 'Revenue minus the deductions listed below.',
-        values: stressed.map((v, i) => (isStressYear(i) ? v : null)),
+        desc: `Revenue minus the deductions listed below. Starts from reported ${years[years.indexOf(stressTest.actualYear) - 1]} revenue, which is not adjusted because Microsoft did not disclose its revenue from OpenAI for that year.`,
+        values: stressed.map((v, i) =>
+          isStressYear(i)
+            ? v
+            : years[i + 1] === stressTest.actualYear
+              ? reported[i]
+              : null
+        ),
         format: wholeBillions,
         bold: true,
       },
