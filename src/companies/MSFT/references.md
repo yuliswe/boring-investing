@@ -24,7 +24,9 @@
 
 - [Yahoo Finance — MSFT](https://finance.yahoo.com/quote/MSFT/) — fiscal
   year-end closing prices (last trading day on or before 30 June each year),
-  used for the hero price and the P/E and P/FCF ratios.
+  used for the historical P/E and P/FCF ratios. The hero price is the close
+  of 16 October 2026 ($529.05, against $539.44 the day before), which also
+  drives the forward P/E, PEG and reverse DCF.
 
 ## Derived series
 

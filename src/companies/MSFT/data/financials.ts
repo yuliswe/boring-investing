@@ -393,7 +393,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'P/E ratio',
       values: [
-        21.2, 46.3, 26.5, 35.3, 33.7, 26.6, 35.2, 37.9, 36.5, 20.8, 18.2,
+        21.2, 46.3, 26.5, 35.3, 33.7, 26.6, 35.2, 37.9, 36.5, 20.8, 25.8,
       ],
       format: { decimals: 1 },
       invertColor: true,
@@ -401,7 +401,7 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
       yearNotes: {
         FY27E:
-          'Calculated from the default price of $373.02 divided by consensus diluted EPS of $20.50.',
+          'Calculated from the default price of $529.05 divided by consensus diluted EPS of $20.50.',
       },
     },
     {
@@ -413,14 +413,14 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'PEG ratio',
-      values: [2.08, null, 1.89, 1.13, 1.31, 1.09, 0.99, 2.05, 1.94, 1.2, 1.28],
+      values: [2.08, null, 1.89, 1.13, 1.31, 1.09, 0.99, 2.05, 1.94, 1.2, 1.82],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 1.31,
       guidanceCount: 1,
       yearNotes: {
         FY27E:
-          'Calculated from the forward P/E of 18.2 divided by the FY26-to-FY27 EPS growth rate of 14.2%.',
+          'Calculated from the forward P/E of 25.8 divided by the FY26-to-FY27 EPS growth rate of 14.2%.',
       },
     },
   ],

@@ -25,18 +25,18 @@ const hero: HeroData = {
   name: 'Microsoft Corporation',
   sector: 'Software',
   tags: ['Large Cap', 'Dividend'],
-  price: '$373.02',
-  changePct: 1.21,
-  priceNote: 'close, 30 June',
+  price: '$529.05',
+  changePct: -1.93,
+  priceNote: 'close, 16 October',
   summary:
     'Cloud, productivity, and platform franchises with durable recurring revenue. Microsoft derives the majority of its revenue from recurring commercial subscriptions and cloud services across three segments.',
 };
 
 const priceConfig: PriceConfig = {
   symbol: 'MSFT',
-  defaultPrice: 373.02,
+  defaultPrice: 529.05,
   currency: '$',
-  referenceClose: 368.5604,
+  referenceClose: 539.44,
 };
 
 const billionFormat = { prefix: '$', suffix: 'B', decimals: 1 };
