@@ -27,6 +27,15 @@ converts them into the trading currency when the two differ. Each entry in
 value, so a company can show an adjusted measure beside reported free cash
 flow.
 
+`applyStressTest` (`base/stressTest.ts`) adds a stress test to a company
+page. It takes the page's financials, a `StressTestData` object and the
+current price, and returns the financials with dotted scenario lines on the
+P/E ratio and Diluted EPS trend charts, plus two sections: "Stress Test
+Scenario" (rank 410) and "Stress Test EPS and P/E" (rank 411). Amounts are in
+billions except investment gains, which are per share. It reads reported EPS
+and P/E from the metrics, so the forward-year EPS must already be the
+consensus figure. MSFT and GOOG are the reference implementations.
+
 A child template (e.g. `SoftwareTemplate`) builds its own sections from typed
 financial data and passes them as `sections` to `BaseTemplate`. Any
 stock-specific sections from the page come through as `childSections`. Both

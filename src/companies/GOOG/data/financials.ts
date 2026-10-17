@@ -1,3 +1,4 @@
+import type { StressTestData } from '@/templates/base';
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 export const cashFlowStatementYears = [
@@ -235,7 +236,7 @@ export const cashFlowStatementLines = [
     desc: 'Operating cash flow minus capital expenditures (property, equipment, and construction in progress).',
     values: [
       25.824, 23.907, 22.832, 30.972, 42.843, 67.012, 60.01, 69.495, 72.764,
-      73.266, 7.78,
+      73.266, 7.07,
     ],
   },
 ];
@@ -277,6 +278,41 @@ export const offBalanceSheetCommitments = {
   ],
 };
 
+export const stressTest: StressTestData = {
+  subject: 'Anthropic',
+  revenueKicker:
+    'Revenue without Anthropic. Google has invested about $13B in Anthropic, which spends heavily on Google Cloud and TPUs, so the scenario removes the revenue Anthropic paid or would pay Google in CY25 and CY26E.',
+  revenueNote:
+    'Alphabet does not disclose its revenue from Anthropic, so both years are upper-bound estimates; click a year for the method. Earlier years are not adjusted. The scenario does not subtract the roughly $200B Anthropic has reportedly committed to Google Cloud, over 40% of the $514B cloud backlog, because most of it falls after CY26.',
+  gainsDesc:
+    'Gains on equity securities, per share, from the quarterly footnotes in Alphabet’s earnings releases. CY25 removes all of them so that it matches consensus, which excludes investment gains, and lists the Anthropic share separately. CY26E has none to remove.',
+  tableNote:
+    'Revenue from Anthropic and the Anthropic stake are estimates, because Alphabet names neither. Stressed EPS leaves out the cost of TPU capacity built for Anthropic and the $20B milestone-based funding commitment. P/E ratios recalculate when the price is adjusted.',
+  actualYears: ['CY25'],
+  forwardYear: 'CY26E',
+  deductions: [
+    {
+      label: 'Anthropic',
+      desc: 'Google Cloud revenue from Anthropic, which Alphabet does not disclose. CY25 counts all of Anthropic’s reported 2025 compute and infrastructure spend of $7.3B, part of which went to AWS. CY26E applies UBS’s estimate that OpenAI and Anthropic make up 27% of Google Cloud revenue to H1 2026 Cloud revenue annualised ($89.6B), and treats all of it as Anthropic. Both are upper bounds.',
+      values: { CY25: 7.3, CY26E: 24.2 },
+    },
+  ],
+  dilutedShares: { CY25: 12.22, CY26E: 12.22 },
+  investmentGainsPerShare: {
+    CY25: [
+      { label: 'Anthropic gains (Q3 and Q4 2025)', value: 0.83 },
+      { label: 'Other gains, mainly SpaceX (Q1 and Q2 2025)', value: 0.7 },
+    ],
+    CY26E: [],
+  },
+  writeOffs: [{ label: 'Anthropic stake (estimated)', value: 110 }],
+  yearNotes: {
+    CY25: 'This is an estimate. Alphabet does not disclose its revenue from Anthropic, so the $7.3B is all of Anthropic’s reported 2025 compute and infrastructure spend, part of which went to AWS, which makes it an upper bound. The $0.83 of Anthropic gains assigns all Q3 and Q4 2025 equity gains to Anthropic, because Bloomberg tied Q1 2025 gains to SpaceX.',
+    CY26E:
+      'This is an estimate. The $24.2B applies UBS’s 27% OpenAI-and-Anthropic share of Google Cloud revenue to annualised H1 2026 Cloud revenue and treats all of it as Anthropic, an upper bound. The ~$110B Anthropic stake is the $124.3B of non-marketable securities, which Alphabet says are mainly one private company, less an estimated $14B of other holdings.',
+  },
+};
+
 const financials: SoftwareFinancials = {
   reverseDcf: {
     companyName: 'Alphabet',
@@ -290,7 +326,7 @@ const financials: SoftwareFinancials = {
         column: 'Free cash flow',
         phrase: 'on consensus free cash flow',
         actual: 73.266,
-        forward: 7.78,
+        forward: 7.07,
       },
       {
         label: 'After-tax operating income',
@@ -304,7 +340,7 @@ const financials: SoftwareFinancials = {
     actualNote:
       'Actual CY25 free cash flow of $73.27B, and operating income of $129.0B less 18% tax.',
     forwardNote:
-      'Consensus CY26E free cash flow of $7.78B, crushed by $195–205B of guided capital spending, and consensus operating income of $160.9B less 18% tax.',
+      'Consensus CY26E free cash flow of $7.07B, crushed by $195–205B of guided capital spending, and H1 2026 operating income annualised to $160.9B, less 18% tax.',
     sharesOutstanding: 12.23,
     netCash: 142.3,
     netCashSource:
@@ -315,12 +351,12 @@ const financials: SoftwareFinancials = {
   },
   guidanceYears: ['CY26E'],
   estimateNote:
-    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income, capex) are annualized from filed H1 2026 10-Q reports. EPS, FCF per share, and FCF margin use consensus analyst estimates. Net margin and P/FCF are omitted for CY26E because $80B+ in non-operating gains inflates net income well above operating income, and the resulting P/FCF of ~490 is not a meaningful valuation metric. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
+    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income) are annualized from filed H1 2026 10-Q reports, and capex is the $200B midpoint of guidance. EPS, FCF per share, and FCF margin use consensus analyst estimates. Net margin and P/FCF are omitted for CY26E because more than $135B of H1 2026 gains on equity securities inflates net income well above operating income, and P/FCF on $7B of free cash flow is not a meaningful valuation metric. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
       values: [
-        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 15.2,
+        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 25.6,
       ],
       format: { decimals: 1 },
       invertColor: true,
@@ -328,7 +364,7 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Calculated from the default price of $313.80 divided by consensus diluted EPS of $20.62.',
+          'Calculated from the default price of $336.91 divided by consensus diluted EPS of $13.14.',
       },
     },
     {
@@ -340,14 +376,14 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'PEG ratio',
-      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 0.17],
+      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 1.19],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 0.89,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Calculated from the forward P/E of 15.2 divided by the CY25-to-CY26 EPS growth rate of 90.7%.',
+          'Calculated from the forward P/E of 25.6 divided by the CY25-to-CY26 EPS growth rate of 21.6%.',
       },
     },
   ],
@@ -355,24 +391,25 @@ const financials: SoftwareFinancials = {
     {
       label: 'Diluted EPS',
       values: [
-        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 20.62,
+        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 13.14,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.75,
       guidanceCount: 1,
       yearNotes: {
-        CY26E: 'Consensus analyst estimate (51 analysts, stockanalysis.com).',
+        CY26E:
+          'Average consensus analyst estimate of $13.14 (52 analysts, stockanalysis.com). It is non-GAAP and excludes investment gains, while earlier years are GAAP and include them.',
       },
     },
     {
       label: 'Free cash flow per share',
-      values: [1.85, 1.7, 1.62, 2.21, 3.12, 4.94, 4.56, 5.46, 5.84, 5.99, 0.64],
+      values: [1.85, 1.7, 1.62, 2.21, 3.12, 4.94, 4.56, 5.46, 5.84, 5.99, 0.58],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.84,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Derived from consensus free cash flow of $7.78B divided by ~12.2B diluted shares. Depressed by $160B+ capex ramp for AI infrastructure.',
+          'Derived from consensus free cash flow of $7.07B divided by ~12.2B diluted shares. Depressed by $195–205B of guided capital spending on AI infrastructure.',
       },
     },
     {
@@ -405,21 +442,21 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Net margin %',
-      values: [21.6, 11.5, 22.4, 21.2, 22.1, 29.5, 21.2, 24.0, 28.6, 32.8],
+      values: [21.6, 11.4, 22.5, 21.2, 22.1, 29.5, 21.2, 24.0, 28.6, 32.8],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
-      median10y: 22.25,
+      median10y: 22.3,
     },
     {
       label: 'Free cash flow margin %',
-      values: [28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 20.8, 18.2, 1.6],
+      values: [28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 20.8, 18.2, 1.4],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 21.4,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Derived from consensus free cash flow of $7.78B and consensus revenue of $498.6B. Depressed by $160B+ capex ramp for AI infrastructure.',
+          'Derived from consensus free cash flow of $7.07B and consensus revenue of $499.6B. Depressed by $195–205B of guided capital spending on AI infrastructure.',
       },
     },
   ],
@@ -429,15 +466,15 @@ const financials: SoftwareFinancials = {
   },
   revenue: [
     { year: 'CY16', revenue: 90.3, operatingIncome: 23.7, netIncome: 19.5 },
-    { year: 'CY17', revenue: 110.9, operatingIncome: 26.1, netIncome: 12.8 },
-    { year: 'CY18', revenue: 136.8, operatingIncome: 27.5, netIncome: 30.6 },
+    { year: 'CY17', revenue: 110.9, operatingIncome: 26.2, netIncome: 12.7 },
+    { year: 'CY18', revenue: 136.8, operatingIncome: 27.5, netIncome: 30.7 },
     { year: 'CY19', revenue: 161.9, operatingIncome: 34.2, netIncome: 34.3 },
     { year: 'CY20', revenue: 182.5, operatingIncome: 41.2, netIncome: 40.3 },
     { year: 'CY21', revenue: 257.6, operatingIncome: 78.7, netIncome: 76.0 },
     { year: 'CY22', revenue: 282.8, operatingIncome: 74.8, netIncome: 60.0 },
     { year: 'CY23', revenue: 307.4, operatingIncome: 84.3, netIncome: 73.8 },
     { year: 'CY24', revenue: 350.0, operatingIncome: 112.4, netIncome: 100.1 },
-    { year: 'CY25', revenue: 402.8, operatingIncome: 129.0, netIncome: 132.1 },
+    { year: 'CY25', revenue: 402.8, operatingIncome: 129.0, netIncome: 132.2 },
     { year: 'CY26E', revenue: 459.4, operatingIncome: 160.9, netIncome: null },
   ],
   expenses: [
@@ -448,40 +485,40 @@ const financials: SoftwareFinancials = {
       researchAndDev: 13.9,
       depreciationAndAmortization: 5.0,
       otherOperating: 0,
-      nonOperating: 0.5,
+      nonOperating: -0.5,
       taxes: 4.7,
       dilutionAdjustment: 6.7,
     },
     {
       year: 'CY17',
       costOfRevenue: 45.6,
-      sellingGeneralAndAdmin: 19.8,
+      sellingGeneralAndAdmin: 19.7,
       researchAndDev: 16.6,
       depreciationAndAmortization: 5.0,
       otherOperating: 2.8,
-      nonOperating: 1.1,
+      nonOperating: -1.1,
       taxes: 14.5,
       dilutionAdjustment: 7.7,
     },
     {
       year: 'CY18',
       costOfRevenue: 59.5,
-      sellingGeneralAndAdmin: 23.2,
+      sellingGeneralAndAdmin: 23.3,
       researchAndDev: 21.4,
       depreciationAndAmortization: 7.8,
       otherOperating: 5.2,
-      nonOperating: 7.4,
+      nonOperating: -7.4,
       taxes: 4.2,
       dilutionAdjustment: 9.4,
     },
     {
       year: 'CY19',
       costOfRevenue: 71.9,
-      sellingGeneralAndAdmin: 28.1,
+      sellingGeneralAndAdmin: 28.0,
       researchAndDev: 26.0,
       depreciationAndAmortization: 9.6,
       otherOperating: 1.7,
-      nonOperating: 5.4,
+      nonOperating: -5.4,
       taxes: 5.3,
       dilutionAdjustment: 10.8,
     },
@@ -492,7 +529,7 @@ const financials: SoftwareFinancials = {
       researchAndDev: 27.6,
       depreciationAndAmortization: 11.2,
       otherOperating: 0,
-      nonOperating: 6.9,
+      nonOperating: -6.9,
       taxes: 7.8,
       dilutionAdjustment: 13.0,
     },
@@ -503,7 +540,7 @@ const financials: SoftwareFinancials = {
       researchAndDev: 31.6,
       depreciationAndAmortization: 10.3,
       otherOperating: 0,
-      nonOperating: 12.0,
+      nonOperating: -12,
       taxes: 14.7,
       dilutionAdjustment: 15.4,
     },
@@ -514,7 +551,7 @@ const financials: SoftwareFinancials = {
       researchAndDev: 39.5,
       depreciationAndAmortization: 13.5,
       otherOperating: 0,
-      nonOperating: -3.4,
+      nonOperating: 3.4,
       taxes: 11.4,
       dilutionAdjustment: 19.4,
     },
@@ -525,7 +562,7 @@ const financials: SoftwareFinancials = {
       researchAndDev: 45.4,
       depreciationAndAmortization: 11.9,
       otherOperating: 0,
-      nonOperating: 1.4,
+      nonOperating: -1.4,
       taxes: 11.9,
       dilutionAdjustment: 22.5,
     },
@@ -536,7 +573,7 @@ const financials: SoftwareFinancials = {
       researchAndDev: 49.3,
       depreciationAndAmortization: 15.3,
       otherOperating: 0,
-      nonOperating: 7.4,
+      nonOperating: -7.4,
       taxes: 19.7,
       dilutionAdjustment: 22.8,
     },
@@ -547,7 +584,7 @@ const financials: SoftwareFinancials = {
       researchAndDev: 61.1,
       depreciationAndAmortization: 21.1,
       otherOperating: 0,
-      nonOperating: 29.9,
+      nonOperating: -29.9,
       taxes: 26.7,
       dilutionAdjustment: 25.0,
     },
@@ -560,7 +597,7 @@ const financials: SoftwareFinancials = {
       otherOperating: 0,
       nonOperating: null,
       taxes: null,
-      dilutionAdjustment: 30.4,
+      dilutionAdjustment: 29.4,
     },
   ],
   expensesDeducedLines: ['Total'],

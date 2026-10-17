@@ -1,3 +1,4 @@
+import type { StressTestData } from '@/templates/base';
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 export const cashFlowStatementYears = [
@@ -305,19 +306,16 @@ export const offBalanceSheetCommitments = {
   ],
 };
 
-export const stressTest: {
-  actualYears: string[];
-  forwardYear: string;
-  deductions: {
-    label: string;
-    desc: string;
-    values: Record<string, number | null>;
-  }[];
-  dilutedShares: Record<string, number>;
-  investmentGainsPerShare: Record<string, { label: string; value: number }[]>;
-  writeOffs: { label: string; value: number }[];
-  yearNotes: Record<string, string>;
-} = {
+export const stressTest: StressTestData = {
+  subject: 'OpenAI and Anthropic',
+  revenueKicker:
+    'Revenue without OpenAI and Anthropic. Microsoft invested $13.0B in OpenAI and $5B in Anthropic, and both spend that money back on Azure, so the scenario removes every dollar of revenue they paid or would pay Microsoft from FY25 to FY27E.',
+  revenueNote:
+    "FY25 is an estimate from leaked figures and FY27E reuses the disclosed FY26 figure as a floor; click a year for details. Earlier years are not adjusted. The scenario does not subtract the roughly $280–310B of OpenAI and Anthropic commitments in Microsoft's $678B commercial backlog, because most of it falls in FY28 and later.",
+  gainsDesc:
+    'Gains or losses on the OpenAI and Anthropic stakes, per share. FY25 removes OpenAI losses, so it adds back. Consensus excludes investment gains, so FY27E has none to remove.',
+  tableNote:
+    'FY25 lost revenue is an estimate from leaked figures that likely understates it. Stressed EPS leaves out the cost of datacenter capacity built for the two labs, which the filings do not quantify. P/E ratios recalculate when the price is adjusted.',
   actualYears: ['FY25', 'FY26'],
   forwardYear: 'FY27E',
   deductions: [

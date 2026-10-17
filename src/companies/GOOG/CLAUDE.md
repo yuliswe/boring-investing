@@ -62,9 +62,17 @@ exceptions and approximations:
 - **Segments.** Segment revenue in `data/segments.json` comes from the
   10-K narrative disclosures, not from the XBRL aggregate API (which does
   not expose dimensional member data). CY16 segment values are estimates.
-- **CY26E.** Revenue ($460B) and capex ($160B) are annualised from filed
-  H1 2026 10-Q data (H1 revenue $229.7B, H1 capex $80.6B). EPS and net
-  margin are null because Q2 2026 contains a large non-operating gain
-  that distorts annualisation. H1 2026 FCF was barely positive at $4.3B
+- **CY26E.** Revenue ($459B), its segments and operating income are
+  annualised from the H1 2026 10-Q (H1 revenue $229.7B). Capex ($200B) is
+  the midpoint of the $195–205B guidance given on the Q2 2026 call. EPS is
+  the non-GAAP consensus, and net margin is null because 2026 contains large
+  non-operating gains. H1 2026 FCF was barely positive at $4.3B
   (OCF $84.9B minus CapEx $80.6B), and Q2 2026 standalone FCF was
   negative (-$5.9B).
+
+- **Stress test.** The stress test removes Anthropic from CY25 and CY26E.
+  Alphabet never names Anthropic, so revenue cuts ($7.3B and $24.2B) are
+  upper-bound estimates from Anthropic's S-1 and UBS, and the ~$110B stake
+  is estimated from non-marketable holdings. CY25 EPS drops all investment
+  gains to match consensus, which excludes them. Inputs are in `stressTest`
+  in `data/financials.ts`, and sources are in `references.md`.
