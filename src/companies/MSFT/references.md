@@ -73,3 +73,29 @@ proportionally, so they represent the cash portion of each cost category.
 - Shares outstanding (7.43B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/msft/>
 - Net cash (36.55B): $76.84B of cash, cash equivalents, and short-term investments minus $40.29B of debt, FY26 10-K; $66.6B of data-centre finance leases are excluded
 - Starting value: Consensus FY27E free cash flow of $32.34B, roughly halved by AI capital spending, and consensus operating income of $182.2B less 18% tax.
+
+## Stress test scenario
+
+The scenario assumes OpenAI and Anthropic both cease to exist in FY27.
+
+- Revenue from OpenAI ($24.1B in FY26, including revenue-sharing payments),
+  receivables owed by OpenAI ($6.0B), and the $13.0B funding commitment:
+  FY26 10-K related-party note
+  <https://www.sec.gov/Archives/edgar/data/0000789019/000119312526323660/msft-20260630.htm>.
+  The FY26 revenue stands in as a floor for FY27E, because neither lab
+  discloses an FY27 forecast.
+- OpenAI equity-method investment (~$12.0B): XBRL `EquityMethodInvestments`
+  at June 30, 2026, which is mostly OpenAI.
+- Anthropic stake (~$8.2B): $5B invested in November 2025
+  <https://blogs.microsoft.com/blog/2025/11/18/microsoft-nvidia-and-anthropic-announce-strategic-partnerships/>
+  plus the $3.2B Q4 FY26 gain
+  <https://techcrunch.com/2026/07/29/microsoft-logs-3-2b-from-anthropic-investment-but-openai-was-a-mixed-bag/>.
+  Microsoft does not disclose Azure revenue from Anthropic.
+- OpenAI and Anthropic share of commercial RPO (~$280–310B): about 45% of
+  $625B attributed to OpenAI on the Q2 FY26 call
+  <https://www.constellationr.com/insights/news/microsoft-q2-strong-azure-growth-39-openai-45-rpo>,
+  plus Anthropic's $30B Azure commitment.
+- Diluted shares (7.451B): FY26 net income of $133.749B divided by diluted
+  EPS of $17.95.
+- Stressed EPS subtracts lost revenue in full with no tax shield, and the
+  write-offs once, from FY27E consensus EPS of $20.50.

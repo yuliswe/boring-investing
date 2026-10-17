@@ -7,6 +7,7 @@ import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
   offBalanceSheetCommitments,
+  stressTest,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -39,6 +40,8 @@ const priceConfig: PriceConfig = {
 };
 
 const billionFormat = { prefix: '$', suffix: 'B', decimals: 1 };
+const billions = (v: number | null) =>
+  v === null ? 'not disclosed' : `$${v.toFixed(1)}B`;
 
 function buildCashFlowStatementSection(): SectionData {
   return {
@@ -61,7 +64,125 @@ function buildCashFlowStatementSection(): SectionData {
   };
 }
 
+function buildStressTestSection(): SectionData {
+  const years = financials.revenue.map(r => r.year);
+  const reported = financials.revenue.map(r => r.revenue);
+  const at = years.indexOf(stressTest.year);
+  const total = stressTest.deductions.reduce(
+    (sum, d) => sum + (d.value ?? 0),
+    0
+  );
+  const stressed = +(reported[at] - total).toFixed(1);
+  const onlyAtStressYear = (v: number | null) =>
+    years.map((_, i) => (i === at ? v : null));
+  const wholeBillions = { ...billionFormat, decimals: 0 };
+  return {
+    rank: 410,
+    id: 'stress-test',
+    title: 'Stress Test Scenario',
+    kicker: `Revenue if OpenAI and Anthropic both cease to exist in ${stressTest.year}. Microsoft invested $13.0B in OpenAI and $5B in Anthropic, and both spend that money back on Azure, so the scenario removes every dollar of revenue they would have paid Microsoft.`,
+    kind: 'multi',
+    years,
+    mode: 'absolute',
+    guidanceCount: 1,
+    yearNotes: {
+      [stressTest.year]: [
+        `Consensus revenue ${billions(reported[at])}`,
+        ...stressTest.deductions.map(d => `− ${d.label} ${billions(d.value)}`),
+        `= stressed revenue ${billions(stressed)}, a cut of ${((total / reported[at]) * 100).toFixed(1)}%.`,
+      ].join('\n'),
+    },
+    series: [
+      {
+        label: 'Revenue',
+        desc: `Revenue as reported. ${stressTest.year} is the consensus estimate.`,
+        values: reported,
+        format: wholeBillions,
+      },
+      {
+        label: 'Stressed',
+        desc: `${stressTest.year} consensus revenue minus the deductions listed below. Starts from reported FY26 revenue, which the scenario leaves unchanged because it was earned before the collapse.`,
+        values: years.map((_, i) =>
+          i === at ? stressed : i === at - 1 ? reported[i] : null
+        ),
+        format: wholeBillions,
+        bold: true,
+      },
+      ...stressTest.deductions.map(d => ({
+        label: `− ${d.label}`,
+        desc: d.desc,
+        values: onlyAtStressYear(d.value),
+        format: billionFormat,
+        indent: 1,
+      })),
+    ],
+    chartNote: `The deductions are a floor, because consensus expects both labs to spend more on Azure in ${stressTest.year} than OpenAI did in FY26 and Anthropic's spending is not disclosed. The scenario does not subtract the roughly $280–310B of OpenAI and Anthropic commitments in Microsoft's $678B commercial backlog, because most of it falls in FY28 and later. It also leaves out items that reduce net income rather than revenue, which are the write-off of the ~$12.0B OpenAI investment, the ~$8.2B Anthropic stake, and $6.0B owed by OpenAI, and the cost of datacenter capacity built for the two labs. Click ${stressTest.year} to see the subtraction.`,
+  };
+}
+
+function buildStressTestEpsSection(price: number): SectionData {
+  const shares = stressTest.dilutedShares;
+  const lostRevenue = stressTest.deductions.reduce(
+    (sum, d) => sum + (d.value ?? 0),
+    0
+  );
+  const writeOffs = stressTest.writeOffs.reduce((sum, w) => sum + w.value, 0);
+  const lostRevenueEps = lostRevenue / shares;
+  const writeOffEps = writeOffs / shares;
+  const beforeWriteOffs = EPS_EST - lostRevenueEps;
+  const stressedEps = beforeWriteOffs - writeOffEps;
+  const eps = (v: number) => `$${v.toFixed(2)}`;
+  const pe = (v: number) => (v > 0 ? `${(price / v).toFixed(1)}x` : 'n/m');
+  return {
+    rank: 411,
+    id: 'stress-test-eps',
+    title: 'Stress Test EPS and P/E',
+    kicker: `Diluted EPS and the P/E ratio at $${price.toFixed(2)} under the same scenario, against reported FY26 and ${stressTest.year} consensus.`,
+    kind: 'table',
+    firstColumn: 'Line',
+    columns: [
+      'FY26 reported',
+      `${stressTest.year} consensus`,
+      `${stressTest.year} stressed`,
+    ],
+    rows: [
+      {
+        label: 'Diluted EPS',
+        desc: `FY26 is GAAP diluted EPS. ${stressTest.year} consensus is the analyst estimate. The stressed figure subtracts the two lines below.`,
+        values: [eps(PRIOR_EPS), eps(EPS_EST), eps(stressedEps)],
+      },
+      {
+        label: '− Lost revenue',
+        desc: `The ${billions(lostRevenue)} removed in the Stress Test Scenario chart, divided by ${shares.toFixed(2)}B diluted shares. It is taken out in full with no tax shield, on the view that the datacenter costs of serving the two labs remain after their revenue stops.`,
+        values: ['—', '—', `−${eps(lostRevenueEps)}`],
+      },
+      {
+        label: '− One-time write-offs',
+        desc: `${stressTest.writeOffs.map(w => `${w.label} ${billions(w.value)}`).join(', ')}, a total of ${billions(writeOffs)} divided by ${shares.toFixed(2)}B diluted shares. These recur only once, so EPS recovers by this amount the following year.`,
+        values: ['—', '—', `−${eps(writeOffEps)}`],
+      },
+      {
+        label: 'EPS before write-offs',
+        desc: 'Diluted EPS without the one-time write-offs, which shows the earning power that remains after the two labs are gone.',
+        values: [eps(PRIOR_EPS), eps(EPS_EST), eps(beforeWriteOffs)],
+      },
+      {
+        label: 'P/E ratio',
+        desc: `$${price.toFixed(2)} divided by diluted EPS.`,
+        values: [pe(PRIOR_EPS), pe(EPS_EST), pe(stressedEps)],
+      },
+      {
+        label: 'P/E before write-offs',
+        desc: `$${price.toFixed(2)} divided by EPS before write-offs.`,
+        values: [pe(PRIOR_EPS), pe(EPS_EST), pe(beforeWriteOffs)],
+      },
+    ],
+    tableNote: `FY26 reported EPS of $${PRIOR_EPS} includes about $0.67 of OpenAI gains and $0.33 of Anthropic gains, while consensus excludes investment gains. Stressed EPS also leaves out the cost of datacenter capacity built for the two labs, which the filings do not quantify. P/E ratios recalculate when the price is adjusted.`,
+  };
+}
+
 const msftSections: SectionData[] = [
+  buildStressTestSection(),
   {
     rank: 570,
     id: 'off-balance-sheet',
@@ -245,7 +366,7 @@ export function MsftPage() {
       hero={h}
       heroAddon={addon}
       financials={dynamicFinancials}
-      extraSections={msftSections}
+      extraSections={[...msftSections, buildStressTestEpsSection(price)]}
       figuresDate='30 June'
       footer={footer}
     />

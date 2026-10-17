@@ -305,6 +305,33 @@ export const offBalanceSheetCommitments = {
   ],
 };
 
+export const stressTest: {
+  year: string;
+  deductions: { label: string; desc: string; value: number | null }[];
+  dilutedShares: number;
+  writeOffs: { label: string; value: number }[];
+} = {
+  year: 'FY27E',
+  deductions: [
+    {
+      label: 'OpenAI',
+      desc: 'Revenue from commercial arrangements with OpenAI, including Azure consumption and revenue-sharing payments. Uses the FY26 actual of $24.1B from the FY26 10-K related-party note as a floor, because consensus assumes OpenAI spends more in FY27.',
+      value: 24.1,
+    },
+    {
+      label: 'Anthropic',
+      desc: 'Azure revenue from Anthropic under its November 2025 commitment to buy $30B of Azure compute. Microsoft does not disclose it, so it counts as zero, which understates the cut.',
+      value: null,
+    },
+  ],
+  dilutedShares: 7.451,
+  writeOffs: [
+    { label: 'OpenAI equity-method investment', value: 12.0 },
+    { label: 'Anthropic stake ($5B cost plus $3.2B gain)', value: 8.2 },
+    { label: 'Receivables owed by OpenAI', value: 6.0 },
+  ],
+};
+
 const financials: SoftwareFinancials = {
   reverseDcf: {
     companyName: 'Microsoft',
