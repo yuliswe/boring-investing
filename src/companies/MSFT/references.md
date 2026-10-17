@@ -76,7 +76,21 @@ proportionally, so they represent the cash portion of each cost category.
 
 ## Stress test scenario
 
-The scenario assumes OpenAI and Anthropic both cease to exist in FY27.
+The scenario removes OpenAI and Anthropic from FY25, FY26 and FY27E.
+
+- FY25 OpenAI revenue (~$8.5B) is an estimate, because Microsoft did not
+  disclose it. It uses leaked OpenAI figures that neither company has
+  confirmed: $3.77B of Azure inference spend and $0.49B of revenue share in
+  calendar 2024, and $8.67B and $0.87B in January–September 2025
+  <https://www.wheresyoured.at/oai_docs/>,
+  <https://www.theregister.com/2025/11/12/openai_spending_report/>.
+  FY25 takes half of the 2024 figures and two-thirds of the 2025 figures.
+  The leak leaves out training compute, so the estimate likely understates
+  FY25 revenue from OpenAI.
+- FY25 OpenAI investment losses ($0.49 per share): Microsoft's adjusted
+  FY25 EPS of $14.13 against GAAP $13.64, FY26 10-K MD&A.
+- FY25 diluted shares (7.466B): FY25 net income of $101.832B divided by
+  diluted EPS of $13.64.
 
 - Revenue from OpenAI ($24.1B in FY26, including revenue-sharing payments),
   receivables owed by OpenAI ($6.0B), and the $13.0B funding commitment:

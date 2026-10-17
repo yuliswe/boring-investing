@@ -159,12 +159,8 @@ function computePanel(
   let computedScenario: ComputedScenario | null = null;
   if (scenario) {
     const sh = scenario.values.map(v => (v !== null ? pct(v, lo, hi) : null));
-    const first = sh.findIndex(h => h !== null);
-    const branchFrom = first > 0 && hs[first - 1] !== null ? first - 1 : first;
     const pts = sh
-      .map((h, i) =>
-        i === branchFrom && h === null ? toSvg(hs[i], i) : toSvg(h, i)
-      )
+      .map((h, i) => toSvg(h, i))
       .filter(Boolean)
       .join(' ');
     const lastValue =

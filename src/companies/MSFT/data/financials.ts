@@ -306,37 +306,50 @@ export const offBalanceSheetCommitments = {
 };
 
 export const stressTest: {
-  actualYear: string;
+  actualYears: string[];
   forwardYear: string;
-  deductions: { label: string; desc: string; value: number | null }[];
-  dilutedShares: number;
-  actualYearGainsPerShare: { label: string; value: number }[];
+  deductions: {
+    label: string;
+    desc: string;
+    values: Record<string, number | null>;
+  }[];
+  dilutedShares: Record<string, number>;
+  investmentGainsPerShare: Record<string, { label: string; value: number }[]>;
   writeOffs: { label: string; value: number }[];
+  yearNotes: Record<string, string>;
 } = {
-  actualYear: 'FY26',
+  actualYears: ['FY25', 'FY26'],
   forwardYear: 'FY27E',
   deductions: [
     {
       label: 'OpenAI',
-      desc: 'Revenue from commercial arrangements with OpenAI, including Azure consumption and revenue-sharing payments, of $24.1B in FY26 (FY26 10-K related-party note). FY27E subtracts the same amount as a floor, because consensus assumes OpenAI spends more in FY27.',
-      value: 24.1,
+      desc: 'Revenue from OpenAI, including Azure consumption and revenue-sharing payments. FY26 is the $24.1B disclosed in the FY26 10-K related-party note, and FY27E subtracts the same amount as a floor. FY25 is an estimate of about $8.5B from leaked OpenAI figures, because Microsoft did not disclose it.',
+      values: { FY25: 8.5, FY26: 24.1, FY27E: 24.1 },
     },
     {
       label: 'Anthropic',
-      desc: 'Azure revenue from Anthropic under its November 2025 commitment to buy $30B of Azure compute. Microsoft does not disclose it, so it counts as zero, which understates the cut.',
-      value: null,
+      desc: 'Azure revenue from Anthropic under its November 2025 commitment to buy $30B of Azure compute. Microsoft does not disclose it, so it counts as zero, which understates the cut. FY25 predates the arrangement.',
+      values: { FY25: null, FY26: null, FY27E: null },
     },
   ],
-  dilutedShares: 7.451,
-  actualYearGainsPerShare: [
-    { label: 'OpenAI investment gains', value: 0.67 },
-    { label: 'Anthropic investment gain', value: 0.33 },
-  ],
+  dilutedShares: { FY25: 7.466, FY26: 7.451, FY27E: 7.451 },
+  investmentGainsPerShare: {
+    FY25: [{ label: 'OpenAI investment losses', value: -0.49 }],
+    FY26: [
+      { label: 'OpenAI investment gains', value: 0.67 },
+      { label: 'Anthropic investment gain', value: 0.33 },
+    ],
+    FY27E: [],
+  },
   writeOffs: [
     { label: 'OpenAI equity-method investment', value: 12.0 },
     { label: 'Anthropic stake ($5B cost plus $3.2B gain)', value: 8.2 },
     { label: 'Receivables owed by OpenAI', value: 6.0 },
   ],
+  yearNotes: {
+    FY25: 'This is an estimate. Microsoft did not disclose its FY25 revenue from OpenAI, so the $8.5B comes from leaked OpenAI figures that neither company has confirmed. It adds half of the 2024 Azure inference spend and revenue share ($3.77B and $0.49B) to two-thirds of the January–September 2025 amounts ($8.67B and $0.87B). The leak leaves out training compute, so it likely understates OpenAI revenue and overstates the stressed FY25 figures.',
+    FY26: 'FY26 uses the $24.1B disclosed in the FY26 10-K, which covers all OpenAI arrangements, while the FY25 estimate covers only inference and revenue share. The FY25-to-FY26 change on the stressed line is therefore approximate.',
+  },
 };
 
 const financials: SoftwareFinancials = {
