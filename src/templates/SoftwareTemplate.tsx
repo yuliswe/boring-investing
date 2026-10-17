@@ -8,6 +8,7 @@ import type {
   FooterData,
   SectionData,
   ReverseDcfData,
+  TrendScenarioData,
 } from '@/templates/base';
 
 type TrendMetric = {
@@ -20,6 +21,7 @@ type TrendMetric = {
   median10y?: number;
   guidanceCount?: number;
   yearNotes?: Record<string, string>;
+  scenario?: TrendScenarioData;
 };
 
 export type SegmentData<T extends { year: string }> = {
@@ -132,6 +134,7 @@ export function SoftwareTemplate({
       median10y: m.median10y,
       guidanceCount: m.guidanceCount,
       yearNotes: m.yearNotes,
+      scenario: m.scenario,
     })),
     chartNote:
       financials.criticalSection?.chartNote ??
@@ -158,6 +161,7 @@ export function SoftwareTemplate({
       median10y: m.median10y,
       guidanceCount: m.guidanceCount,
       yearNotes: m.yearNotes,
+      scenario: m.scenario,
     })),
     chartNote:
       financials.keySection?.chartNote ??

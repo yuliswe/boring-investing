@@ -120,7 +120,7 @@ function buildStressTestSection(): SectionData {
   };
 }
 
-function buildStressTestEpsSection(price: number): SectionData {
+function stressedEarnings() {
   const shares = stressTest.dilutedShares;
   const lostRevenue = stressTest.deductions.reduce(
     (sum, d) => sum + (d.value ?? 0),
@@ -130,7 +130,27 @@ function buildStressTestEpsSection(price: number): SectionData {
   const lostRevenueEps = lostRevenue / shares;
   const writeOffEps = writeOffs / shares;
   const beforeWriteOffs = EPS_EST - lostRevenueEps;
-  const stressedEps = beforeWriteOffs - writeOffEps;
+  return {
+    shares,
+    lostRevenue,
+    writeOffs,
+    lostRevenueEps,
+    writeOffEps,
+    beforeWriteOffs,
+    stressedEps: beforeWriteOffs - writeOffEps,
+  };
+}
+
+function buildStressTestEpsSection(price: number): SectionData {
+  const {
+    shares,
+    lostRevenue,
+    writeOffs,
+    lostRevenueEps,
+    writeOffEps,
+    beforeWriteOffs,
+    stressedEps,
+  } = stressedEarnings();
   const eps = (v: number) => `$${v.toFixed(2)}`;
   const pe = (v: number) => (v > 0 ? `${(price / v).toFixed(1)}x` : 'n/m');
   return {
@@ -325,6 +345,12 @@ function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
   const epsGrowth = ((EPS_EST - PRIOR_EPS) / PRIOR_EPS) * 100;
   const peg = +(pe / epsGrowth).toFixed(2);
+  const { stressedEps } = stressedEarnings();
+  const stressedPe = +(price / stressedEps).toFixed(1);
+  const atForwardYear = (values: (number | null)[], v: number) =>
+    values.map((_, i) => (i === values.length - 1 ? v : null));
+  const stressDesc =
+    'FY27E if OpenAI and Anthropic cease to exist, from the Stress Test EPS and P/E section.';
   return {
     ...financials,
     criticalMetrics: financials.criticalMetrics.map(m => {
@@ -336,7 +362,12 @@ function buildDynamicFinancials(price: number) {
           values,
           yearNotes: {
             ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${stressedPe} divides the same price by stressed EPS of $${stressedEps.toFixed(2)}.`,
+          },
+          scenario: {
+            label: 'Stress test',
+            desc: stressDesc,
+            values: atForwardYear(values, stressedPe),
           },
         };
       }
@@ -354,6 +385,18 @@ function buildDynamicFinancials(price: number) {
       }
       return m;
     }),
+    keyMetrics: financials.keyMetrics.map(m =>
+      m.label === 'Diluted EPS'
+        ? {
+            ...m,
+            scenario: {
+              label: 'Stress test',
+              desc: stressDesc,
+              values: atForwardYear(m.values, +stressedEps.toFixed(2)),
+            },
+          }
+        : m
+    ),
   };
 }
 
