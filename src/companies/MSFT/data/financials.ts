@@ -306,16 +306,19 @@ export const offBalanceSheetCommitments = {
 };
 
 export const stressTest: {
-  year: string;
+  actualYear: string;
+  forwardYear: string;
   deductions: { label: string; desc: string; value: number | null }[];
   dilutedShares: number;
+  actualYearGainsPerShare: { label: string; value: number }[];
   writeOffs: { label: string; value: number }[];
 } = {
-  year: 'FY27E',
+  actualYear: 'FY26',
+  forwardYear: 'FY27E',
   deductions: [
     {
       label: 'OpenAI',
-      desc: 'Revenue from commercial arrangements with OpenAI, including Azure consumption and revenue-sharing payments. Uses the FY26 actual of $24.1B from the FY26 10-K related-party note as a floor, because consensus assumes OpenAI spends more in FY27.',
+      desc: 'Revenue from commercial arrangements with OpenAI, including Azure consumption and revenue-sharing payments, of $24.1B in FY26 (FY26 10-K related-party note). FY27E subtracts the same amount as a floor, because consensus assumes OpenAI spends more in FY27.',
       value: 24.1,
     },
     {
@@ -325,6 +328,10 @@ export const stressTest: {
     },
   ],
   dilutedShares: 7.451,
+  actualYearGainsPerShare: [
+    { label: 'OpenAI investment gains', value: 0.67 },
+    { label: 'Anthropic investment gain', value: 0.33 },
+  ],
   writeOffs: [
     { label: 'OpenAI equity-method investment', value: 12.0 },
     { label: 'Anthropic stake ($5B cost plus $3.2B gain)', value: 8.2 },

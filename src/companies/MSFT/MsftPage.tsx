@@ -67,56 +67,64 @@ function buildCashFlowStatementSection(): SectionData {
 function buildStressTestSection(): SectionData {
   const years = financials.revenue.map(r => r.year);
   const reported = financials.revenue.map(r => r.revenue);
-  const at = years.indexOf(stressTest.year);
+  const stressYears = [stressTest.actualYear, stressTest.forwardYear];
+  const isStressYear = (i: number) => stressYears.includes(years[i]);
   const total = stressTest.deductions.reduce(
     (sum, d) => sum + (d.value ?? 0),
     0
   );
-  const stressed = +(reported[at] - total).toFixed(1);
-  const onlyAtStressYear = (v: number | null) =>
-    years.map((_, i) => (i === at ? v : null));
+  const stressed = reported.map(r => +(r - total).toFixed(1));
   const wholeBillions = { ...billionFormat, decimals: 0 };
+  const yearNote = (year: string, base: string) => {
+    const i = years.indexOf(year);
+    return [
+      `${base} ${billions(reported[i])}`,
+      ...stressTest.deductions.map(d => `− ${d.label} ${billions(d.value)}`),
+      `= stressed revenue ${billions(stressed[i])}, a cut of ${((total / reported[i]) * 100).toFixed(1)}%.`,
+    ].join('\n');
+  };
   return {
     rank: 410,
     id: 'stress-test',
     title: 'Stress Test Scenario',
-    kicker: `Revenue if OpenAI and Anthropic both cease to exist in ${stressTest.year}. Microsoft invested $13.0B in OpenAI and $5B in Anthropic, and both spend that money back on Azure, so the scenario removes every dollar of revenue they would have paid Microsoft.`,
+    kicker: `Revenue without OpenAI and Anthropic. Microsoft invested $13.0B in OpenAI and $5B in Anthropic, and both spend that money back on Azure, so the scenario removes every dollar of revenue they paid or would pay Microsoft in ${stressTest.actualYear} and ${stressTest.forwardYear}.`,
     kind: 'multi',
     years,
     mode: 'absolute',
     guidanceCount: 1,
     yearNotes: {
-      [stressTest.year]: [
-        `Consensus revenue ${billions(reported[at])}`,
-        ...stressTest.deductions.map(d => `− ${d.label} ${billions(d.value)}`),
-        `= stressed revenue ${billions(stressed)}, a cut of ${((total / reported[at]) * 100).toFixed(1)}%.`,
-      ].join('\n'),
+      [stressTest.actualYear]: yearNote(
+        stressTest.actualYear,
+        'Reported revenue'
+      ),
+      [stressTest.forwardYear]: yearNote(
+        stressTest.forwardYear,
+        'Consensus revenue'
+      ),
     },
     series: [
       {
         label: 'Revenue',
-        desc: `Revenue as reported. ${stressTest.year} is the consensus estimate.`,
+        desc: `Revenue as reported. ${stressTest.forwardYear} is the consensus estimate.`,
         values: reported,
         format: wholeBillions,
       },
       {
         label: 'Stressed',
-        desc: `${stressTest.year} consensus revenue minus the deductions listed below. Starts from reported FY26 revenue, which the scenario leaves unchanged because it was earned before the collapse.`,
-        values: years.map((_, i) =>
-          i === at ? stressed : i === at - 1 ? reported[i] : null
-        ),
+        desc: 'Revenue minus the deductions listed below.',
+        values: stressed.map((v, i) => (isStressYear(i) ? v : null)),
         format: wholeBillions,
         bold: true,
       },
       ...stressTest.deductions.map(d => ({
         label: `− ${d.label}`,
         desc: d.desc,
-        values: onlyAtStressYear(d.value),
+        values: years.map((_, i) => (isStressYear(i) ? d.value : null)),
         format: billionFormat,
         indent: 1,
       })),
     ],
-    chartNote: `The deductions are a floor, because consensus expects both labs to spend more on Azure in ${stressTest.year} than OpenAI did in FY26 and Anthropic's spending is not disclosed. The scenario does not subtract the roughly $280–310B of OpenAI and Anthropic commitments in Microsoft's $678B commercial backlog, because most of it falls in FY28 and later. It also leaves out items that reduce net income rather than revenue, which are the write-off of the ~$12.0B OpenAI investment, the ~$8.2B Anthropic stake, and $6.0B owed by OpenAI, and the cost of datacenter capacity built for the two labs. Click ${stressTest.year} to see the subtraction.`,
+    chartNote: `${stressTest.actualYear} uses the disclosed OpenAI revenue. ${stressTest.forwardYear} reuses it as a floor, because consensus expects both labs to spend more on Azure, and Anthropic's spending is not disclosed in either year. Earlier years are not adjusted, because Microsoft did not disclose its revenue from OpenAI before ${stressTest.actualYear}. The scenario does not subtract the roughly $280–310B of OpenAI and Anthropic commitments in Microsoft's $678B commercial backlog, because most of it falls in FY28 and later. Click ${stressTest.actualYear} or ${stressTest.forwardYear} to see the subtraction.`,
   };
 }
 
@@ -126,18 +134,24 @@ function stressedEarnings() {
     (sum, d) => sum + (d.value ?? 0),
     0
   );
+  const gains = stressTest.actualYearGainsPerShare.reduce(
+    (sum, g) => sum + g.value,
+    0
+  );
   const writeOffs = stressTest.writeOffs.reduce((sum, w) => sum + w.value, 0);
   const lostRevenueEps = lostRevenue / shares;
   const writeOffEps = writeOffs / shares;
-  const beforeWriteOffs = EPS_EST - lostRevenueEps;
+  const forwardBeforeWriteOffs = EPS_EST - lostRevenueEps;
   return {
     shares,
     lostRevenue,
+    gains,
     writeOffs,
     lostRevenueEps,
     writeOffEps,
-    beforeWriteOffs,
-    stressedEps: beforeWriteOffs - writeOffEps,
+    actualEps: PRIOR_EPS - gains - lostRevenueEps,
+    forwardBeforeWriteOffs,
+    forwardEps: forwardBeforeWriteOffs - writeOffEps,
   };
 }
 
@@ -148,56 +162,85 @@ function buildStressTestEpsSection(price: number): SectionData {
     writeOffs,
     lostRevenueEps,
     writeOffEps,
-    beforeWriteOffs,
-    stressedEps,
+    actualEps,
+    forwardBeforeWriteOffs,
+    forwardEps,
   } = stressedEarnings();
+  const { actualYear, forwardYear } = stressTest;
   const eps = (v: number) => `$${v.toFixed(2)}`;
+  const minus = (v: number) => `−${eps(v)}`;
   const pe = (v: number) => (v > 0 ? `${(price / v).toFixed(1)}x` : 'n/m');
   return {
     rank: 411,
     id: 'stress-test-eps',
     title: 'Stress Test EPS and P/E',
-    kicker: `Diluted EPS and the P/E ratio at $${price.toFixed(2)} under the same scenario, against reported FY26 and ${stressTest.year} consensus.`,
+    kicker: `Diluted EPS and the P/E ratio at $${price.toFixed(2)} without OpenAI and Anthropic, beside the reported and consensus figures.`,
     kind: 'table',
     firstColumn: 'Line',
     columns: [
-      'FY26 reported',
-      `${stressTest.year} consensus`,
-      `${stressTest.year} stressed`,
+      `${actualYear} reported`,
+      `${actualYear} stressed`,
+      `${forwardYear} consensus`,
+      `${forwardYear} stressed`,
     ],
     rows: [
       {
         label: 'Diluted EPS',
-        desc: `FY26 is GAAP diluted EPS. ${stressTest.year} consensus is the analyst estimate. The stressed figure subtracts the two lines below.`,
-        values: [eps(PRIOR_EPS), eps(EPS_EST), eps(stressedEps)],
+        desc: `${actualYear} is GAAP diluted EPS and ${forwardYear} consensus is the analyst estimate. Each stressed figure subtracts the lines below it.`,
+        values: [eps(PRIOR_EPS), eps(actualEps), eps(EPS_EST), eps(forwardEps)],
+      },
+      {
+        label: '− Investment gains',
+        desc: `${stressTest.actualYearGainsPerShare.map(g => `${g.label} of ${eps(g.value)}`).join(' and ')} per share, booked in ${actualYear}. Consensus excludes investment gains, so ${forwardYear} has none to remove.`,
+        values: [
+          '—',
+          minus(
+            stressTest.actualYearGainsPerShare.reduce(
+              (sum, g) => sum + g.value,
+              0
+            )
+          ),
+          '—',
+          '—',
+        ],
       },
       {
         label: '− Lost revenue',
         desc: `The ${billions(lostRevenue)} removed in the Stress Test Scenario chart, divided by ${shares.toFixed(2)}B diluted shares. It is taken out in full with no tax shield, on the view that the datacenter costs of serving the two labs remain after their revenue stops.`,
-        values: ['—', '—', `−${eps(lostRevenueEps)}`],
+        values: ['—', minus(lostRevenueEps), '—', minus(lostRevenueEps)],
       },
       {
         label: '− One-time write-offs',
-        desc: `${stressTest.writeOffs.map(w => `${w.label} ${billions(w.value)}`).join(', ')}, a total of ${billions(writeOffs)} divided by ${shares.toFixed(2)}B diluted shares. These recur only once, so EPS recovers by this amount the following year.`,
-        values: ['—', '—', `−${eps(writeOffEps)}`],
+        desc: `${stressTest.writeOffs.map(w => `${w.label} ${billions(w.value)}`).join(', ')}, a total of ${billions(writeOffs)} divided by ${shares.toFixed(2)}B diluted shares. They occur only in the year the labs collapse.`,
+        values: ['—', '—', '—', minus(writeOffEps)],
       },
       {
         label: 'EPS before write-offs',
-        desc: 'Diluted EPS without the one-time write-offs, which shows the earning power that remains after the two labs are gone.',
-        values: [eps(PRIOR_EPS), eps(EPS_EST), eps(beforeWriteOffs)],
+        desc: 'Diluted EPS without the one-time write-offs, which shows the earning power that remains without the two labs. The P/E and Diluted EPS charts plot this figure.',
+        values: [
+          eps(PRIOR_EPS),
+          eps(actualEps),
+          eps(EPS_EST),
+          eps(forwardBeforeWriteOffs),
+        ],
       },
       {
         label: 'P/E ratio',
         desc: `$${price.toFixed(2)} divided by diluted EPS.`,
-        values: [pe(PRIOR_EPS), pe(EPS_EST), pe(stressedEps)],
+        values: [pe(PRIOR_EPS), pe(actualEps), pe(EPS_EST), pe(forwardEps)],
       },
       {
         label: 'P/E before write-offs',
         desc: `$${price.toFixed(2)} divided by EPS before write-offs.`,
-        values: [pe(PRIOR_EPS), pe(EPS_EST), pe(beforeWriteOffs)],
+        values: [
+          pe(PRIOR_EPS),
+          pe(actualEps),
+          pe(EPS_EST),
+          pe(forwardBeforeWriteOffs),
+        ],
       },
     ],
-    tableNote: `FY26 reported EPS of $${PRIOR_EPS} includes about $0.67 of OpenAI gains and $0.33 of Anthropic gains, while consensus excludes investment gains. Stressed EPS also leaves out the cost of datacenter capacity built for the two labs, which the filings do not quantify. P/E ratios recalculate when the price is adjusted.`,
+    tableNote: `Stressed EPS leaves out the cost of datacenter capacity built for the two labs, which the filings do not quantify. P/E ratios recalculate when the price is adjusted.`,
   };
 }
 
@@ -345,12 +388,22 @@ function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
   const epsGrowth = ((EPS_EST - PRIOR_EPS) / PRIOR_EPS) * 100;
   const peg = +(pe / epsGrowth).toFixed(2);
-  const { stressedEps } = stressedEarnings();
-  const stressedPe = +(price / stressedEps).toFixed(1);
-  const atForwardYear = (values: (number | null)[], v: number) =>
-    values.map((_, i) => (i === values.length - 1 ? v : null));
-  const stressDesc =
-    'FY27E if OpenAI and Anthropic cease to exist, from the Stress Test EPS and P/E section.';
+  const { actualEps, forwardBeforeWriteOffs } = stressedEarnings();
+  const actualPe = +(priceConfig.defaultPrice / actualEps).toFixed(1);
+  const forwardPe = +(price / forwardBeforeWriteOffs).toFixed(1);
+  const atStressYears = (
+    values: (number | null)[],
+    actual: number,
+    forward: number
+  ) =>
+    values.map((_, i) =>
+      i === values.length - 2
+        ? actual
+        : i === values.length - 1
+          ? forward
+          : null
+    );
+  const stressDesc = `Without OpenAI and Anthropic, before the one-time write-offs in ${stressTest.forwardYear}. The Stress Test EPS and P/E section shows the calculation.`;
   return {
     ...financials,
     criticalMetrics: financials.criticalMetrics.map(m => {
@@ -362,12 +415,12 @@ function buildDynamicFinancials(price: number) {
           values,
           yearNotes: {
             ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${stressedPe} divides the same price by stressed EPS of $${stressedEps.toFixed(2)}.`,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${forwardPe} divides the same price by stressed EPS before write-offs of $${forwardBeforeWriteOffs.toFixed(2)}.`,
           },
           scenario: {
             label: 'Stress test',
-            desc: stressDesc,
-            values: atForwardYear(values, stressedPe),
+            desc: `${stressDesc} ${stressTest.actualYear} divides the ${stressTest.actualYear} close of $${priceConfig.defaultPrice} by stressed EPS of $${actualEps.toFixed(2)}.`,
+            values: atStressYears(values, actualPe, forwardPe),
           },
         };
       }
@@ -392,7 +445,11 @@ function buildDynamicFinancials(price: number) {
             scenario: {
               label: 'Stress test',
               desc: stressDesc,
-              values: atForwardYear(m.values, +stressedEps.toFixed(2)),
+              values: atStressYears(
+                m.values,
+                +actualEps.toFixed(2),
+                +forwardBeforeWriteOffs.toFixed(2)
+              ),
             },
           }
         : m
