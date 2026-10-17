@@ -1,3 +1,4 @@
+import type { StressTestData } from '@/templates/base';
 import type { SoftwareFinancials } from '@/templates/SoftwareTemplate';
 
 export const cashFlowStatementYears = [
@@ -277,6 +278,41 @@ export const offBalanceSheetCommitments = {
   ],
 };
 
+export const stressTest: StressTestData = {
+  subject: 'Anthropic',
+  revenueKicker:
+    'Revenue without Anthropic. Google has invested about $13B in Anthropic, which spends heavily on Google Cloud and TPUs, so the scenario removes the revenue Anthropic paid or would pay Google in CY25 and CY26E.',
+  revenueNote:
+    'Alphabet does not disclose its revenue from Anthropic, so both years are upper-bound estimates; click a year for the method. Earlier years are not adjusted. The scenario does not subtract the roughly $200B Anthropic has reportedly committed to Google Cloud, over 40% of the $514B cloud backlog, because most of it falls after CY26.',
+  gainsDesc:
+    'Gains on equity securities, per share, from the quarterly footnotes in Alphabet’s earnings releases. CY25 removes all of them so that it matches consensus, which excludes investment gains, and lists the Anthropic share separately. CY26E has none to remove.',
+  tableNote:
+    'Revenue from Anthropic and the Anthropic stake are estimates, because Alphabet names neither. Stressed EPS leaves out the cost of TPU capacity built for Anthropic and the $20B milestone-based funding commitment. P/E ratios recalculate when the price is adjusted.',
+  actualYears: ['CY25'],
+  forwardYear: 'CY26E',
+  deductions: [
+    {
+      label: 'Anthropic',
+      desc: 'Google Cloud revenue from Anthropic, which Alphabet does not disclose. CY25 counts all of Anthropic’s reported 2025 compute and infrastructure spend of $7.3B, part of which went to AWS. CY26E applies UBS’s estimate that OpenAI and Anthropic make up 27% of Google Cloud revenue to H1 2026 Cloud revenue annualised ($89.6B), and treats all of it as Anthropic. Both are upper bounds.',
+      values: { CY25: 7.3, CY26E: 24.2 },
+    },
+  ],
+  dilutedShares: { CY25: 12.22, CY26E: 12.22 },
+  investmentGainsPerShare: {
+    CY25: [
+      { label: 'Anthropic gains (Q3 and Q4 2025)', value: 0.83 },
+      { label: 'Other gains, mainly SpaceX (Q1 and Q2 2025)', value: 0.7 },
+    ],
+    CY26E: [],
+  },
+  writeOffs: [{ label: 'Anthropic stake (estimated)', value: 110 }],
+  yearNotes: {
+    CY25: 'This is an estimate. Alphabet does not disclose its revenue from Anthropic, so the $7.3B is all of Anthropic’s reported 2025 compute and infrastructure spend, part of which went to AWS, which makes it an upper bound. The $0.83 of Anthropic gains assigns all Q3 and Q4 2025 equity gains to Anthropic, because Bloomberg tied Q1 2025 gains to SpaceX.',
+    CY26E:
+      'This is an estimate. The $24.2B applies UBS’s 27% OpenAI-and-Anthropic share of Google Cloud revenue to annualised H1 2026 Cloud revenue and treats all of it as Anthropic, an upper bound. The ~$110B Anthropic stake is the $124.3B of non-marketable securities, which Alphabet says are mainly one private company, less an estimated $14B of other holdings.',
+  },
+};
+
 const financials: SoftwareFinancials = {
   reverseDcf: {
     companyName: 'Alphabet',
@@ -320,7 +356,7 @@ const financials: SoftwareFinancials = {
     {
       label: 'P/E ratio',
       values: [
-        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 15.2,
+        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 23.9,
       ],
       format: { decimals: 1 },
       invertColor: true,
@@ -328,7 +364,7 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Calculated from the default price of $313.80 divided by consensus diluted EPS of $20.62.',
+          'Calculated from the default price of $313.80 divided by consensus diluted EPS of $13.14.',
       },
     },
     {
@@ -340,14 +376,14 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'PEG ratio',
-      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 0.17],
+      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 1.11],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 0.89,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Calculated from the forward P/E of 15.2 divided by the CY25-to-CY26 EPS growth rate of 90.7%.',
+          'Calculated from the forward P/E of 23.9 divided by the CY25-to-CY26 EPS growth rate of 21.6%.',
       },
     },
   ],
@@ -355,13 +391,14 @@ const financials: SoftwareFinancials = {
     {
       label: 'Diluted EPS',
       values: [
-        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 20.62,
+        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 13.14,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.75,
       guidanceCount: 1,
       yearNotes: {
-        CY26E: 'Consensus analyst estimate (51 analysts, stockanalysis.com).',
+        CY26E:
+          'Average consensus analyst estimate of $13.14 (52 analysts, stockanalysis.com). It is non-GAAP and excludes investment gains, while earlier years are GAAP and include them.',
       },
     },
     {

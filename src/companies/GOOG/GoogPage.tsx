@@ -1,12 +1,14 @@
 'use client';
 
 import { SoftwareTemplate } from '@/templates/SoftwareTemplate';
+import { applyStressTest } from '@/templates/base';
 import type { HeroData, FooterData, SectionData } from '@/templates/base';
 import { usePriceHero, type PriceConfig } from '@/lib/usePriceHero';
 import financials, {
   cashFlowStatementYears,
   cashFlowStatementLines,
   offBalanceSheetCommitments,
+  stressTest,
 } from './data/financials';
 import segments from './data/segments';
 
@@ -198,7 +200,7 @@ const footer: FooterData = {
   ],
 };
 
-const EPS_EST = 20.62;
+const EPS_EST = 13.14;
 const PRIOR_EPS = 10.81;
 
 function buildDynamicFinancials(price: number) {
@@ -239,14 +241,15 @@ function buildDynamicFinancials(price: number) {
 
 export function GoogPage() {
   const { price, hero: h, addon } = usePriceHero(hero, priceConfig);
-  const dynamicFinancials = buildDynamicFinancials(price);
+  const { financials: dynamicFinancials, sections: stressSections } =
+    applyStressTest(buildDynamicFinancials(price), stressTest, price);
   return (
     <SoftwareTemplate
       navbar={navbar}
       hero={h}
       heroAddon={addon}
       financials={dynamicFinancials}
-      extraSections={googSections}
+      extraSections={[...googSections, ...stressSections]}
       figuresDate='31 December'
       footer={footer}
     />

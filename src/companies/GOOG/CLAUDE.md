@@ -68,3 +68,10 @@ exceptions and approximations:
   that distorts annualisation. H1 2026 FCF was barely positive at $4.3B
   (OCF $84.9B minus CapEx $80.6B), and Q2 2026 standalone FCF was
   negative (-$5.9B).
+
+- **Stress test.** The stress test removes Anthropic from CY25 and CY26E.
+  Alphabet never names Anthropic, so revenue cuts ($7.3B and $24.2B) are
+  upper-bound estimates from Anthropic's S-1 and UBS, and the ~$110B stake
+  is estimated from non-marketable holdings. CY25 EPS drops all investment
+  gains to match consensus, which excludes them. Inputs are in `stressTest`
+  in `data/financials.ts`, and sources are in `references.md`.

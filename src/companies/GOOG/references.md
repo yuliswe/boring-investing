@@ -89,10 +89,11 @@ lines.
   because Q2 2026 contains an outsized non-operating gain that makes
   annualisation unreliable. CY26E P/FCF is omitted because free cash flow is
   depressed by the $160B+ capex ramp.
-- CY26E EPS ($20.62) is the consensus analyst estimate from stockanalysis.com
-  (51 analysts, accessed 22 Sep 2026). The forward P/E and PEG ratios use
-  this consensus EPS with the default stock price, and recalculate reactively
-  when the price adjuster changes.
+- CY26E EPS ($13.14) is the average consensus analyst estimate from
+  stockanalysis.com (52 analysts, accessed 17 Oct 2026). It is non-GAAP and
+  excludes investment gains; the high estimate is $20.65. The forward P/E and
+  PEG ratios use this consensus EPS with the default stock price, and
+  recalculate reactively when the price adjuster changes.
 - PEG is null for CY16–CY20 because computing the trailing five-year EPS
   CAGR requires pre-CY16 data that is outside the XBRL filing range for
   Alphabet's current CIK (0001652044).
@@ -102,3 +103,32 @@ lines.
 - Shares outstanding (12.23B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/goog/>
 - Net cash (142.3B): $242.5B of cash, cash equivalents, and marketable securities minus $100.2B of debt, Q2 2026 10-Q; non-marketable stakes are excluded
 - Starting value: Consensus CY26E free cash flow of $7.78B, crushed by $195–205B of guided capital spending, and consensus operating income of $160.9B less 18% tax.
+
+## Stress test
+
+The scenario removes Anthropic from CY25 and CY26E. Alphabet's filings never
+name Anthropic, so the Anthropic figures are estimates.
+
+- Gains on equity securities by quarter and their EPS effect (CY25: $0.62,
+  $0.08, $0.68, $0.15): footnotes to Alphabet's quarterly earnings releases.
+  Q1 2025 gains are tied to SpaceX
+  <https://www.bloomberg.com/news/articles/2025-04-24/alphabet-s-profit-gets-8-billion-boost-from-spacex-investment>,
+  and Q3 2025 gains partly to Anthropic
+  <https://www.bloomberg.com/news/articles/2025-10-31/alphabet-amazon-stakes-in-anthropic-boost-profit-by-billions>.
+- CY25 revenue from Anthropic (≤ $7.3B): Anthropic's reported 2025 compute and
+  infrastructure costs from its S-1
+  <https://finance.yahoo.com/technology/ai/articles/anthropic-ipo-prospectus-2025-revenue-120505564.html>.
+- CY26E revenue from Anthropic (~$24.2B): UBS estimates OpenAI and Anthropic
+  make up 27% of Google Cloud revenue in 2026
+  <https://247wallst.com/investing/2026/08/10/48-of-google-cloud-revenue-next-year-could-come-from-just-2-companies-that-have-still-never-turned-a-profit/>,
+  applied to H1 2026 Cloud revenue of $44.8B annualised.
+- Anthropic stake (~$110B): $124.3B of non-marketable securities at
+  30 June 2026, "primarily" one private company (Q2 2026 10-Q), less an
+  estimated $6–20B of other holdings. Google's ~$13.3B invested
+  <https://fortune.com/2026/07/22/anthropic-spacex-investments-google-earnings-biggest-ever-profit-quarter/>
+  and $40B commitment
+  <https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html>.
+- Anthropic's ~$200B Google Cloud commitment (>40% of backlog):
+  <https://finance.yahoo.com/sectors/technology/articles/anthropic-commits-spending-200-billion-204952501.html>.
+- Diluted shares (12.22B): CY25 net income of $132.1B divided by diluted EPS
+  of $10.81.
