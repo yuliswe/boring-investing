@@ -19,6 +19,15 @@ type ComputedDot = {
   x: string;
   isGuidance: boolean;
   isNull: boolean;
+  scenarioValue: string;
+};
+
+type ComputedScenario = {
+  label: string;
+  desc?: string;
+  latest: string;
+  points: string;
+  markers: { h: string; x: string }[];
 };
 
 type ComputedPanel = {
@@ -32,6 +41,7 @@ type ComputedPanel = {
   hasMedian: boolean;
   medianH: string;
   medianLabel: string;
+  scenario: ComputedScenario | null;
 };
 
 function computePanel(
@@ -48,8 +58,11 @@ function computePanel(
     deltaMode,
     guidanceCount = 0,
     yearNotes,
+    scenario,
   } = panel;
-  const numericVals = values.filter((v): v is number => v !== null);
+  const numericVals = values
+    .concat(scenario?.values ?? [])
+    .filter((v): v is number => v !== null);
   const allVals =
     median10y != null ? numericVals.concat(median10y) : numericVals;
   const min = Math.min(...allVals);
@@ -103,6 +116,10 @@ function computePanel(
       x: (((i + 0.5) / values.length) * 100).toFixed(1) + '%',
       isGuidance: i >= historicalEnd,
       isNull: v === null,
+      scenarioValue:
+        scenario?.values[i] != null
+          ? formatValue(scenario.values[i], format)
+          : '',
     };
   });
 
@@ -139,6 +156,37 @@ function computePanel(
     }
   }
 
+  let computedScenario: ComputedScenario | null = null;
+  if (scenario) {
+    const sh = scenario.values.map(v => (v !== null ? pct(v, lo, hi) : null));
+    const first = sh.findIndex(h => h !== null);
+    const branchFrom = first > 0 && hs[first - 1] !== null ? first - 1 : first;
+    const pts = sh
+      .map((h, i) =>
+        i === branchFrom && h === null ? toSvg(hs[i], i) : toSvg(h, i)
+      )
+      .filter(Boolean)
+      .join(' ');
+    const lastValue =
+      [...scenario.values].reverse().find(v => v !== null) ?? null;
+    computedScenario = {
+      label: scenario.label,
+      desc: scenario.desc,
+      latest: formatValue(lastValue, format),
+      points: pts,
+      markers: sh.flatMap((h, i) =>
+        h !== null
+          ? [
+              {
+                h: h.toFixed(1) + '%',
+                x: (((i + 0.5) / sh.length) * 100).toFixed(1) + '%',
+              },
+            ]
+          : []
+      ),
+    };
+  }
+
   return {
     label,
     desc: panel.desc,
@@ -150,6 +198,7 @@ function computePanel(
     hasMedian,
     medianH,
     medianLabel,
+    scenario: computedScenario,
   };
 }
 
@@ -180,6 +229,22 @@ function Sparkline({
           {panel.latest}
         </span>
       </div>
+      {panel.scenario && (
+        <div className='flex items-baseline justify-end gap-2 -mt-1 text-xs'>
+          <span
+            className='inline-block w-2 h-0 flex-none border-t-2 border-dotted'
+            style={{ borderColor: COLOR_BAD }}
+          />
+          <DescribedLabel
+            label={panel.scenario.label}
+            desc={panel.scenario.desc}
+            className='text-secondary'
+          />
+          <span className='ds-tnum' style={{ color: COLOR_BAD }}>
+            {panel.scenario.latest}
+          </span>
+        </div>
+      )}
 
       <div className={`relative overflow-hidden ${large ? 'h-40' : 'h-16'}`}>
         <div className='absolute inset-0 pointer-events-none'>
@@ -212,6 +277,18 @@ function Sparkline({
                 vectorEffect='non-scaling-stroke'
               />
             )}
+            {panel.scenario?.points && (
+              <polyline
+                points={panel.scenario.points}
+                fill='none'
+                stroke={COLOR_BAD}
+                strokeWidth='2'
+                strokeLinejoin='round'
+                strokeLinecap='round'
+                strokeDasharray='0 4'
+                vectorEffect='non-scaling-stroke'
+              />
+            )}
           </svg>
         </div>
         <div className='absolute inset-0'>
@@ -241,6 +318,18 @@ function Sparkline({
                 />
               )
           )}
+          {panel.scenario?.markers.map((m, i) => (
+            <div
+              key={`scenario-${i}`}
+              className='absolute w-1.5 h-1.5 -ml-0.75 -mb-0.75 rounded-full pointer-events-none'
+              style={{
+                bottom: m.h,
+                left: m.x,
+                border: `1.5px dotted ${COLOR_BAD}`,
+                background: 'var(--color-bg)',
+              }}
+            />
+          ))}
         </div>
       </div>
 
@@ -276,6 +365,14 @@ function Sparkline({
                 style={{ color: d.deltaColor }}
               >
                 {d.delta}
+              </span>
+            )}
+            {d.scenarioValue && (
+              <span
+                className='whitespace-nowrap overflow-hidden text-ellipsis'
+                style={{ color: COLOR_BAD }}
+              >
+                {d.scenarioValue}
               </span>
             )}
           </div>

@@ -9,6 +9,7 @@ export type {
   FooterData,
   ValueFormatData,
   TrendPanelData,
+  TrendScenarioData,
   MetricRowData,
   ChartBarData,
   StackBarData,

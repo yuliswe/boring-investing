@@ -27,6 +27,13 @@ export type TrendPanelData = {
   deltaMode?: 'pct' | 'add';
   guidanceCount?: number;
   yearNotes?: Record<string, string>;
+  scenario?: TrendScenarioData;
+};
+
+export type TrendScenarioData = {
+  label: string;
+  desc?: string;
+  values: (number | null)[];
 };
 
 export type MetricRowData = {
