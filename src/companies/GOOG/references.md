@@ -32,7 +32,9 @@
 
 - [Yahoo Finance — GOOG](https://finance.yahoo.com/quote/GOOG/) — calendar
   year-end closing prices (last trading day on or before 31 December each
-  year), used for the hero price and the P/E and P/FCF ratios. All per-share
+  year), used for the historical P/E and P/FCF ratios. The hero price is
+  the close of 16 October 2026 ($336.91, against $344.91 the day before),
+  which also drives the forward P/E, PEG and reverse DCF. All per-share
   figures are adjusted for the July 2022 20-for-1 stock split.
 
 ## Derived and approximate values
@@ -84,11 +86,18 @@ lines.
 - All dollar figures in `data/financials.json` and `data/segments.json` are
   in billions of USD, rounded to one decimal.
 - Figures are calendar-year values (Alphabet's fiscal year ends 31 December).
-- CY26E revenue ($460B) and capex ($160B) are annualised from filed H1 2026
-  10-Q data ($229.7B and $80.6B respectively). CY26E net margin is omitted
-  because Q2 2026 contains an outsized non-operating gain that makes
-  annualisation unreliable. CY26E P/FCF is omitted because free cash flow is
-  depressed by the $160B+ capex ramp.
+- CY26E revenue ($459B), segment revenue (Services $368.4B, Cloud $89.6B,
+  Other Bets $1.6B) and operating income ($160.9B) are annualised from the
+  H1 2026 10-Q. CY26E capex ($200B) is the midpoint of the $195–205B guidance
+  given on the Q2 2026 call
+  <https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html>.
+  CY26E net margin is omitted because 2026 contains large non-operating
+  gains. CY26E P/FCF is omitted because free cash flow is depressed by the
+  capex ramp.
+- CY26E free cash flow ($7.07B) and revenue ($499.6B, used only for the FCF
+  margin) are consensus figures from stockanalysis.com, accessed 17 Oct 2026.
+- Segment revenue excludes hedging gains and losses, which Alphabet reports
+  only in total revenue, so segments do not sum exactly to total revenue.
 - CY26E EPS ($13.14) is the average consensus analyst estimate from
   stockanalysis.com (52 analysts, accessed 17 Oct 2026). It is non-GAAP and
   excludes investment gains; the high estimate is $20.65. The forward P/E and
@@ -102,7 +111,7 @@ lines.
 
 - Shares outstanding (12.23B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/goog/>
 - Net cash (142.3B): $242.5B of cash, cash equivalents, and marketable securities minus $100.2B of debt, Q2 2026 10-Q; non-marketable stakes are excluded
-- Starting value: Consensus CY26E free cash flow of $7.78B, crushed by $195–205B of guided capital spending, and consensus operating income of $160.9B less 18% tax.
+- Starting value: Consensus CY26E free cash flow of $7.07B, crushed by $195–205B of guided capital spending, and H1 2026 operating income annualised to $160.9B, less 18% tax.
 
 ## Stress test
 
