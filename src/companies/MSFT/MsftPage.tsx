@@ -41,8 +41,6 @@ const priceConfig: PriceConfig = {
 };
 
 const billionFormat = { prefix: '$', suffix: 'B', decimals: 1 };
-const billions = (v: number | null) =>
-  v === null ? 'not disclosed' : `$${v.toFixed(1)}B`;
 
 function buildCashFlowStatementSection(): SectionData {
   return {
