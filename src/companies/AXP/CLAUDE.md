@@ -1,6 +1,10 @@
 # AXP — American Express Company
 
-Analytical method: [software](../../methods/software.md)
+Analytical method: [financials](../../methods/financials.md)
+
+The page still renders the software template, so its sections lead with P/FCF
+and FCF margin. Read those against the financials method, which values AXP on
+net income, ROE and capital return instead.
 
 ## Company-specific notes
 
@@ -51,5 +55,12 @@ Analytical method: [software](../../methods/software.md)
 - **Cash flow structure.** AXP's cash flow statement differs from non-financial
   companies. Investing activities are dominated by growth in the card member loan
   portfolio (not capital expenditures), and financing activities include large
-  swings in customer deposits. Free cash flow (operating minus capex) remains
-  meaningful because capex is a relatively small $1-2.4B per year.
+  swings in customer deposits. Capex is small ($1-2.4B per year), but free cash
+  flow (operating minus capex) still swings with loan and deposit growth, so
+  the financials method treats net income, not free cash flow, as earning
+  power.
+
+- **Business drivers tracked.** Following section 5 of the financials method:
+  billed business growth, card fee growth, card member rewards and services as
+  a share of revenue, and net interest income alongside card member loan
+  growth.
