@@ -162,6 +162,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'NOW',
+    name: 'ServiceNow, Inc.',
+    sector: 'Software',
+    summary:
+      'Cloud workflow platform for IT, employee, customer and security operations, with subscriptions at 97% of revenue and a 98% renewal rate, which in 2026 took on net debt to buy the security companies Armis and Veza.',
+    template: 'software',
+  },
+  {
     symbol: 'PEP',
     name: 'PepsiCo, Inc.',
     sector: 'Consumer Staples',
