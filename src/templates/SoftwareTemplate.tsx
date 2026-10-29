@@ -50,6 +50,7 @@ export type SoftwareFinancials = {
     netIncome?: number | null;
   }[];
   revenueSection?: {
+    currency?: string;
     kicker?: string;
     chartNote?: string;
     revenueDesc?: string;
@@ -170,6 +171,11 @@ export function SoftwareTemplate({
   });
 
   const revSection = financials.revenueSection;
+  const revFormat = {
+    prefix: revSection?.currency ?? '$',
+    suffix: 'B',
+    decimals: 2,
+  };
   const revSeries: {
     label: string;
     desc: string;
@@ -182,7 +188,7 @@ export function SoftwareTemplate({
       desc:
         revSection?.revenueDesc ?? 'Consolidated revenue from all operations.',
       values: financials.revenue.map(r => r.revenue),
-      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      format: revFormat,
       total: true,
     },
     {
@@ -191,7 +197,7 @@ export function SoftwareTemplate({
         revSection?.operatingIncomeDesc ??
         'Income from operations before interest and taxes.',
       values: financials.revenue.map(r => r.operatingIncome),
-      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      format: revFormat,
     },
   ];
   if (financials.revenue.some(r => r.netIncome != null)) {
@@ -199,7 +205,7 @@ export function SoftwareTemplate({
       label: 'Net income',
       desc: revSection?.netIncomeDesc ?? 'GAAP net income.',
       values: financials.revenue.map(r => r.netIncome ?? null),
-      format: { prefix: '$', suffix: 'B', decimals: 2 },
+      format: revFormat,
     });
   }
   softwareSections.push({

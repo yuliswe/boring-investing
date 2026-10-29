@@ -210,6 +210,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'SU',
+    name: 'Suncor Energy Inc.',
+    sector: 'Integrated Oil & Gas',
+    summary:
+      'Canadian integrated oil company that produces about 860,000 barrels a day from the Alberta oil sands and offshore Newfoundland, refines it at four refineries and sells it through Petro-Canada stations, with earnings and buybacks that rise and fall with the oil price.',
+    template: 'software',
+  },
+  {
     symbol: 'TOI',
     name: 'Topicus.com Inc.',
     sector: 'Software',
