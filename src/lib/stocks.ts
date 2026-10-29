@@ -66,6 +66,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'CNQ',
+    name: 'Canadian Natural Resources Limited',
+    sector: 'Oil & Gas Production',
+    summary:
+      'Canadian oil and natural gas producer averaging 1.57 million barrels of oil equivalent a day in 2025, mostly from long-life oil sands mines and thermal in situ projects, which has grown production per share by buying assets from companies leaving Canada and returns most of its free cash flow through a dividend raised every year.',
+    template: 'software',
+  },
+  {
     symbol: 'CSU',
     name: 'Constellation Software Inc.',
     sector: 'Software',
