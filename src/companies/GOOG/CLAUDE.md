@@ -62,17 +62,22 @@ exceptions and approximations:
 - **Segments.** Segment revenue in `data/segments.json` comes from the
   10-K narrative disclosures, not from the XBRL aggregate API (which does
   not expose dimensional member data). CY16 segment values are estimates.
-- **CY26E.** Revenue ($459B), its segments and operating income are
-  annualised from the H1 2026 10-Q (H1 revenue $229.7B). Capex ($200B) is
-  the midpoint of the $195–205B guidance given on the Q2 2026 call. EPS is
-  the non-GAAP consensus, and net margin is null because 2026 contains large
-  non-operating gains. H1 2026 FCF was barely positive at $4.3B
-  (OCF $84.9B minus CapEx $80.6B), and Q2 2026 standalone FCF was
-  negative (-$5.9B).
+- **CY26E.** Revenue ($476.4B), its segments, operating income and the
+  expense lines are annualised (× 4/3) from the nine months to 30 September
+  2026 in the Q3 2026 10-Q (nine-month revenue $357.3B). Capex ($200B) is
+  the midpoint of the $195–205B guidance, which the Q3 2026 call kept
+  unchanged. EPS and FCF are consensus, and net margin is null because 2026
+  contains $127B of net equity-security gains. Nine-month FCF was negative
+  at -$4.8B (OCF $127.1B minus capex $132.0B), and consensus CY26E FCF is
+  -$17.95B. The reverse DCF therefore uses after-tax operating income alone,
+  as AMZN does, because a negative starting value hides the section.
+
+- **2026 financing.** Alphabet made no buybacks in the first nine months of 2026. It issued $42.9B of common stock and $19.1B of 6.25% mandatory
+  convertible preferred stock, and took on $76.3B of net new debt.
 
 - **Stress test.** The stress test removes Anthropic from CY25 and CY26E.
-  Alphabet never names Anthropic, so revenue cuts ($7.3B and $24.2B) are
-  upper-bound estimates from Anthropic's S-1 and UBS, and the ~$110B stake
+  Alphabet never names Anthropic, so revenue cuts ($7.3B and $27.2B) are
+  upper-bound estimates from Anthropic's S-1 and UBS, and the ~$115B stake
   is estimated from non-marketable holdings. CY25 EPS drops all investment
   gains to match consensus, which excludes them. Inputs are in `stressTest`
   in `data/financials.ts`, and sources are in `references.md`.

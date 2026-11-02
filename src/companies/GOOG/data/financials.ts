@@ -141,7 +141,7 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Capital expenditures',
-    desc: 'Purchases of property and equipment, including data centers, servers, networking equipment, and office facilities. CY25 capex of $91.4B reflects a step-change in AI infrastructure investment.',
+    desc: 'Purchases of property and equipment, including data centers, servers, networking equipment, and office facilities. CY25 capex of $91.4B reflects a step-change in AI infrastructure investment. CY26E is the $200B midpoint of the $195–205B guidance, which Alphabet kept unchanged on the Q3 2026 call after spending $132.0B in the first nine months.',
     values: [
       -10.212, -13.184, -25.139, -23.548, -22.281, -24.64, -31.485, -32.251,
       -52.535, -91.447, -200.0,
@@ -185,7 +185,7 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Issuance/Retirement of stocks',
-    desc: 'Repurchases of common stock plus net payments related to stock-based award activities (proceeds from employee stock plans minus tax withholding payments). Alphabet began large-scale buybacks in CY19 and has repurchased over $370B of stock since.',
+    desc: 'Repurchases of common stock plus net payments related to stock-based award activities (proceeds from employee stock plans minus tax withholding payments). Alphabet began large-scale buybacks in CY19 and has repurchased over $370B of stock since. It bought back no shares in the first nine months of 2026, and instead raised $42.9B by issuing common stock and $19.1B by issuing 6.25% mandatory convertible preferred stock.',
     values: [
       -6.997,
       -9.012,
@@ -221,8 +221,8 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Cash dividends paid',
-    desc: 'Cash dividends paid on Class A, B, and C shares. Alphabet initiated its first-ever dividend in CY24 at $0.20 per share per quarter, increasing to $0.21 in CY25.',
-    values: [0, 0, 0, 0, 0, 0, 0, 0, -7.363, -10.049, -10.5],
+    desc: 'Cash dividends paid on Class A, B, and C shares, and from CY26 on the mandatory convertible preferred stock. Alphabet initiated its first-ever dividend in CY24 at $0.20 per share per quarter, increasing to $0.21 in CY25. CY26E annualises the $8.2B paid in the first nine months.',
+    values: [0, 0, 0, 0, 0, 0, 0, 0, -7.363, -10.049, -10.9],
     indent: 1,
   },
   {
@@ -233,32 +233,32 @@ export const cashFlowStatementLines = [
   },
   {
     label: 'Free cash flow',
-    desc: 'Operating cash flow minus capital expenditures (property, equipment, and construction in progress).',
+    desc: 'Operating cash flow minus capital expenditures (property, equipment, and construction in progress). CY26E is the consensus estimate. Actual free cash flow for the first nine months of 2026 was -$4.8B, because capex of $132.0B exceeded operating cash flow of $127.1B.',
     values: [
       25.824, 23.907, 22.832, 30.972, 42.843, 67.012, 60.01, 69.495, 72.764,
-      73.266, 7.07,
+      73.266, -17.95,
     ],
   },
 ];
 
 export const offBalanceSheetCommitments = {
-  asOf: 'June 30, 2026 (Q2 CY26 10-Q)',
+  asOf: 'September 30, 2026 (Q3 CY26 10-Q)',
   columns: ['Total', '≤1 yr', '>1 yr'],
   rows: [
     {
       label: 'Supply & infrastructure',
-      desc: 'Long-term supply agreements for chips, components, and technical infrastructure; energy take-or-pay contracts extending through 2054; content licensing agreements; and open purchase orders for datacenter equipment. Hardware commitments extend through 2030. Fixed or guaranteed commitments account for $707B of the total.',
-      values: ['-$811.0B', '-$200.7B', '-$610.3B'],
+      desc: 'Long-term supply agreements for chips, components, and technical infrastructure; energy take-or-pay contracts extending through 2054; content licensing agreements; and open purchase orders for datacenter equipment. Supply agreements extend through 2032, with the significant majority paid through 2031. Multi-year commitments account for $802.1B of the total.',
+      values: ['-$924.4B', '-$213.4B', '-$711.0B'],
     },
     {
       label: 'Leases not yet commenced',
-      desc: 'Signed datacenter and facility leases that have not yet started, primarily for AI and cloud infrastructure expansion.',
-      values: ['-$85.2B', '—', '—'],
+      desc: 'Signed leases that have not yet started, primarily for data centers and energy infrastructure. They commence between 2026 and 2031 with terms of one to 26 years.',
+      values: ['-$130.5B', '—', '—'],
     },
     {
       label: 'Credit derivatives',
       desc: 'Credit-derivative backstops backing datacenter payment obligations, with terms of up to 15 years. Represents maximum exposure, not expected cash outflows.',
-      values: ['-$43.8B', '—', '—'],
+      values: ['-$48.0B', '—', '—'],
     },
     {
       label: 'Capital funding',
@@ -267,13 +267,13 @@ export const offBalanceSheetCommitments = {
     },
     {
       label: 'Financial guarantees',
-      desc: 'Guarantees for supplier equipment purchases ($7.6B) plus $24.1B in agreed but not yet finalized guarantees backing data center obligations.',
-      values: ['-$31.7B', '—', '—'],
+      desc: 'Guarantees for counterparties’ purchases of long-lead-time power equipment ($16.2B, through January 2049) plus obligations to repurchase previously sold TPU hardware under specified conditions ($6.6B).',
+      values: ['-$22.8B', '—', '—'],
     },
     {
       label: 'Total',
       desc: 'Sum of all off-balance-sheet commitments. Year-by-year totals are partial because most categories lack a maturity breakdown.',
-      values: ['-$991.7B', '≤-$200.7B', '≤-$610.3B'],
+      values: ['-$1,145.7B', '≤-$213.4B', '≤-$711.0B'],
     },
   ],
 };
@@ -283,7 +283,7 @@ export const stressTest: StressTestData = {
   revenueKicker:
     'Revenue without Anthropic. Google has invested about $13B in Anthropic, which spends heavily on Google Cloud and TPUs, so the scenario removes the revenue Anthropic paid or would pay Google in CY25 and CY26E.',
   revenueNote:
-    'Alphabet does not disclose its revenue from Anthropic, so both years are upper-bound estimates; click a year for the method. Earlier years are not adjusted. The scenario does not subtract the roughly $200B Anthropic has reportedly committed to Google Cloud, over 40% of the $514B cloud backlog, because most of it falls after CY26.',
+    'Alphabet does not disclose its revenue from Anthropic, so both years are upper-bound estimates; click a year for the method. Earlier years are not adjusted. The scenario does not subtract the roughly $200B Anthropic has reportedly committed to Google Cloud, over a third of the $560.8B Google Cloud backlog at 30 September 2026, because most of it falls after CY26.',
   gainsDesc:
     'Gains on equity securities, per share, from the quarterly footnotes in Alphabet’s earnings releases. CY25 removes all of them so that it matches consensus, which excludes investment gains, and lists the Anthropic share separately. CY26E has none to remove.',
   tableNote:
@@ -293,11 +293,11 @@ export const stressTest: StressTestData = {
   deductions: [
     {
       label: 'Anthropic',
-      desc: 'Google Cloud revenue from Anthropic, which Alphabet does not disclose. CY25 counts all of Anthropic’s reported 2025 compute and infrastructure spend of $7.3B, part of which went to AWS. CY26E applies UBS’s estimate that OpenAI and Anthropic make up 27% of Google Cloud revenue to H1 2026 Cloud revenue annualised ($89.6B), and treats all of it as Anthropic. Both are upper bounds.',
-      values: { CY25: 7.3, CY26E: 24.2 },
+      desc: 'Google Cloud revenue from Anthropic, which Alphabet does not disclose. CY25 counts all of Anthropic’s reported 2025 compute and infrastructure spend of $7.3B, part of which went to AWS. CY26E applies UBS’s estimate that OpenAI and Anthropic make up 27% of Google Cloud revenue to nine-month 2026 Cloud revenue annualised ($100.7B), and treats all of it as Anthropic. Both are upper bounds.',
+      values: { CY25: 7.3, CY26E: 27.2 },
     },
   ],
-  dilutedShares: { CY25: 12.22, CY26E: 12.22 },
+  dilutedShares: { CY25: 12.22, CY26E: 12.32 },
   investmentGainsPerShare: {
     CY25: [
       { label: 'Anthropic gains (Q3 and Q4 2025)', value: 0.83 },
@@ -305,11 +305,11 @@ export const stressTest: StressTestData = {
     ],
     CY26E: [],
   },
-  writeOffs: [{ label: 'Anthropic stake (estimated)', value: 110 }],
+  writeOffs: [{ label: 'Anthropic stake (estimated)', value: 115 }],
   yearNotes: {
     CY25: 'This is an estimate. Alphabet does not disclose its revenue from Anthropic, so the $7.3B is all of Anthropic’s reported 2025 compute and infrastructure spend, part of which went to AWS, which makes it an upper bound. The $0.83 of Anthropic gains assigns all Q3 and Q4 2025 equity gains to Anthropic, because Bloomberg tied Q1 2025 gains to SpaceX.',
     CY26E:
-      'This is an estimate. The $24.2B applies UBS’s 27% OpenAI-and-Anthropic share of Google Cloud revenue to annualised H1 2026 Cloud revenue and treats all of it as Anthropic, an upper bound. The ~$110B Anthropic stake is the $124.3B of non-marketable securities, which Alphabet says are mainly one private company, less an estimated $14B of other holdings.',
+      'This is an estimate. The $27.2B applies UBS’s 27% OpenAI-and-Anthropic share of Google Cloud revenue to annualised nine-month 2026 Cloud revenue and treats all of it as Anthropic, an upper bound. The ~$115B Anthropic stake is the $128.2B of non-marketable securities under the measurement alternative at 30 September 2026, which Alphabet says primarily consist of one private company, less an estimated $13B of other holdings.',
   },
 };
 
@@ -318,45 +318,36 @@ const financials: SoftwareFinancials = {
     companyName: 'Alphabet',
     actualYear: 'CY25',
     forwardYear: 'CY26E',
-    metric: 'cash flow',
-    metricShort: 'Cash flow',
+    metric: 'after-tax operating income',
+    metricShort: 'Earnings',
     paths: [
       {
-        label: 'Free cash flow',
-        column: 'Free cash flow',
-        phrase: 'on consensus free cash flow',
-        actual: 73.266,
-        forward: 7.07,
-      },
-      {
         label: 'After-tax operating income',
-        column: 'After-tax op. income',
-        phrase: 'on after-tax operating income',
         actual: 105.78,
-        forward: 131.94,
+        forward: 132.34,
       },
     ],
-    startNote: 'CY26E consensus',
-    actualNote:
-      'Actual CY25 free cash flow of $73.27B, and operating income of $129.0B less 18% tax.',
+    startNote:
+      'nine-month CY26 operating income annualised, after an 18% tax charge',
+    actualNote: 'CY25 operating income of $129.0B less 18% tax.',
     forwardNote:
-      'Consensus CY26E free cash flow of $7.07B, crushed by $195–205B of guided capital spending, and H1 2026 operating income annualised to $160.9B, less 18% tax.',
-    sharesOutstanding: 12.23,
-    netCash: 142.3,
+      'Nine-month 2026 operating income of $121.0B annualised to $161.4B, less 18% tax. Consensus CY26E free cash flow is about -$18B because of $195–205B of guided capital spending, so it cannot anchor a DCF.',
+    sharesOutstanding: 12.29,
+    netCash: 139.0,
     netCashSource:
-      '$242.5B of cash, cash equivalents, and marketable securities minus $100.2B of debt, Q2 2026 10-Q; non-marketable stakes are excluded',
+      '$265.1B of cash, cash equivalents, and marketable securities (including $75.2B of SpaceX shares) minus $126.1B of debt, Q3 2026 10-Q; non-marketable stakes and the $18.0B of convertible preferred stock are excluded',
     assumptionNote:
-      'Net income is not used because 2026 includes more than $130B of gains on equity investments. After-tax operating income applies an 18% tax rate to operating income. It stands in for the cash the business would produce if capital spending fell to the level of depreciation.',
-    sharesSource: 'stockanalysis.com, October 2026',
+      'Net income is not used because 2026 includes $127B of net gains on equity securities in the first nine months. After-tax operating income applies an 18% tax rate to operating income. It stands in for the cash the business would produce if capital spending fell to the level of depreciation.',
+    sharesSource: 'stockanalysis.com, November 2026',
   },
   guidanceYears: ['CY26E'],
   estimateNote:
-    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income) are annualized from filed H1 2026 10-Q reports, and capex is the $200B midpoint of guidance. EPS, FCF per share, and FCF margin use consensus analyst estimates. Net margin and P/FCF are omitted for CY26E because more than $135B of H1 2026 gains on equity securities inflates net income well above operating income, and P/FCF on $7B of free cash flow is not a meaningful valuation metric. H1 annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
+    'CY26E operating lines (revenue, cost of revenue, SGA, R&D, D&A, SBC, operating income) are annualized from the nine months to 30 September 2026 in the Q3 2026 10-Q, and capex is the $200B midpoint of guidance. EPS, FCF per share, and FCF margin use consensus analyst estimates. Net margin and P/FCF are omitted for CY26E because $127B of nine-month gains on equity securities inflates net income well above operating income, and free cash flow is negative. Nine-month annualization may slightly understate full-year revenue due to Q4 advertising seasonality.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
       values: [
-        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 25.6,
+        27.7, 58.1, 23.7, 27.2, 29.9, 25.8, 19.5, 24.3, 23.7, 29.0, 19.7,
       ],
       format: { decimals: 1 },
       invertColor: true,
@@ -364,7 +355,7 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Calculated from the default price of $336.91 divided by consensus diluted EPS of $13.14.',
+          'Calculated from the default price of $278.22 divided by consensus diluted EPS of $14.14.',
       },
     },
     {
@@ -376,14 +367,14 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'PEG ratio',
-      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 1.19],
+      values: [null, null, null, null, null, 0.8, 0.51, 1.13, 0.89, 0.97, 0.64],
       format: { decimals: 2 },
       invertColor: true,
       median10y: 0.89,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Calculated from the forward P/E of 25.6 divided by the CY25-to-CY26 EPS growth rate of 21.6%.',
+          'Calculated from the forward P/E of 19.7 divided by the CY25-to-CY26 EPS growth rate of 30.8%.',
       },
     },
   ],
@@ -391,25 +382,27 @@ const financials: SoftwareFinancials = {
     {
       label: 'Diluted EPS',
       values: [
-        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 13.14,
+        1.39, 0.9, 2.19, 2.46, 2.93, 5.61, 4.56, 5.8, 8.04, 10.81, 14.14,
       ],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.75,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Average consensus analyst estimate of $13.14 (52 analysts, stockanalysis.com). It is non-GAAP and excludes investment gains, while earlier years are GAAP and include them.',
+          'Average consensus analyst estimate of $14.14 (46 analysts, stockanalysis.com, 2 November 2026). Analysts treat investment gains inconsistently, so it sits between GAAP nine-month EPS of $16.33, which includes $8.06 of net equity-security gains, and the $8.27 earned without them.',
       },
     },
     {
       label: 'Free cash flow per share',
-      values: [1.85, 1.7, 1.62, 2.21, 3.12, 4.94, 4.56, 5.46, 5.84, 5.99, 0.58],
+      values: [
+        1.85, 1.7, 1.62, 2.21, 3.12, 4.94, 4.56, 5.46, 5.84, 5.99, -1.46,
+      ],
       format: { prefix: '$', decimals: 2 },
       median10y: 3.84,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Derived from consensus free cash flow of $7.07B divided by ~12.2B diluted shares. Depressed by $195–205B of guided capital spending on AI infrastructure.',
+          'Derived from consensus free cash flow of -$17.95B divided by 12.32B diluted shares. Negative because of $195–205B of guided capital spending on AI infrastructure.',
       },
     },
     {
@@ -449,20 +442,22 @@ const financials: SoftwareFinancials = {
     },
     {
       label: 'Free cash flow margin %',
-      values: [28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 20.8, 18.2, 1.4],
+      values: [
+        28.6, 21.6, 16.7, 19.1, 23.5, 26.0, 21.2, 22.6, 20.8, 18.2, -3.6,
+      ],
       format: { suffix: '%', decimals: 1 },
       deltaMode: 'add',
       median10y: 21.4,
       guidanceCount: 1,
       yearNotes: {
         CY26E:
-          'Derived from consensus free cash flow of $7.07B and consensus revenue of $499.6B. Depressed by $195–205B of guided capital spending on AI infrastructure.',
+          'Derived from consensus free cash flow of -$17.95B and consensus revenue of $499.6B. Negative because of $195–205B of guided capital spending on AI infrastructure.',
       },
     },
   ],
   revenueSection: {
     netIncomeDesc:
-      'GAAP net income attributable to Alphabet. CY17 depressed by a $14.5B Tax Cuts and Jobs Act transition charge. CY26E is null because Q2 2026 contains a large non-operating gain that distorts annualization.',
+      'GAAP net income attributable to Alphabet. CY17 depressed by a $14.5B Tax Cuts and Jobs Act transition charge. CY26E is null because the first nine months of 2026 contain $127B of net gains on equity securities that distort annualization.',
   },
   revenue: [
     { year: 'CY16', revenue: 90.3, operatingIncome: 23.7, netIncome: 19.5 },
@@ -475,7 +470,7 @@ const financials: SoftwareFinancials = {
     { year: 'CY23', revenue: 307.4, operatingIncome: 84.3, netIncome: 73.8 },
     { year: 'CY24', revenue: 350.0, operatingIncome: 112.4, netIncome: 100.1 },
     { year: 'CY25', revenue: 402.8, operatingIncome: 129.0, netIncome: 132.2 },
-    { year: 'CY26E', revenue: 459.4, operatingIncome: 160.9, netIncome: null },
+    { year: 'CY26E', revenue: 476.4, operatingIncome: 161.4, netIncome: null },
   ],
   expenses: [
     {
@@ -590,14 +585,14 @@ const financials: SoftwareFinancials = {
     },
     {
       year: 'CY26E',
-      costOfRevenue: 174.4,
-      sellingGeneralAndAdmin: 53.5,
-      researchAndDev: 70.5,
-      depreciationAndAmortization: 27.2,
+      costOfRevenue: 184.8,
+      sellingGeneralAndAdmin: 55.6,
+      researchAndDev: 74.5,
+      depreciationAndAmortization: 29.3,
       otherOperating: 0,
       nonOperating: null,
       taxes: null,
-      dilutionAdjustment: 29.4,
+      dilutionAdjustment: 31.1,
     },
   ],
   expensesDeducedLines: ['Total'],
