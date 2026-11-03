@@ -218,6 +218,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'SHOP',
+    name: 'Shopify Inc.',
+    sector: 'Software',
+    summary:
+      'Canadian commerce platform whose merchants sold $378B of goods through it in 2025, earning a quarter of its revenue from subscriptions and three quarters from Shopify Payments and other merchant services, with GAAP earnings that swing with the value of its stakes in Affirm, Global-E and Klaviyo.',
+    template: 'software',
+  },
+  {
     symbol: 'SPGI',
     name: 'S&P Global Inc.',
     sector: 'Financial Data & Analytics',
