@@ -33,7 +33,7 @@
 - [Yahoo Finance — GOOG](https://finance.yahoo.com/quote/GOOG/) — calendar
   year-end closing prices (last trading day on or before 31 December each
   year), used for the historical P/E and P/FCF ratios. The hero price is
-  the close of 16 October 2026 ($336.91, against $344.91 the day before),
+  the close of 30 October 2026 ($278.22, against $282.32 the day before),
   which also drives the forward P/E, PEG and reverse DCF. All per-share
   figures are adjusted for the July 2022 20-for-1 stock split.
 
@@ -86,21 +86,31 @@ lines.
 - All dollar figures in `data/financials.json` and `data/segments.json` are
   in billions of USD, rounded to one decimal.
 - Figures are calendar-year values (Alphabet's fiscal year ends 31 December).
-- CY26E revenue ($459B), segment revenue (Services $368.4B, Cloud $89.6B,
-  Other Bets $1.6B) and operating income ($160.9B) are annualised from the
-  H1 2026 10-Q. CY26E capex ($200B) is the midpoint of the $195–205B guidance
-  given on the Q2 2026 call
-  <https://www.cnbc.com/2026/07/22/google-earnings-q2-goog-live-updates.html>.
+- CY26E revenue ($476.4B), segment revenue (Services $374.0B, Cloud $100.7B,
+  Other Bets $1.6B), operating income ($161.4B) and the expense lines are the
+  nine months to 30 September 2026 annualised (× 4/3), from the Q3 2026 10-Q
+  filed 29 Oct 2026
+  <https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000084/goog-20260930.htm>.
+  CY26E capex ($200B) is the midpoint of the $195–205B guidance, which the
+  Q3 2026 call left unchanged
+  <https://www.cnbc.com/2026/10/28/alphabet-googl-earnings-q3-2026.html>.
+  CY26E dividends ($10.9B) annualise the $8.2B paid in the first nine months.
   CY26E net margin is omitted because 2026 contains large non-operating
-  gains. CY26E P/FCF is omitted because free cash flow is depressed by the
-  capex ramp.
-- CY26E free cash flow ($7.07B) and revenue ($499.6B, used only for the FCF
-  margin) are consensus figures from stockanalysis.com, accessed 17 Oct 2026.
+  gains. CY26E P/FCF is omitted because free cash flow is negative.
+- CY26E free cash flow (-$17.95B) and revenue ($499.6B, used only for the FCF
+  margin) are consensus figures from stockanalysis.com, accessed 2 Nov 2026
+  <https://stockanalysis.com/stocks/goog/forecast/>.
+- 2026 financing (no buybacks, $42.9B of common stock and $19.1B of
+  mandatory convertible preferred issued, $85.2B of debt raised and $8.9B
+  repaid) is from the nine-month cash flow statement in the Q3 2026 10-Q.
 - Segment revenue excludes hedging gains and losses, which Alphabet reports
   only in total revenue, so segments do not sum exactly to total revenue.
-- CY26E EPS ($13.14) is the average consensus analyst estimate from
-  stockanalysis.com (52 analysts, accessed 17 Oct 2026). It is non-GAAP and
-  excludes investment gains; the high estimate is $20.65. The forward P/E and
+- CY26E EPS ($14.14) is the average consensus analyst estimate from
+  stockanalysis.com (46 analysts, accessed 2 Nov 2026); the high estimate is
+  $19.70 and the low $11.26. Nine-month GAAP diluted EPS was $16.33, of which
+  $8.06 came from net gains on equity securities ($2.35, $6.26 and -$0.55 in
+  Q1–Q3 per the earnings-release footnotes), so analysts evidently differ on
+  whether to include those gains. The forward P/E and
   PEG ratios use this consensus EPS with the default stock price, and
   recalculate reactively when the price adjuster changes.
 - PEG is null for CY16–CY20 because computing the trailing five-year EPS
@@ -109,9 +119,9 @@ lines.
 
 ## Reverse DCF
 
-- Shares outstanding (12.23B): stockanalysis.com, October 2026, <https://stockanalysis.com/stocks/goog/>
-- Net cash (142.3B): $242.5B of cash, cash equivalents, and marketable securities minus $100.2B of debt, Q2 2026 10-Q; non-marketable stakes are excluded
-- Starting value: Consensus CY26E free cash flow of $7.07B, crushed by $195–205B of guided capital spending, and H1 2026 operating income annualised to $160.9B, less 18% tax.
+- Shares outstanding (12.29B): stockanalysis.com, November 2026, <https://stockanalysis.com/stocks/goog/>, matching the 12.294B on the Q3 2026 10-Q balance sheet
+- Net cash (139.0B): $265.1B of cash, cash equivalents, and marketable securities (including $75.2B of SpaceX shares) minus $126.1B of debt, Q3 2026 10-Q; non-marketable stakes and the $18.0B of convertible preferred stock are excluded
+- Starting value: nine-month 2026 operating income of $121.0B annualised to $161.4B, less 18% tax. Free cash flow is not used as a second path because consensus CY26E free cash flow is negative (-$17.95B), and the reverse DCF needs a positive starting value.
 
 ## Stress test
 
@@ -127,17 +137,29 @@ name Anthropic, so the Anthropic figures are estimates.
 - CY25 revenue from Anthropic (≤ $7.3B): Anthropic's reported 2025 compute and
   infrastructure costs from its S-1
   <https://finance.yahoo.com/technology/ai/articles/anthropic-ipo-prospectus-2025-revenue-120505564.html>.
-- CY26E revenue from Anthropic (~$24.2B): UBS estimates OpenAI and Anthropic
+- CY26E revenue from Anthropic (~$27.2B): UBS estimates OpenAI and Anthropic
   make up 27% of Google Cloud revenue in 2026
   <https://247wallst.com/investing/2026/08/10/48-of-google-cloud-revenue-next-year-could-come-from-just-2-companies-that-have-still-never-turned-a-profit/>,
-  applied to H1 2026 Cloud revenue of $44.8B annualised.
-- Anthropic stake (~$110B): $124.3B of non-marketable securities at
-  30 June 2026, "primarily" one private company (Q2 2026 10-Q), less an
-  estimated $6–20B of other holdings. Google's ~$13.3B invested
+  applied to nine-month 2026 Cloud revenue of $75.5B annualised ($100.7B).
+- Anthropic stake (~$115B): $128.2B of non-marketable securities under the
+  measurement alternative at 30 September 2026, which "primarily consist of
+  our investment in one private company" (Q3 2026 10-Q), less an estimated
+  $13B of other holdings. Google's ~$13.3B invested
   <https://fortune.com/2026/07/22/anthropic-spacex-investments-google-earnings-biggest-ever-profit-quarter/>
   and $40B commitment
   <https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html>.
-- Anthropic's ~$200B Google Cloud commitment (>40% of backlog):
+- Anthropic's ~$200B Google Cloud commitment (over a third of the $560.8B
+  Google Cloud backlog at 30 September 2026):
   <https://finance.yahoo.com/sectors/technology/articles/anthropic-commits-spending-200-billion-204952501.html>.
 - Diluted shares (12.22B): CY25 net income of $132.1B divided by diluted EPS
-  of $10.81.
+  of $10.81. CY26E uses the 12.32B nine-month weighted diluted shares from the
+  Q3 2026 10-Q.
+
+## Off-balance-sheet commitments (30 September 2026)
+
+From the Q3 2026 10-Q: material purchase commitments of $924.4B, of which
+$802.1B are multi-year and $213.4B are due within 12 months (MD&A, Future
+Cash Commitments); leases not yet commenced of $130.5B (Note 4); credit
+derivative notional of $48.0B and the $20.0B milestone-based equity
+derivative (Note 3); and financial guarantees of $16.2B for power equipment
+plus $6.6B of TPU repurchase obligations (Note 10).
