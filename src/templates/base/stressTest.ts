@@ -17,6 +17,8 @@ export type StressTestData = {
   investmentGainsPerShare: Record<string, { label: string; value: number }[]>;
   writeOffs: { label: string; value: number }[];
   yearNotes: Record<string, string>;
+  currency?: string;
+  lostProfit?: { label: string; desc: string; share: number };
 };
 
 type TrendMetric = {
@@ -32,15 +34,16 @@ type StressableFinancials = {
   keyMetrics: TrendMetric[];
 };
 
-const billionFormat = { prefix: '$', suffix: 'B', decimals: 1 };
-const billions = (v: number | null) =>
-  v === null ? 'not disclosed' : `$${v.toFixed(1)}B`;
-
 export function applyStressTest<T extends StressableFinancials>(
   financials: T,
   data: StressTestData,
   price: number
 ): { financials: T; sections: SectionData[] } {
+  const cur = data.currency ?? '$';
+  const billionFormat = { prefix: cur, suffix: 'B', decimals: 1 };
+  const billions = (v: number | null) =>
+    v === null ? 'not disclosed' : `${cur}${v.toFixed(1)}B`;
+  const lostShare = data.lostProfit?.share ?? 1;
   const years = financials.revenue.map(r => r.year);
   const stressYears = [...data.actualYears, data.forwardYear];
   const metricAt = (label: string, year: string): number =>
@@ -61,7 +64,7 @@ export function applyStressTest<T extends StressableFinancials>(
     const writeOffs = isForward
       ? data.writeOffs.reduce((sum, w) => sum + w.value, 0)
       : 0;
-    const lostRevenueEps = lost(year) / shares;
+    const lostRevenueEps = (lost(year) * lostShare) / shares;
     const writeOffEps = writeOffs / shares;
     const beforeWriteOffs = reported - gains - lostRevenueEps;
     return {
@@ -138,7 +141,8 @@ export function applyStressTest<T extends StressableFinancials>(
   };
 
   const rows = stressYears.map(earnings);
-  const eps = (v: number) => `$${v.toFixed(2)}`;
+  const eps = (v: number) =>
+    `${v < 0 ? '-' : ''}${cur}${Math.abs(v).toFixed(2)}`;
   const signed = (v: number) =>
     v === 0 ? '—' : `${v > 0 ? '−' : '+'}${eps(Math.abs(v))}`;
   const pe = (p: number, v: number) =>
@@ -178,8 +182,10 @@ export function applyStressTest<T extends StressableFinancials>(
         ),
       },
       {
-        label: '− Lost revenue',
-        desc: 'The revenue removed in the Stress Test Scenario chart, divided by diluted shares. It is taken out in full with no tax shield, on the view that the datacenter costs of serving these customers remain after their revenue stops.',
+        label: `− ${data.lostProfit?.label ?? 'Lost revenue'}`,
+        desc:
+          data.lostProfit?.desc ??
+          'The revenue removed in the Stress Test Scenario chart, divided by diluted shares. It is taken out in full with no tax shield, on the view that the datacenter costs of serving these customers remain after their revenue stops.',
         values: pair(
           () => '—',
           r => signed(r.lostRevenueEps)
@@ -203,7 +209,7 @@ export function applyStressTest<T extends StressableFinancials>(
       },
       {
         label: 'P/E ratio',
-        desc: `Price divided by diluted EPS. Reported years use the fiscal year-end price, as in the P/E chart, and ${data.forwardYear} uses $${price.toFixed(2)}.`,
+        desc: `Price divided by diluted EPS. Reported years use the fiscal year-end price, as in the P/E chart, and ${data.forwardYear} uses ${cur}${price.toFixed(2)}.`,
         values: pair(
           r => pe(r.price, r.reported),
           r => pe(r.price, r.eps)
@@ -245,7 +251,7 @@ export function applyStressTest<T extends StressableFinancials>(
               yearNotes: withNotes({
                 ...m.yearNotes,
                 [data.forwardYear]:
-                  `${m.yearNotes?.[data.forwardYear] ?? ''} The stress test P/E of ${forwardPe} divides the same price by stressed EPS before write-offs of $${forwardEarnings.beforeWriteOffs.toFixed(2)}.`.trim(),
+                  `${m.yearNotes?.[data.forwardYear] ?? ''} The stress test P/E of ${forwardPe} divides the same price by stressed EPS before write-offs of ${eps(forwardEarnings.beforeWriteOffs)}.`.trim(),
               }),
               scenario: {
                 label: 'Stress test',
