@@ -18,6 +18,8 @@ export type StressTestData = {
   writeOffs: { label: string; value: number }[];
   yearNotes: Record<string, string>;
   currency?: string;
+  reportingCurrency?: string;
+  fxRates?: Record<string, number>;
   lostProfit?: { label: string; desc: string; share: number };
 };
 
@@ -40,9 +42,11 @@ export function applyStressTest<T extends StressableFinancials>(
   price: number
 ): { financials: T; sections: SectionData[] } {
   const cur = data.currency ?? '$';
-  const billionFormat = { prefix: cur, suffix: 'B', decimals: 1 };
+  const reportingCur = data.reportingCurrency ?? cur;
+  const fx = (year: string) => data.fxRates?.[year] ?? 1;
+  const billionFormat = { prefix: reportingCur, suffix: 'B', decimals: 1 };
   const billions = (v: number | null) =>
-    v === null ? 'not disclosed' : `${cur}${v.toFixed(1)}B`;
+    v === null ? 'not disclosed' : `${reportingCur}${v.toFixed(1)}B`;
   const lostShare = data.lostProfit?.share ?? 1;
   const years = financials.revenue.map(r => r.year);
   const stressYears = [...data.actualYears, data.forwardYear];
@@ -64,8 +68,8 @@ export function applyStressTest<T extends StressableFinancials>(
     const writeOffs = isForward
       ? data.writeOffs.reduce((sum, w) => sum + w.value, 0)
       : 0;
-    const lostRevenueEps = (lost(year) * lostShare) / shares;
-    const writeOffEps = writeOffs / shares;
+    const lostRevenueEps = (lost(year) * lostShare * fx(year)) / shares;
+    const writeOffEps = (writeOffs * fx(year)) / shares;
     const beforeWriteOffs = reported - gains - lostRevenueEps;
     return {
       shares,
@@ -193,7 +197,7 @@ export function applyStressTest<T extends StressableFinancials>(
       },
       {
         label: '− One-time write-offs',
-        desc: `${data.writeOffs.map(w => `${w.label} ${billions(w.value)}`).join(', ')}, a total of ${billions(forward.writeOffs)} divided by ${forward.shares.toFixed(2)}B diluted shares, with no tax shield. They occur only in the year of the collapse.`,
+        desc: `${data.writeOffs.map(w => `${w.label} ${billions(w.value)}`).join(', ')}, a total of ${billions(forward.writeOffs)} divided by ${forward.shares.toFixed(2)}B diluted shares${data.fxRates ? ` and converted at ${cur}${fx(data.forwardYear)} per ${reportingCur}1` : ''}, with no tax shield. They occur only in the year of the collapse.`,
         values: pair(
           () => '—',
           r => signed(r.writeOffEps)

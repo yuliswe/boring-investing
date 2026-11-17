@@ -35,18 +35,18 @@ const hero: HeroData = {
   name: 'ASML Holding N.V.',
   sector: 'Semiconductor Equipment',
   tags: ['Mega Cap', 'Buyback', 'Dividend'],
-  price: '€1,236.80',
-  changePct: -5.34,
-  priceNote: 'Euronext Amsterdam close, 17 November',
+  price: '$1,406.79',
+  changePct: -5.91,
+  priceNote: 'Nasdaq close, 16 November',
   summary:
     'Dutch maker of the lithography systems that print circuit patterns onto silicon wafers, and the only supplier of the extreme ultraviolet (EUV) machines that leading-edge logic and memory fabs need. It sells to a handful of chipmakers such as TSMC, Samsung, SK hynix, Intel and Micron, and earns a growing share of sales from servicing the machines it has already installed.',
 };
 
 const priceConfig: PriceConfig = {
   symbol: 'ASML',
-  defaultPrice: 1236.8,
-  currency: '€',
-  referenceClose: 1306.6,
+  defaultPrice: 1406.79,
+  currency: '$',
+  referenceClose: 1495.16,
 };
 
 const pctFormat = { suffix: '%', decimals: 1 };
@@ -303,7 +303,7 @@ const footer: FooterData = {
     },
     {
       label: 'Yahoo Finance',
-      href: 'https://finance.yahoo.com/quote/ASML.AS/',
+      href: 'https://finance.yahoo.com/quote/ASML/',
     },
   ],
 };
@@ -325,6 +325,8 @@ function buildReverseDcf(): ReverseDcfData {
     actualYear: 'FY25',
     forwardYear: 'FY26E',
     reportingCurrency: '€',
+    fxRate: 1.1014,
+    fxSource: 'ECB reference rate, 16 November 2026',
     paths: [
       {
         label: 'Free cash flow',
@@ -358,13 +360,13 @@ function buildReverseDcf(): ReverseDcfData {
 
 const reverseDcf = buildReverseDcf();
 
-const EPS_EST = 41.33;
-const FCF_PER_SHARE_EST = 40.99;
+const EPS_EST = 45.52;
+const FCF_PER_SHARE_EST = 45.15;
 
 function buildDynamicFinancials(price: number) {
   const pe = +(price / EPS_EST).toFixed(1);
   const pfcf = +(price / FCF_PER_SHARE_EST).toFixed(1);
-  const priceText = `€${price.toFixed(2)}`;
+  const priceText = `$${price.toFixed(2)}`;
   return {
     ...financials,
     reverseDcf,
@@ -377,7 +379,7 @@ function buildDynamicFinancials(price: number) {
           values,
           yearNotes: {
             ...m.yearNotes,
-            FY26E: `Calculated from ${priceText} divided by consensus diluted EPS of €${EPS_EST}.`,
+            FY26E: `Calculated from ${priceText} divided by consensus diluted EPS of $${EPS_EST}.`,
           },
         };
       }
@@ -389,7 +391,7 @@ function buildDynamicFinancials(price: number) {
           values,
           yearNotes: {
             ...m.yearNotes,
-            FY26E: `Calculated from ${priceText} divided by consensus FCF per share of €${FCF_PER_SHARE_EST}.`,
+            FY26E: `Calculated from ${priceText} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
           },
         };
       }

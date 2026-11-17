@@ -33,13 +33,16 @@
 
 ## Market data and consensus
 
-- [Yahoo Finance — ASML.AS](https://finance.yahoo.com/quote/ASML.AS/history/) —
-  Euronext year-end closes for the historical P/E and P/FCF. The FY25 close
-  of €921.40 came from a search result and matches stockanalysis's
-  dividend-adjusted €915.81.
-- [stockanalysis.com — AMS:ASML history](https://stockanalysis.com/quote/ams/ASML/history/) —
-  the hero price, €1,236.80 at the 17 November 2026 close against €1,306.60
-  on 16 November.
+- [Yahoo Finance — ASML](https://finance.yahoo.com/quote/ASML/history/) —
+  Nasdaq year-end closes for the historical P/E and P/FCF.
+- [stockanalysis.com — ASML history](https://stockanalysis.com/stocks/asml/history/) —
+  the hero price, $1,406.79 at the 16 November 2026 Nasdaq close against
+  $1,495.16 on 13 November.
+- [ECB euro reference rates](https://data-api.ecb.europa.eu/service/data/EXR/D.USD.EUR.SP00.A?format=csvdata) —
+  EUR/USD on the last trading day of each year (1.0541, 1.1993, 1.1450,
+  1.1234, 1.2271, 1.1326, 1.0666, 1.1050, 1.0389 and 1.1750 for FY16–FY25),
+  which convert euro EPS and FCF per share to dollars, and 1.1014 on
+  16 November 2026 for FY26E, the reverse DCF and the FY26E stress test.
 - [stockanalysis.com — ASML forecast](https://stockanalysis.com/stocks/asml/forecast/) —
   FY26E revenue of €44.48B, EPS of €41.33 (35 analysts) and free cash flow of
   €15.74B, as of 16 October 2026. The site labels them in dollars, but they
@@ -98,7 +101,7 @@ estimate built from the inputs below.
   from FY24 to FY25 ([FY09 20-F](https://www.sec.gov/Archives/edgar/data/937966/000095012310006383/u08158e20vf.htm),
   [FY13 20-F](https://www.sec.gov/Archives/edgar/data/0000937966/000119312514046822/d546896d20f.htm)),
   taxed at ASML's expected 17% rate for 2026.
-- **Mistral AI.** The €1.33-per-share Q3 2026 revaluation gain is removed
+- **Mistral AI.** The €1.33-per-share ($1.46) Q3 2026 revaluation gain is removed
   from FY26E consensus on the assumption that consensus includes it, and the
   €2.24B stake is written off in the year of the collapse
   ([Series D](https://www.techzine.eu/news/applications/144205/asml-maintains-stake-in-mistral-with-400-million/)).
@@ -106,4 +109,4 @@ estimate built from the inputs below.
   and does not unwind any of the €19.4B of customer down payments, so a real
   collapse would hurt cash flow more than the stressed reverse DCF path shows.
   A more severe variant that removes all AI-driven sales with no substitute
-  demand would cut FY26E EPS to about €18.
+  demand would cut FY26E EPS to about €18 ($20).

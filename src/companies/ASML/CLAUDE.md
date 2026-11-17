@@ -5,8 +5,13 @@ Analytical method: [software](../../methods/software.md)
 ## Company-specific notes
 
 - **Currency and listing.** ASML reports in euros under US GAAP, and the page
-  prices it on Euronext Amsterdam (ASML.AS) so that price and EPS share a
-  currency. Historical P/E and P/FCF use the Euronext year-end close.
+  prices it on Nasdaq (ASML) in dollars. Amounts in billions stay in euros as
+  reported. Per-share figures (EPS, FCF per share, the stress test's EPS) are
+  converted to dollars at the ECB reference rate on the last trading day of
+  each year, and the forward year at the rate on the price date, so that P/E
+  and P/FCF divide dollars by dollars. Historical ratios use the Nasdaq
+  year-end close. The reverse DCF converts euro cash flows with `fxRate`, and
+  the stress test converts its euro deductions with `fxRates`.
 
 - **Filings.** ASML files an annual 20-F and furnishes quarterly results on
   Form 6-K, not a 10-K or 10-Q. FY16 and FY17 are shown as restated for

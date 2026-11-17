@@ -366,13 +366,15 @@ export const LOST_PROFIT_SHARE = 0.55 * (1 - 0.17);
 
 export const stressTest: StressTestData = {
   subject: 'AI hype and circular financing',
-  currency: '€',
+  currency: '$',
+  reportingCurrency: '€',
+  fxRates: { FY25: 1.175, FY26E: 1.1014 },
   revenueKicker:
     'Revenue without the AI build-out. ASML’s customers say their orders are driven by AI spending, and part of that spending is circular, because NVIDIA, AMD and the hyperscalers fund the AI labs that buy their chips. The scenario holds ASML to the low path of the plan it published before ChatGPT and removes everything above it.',
   revenueNote:
     'The baseline is the low path of ASML’s November 2022 plan, which was published three weeks before ChatGPT and guided to €30–40B of sales in 2025 and €44–60B in 2030. It gives €30.0B for FY25 and €32.4B for FY26E. Revenue above that baseline is split into the part funded by circular financing and the remaining AI demand, so the two do not overlap. ASML does not disclose AI revenue, so both lines are estimates; click a year for the method. FY24 and earlier are not adjusted, because the FY24 rise above the plan came from Chinese stockpiling rather than AI.',
   gainsDesc:
-    'The €0.51B gain ASML booked in Q3 2026 when it revalued its Mistral AI stake at the Series D price, per share. The consensus estimate is assumed to include it, because nine-month EPS of €27.64 already does. FY25 has no gain to remove.',
+    'The €0.51B gain ASML booked in Q3 2026 when it revalued its Mistral AI stake at the Series D price, which is €1.33 per share or $1.46 at $1.1014 per euro. The consensus estimate is assumed to include it, because nine-month EPS of €27.64 already does. FY25 has no gain to remove.',
   tableNote:
     'The deductions are estimates, because ASML does not split its sales by end market beyond logic and memory. Stressed EPS keeps the €12.7B of purchase obligations and does not reverse any of the €19.4B of customer down payments, both of which would hurt in a real collapse. P/E ratios recalculate when the price is adjusted.',
   actualYears: ['FY25'],
@@ -392,12 +394,12 @@ export const stressTest: StressTestData = {
   dilutedShares: { FY25: 0.3889, FY26E: 0.384 },
   investmentGainsPerShare: {
     FY25: [],
-    FY26E: [{ label: 'Mistral AI revaluation gain (Q3 2026)', value: 1.33 }],
+    FY26E: [{ label: 'Mistral AI revaluation gain (Q3 2026)', value: 1.46 }],
   },
   writeOffs: [{ label: 'Mistral AI stake', value: 2.24 }],
   lostProfit: {
     label: 'Lost profit',
-    desc: 'The revenue removed in the Stress Test Scenario chart, times a 55% decremental operating margin, taxed at 17% and divided by diluted shares. The margin is the middle of ASML’s record, in which operating income fell by 33–65 cents per euro of lost sales in 2008, 2009 and 2012, and rose by 52 cents per euro gained from FY24 to FY25. R&D and overhead stay, so the cut is larger than the gross margin alone.',
+    desc: 'The revenue removed in the Stress Test Scenario chart, times a 55% decremental operating margin, taxed at 17%, divided by diluted shares and converted to dollars at $1.175 per euro for FY25 (the ECB rate at year-end) and $1.1014 for FY26E (16 November 2026). The margin is the middle of ASML’s record, in which operating income fell by 33–65 cents per euro of lost sales in 2008, 2009 and 2012, and rose by 52 cents per euro gained from FY24 to FY25. R&D and overhead stay, so the cut is larger than the gross margin alone.',
     share: LOST_PROFIT_SHARE,
   },
   yearNotes: {
@@ -410,12 +412,12 @@ export const stressTest: StressTestData = {
 const financials: SoftwareFinancials = {
   guidanceYears: ['FY26E'],
   estimateNote:
-    'FY26E revenue, EPS and free cash flow are the consensus analyst estimates on stockanalysis.com (35 analysts, 16 October 2026), which sit within ASML’s guidance of €44–45B of sales at about 56% gross margin. Net income multiplies consensus EPS by 384M diluted shares. Operating income has no consensus figure and is omitted.',
+    'FY26E revenue, EPS and free cash flow are the consensus analyst estimates on stockanalysis.com (35 analysts, 16 October 2026), which sit within ASML’s guidance of €44–45B of sales at about 56% gross margin. Net income multiplies consensus EPS by 384M diluted shares. Operating income has no consensus figure and is omitted. Per-share figures are converted to dollars at $1.1014 per euro, the ECB rate on 16 November 2026, and earlier years use the ECB rate on the last trading day of each year.',
   criticalMetrics: [
     {
       label: 'P/E ratio',
       values: [
-        29.3, 30.3, 22.6, 42.9, 46.9, 49.3, 35.7, 34.3, 35.3, 37.3, 29.9,
+        29.2, 30.3, 22.4, 42.8, 46.9, 49.0, 36.3, 34.4, 34.7, 36.9, 30.9,
       ],
       format: { decimals: 1 },
       invertColor: true,
@@ -423,22 +425,22 @@ const financials: SoftwareFinancials = {
       guidanceCount: 1,
       yearNotes: {
         FY26E:
-          'Calculated from the default price of €1,236.80 divided by consensus diluted EPS of €41.33.',
+          'Calculated from the default price of $1,406.79 divided by consensus diluted EPS of $45.52.',
       },
     },
     {
       label: 'P/FCF ratio',
       values: [
-        34.0, 42.9, 23.7, 46.5, 45.9, 29.3, 28.0, 82.7, 29.4, 32.5, 30.2,
+        33.9, 42.9, 23.5, 46.5, 46.0, 29.1, 28.4, 83.1, 28.9, 32.1, 31.2,
       ],
       format: { decimals: 1 },
       invertColor: true,
-      median10y: 33.3,
+      median10y: 33.0,
       guidanceCount: 1,
       yearNotes: {
         FY23: 'Free cash flow fell to €3.2B because ASML built inventory and paid €2.6B of cash taxes.',
         FY26E:
-          'Calculated from the default price of €1,236.80 divided by consensus FCF per share of €40.99.',
+          'Calculated from the default price of $1,406.79 divided by consensus FCF per share of $45.15.',
       },
     },
   ],
@@ -446,27 +448,27 @@ const financials: SoftwareFinancials = {
     {
       label: 'Diluted EPS',
       values: [
-        3.64, 4.79, 6.08, 6.15, 8.48, 14.34, 14.13, 19.89, 19.24, 24.71, 41.33,
+        3.84, 5.74, 6.96, 6.91, 10.41, 16.24, 15.07, 21.98, 19.99, 29.03, 45.52,
       ],
-      format: { prefix: '€', decimals: 2 },
-      median10y: 11.3,
+      format: { prefix: '$', decimals: 2 },
+      median10y: 12.74,
       guidanceCount: 1,
       yearNotes: {
         FY26E:
-          'Average consensus estimate of €41.33 (35 analysts, stockanalysis.com, 16 October 2026). Nine-month EPS was €27.64, including €1.33 from the Mistral revaluation gain.',
+          'Average consensus estimate of €41.33 (35 analysts, stockanalysis.com, 16 October 2026), or $45.52 at $1.1014 per euro. Nine-month EPS was €27.64, including €1.33 from the Mistral revaluation gain.',
       },
     },
     {
       label: 'Free cash flow per share',
       values: [
-        3.14, 3.38, 5.78, 5.67, 8.65, 24.14, 18.01, 8.24, 23.08, 28.36, 40.99,
+        3.31, 4.05, 6.62, 6.37, 10.61, 27.34, 19.21, 9.11, 23.98, 33.32, 45.15,
       ],
-      format: { prefix: '€', decimals: 2 },
-      median10y: 8.45,
+      format: { prefix: '$', decimals: 2 },
+      median10y: 9.86,
       guidanceCount: 1,
       yearNotes: {
         FY26E:
-          'Consensus free cash flow of €15.74B divided by 384M diluted shares.',
+          'Consensus free cash flow of €15.74B divided by 384M diluted shares, or €40.99, converted at $1.1014 per euro.',
       },
     },
     {
