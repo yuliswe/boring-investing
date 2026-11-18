@@ -38,18 +38,18 @@ const hero: HeroData = {
   name: 'NVIDIA Corporation',
   sector: 'Semiconductors',
   tags: ['Mega Cap', 'Dividend'],
-  price: '$225.51',
-  changePct: -1.47,
-  priceNote: 'close, 23 September',
+  price: '$155.46',
+  changePct: -0.44,
+  priceNote: 'close, 17 November',
   summary:
-    'Designer of GPUs and accelerated computing platforms for AI training and inference, gaming, data center, professional visualization, and autonomous vehicles. NVIDIA designs chips and outsources fabrication to TSMC, earning software-like margins on a hardware business.',
+    'Designer of GPUs and accelerated computing platforms for AI training and inference, gaming, data center, professional visualization, and autonomous vehicles. NVIDIA designs chips and outsources fabrication to TSMC, earning software-like margins on a hardware business. Founder Jensen Huang resigned as CEO on 11 November 2026, and CFO Colette Kress is interim CEO.',
 };
 
 const priceConfig: PriceConfig = {
   symbol: 'NVDA',
-  defaultPrice: 225.51,
+  defaultPrice: 155.46,
   currency: '$',
-  referenceClose: 228.87,
+  referenceClose: 156.14,
 };
 
 const pctFormat = { suffix: '%', decimals: 1 };
@@ -132,8 +132,10 @@ const investingLine = cashFlowStatementLines.find(
 const forwardThirdPartyDebt = circularOutflowLines
   .find(l => l.label === 'Third-party debt')!
   .values.at(-1)!;
-const forwardDeduction =
-  offBalanceSheetCommitments.equityInvestmentsDueInFY27 + forwardThirdPartyDebt;
+const forwardEquityStakes = circularOutflowLines
+  .find(l => l.label === 'Equity stakes')!
+  .values.at(-1)!;
+const forwardDeduction = forwardEquityStakes + forwardThirdPartyDebt;
 
 function circularDeduction(year: string): number | null {
   const i = cashFlowStatementYears.indexOf(year);
@@ -155,7 +157,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
   const forward = financials.revenue.find(r => r.year === 'FY27E')!;
   const billions = (v: number) => `$${v.toFixed(2)}B`;
   const forwardMath = [
-    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(offBalanceSheetCommitments.equityInvestmentsDueInFY27)} of equity investments NVIDIA has committed to make in FY27 and the ${billions(forwardThirdPartyDebt)} of third-party debt that customers raised in FY27 to buy NVIDIA hardware, a total of ${billions(forwardDeduction)}.`,
+    `FY27E has no investing cash flow estimate, so it subtracts the ${billions(forwardEquityStakes)} of equity investments NVIDIA has made or committed to make in FY27 and the ${billions(forwardThirdPartyDebt)} of third-party debt that customers raised in FY27 to buy NVIDIA hardware, a total of ${billions(forwardDeduction)}.`,
     `Adjusted revenue = ${billions(forward.revenue)} consensus revenue − ${billions(forwardDeduction)} = ${billions(forward.revenue - forwardDeduction)}.`,
     `Adjusted net income = ${billions(forward.netIncome!)} consensus net income − ${billions(forwardDeduction)} = ${billions(forward.netIncome! - forwardDeduction)}.`,
   ].join('\n');
@@ -206,7 +208,7 @@ function buildRevenueMinusInvestingSection(): SectionData {
       },
     ],
     chartNote:
-      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA has committed to make in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware, through October 8, 2026. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
+      'Investing activities are a net outflow in every year except FY23, when NVIDIA sold more marketable securities than it bought, so FY23 adjusted figures sit above reported ones. The net investing figure is a deliberately broad proxy, because it also includes capital expenditures, acquisitions, and purchases of marketable debt securities, none of which funds customers. FY27E has no investing estimate, so it instead subtracts the equity investments NVIDIA made in the first nine months of FY27 or has committed to make in the rest of it, and the third-party debt customers raised in FY27 to buy NVIDIA hardware, through November 18, 2026. The rest of the FY27 off-balance-sheet commitments is left out, because supply purchases become cost of revenue and are already reflected in consensus operating income, and the capital expenditures and cloud services pay for NVIDIA’s own operations rather than funding customers.',
   };
 }
 
@@ -276,7 +278,7 @@ function buildRevenueExcludingCircularSection(): SectionData {
       },
     ],
     chartNote:
-      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through October 8, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
+      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through November 18, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
   };
 }
 
@@ -347,20 +349,20 @@ const nvdaSections: SectionData[] = [
     rank: 570,
     id: 'off-balance-sheet',
     title: 'Off-Balance-Sheet Commitments',
-    kicker: `Contractual commitments and guarantees not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Supply commitments rose from $119B to $279B in one quarter, and in August NVIDIA guaranteed up to $105B of an OpenAI data center’s lease payments.`,
+    kicker: `Contractual commitments and guarantees not yet recognized as liabilities, as of ${offBalanceSheetCommitments.asOf}. Supply commitments rose from $279B to $390B in one quarter, signed data center leases tripled to $74B, and guarantees reached $118B, most of them for an OpenAI data center in Ohio.`,
     kind: 'table',
     firstColumn: 'Category',
     columns: offBalanceSheetCommitments.columns,
     rows: offBalanceSheetCommitments.rows,
     tableNote:
-      'FY27 is the remainder of the fiscal year after July 26, 2026. The first five rows make up the $366B the filing reports as total commitments, and the AI cloud agreements and third-party leases are reported separately as $56B of additional commitments. Guarantee amounts are maximum exposures without a payment schedule, so the FY columns of the total exclude them. The SB Energy guarantees were signed in August 2026, after the quarter closed, and are disclosed in the same 10-Q.',
+      'FY27 is the remainder of the fiscal year after October 25, 2026. The first five rows make up the $518B the filing reports as total commitments, and the neocloud agreements are reported separately as $32B of additional commitments. Guarantee amounts are maximum exposures without a payment schedule, so the FY columns of the total exclude them; NVIDIA says it has made no guarantee payments. Figures come from the CFO commentary filed with the Q3 FY27 earnings release, because the 10-Q had not been filed yet.',
   },
   {
     rank: 575,
     id: 'debt-funded-demand',
     title: 'Debt-Funded Demand',
     kicker:
-      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through October 8, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
+      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through November 18, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
     kind: 'table',
     firstColumn: 'Borrower',
     columns: debtFundedDemand.columns,
@@ -435,6 +437,16 @@ const nvdaSections: SectionData[] = [
     kicker: 'Everything filed in the last twelve months, newest first.',
     kind: 'rows',
     entries: [
+      {
+        kind: '8-K',
+        note: 'Q3 FY27 results, thirteen weeks to 25 October',
+        date: 'Nov 17 2026',
+      },
+      {
+        kind: '8-K',
+        note: 'Resignation of Jensen Huang as CEO; Colette Kress named interim CEO',
+        date: 'Nov 11 2026',
+      },
       {
         kind: '10-Q',
         note: 'Quarterly report, thirteen weeks to 27 July',
@@ -515,16 +527,18 @@ function buildReverseDcf(): ReverseDcfData {
     companyName: 'NVIDIA',
     actualYear: 'FY26',
     forwardYear: 'FY27E',
-    paths: labels.map((label, s) => ({
-      label,
-      column: columns[s],
-      phrase: phrases[s],
-      actual: +actual[s].toFixed(2),
-      forward: forward[s],
-    })),
+    paths: labels
+      .map((label, s) => ({
+        label,
+        column: columns[s],
+        phrase: phrases[s],
+        actual: +actual[s].toFixed(2),
+        forward: forward[s],
+      }))
+      .filter(p => p.forward > 0),
     startNote: 'FY27E consensus free cash flow',
     actualNote: `Actual FY26 free cash flow: $${actual[0].toFixed(2)}B reported, $${actual[1].toFixed(2)}B after removing NVIDIA’s circular outflows, and $${actual[2].toFixed(2)}B after also removing third-party debt.`,
-    forwardNote: `Consensus FY27E free cash flow of $${forward[0].toFixed(2)}B, minus $${(forward[0] - forward[1]).toFixed(2)}B of NVIDIA’s circular outflows and $${(forward[1] - forward[2]).toFixed(2)}B of third-party debt for the stricter paths.`,
+    forwardNote: `Consensus FY27E free cash flow of $${forward[0].toFixed(2)}B, minus $${(forward[0] - forward[1]).toFixed(2)}B of NVIDIA’s circular outflows and $${(forward[1] - forward[2]).toFixed(2)}B of third-party debt for the stricter paths.${forward[2] > 0 ? '' : ` That leaves $${forward[2].toFixed(2)}B after removing both, so no growth rate can justify the price on that basis and the path is not shown.`}`,
     impliedNoteSuffix:
       'Whichever starting point you use, the price requires roughly the same cash flow a decade out.',
     assumptionNote:
@@ -534,8 +548,8 @@ function buildReverseDcf(): ReverseDcfData {
 
 const reverseDcf = buildReverseDcf();
 
-const EPS_EST = 9.31;
-const FCF_PER_SHARE_EST = 8.03;
+const EPS_EST = 9.65;
+const FCF_PER_SHARE_EST = 7.41;
 const PRIOR_EPS = 4.9;
 
 const metricYears = financials.revenue.map(r => r.year);
@@ -553,7 +567,7 @@ const negativeAdjustedNote =
 
 const adjustedEpsMetric = {
   label: 'Adjusted diluted EPS',
-  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments committed for FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware.',
+  desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments made or committed in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware.',
   values: metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const eps = dilutedEps.values[i];
