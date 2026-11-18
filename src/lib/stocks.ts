@@ -34,6 +34,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'ASML',
+    name: 'ASML Holding N.V.',
+    sector: 'Semiconductor Equipment',
+    summary:
+      'Dutch maker of chip lithography systems and the only supplier of the EUV machines that leading-edge fabs need, whose FY26 sales are guided 36% higher on AI-driven orders, tested here by a scenario that removes AI hype and circular financing.',
+    template: 'software',
+  },
+  {
     symbol: 'AMZN',
     name: 'Amazon.com, Inc.',
     sector: 'Technology',

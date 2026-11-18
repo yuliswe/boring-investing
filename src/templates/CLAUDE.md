@@ -34,7 +34,13 @@ P/E ratio and Diluted EPS trend charts, plus two sections: "Stress Test
 Scenario" (rank 410) and "Stress Test EPS and P/E" (rank 411). Amounts are in
 billions except investment gains, which are per share. It reads reported EPS
 and P/E from the metrics, so the forward-year EPS must already be the
-consensus figure. MSFT and GOOG are the reference implementations.
+consensus figure. MSFT and GOOG are the reference implementations. Lost
+revenue comes out of EPS in full by default, which suits cloud providers whose
+datacenter costs remain; set `lostProfit` to take only a share of it (ASML uses
+a decremental margin after tax), and `currency` for non-dollar pages. When a
+company reports in one currency and trades in another, set `reportingCurrency`
+and `fxRates` (price currency per reporting unit, by year) so the deductions
+convert into per-share terms.
 
 A child template (e.g. `SoftwareTemplate`) builds its own sections from typed
 financial data and passes them as `sections` to `BaseTemplate`. Any
