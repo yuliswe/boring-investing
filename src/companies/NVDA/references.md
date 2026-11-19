@@ -44,6 +44,15 @@
 
 ## Off-balance-sheet commitments and guarantees
 
+- Q3 FY27 CFO commentary (quarter ended October 25, 2026), Commitments
+  section, filed with the November 17, 2026 8-K. The Q3 10-Q had not been
+  filed when the page was updated, so the Q3 table, balance sheet, and
+  nine-month cash flow come from the 8-K exhibits:
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27cfocommentary.htm>,
+  press release
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/q3fy27pr.htm>,
+  and supplemental financial information
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000088/supplementalfinancialinfor.htm>
 - Q2 FY27 10-Q (quarter ended July 26, 2026), Note 10, Commitments and
   Contingencies, including the SB Energy Corp. guarantees signed in August 2026
   <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm>
@@ -53,9 +62,20 @@
 
 ## Debt-funded demand
 
-- SpaceX $40B financing (October 2026, proposed):
-  <https://thenextweb.com/news/spacex-40bn-debt-nvidia-chips-apollo>,
-  <https://www.fool.com/investing/2026/10/07/spacex-reportedly-wants-to-borrow-usd40-billion-for-nvidia-chips-despite-a-usd100-billion-cash-pile/>
+- SpaceX $40B GPU lease financing (binding commitment, October 26, 2026):
+  <https://ir.spacex.com/updates/releases-details/2026/SPACEX-SECURES-40-BILLION-IN-THE-LARGEST-GPU-FINANCING-EVER-2026-EnDqGhTAB3/>,
+  <https://www.cnbc.com/2026/10/26/spacex-closes-40-billion-debt-deal-for-ai-chips-elon-musk-.html>
+- Nebius $3.5B Citi facility (October 22, 2026):
+  <https://www.nasdaq.com/press-release/nebius-secures-35-billion-financing-facility-citi-2026-10-22>
+- Volta Infrastructure $3.71B GPU term loan (October 2026):
+  <https://www.semafor.com/article/10/13/2026/voltas-5-billion-debt-deal-is-a-pulse-check-on-the-ai-financing-boom>,
+  <https://octus.com/resources/articles/volta-infrastructure-pricing-slips/>
+- Naver / Brookfield GPU financing (mandated November 1, 2026, not counted):
+  <https://en.sedaily.com/finance/2026/11/01/kb-kookmin-bank-arranges-koreas-first-gpu-financing-deal>
+- CoreWeave proposed $4B investment-grade loan (November 2026, not counted):
+  <https://www.bloomberg.com/news/articles/2026-11-11/coreweave-plans-to-raise-at-least-4-billion-in-high-grade-loan>
+- Firmus IPO withdrawal and private raise (November 2026):
+  <https://thetechcapital.com/firmus-seeks-3-billion-private-funding-after-scrapped-ipo-report/>
 - SpaceX credit ratings (June 18, 2026):
   <https://www.investing.com/news/stock-market-news/spacex-gets-investmentgrade-ratings-with-stable-outlook-from-top-agencies-4750942>
 - NVIDIA's $21B SpaceX stake (13F, August 2026):
@@ -78,8 +98,15 @@
   <https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json>
 - FY21–FY22 "Investments and other, net": FY23 10-K cash flow statement
   <https://www.sec.gov/Archives/edgar/data/1045810/000104581023000017/nvda-20230129.htm>
-- First-half FY27 equity purchases, acquisitions, and Groq payment: Q2 FY27
-  10-Q cash flow statement (link above)
+- First-nine-month FY27 equity purchases ($58.10B), acquisitions ($3.03B),
+  Groq payment ($2.94B), and convertible debt securities ($3.47B): Q3 FY27
+  press release and supplemental financial information (links above)
+- Q3 FY27 deals: Nscale's registration statement for the $1.0B note
+  subscription <https://www.sec.gov/Archives/edgar/data/2110365/000119312526458722/ck0002110365-20261112.htm>,
+  Naver placement <https://www.koreajoongangdaily.com/business/nvidia-finalizes-payment-of-1-billion-acquires-over-4-stake-in-naver/12960143>,
+  SpaceX shares and Intel and Nokia sales from the November 2026 13F
+  <https://247wallst.com/investing/2026/11/17/nvidia-sold-a-quarter-of-its-intel-shares-and-more-than-half-its-nokia-stake-spacex-is-now-its-biggest-investment/>,
+  Lumentum merger <https://www.cnbc.com/amp/2026/11/02/marvell-to-buy-lumentum-in-115-billion-deal-in-ai-data-center-bet-.html>
 - Intel $5.0B stake, completed December 26, 2025:
   <https://www.investing.com/news/sec-filings/intel-completes-5-billion-private-stock-sale-to-nvidia-93CH-4423685>
 - Third-party debt, FY24–FY27 (GPU-backed loans and AI cloud and AI lab
@@ -145,11 +172,26 @@
   Nokia <https://www.investing.com/news/company-news/nokia-completes-directed-share-issuance-to-nvidia-93CH-4355080>,
   Hugging Face 8-K <https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000078/nvda-20260902.htm>,
   Anthropic <https://www.anthropic.com/news/microsoft-nvidia-anthropic-announce-strategic-partnerships>,
+  Anthropic IPO placement <https://www.cnbc.com/2026/11/16/anthropic-ipo-date-price-range.html>,
+  Hugging Face DOJ inquiry <https://www.cnbc.com/2026/10/28/doj-questions-nvidias-12point9-billion-hugging-face-deal.html>,
+  Thinking Machines Lab (unconfirmed) <https://www.inc.com/kevin-haynes/nvidia-may-put-2-5-billion-into-thinking-machines-valuing-the-startup-at-40-billion/91401970>,
   IREN <https://www.investing.com/news/stock-market-news/nvidia-to-invest-up-to-21-billion-in-iren-as-part-of-ai-data-center-deal-4670343>
 
 ## Reverse DCF
 
 - Shares outstanding (24.15B): <https://stockanalysis.com/stocks/nvda/>
-- Net cash ($56.6B of cash, cash equivalents, and marketable debt securities
-  minus $33.4B of debt): Q2 FY27 10-Q (link above)
+- Net cash ($53.51B of cash, cash equivalents, and marketable debt securities
+  minus $32.37B of debt): Q3 FY27 press release (link above)
 - FY27E free cash flow: consensus, as in the Cash Flow section
+
+## FY27E consensus and price
+
+- Revenue ($423.85B) and EPS ($9.65, 39 analysts, November 18, 2026):
+  <https://stockanalysis.com/stocks/nvda/forecast/>
+- Operating income ($279.67B) and free cash flow ($178.93B, 63 analysts):
+  <https://www.marketscreener.com/quote/stock/NVIDIA-CORPORATION-57355629/finances/>
+- Q4 FY27 revenue guidance of $130.0B ±3%: Q3 FY27 CFO commentary (link above)
+- Hero price, the $155.46 close on November 17, 2026 against $156.14 the day
+  before: <https://finance.yahoo.com/quote/NVDA/history/>
+- Resignation of Jensen Huang as CEO (8-K, November 11, 2026):
+  <https://www.sec.gov/Archives/edgar/data/1045810/000104581026000082/nvda-20261111.htm>

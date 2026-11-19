@@ -35,6 +35,25 @@ Analytical method: [software](../../methods/software.md)
   mining inventory glut, combined with the ARM termination charge, resulting
   in much lower operating income ($4.22B vs $10.04B in FY22).
 
+- **Q3 FY27 sources.** The Q3 FY27 10-Q had not been filed when the page was
+  updated (November 2026), so Q3 figures come from the November 17, 2026 8-K
+  exhibits: the press release, CFO commentary, and supplemental financial
+  information. Replace them with 10-Q figures once it is filed, in particular
+  the split of the $58.10B of nine-month equity purchases between marketable
+  and non-marketable securities, which the 8-K does not give.
+
+- **Q3 FY27 reporting changes.** From Q3 FY27 NVIDIA reports Data Center
+  (split into Hyperscale and AI Clouds, Industrial & Enterprise) and Edge
+  Computing instead of Gaming, ProViz, Automotive, and OEM & Other, so the
+  Revenue Streams chart stops at FY26. The commitments note renamed AI cloud
+  agreements to neocloud agreements and folded the reassignable third-party
+  leases into leases not yet commenced.
+
+- **FY27E circular deduction.** The Revenue Minus Investment Activities
+  section and adjusted EPS subtract the full FY27 equity-stakes line (paid
+  plus committed) and FY27 third-party debt, the same values as the circular
+  financing chart.
+
 - **AI inflection.** Beginning in FY24, Data Center revenue accelerated
   sharply as hyperscale cloud providers and enterprises adopted NVIDIA's
   H100 and subsequent GPU architectures for AI training and inference.
