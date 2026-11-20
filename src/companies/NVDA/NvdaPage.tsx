@@ -580,7 +580,7 @@ const adjustedEpsMetric = {
   },
 };
 
-function buildAdjustedPeMetric(price: number) {
+function buildAdjustedPeScenario(price: number) {
   const values = metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const pe = historicalPe.values[i];
@@ -589,17 +589,9 @@ function buildAdjustedPeMetric(price: number) {
   });
   values[values.length - 1] = +(price / adjustedEpsEst).toFixed(1);
   return {
-    label: 'Adjusted P/E ratio',
-    desc: 'Price at fiscal year-end divided by adjusted diluted EPS, which removes the same circular-financing deduction as adjusted revenue.',
+    label: 'Stress test',
+    desc: 'Price divided by adjusted diluted EPS, which removes the same circular-financing deduction as adjusted revenue. Reported years keep their fiscal year-end price.',
     values,
-    format: { decimals: 1 },
-    invertColor: true,
-    guidanceCount: 1,
-    yearNotes: {
-      FY21: negativeAdjustedNote,
-      FY22: negativeAdjustedNote,
-      FY27E: `Calculated from $${price.toFixed(2)} divided by adjusted diluted EPS of $${adjustedEpsEst.toFixed(2)}.`,
-    },
   };
 }
 
@@ -614,49 +606,49 @@ function buildDynamicFinancials(price: number) {
     keyMetrics: financials.keyMetrics.flatMap(m =>
       m === dilutedEps ? [m, adjustedEpsMetric] : [m]
     ),
-    criticalMetrics: financials.criticalMetrics
-      .map(m => {
-        if (m.label === 'P/E ratio') {
-          const values = [...m.values];
-          values[values.length - 1] = pe;
-          return {
-            ...m,
-            values,
-            yearNotes: {
-              ...m.yearNotes,
-              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
-            },
-          };
-        }
-        if (m.label === 'P/FCF ratio') {
-          const values = [...m.values];
-          values[values.length - 1] = pfcf;
-          return {
-            ...m,
-            values,
-            yearNotes: {
-              ...m.yearNotes,
-              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
-            },
-          };
-        }
-        if (m.label === 'PEG ratio') {
-          const values = [...m.values];
-          values[values.length - 1] = peg;
-          return {
-            ...m,
-            values,
-            yearNotes: {
-              ...m.yearNotes,
-              FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
-            },
-          };
-        }
-        return m;
-      })
-      .flatMap(m =>
-        m.label === 'P/E ratio' ? [m, buildAdjustedPeMetric(price)] : [m]
-      ),
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/E ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pe;
+        const scenario = buildAdjustedPeScenario(price);
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY21: `Stress test: ${negativeAdjustedNote}`,
+            FY22: `Stress test: ${negativeAdjustedNote}`,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${scenario.values.at(-1)} divides the same price by adjusted diluted EPS of $${adjustedEpsEst.toFixed(2)}.`,
+          },
+          scenario,
+        };
+      }
+      if (m.label === 'P/FCF ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
+          },
+        };
+      }
+      if (m.label === 'PEG ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = peg;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
+          },
+        };
+      }
+      return m;
+    }),
   };
 }
 
