@@ -50,9 +50,11 @@ Analytical method: [software](../../methods/software.md)
   leases into leases not yet commenced.
 
 - **FY27E circular deduction.** The Revenue Minus Investment Activities
-  section and the stress test lines on the Diluted EPS and P/E charts subtract
-  the full FY27 equity-stakes line (paid plus committed) and FY27 third-party
-  debt, the same values as the circular financing chart.
+  section and the stress test lines on the Diluted EPS, free cash flow per
+  share, and P/E charts subtract the full FY27 equity-stakes line (paid plus
+  committed) and FY27 third-party debt, the same values as the circular
+  financing chart. For FY21–FY26 the free cash flow stress line is operating
+  cash flow plus net investing cash flow, so capex is not deducted twice.
 
 - **AI inflection.** Beginning in FY24, Data Center revenue accelerated
   sharply as hyperscale cloud providers and enterprises adopted NVIDIA's

@@ -585,6 +585,49 @@ const dilutedEpsWithStressTest = {
   scenario: stressedEpsScenario,
 };
 
+const fcfLine = cashFlowStatementLines.find(l => l.label === 'Free cash flow')!;
+const operatingLine = cashFlowStatementLines.find(
+  l => l.label === 'Operating activities'
+)!;
+const fcfPerShare = financials.keyMetrics.find(
+  m => m.label === 'Free cash flow per share'
+)!;
+
+// Reported years subtract net investing cash flow from operating cash flow, so
+// capex, which FCF already deducts, is not counted twice.
+function stressedFcf(year: string): number | null {
+  const i = cashFlowStatementYears.indexOf(year);
+  if (i === -1) return null;
+  const investing = investingLine.values[i];
+  return investing === null
+    ? fcfLine.values[i]! - forwardDeduction
+    : operatingLine.values[i]! + investing;
+}
+
+const forwardStressedFcf = stressedFcf('FY27E')!;
+const forwardFcf = fcfLine.values[cashFlowStatementYears.indexOf('FY27E')]!;
+
+const fcfPerShareWithStressTest = {
+  ...fcfPerShare,
+  yearNotes: {
+    ...fcfPerShare.yearNotes,
+    FY27E:
+      `${fcfPerShare.yearNotes?.FY27E ?? ''} The stress test FCF is consensus FCF of $${forwardFcf.toFixed(2)}B minus the $${forwardDeduction.toFixed(2)}B circular deduction, or $${forwardStressedFcf.toFixed(2)}B.`.trim(),
+  },
+  scenario: {
+    label: 'Stress test',
+    desc: 'Free cash flow after the same circular-financing deduction as adjusted revenue, per diluted share. FY21–FY26 take operating cash flow plus net investing cash flow, which removes every investing outflow without counting capital expenditures twice. FY27E subtracts the equity investments made or committed in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware from consensus free cash flow.',
+    values: metricYears.map((year, i) => {
+      const stressed = stressedFcf(year);
+      const fcf = fcfLine.values[cashFlowStatementYears.indexOf(year)];
+      const perShare = fcfPerShare.values[i];
+      return stressed === null || !fcf || perShare === null
+        ? null
+        : +((perShare * stressed) / fcf).toFixed(2);
+    }),
+  },
+};
+
 function buildAdjustedPeScenario(price: number) {
   const values = metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
@@ -609,7 +652,11 @@ function buildDynamicFinancials(price: number) {
     ...financials,
     reverseDcf,
     keyMetrics: financials.keyMetrics.map(m =>
-      m === dilutedEps ? dilutedEpsWithStressTest : m
+      m === dilutedEps
+        ? dilutedEpsWithStressTest
+        : m === fcfPerShare
+          ? fcfPerShareWithStressTest
+          : m
     ),
     criticalMetrics: financials.criticalMetrics.map(m => {
       if (m.label === 'P/E ratio') {
