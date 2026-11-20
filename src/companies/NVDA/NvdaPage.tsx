@@ -278,7 +278,7 @@ function buildRevenueExcludingCircularSection(): SectionData {
       },
     ],
     chartNote:
-      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through November 18, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
+      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through November 20, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
   };
 }
 
@@ -362,13 +362,13 @@ const nvdaSections: SectionData[] = [
     id: 'debt-funded-demand',
     title: 'Debt-Funded Demand',
     kicker:
-      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through November 18, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
+      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through November 20, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
     kind: 'table',
     firstColumn: 'Borrower',
     columns: debtFundedDemand.columns,
     rows: debtFundedDemand.rows,
     tableNote:
-      'The table counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, which matches the third-party debt line in the chart below. Data center construction debt, such as Stargate sites and Meta’s Hyperion, and hyperscaler bonds, such as Oracle’s, are excluded because the tenant or issuer buys GPUs separately. NVIDIA links are shown only where verified. The list covers deals of about $0.2B and up and is not exhaustive. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
+      'The table counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, which matches the third-party debt line in the chart below. Data center construction debt, such as Stargate sites and Meta’s Hyperion, and hyperscaler bonds, such as Oracle’s, are excluded because the tenant or issuer buys GPUs separately. NVIDIA links are shown only where verified. The list names deals of about $0.2B and up, groups smaller GPU loans in one row, and is not exhaustive. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
   },
   {
     rank: 400,
@@ -565,22 +565,109 @@ const adjustedEpsEst = EPS_EST * forwardRatio;
 const negativeAdjustedNote =
   'Not meaningful, because adjusted net income was negative after the deduction.';
 
-const adjustedEpsMetric = {
-  label: 'Adjusted diluted EPS',
+const stressedEpsScenario = {
+  label: 'Stress test',
   desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments made or committed in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware.',
   values: metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const eps = dilutedEps.values[i];
     return ratio === null || eps === null ? null : +(eps * ratio).toFixed(2);
   }),
-  format: { prefix: '$', decimals: 2 },
-  guidanceCount: 1,
+};
+
+const dilutedEpsWithStressTest = {
+  ...dilutedEps,
   yearNotes: {
-    FY27E: `Consensus EPS of $${EPS_EST} × adjusted net income of $${(forwardNetIncome - forwardDeduction).toFixed(2)}B ÷ consensus net income of $${forwardNetIncome.toFixed(2)}B = $${adjustedEpsEst.toFixed(2)}.`,
+    ...dilutedEps.yearNotes,
+    FY27E:
+      `${dilutedEps.yearNotes?.FY27E ?? ''} The stress test EPS is $${EPS_EST} × adjusted net income of $${(forwardNetIncome - forwardDeduction).toFixed(2)}B ÷ consensus net income of $${forwardNetIncome.toFixed(2)}B = $${adjustedEpsEst.toFixed(2)}.`.trim(),
+  },
+  scenario: stressedEpsScenario,
+};
+
+const fcfLine = cashFlowStatementLines.find(l => l.label === 'Free cash flow')!;
+const operatingLine = cashFlowStatementLines.find(
+  l => l.label === 'Operating activities'
+)!;
+const fcfPerShare = financials.keyMetrics.find(
+  m => m.label === 'Free cash flow per share'
+)!;
+
+// Reported years subtract net investing cash flow from operating cash flow, so
+// capex, which FCF already deducts, is not counted twice.
+function stressedFcf(year: string): number | null {
+  const i = cashFlowStatementYears.indexOf(year);
+  if (i === -1) return null;
+  const investing = investingLine.values[i];
+  return investing === null
+    ? fcfLine.values[i]! - forwardDeduction
+    : operatingLine.values[i]! + investing;
+}
+
+const forwardStressedFcf = stressedFcf('FY27E')!;
+const forwardFcf = fcfLine.values[cashFlowStatementYears.indexOf('FY27E')]!;
+
+const fcfPerShareWithStressTest = {
+  ...fcfPerShare,
+  yearNotes: {
+    ...fcfPerShare.yearNotes,
+    FY27E:
+      `${fcfPerShare.yearNotes?.FY27E ?? ''} The stress test FCF is consensus FCF of $${forwardFcf.toFixed(2)}B minus the $${forwardDeduction.toFixed(2)}B circular deduction, or $${forwardStressedFcf.toFixed(2)}B.`.trim(),
+  },
+  scenario: {
+    label: 'Stress test',
+    desc: 'Free cash flow after the same circular-financing deduction as adjusted revenue, per diluted share. FY21–FY26 take operating cash flow plus net investing cash flow, which removes every investing outflow without counting capital expenditures twice. FY27E subtracts the equity investments made or committed in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware from consensus free cash flow.',
+    values: metricYears.map((year, i) => {
+      const stressed = stressedFcf(year);
+      const fcf = fcfLine.values[cashFlowStatementYears.indexOf(year)];
+      const perShare = fcfPerShare.values[i];
+      return stressed === null || !fcf || perShare === null
+        ? null
+        : +((perShare * stressed) / fcf).toFixed(2);
+    }),
   },
 };
 
-function buildAdjustedPeMetric(price: number) {
+const historicalPfcf = financials.criticalMetrics.find(
+  m => m.label === 'P/FCF ratio'
+)!;
+const negativeStressedFcfNote =
+  'Not meaningful, because free cash flow was negative after the deduction.';
+
+function buildStressedPfcf(price: number) {
+  const stressedPerShare = fcfPerShareWithStressTest.scenario.values;
+  const values = metricYears.map((year, i) => {
+    const stressed = stressedFcf(year);
+    const fcf = fcfLine.values[cashFlowStatementYears.indexOf(year)];
+    const pfcf = historicalPfcf.values[i];
+    if (stressed === null || !fcf || pfcf === null || stressed <= 0)
+      return null;
+    return +((pfcf * fcf) / stressed).toFixed(1);
+  });
+  const forward = stressedPerShare.at(-1)!;
+  values[values.length - 1] =
+    forward > 0 ? +(price / forward).toFixed(1) : null;
+  const notMeaningful = metricYears.filter(year => {
+    const stressed = stressedFcf(year);
+    return stressed !== null && stressed <= 0;
+  });
+  return {
+    notes: Object.fromEntries(
+      notMeaningful.map(y => [y, `Stress test: ${negativeStressedFcfNote}`])
+    ),
+    forwardNote:
+      forward > 0
+        ? ` The stress test P/FCF of ${values.at(-1)} divides the same price by stress test FCF per share of $${forward.toFixed(2)}.`
+        : ` The stress test P/FCF is not meaningful, because stress test FCF of $${forwardStressedFcf.toFixed(2)}B is negative.`,
+    scenario: {
+      label: 'Stress test',
+      desc: 'Price divided by the stress test FCF per share on the free cash flow per share chart. Reported years keep their fiscal year-end price.',
+      values,
+    },
+  };
+}
+
+function buildAdjustedPeScenario(price: number) {
   const values = metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const pe = historicalPe.values[i];
@@ -589,17 +676,9 @@ function buildAdjustedPeMetric(price: number) {
   });
   values[values.length - 1] = +(price / adjustedEpsEst).toFixed(1);
   return {
-    label: 'Adjusted P/E ratio',
-    desc: 'Price at fiscal year-end divided by adjusted diluted EPS, which removes the same circular-financing deduction as adjusted revenue.',
+    label: 'Stress test',
+    desc: 'Price divided by the stress test EPS on the Diluted EPS chart, which removes the same circular-financing deduction as adjusted revenue. Reported years keep their fiscal year-end price.',
     values,
-    format: { decimals: 1 },
-    invertColor: true,
-    guidanceCount: 1,
-    yearNotes: {
-      FY21: negativeAdjustedNote,
-      FY22: negativeAdjustedNote,
-      FY27E: `Calculated from $${price.toFixed(2)} divided by adjusted diluted EPS of $${adjustedEpsEst.toFixed(2)}.`,
-    },
   };
 }
 
@@ -611,52 +690,59 @@ function buildDynamicFinancials(price: number) {
   return {
     ...financials,
     reverseDcf,
-    keyMetrics: financials.keyMetrics.flatMap(m =>
-      m === dilutedEps ? [m, adjustedEpsMetric] : [m]
+    keyMetrics: financials.keyMetrics.map(m =>
+      m === dilutedEps
+        ? dilutedEpsWithStressTest
+        : m === fcfPerShare
+          ? fcfPerShareWithStressTest
+          : m
     ),
-    criticalMetrics: financials.criticalMetrics
-      .map(m => {
-        if (m.label === 'P/E ratio') {
-          const values = [...m.values];
-          values[values.length - 1] = pe;
-          return {
-            ...m,
-            values,
-            yearNotes: {
-              ...m.yearNotes,
-              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}.`,
-            },
-          };
-        }
-        if (m.label === 'P/FCF ratio') {
-          const values = [...m.values];
-          values[values.length - 1] = pfcf;
-          return {
-            ...m,
-            values,
-            yearNotes: {
-              ...m.yearNotes,
-              FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
-            },
-          };
-        }
-        if (m.label === 'PEG ratio') {
-          const values = [...m.values];
-          values[values.length - 1] = peg;
-          return {
-            ...m,
-            values,
-            yearNotes: {
-              ...m.yearNotes,
-              FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
-            },
-          };
-        }
-        return m;
-      })
-      .flatMap(m =>
-        m.label === 'P/E ratio' ? [m, buildAdjustedPeMetric(price)] : [m]
-      ),
+    criticalMetrics: financials.criticalMetrics.map(m => {
+      if (m.label === 'P/E ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = pe;
+        const scenario = buildAdjustedPeScenario(price);
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY21: `Stress test: ${negativeAdjustedNote}`,
+            FY22: `Stress test: ${negativeAdjustedNote}`,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${scenario.values.at(-1)} divides the same price by stress test EPS of $${adjustedEpsEst.toFixed(2)}.`,
+          },
+          scenario,
+        };
+      }
+      if (m.label === 'P/FCF ratio') {
+        const stressedPfcf = buildStressedPfcf(price);
+        const values = [...m.values];
+        values[values.length - 1] = pfcf;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            ...stressedPfcf.notes,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.${stressedPfcf.forwardNote}`,
+          },
+          scenario: stressedPfcf.scenario,
+        };
+      }
+      if (m.label === 'PEG ratio') {
+        const values = [...m.values];
+        values[values.length - 1] = peg;
+        return {
+          ...m,
+          values,
+          yearNotes: {
+            ...m.yearNotes,
+            FY27E: `Calculated from the forward P/E of ${pe} divided by the FY26-to-FY27 EPS growth rate of ${epsGrowth.toFixed(1)}%.`,
+          },
+        };
+      }
+      return m;
+    }),
   };
 }
 

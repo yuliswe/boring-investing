@@ -229,13 +229,13 @@ export const debtFundedDemand = {
     },
     {
       label: 'Nscale',
-      desc: 'A $1.4B delayed-draw term loan (FY27) and $3.05B of term loans for Texas and North Carolina sites (FY27) to deploy Blackwell and Rubin systems.',
-      values: ['$4.45B', 'FY27', 'Closed', '—'],
+      desc: 'A $1.4B delayed-draw term loan (FY27), $3.05B of term loans for Texas and North Carolina sites (FY27) to deploy Blackwell and Rubin systems, a $0.332B Macquarie loan to buy GPUs for Iceland (FY27), and a $0.9B revolving credit facility (FY27), all from Nscale’s registration statement.\nA $0.725B data center construction loan in Norway is not counted, nor are about $2.54B of short-term Dell equipment leases that the GPU loans may repay, nor the third-party part of its convertible notes, which convert into shares at the IPO.',
+      values: ['$5.68B', 'FY27', 'Closed', '—'],
     },
     {
       label: 'IREN',
-      desc: 'A $3.645B investment-grade GPU financing tied to its Microsoft contract (FY27).',
-      values: ['$3.6B', 'FY27', 'Closed', '—'],
+      desc: 'A $3.645B investment-grade GPU financing tied to its Microsoft contract (FY27) and a $0.363B equipment financing led by Wingspire on GPU servers already deployed, closed on October 28, 2026 (FY27).',
+      values: ['$4.0B', 'FY27', 'Closed', '—'],
     },
     {
       label: 'Lambda',
@@ -254,13 +254,43 @@ export const debtFundedDemand = {
     },
     {
       label: 'SpaceX / SpaceXAI',
-      desc: 'A $40B master finance lease of NVIDIA Vera Rubin GPUs, signed as a binding commitment on October 26, 2026, and led by Apollo and Goldman Sachs with BlackRock, Goldman Sachs Asset Management, and KKR as anchors. A vehicle holds an $8.3B loan and bond tranches rated A3/A-, beside a $7B lease prepayment, to fund about $47.3B of GPUs. Closing is expected before the end of calendar 2026 and leasing starts in the first half of 2027.\nNVIDIA holds SpaceX shares, which became its largest investment after its xAI stake converted.',
-      values: ['$40.0B', 'FY27', 'Signed', 'Equity stake'],
+      desc: 'A master finance lease of NVIDIA Vera Rubin GPUs, signed as a $40B binding commitment on October 26, 2026, and upsized when Apollo and Goldman Sachs priced $44B of senior and subordinated notes on November 20, 2026 (FY27). BlackRock, Goldman Sachs Asset Management, and KKR anchored the notes. Leasing starts in the first half of 2027.\nNVIDIA holds SpaceX shares, which became its largest investment after its xAI stake converted.',
+      values: ['$44.0B', 'FY27', 'Priced', 'Equity stake'],
     },
     {
       label: 'Volta Infrastructure',
       desc: 'A $3.71B GPU-backed term loan for about 36,000 NVIDIA GPUs in Norway that serve Anthropic, arranged by JPMorgan and Goldman Sachs with Apollo as anchor and priced in October 2026 (FY27). A further $1.3B in the same package funds a data center lease and is not counted.',
       values: ['$3.7B', 'FY27', 'Priced', '—'],
+    },
+    {
+      label: 'Mistral AI',
+      desc: 'Mistral’s first debt raise, $0.83B from seven banks including Bpifrance, BNP Paribas, and HSBC, for 13,800 NVIDIA GB300 GPUs at a data center south of Paris, announced on March 30, 2026 (FY27).',
+      values: ['$0.83B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'Core42 (G42)',
+      desc: 'Two HSBC structured trade finance facilities of $0.24B (February 2026) and $0.31B (May 2026) for AI cloud and compute deployments in the US and Europe (FY27). The filings do not name the chip vendor.',
+      values: ['$0.55B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'GMI Cloud',
+      desc: 'A NT$14.05B (about $0.445B) syndicated facility led by CTBC Bank, backed by compute sales contracts, for about 7,000 NVIDIA GB300 GPUs in Taiwan, closed on October 1, 2026 (FY27). Banks offered about NT$30B, but only the closed facility is counted.',
+      values: ['$0.45B', 'FY27', 'Closed', 'NVIDIA partner'],
+    },
+    {
+      label: 'Sharon AI',
+      desc: 'A $0.356B GPU-backed facility from Goldman Sachs and private credit funds at a 9.95% fixed rate, announced on October 1, 2026 (FY27), the first of a planned series to fund over 68,000 NVIDIA GPUs by mid-2027.',
+      values: ['$0.36B', 'FY27', 'Closed', '—'],
+    },
+    {
+      label: 'Humain',
+      desc: 'A GPU financing facility of up to SAR 1.1B (about $0.293B) from Saudi Arabia’s National Infrastructure Fund for about 25MW of GPUs, signed on November 8, 2026 (FY27). A second SAR 1.4B facility signed the same day funds substations and grid connections and is not counted.',
+      values: ['$0.29B', 'FY27', 'Signed', '—'],
+    },
+    {
+      label: 'Smaller GPU loans',
+      desc: 'HIVE’s BUZZ HPC borrowed about $0.129B at 9% against 2,303 NVIDIA GB200 GPUs contracted to Cohere (October 27, 2026), and NexGen Cloud borrowed $0.106B from USD.AI, Silver Point, and Victory Park against 1,728 NVIDIA HGX B300 GPUs in Finland (October 29, 2026). Both are FY27.',
+      values: ['$0.24B', 'FY27', 'Closed', '—'],
     },
     {
       label: 'Naver Cloud (Brookfield)',
@@ -269,7 +299,7 @@ export const debtFundedDemand = {
     },
     {
       label: 'Total',
-      values: ['$148.2B', '', '$140.9B counted', ''],
+      values: ['$156.5B', '', '$149.2B counted', ''],
     },
   ],
 };
@@ -307,8 +337,8 @@ export const circularOutflowLines = [
   },
   {
     label: 'Third-party debt',
-    desc: 'Debt that lenders provided to customers to buy NVIDIA hardware, placed in the fiscal year each deal closed or was signed. It counts GPU-backed loans and the corporate debt of AI clouds and AI labs, which is spent mostly on compute.\nData center construction debt (such as Stargate sites and Meta’s Hyperion) and hyperscaler bonds (such as Oracle’s) are excluded, because the tenant or issuer buys GPUs separately. Facility sizes are counted, not amounts drawn. FY27E covers deals signed or priced through November 18, 2026, including SpaceX’s $40B GPU lease financing.',
-    values: [0, 0, 0, 2.3, 8.0, 21.44, 109.14],
+    desc: 'Debt that lenders provided to customers to buy NVIDIA hardware, placed in the fiscal year each deal closed or was signed. It counts GPU-backed loans and the corporate debt of AI clouds and AI labs, which is spent mostly on compute.\nData center construction debt (such as Stargate sites and Meta’s Hyperion) and hyperscaler bonds (such as Oracle’s) are excluded, because the tenant or issuer buys GPUs separately. Facility sizes are counted, not amounts drawn. FY27E covers deals signed or priced through November 20, 2026, including SpaceX’s $44B GPU lease financing.',
+    values: [0, 0, 0, 2.3, 8.0, 21.44, 117.44],
   },
 ];
 
@@ -320,7 +350,7 @@ export const circularOutflowYearDetails: Record<string, string> = {
   FY25: 'Equity stakes are purchases of non-marketable equity securities. Third-party debt is CoreWeave’s $7.5B facility from May 2024 and Lambda’s $0.5B GPU-backed loan from April 2024.',
   FY26: 'Equity stakes are $17.50B of non-marketable equity purchases plus the $5.00B Intel stake. Other public equity bought this year is mixed with debt securities in the filing and is not counted. Third-party debt is $6.6B of GPU-backed loans (Valor Compute Infrastructure for xAI $3.5B, CoreWeave $2.6B, Lambda $0.3B, Crusoe $0.2B) plus $14.8B of AI cloud and AI lab corporate debt (CoreWeave notes and convertibles $6.3B, xAI $5.0B, Nebius $2.75B, Crusoe $0.75B). Corporate bond holdings fell this year, so corporate bonds count as zero.',
   FY27E:
-    'Equity stakes are $58.10B paid in the first nine months plus $5.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first nine months only. Corporate bonds are the $3.47B of debt convertible into public equity that NVIDIA held on October 25, 2026, when it held no other corporate bonds. Third-party debt runs through November 18, 2026: $85.9B of GPU-backed loans and leases (SpaceX $40.0B, CoreWeave $14.2B, Firmus $10.0B, Nscale $4.45B, Volta $3.7B, IREN $3.6B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Nebius $0.8B) plus $23.2B of AI cloud corporate debt (Nebius $13.25B, CoreWeave $9.95B). Naver’s mandated $7.3B financing and CoreWeave’s proposed $4B loan are not counted.',
+    'Equity stakes are $58.10B paid in the first nine months plus $5.00B committed for the rest of the year. Acquisitions and the Groq payment cover the first nine months only. Corporate bonds are the $3.47B of debt convertible into public equity that NVIDIA held on October 25, 2026, when it held no other corporate bonds. Third-party debt runs through November 20, 2026: $92.8B of GPU-backed loans and leases (SpaceX $44.0B, CoreWeave $14.2B, Firmus $10.0B, Nscale $4.78B, IREN $4.0B, Volta $3.7B, xAI vehicle $3.4B, Zankore $3.1B, Lambda $2.7B, Mistral $0.83B, Nebius $0.8B, GMI Cloud $0.45B, Sharon AI $0.36B, Humain $0.29B, BUZZ HPC $0.13B, NexGen Cloud $0.11B) plus $24.65B of AI cloud corporate debt (Nebius $13.25B, CoreWeave $9.95B, Nscale $0.9B, Core42 $0.55B). Naver’s mandated $7.3B financing and CoreWeave’s proposed $4B loan are not counted.',
 };
 
 export const reverseDcfInputs = {
@@ -391,7 +421,7 @@ export const circularFinancingDeals = {
     },
     {
       label: 'SpaceX',
-      desc: 'About 7.7M SpaceX shares bought in Q3 FY27, disclosed in NVIDIA’s November 2026 13F filing and valued at roughly $1.1B. SpaceX rents NVIDIA GPUs through the $40B lease financing in the debt table.',
+      desc: 'About 7.7M SpaceX shares bought in Q3 FY27, disclosed in NVIDIA’s November 2026 13F filing and valued at roughly $1.1B. SpaceX rents NVIDIA GPUs through the $44B lease financing in the debt table.',
       values: ['$1.1B', 'FY27', 'Equity', 'Yes'],
     },
     {

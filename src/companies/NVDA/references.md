@@ -65,6 +65,28 @@
 - SpaceX $40B GPU lease financing (binding commitment, October 26, 2026):
   <https://ir.spacex.com/updates/releases-details/2026/SPACEX-SECURES-40-BILLION-IN-THE-LARGEST-GPU-FINANCING-EVER-2026-EnDqGhTAB3/>,
   <https://www.cnbc.com/2026/10/26/spacex-closes-40-billion-debt-deal-for-ai-chips-elon-musk-.html>
+- SpaceX $44B notes priced (upsized, November 20, 2026):
+  <https://www.manilatimes.net/2026/11/21/tmt-newswire/globenewswire/apollo-and-goldman-sachs-announce-pricing-of-44-billion-spacex-gpu-financing/2475216>
+- Nscale facilities ($1.4B GPU facility, $1.85B Ward County, $1.2B North
+  Carolina, $0.332B Macquarie Iceland, $0.9B revolver), from "Description of
+  Certain Indebtedness" in its S-1/A:
+  <https://www.sec.gov/Archives/edgar/data/2110365/000119312526458722/ck0002110365-20261112.htm>
+- IREN $363M Wingspire equipment financing (October 28, 2026):
+  <https://natlawreview.com/press-releases/iren-and-wingspire-equipment-finance-complete-363-million-financing-high>
+- Mistral AI $830M (March 30, 2026):
+  <https://www.cnbc.com/2026/03/30/mistral-ai-paris-data-center-cluster-debt-financing.html>
+- Core42 $550M HSBC facilities (February and May 2026):
+  <https://www.intelligentcio.com/me/2026/05/26/core42-secures-us550-million-hsbc-financing-to-expand-ai-infrastructure-across-us-and-europe/>
+- GMI Cloud NT$14.05B facility (October 1, 2026):
+  <https://www.digitimes.com/news/a20261002PD200/cloud-taiwan-loan-financing-infrastructure.html>
+- Sharon AI $356M GPU-backed facility (October 1, 2026):
+  <https://www.prnewswire.com/news-releases/sharon-ai-enters-into-gpu-backed-debt-facility-expanding-funding-flexibility-for-ai-factory-deployments-302895839.html>
+- Humain SAR 1.1B GPU facility (November 8, 2026):
+  <https://economymiddleeast.com/news/humain-and-infra-sign-667-million-financing-agreements-to-advance-saudi-arabias-ai-infrastructure/>
+- HIVE BUZZ HPC $129M (October 27, 2026):
+  <https://www.hivedigitaltechnologies.com/news/hives-buzz-hpc-secures-approximately-129-million-at-90-fixed-rate-financing-at-80-loan-to-cost-to-expand-sovereign-ai-infrastructure/>
+- NexGen Cloud $106M (October 29, 2026):
+  <https://www.prnewswire.com/news-releases/usdai-leads-106-million-gpu-financing-for-nexgen-cloud-302923115.html>
 - Nebius $3.5B Citi facility (October 22, 2026):
   <https://www.nasdaq.com/press-release/nebius-secures-35-billion-financing-facility-citi-2026-10-22>
 - Volta Infrastructure $3.71B GPU term loan (October 2026):
