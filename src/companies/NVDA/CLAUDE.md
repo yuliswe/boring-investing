@@ -51,7 +51,7 @@ Analytical method: [software](../../methods/software.md)
 
 - **FY27E circular deduction.** The Revenue Minus Investment Activities
   section and the stress test lines on the Diluted EPS, free cash flow per
-  share, and P/E charts subtract the full FY27 equity-stakes line (paid plus
+  share, P/E, and P/FCF charts subtract the full FY27 equity-stakes line (paid plus
   committed) and FY27 third-party debt, the same values as the circular
   financing chart. For FY21–FY26 the free cash flow stress line is operating
   cash flow plus net investing cash flow, so capex is not deducted twice.

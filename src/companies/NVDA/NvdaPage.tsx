@@ -628,6 +628,45 @@ const fcfPerShareWithStressTest = {
   },
 };
 
+const historicalPfcf = financials.criticalMetrics.find(
+  m => m.label === 'P/FCF ratio'
+)!;
+const negativeStressedFcfNote =
+  'Not meaningful, because free cash flow was negative after the deduction.';
+
+function buildStressedPfcf(price: number) {
+  const stressedPerShare = fcfPerShareWithStressTest.scenario.values;
+  const values = metricYears.map((year, i) => {
+    const stressed = stressedFcf(year);
+    const fcf = fcfLine.values[cashFlowStatementYears.indexOf(year)];
+    const pfcf = historicalPfcf.values[i];
+    if (stressed === null || !fcf || pfcf === null || stressed <= 0)
+      return null;
+    return +((pfcf * fcf) / stressed).toFixed(1);
+  });
+  const forward = stressedPerShare.at(-1)!;
+  values[values.length - 1] =
+    forward > 0 ? +(price / forward).toFixed(1) : null;
+  const notMeaningful = metricYears.filter(year => {
+    const stressed = stressedFcf(year);
+    return stressed !== null && stressed <= 0;
+  });
+  return {
+    notes: Object.fromEntries(
+      notMeaningful.map(y => [y, `Stress test: ${negativeStressedFcfNote}`])
+    ),
+    forwardNote:
+      forward > 0
+        ? ` The stress test P/FCF of ${values.at(-1)} divides the same price by stress test FCF per share of $${forward.toFixed(2)}.`
+        : ` The stress test P/FCF is not meaningful, because stress test FCF of $${forwardStressedFcf.toFixed(2)}B is negative.`,
+    scenario: {
+      label: 'Stress test',
+      desc: 'Price divided by the stress test FCF per share on the free cash flow per share chart. Reported years keep their fiscal year-end price.',
+      values,
+    },
+  };
+}
+
 function buildAdjustedPeScenario(price: number) {
   const values = metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
@@ -676,6 +715,7 @@ function buildDynamicFinancials(price: number) {
         };
       }
       if (m.label === 'P/FCF ratio') {
+        const stressedPfcf = buildStressedPfcf(price);
         const values = [...m.values];
         values[values.length - 1] = pfcf;
         return {
@@ -683,8 +723,10 @@ function buildDynamicFinancials(price: number) {
           values,
           yearNotes: {
             ...m.yearNotes,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.`,
+            ...stressedPfcf.notes,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus FCF per share of $${FCF_PER_SHARE_EST}.${stressedPfcf.forwardNote}`,
           },
+          scenario: stressedPfcf.scenario,
         };
       }
       if (m.label === 'PEG ratio') {
