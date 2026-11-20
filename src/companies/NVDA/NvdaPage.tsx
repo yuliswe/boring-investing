@@ -278,7 +278,7 @@ function buildRevenueExcludingCircularSection(): SectionData {
       },
     ],
     chartNote:
-      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through November 18, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
+      'The deduction counts third-party debt at facility size, and FY27E counts committed equity investments and debt signed through November 20, 2026, so revenue excluding circular financing is a conservative floor. FY21 is low mostly because of the Mellanox acquisition, whose revenue NVIDIA consolidated after the deal. Click a year to see the subtraction.',
   };
 }
 
@@ -362,13 +362,13 @@ const nvdaSections: SectionData[] = [
     id: 'debt-funded-demand',
     title: 'Debt-Funded Demand',
     kicker:
-      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through November 18, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
+      'Debt that customers have raised, or are raising, to buy NVIDIA hardware, from FY24 through November 20, 2026. NVIDIA does not guarantee any of it, so it is not a liability, but it shows how much demand depends on credit markets staying open.',
     kind: 'table',
     firstColumn: 'Borrower',
     columns: debtFundedDemand.columns,
     rows: debtFundedDemand.rows,
     tableNote:
-      'The table counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, which matches the third-party debt line in the chart below. Data center construction debt, such as Stargate sites and Meta’s Hyperion, and hyperscaler bonds, such as Oracle’s, are excluded because the tenant or issuer buys GPUs separately. NVIDIA links are shown only where verified. The list covers deals of about $0.2B and up and is not exhaustive. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
+      'The table counts GPU-backed loans and the corporate debt of AI clouds and AI labs at facility size, which matches the third-party debt line in the chart below. Data center construction debt, such as Stargate sites and Meta’s Hyperion, and hyperscaler bonds, such as Oracle’s, are excluded because the tenant or issuer buys GPUs separately. NVIDIA links are shown only where verified. The list names deals of about $0.2B and up, groups smaller GPU loans in one row, and is not exhaustive. NVIDIA’s exposure here is to its equity stakes and to future revenue, not to the lenders.',
   },
   {
     rank: 400,
