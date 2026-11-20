@@ -565,19 +565,24 @@ const adjustedEpsEst = EPS_EST * forwardRatio;
 const negativeAdjustedNote =
   'Not meaningful, because adjusted net income was negative after the deduction.';
 
-const adjustedEpsMetric = {
-  label: 'Adjusted diluted EPS',
+const stressedEpsScenario = {
+  label: 'Stress test',
   desc: 'Diluted EPS after subtracting the same circular-financing deduction as adjusted revenue from net income. FY21–FY26 deduct the net cash used in investing activities, and FY27E deducts the equity investments made or committed in FY27 and the third-party debt customers raised in FY27 to buy NVIDIA hardware.',
   values: metricYears.map((year, i) => {
     const ratio = adjustedEarningsRatio(year);
     const eps = dilutedEps.values[i];
     return ratio === null || eps === null ? null : +(eps * ratio).toFixed(2);
   }),
-  format: { prefix: '$', decimals: 2 },
-  guidanceCount: 1,
+};
+
+const dilutedEpsWithStressTest = {
+  ...dilutedEps,
   yearNotes: {
-    FY27E: `Consensus EPS of $${EPS_EST} × adjusted net income of $${(forwardNetIncome - forwardDeduction).toFixed(2)}B ÷ consensus net income of $${forwardNetIncome.toFixed(2)}B = $${adjustedEpsEst.toFixed(2)}.`,
+    ...dilutedEps.yearNotes,
+    FY27E:
+      `${dilutedEps.yearNotes?.FY27E ?? ''} The stress test EPS is $${EPS_EST} × adjusted net income of $${(forwardNetIncome - forwardDeduction).toFixed(2)}B ÷ consensus net income of $${forwardNetIncome.toFixed(2)}B = $${adjustedEpsEst.toFixed(2)}.`.trim(),
   },
+  scenario: stressedEpsScenario,
 };
 
 function buildAdjustedPeScenario(price: number) {
@@ -590,7 +595,7 @@ function buildAdjustedPeScenario(price: number) {
   values[values.length - 1] = +(price / adjustedEpsEst).toFixed(1);
   return {
     label: 'Stress test',
-    desc: 'Price divided by adjusted diluted EPS, which removes the same circular-financing deduction as adjusted revenue. Reported years keep their fiscal year-end price.',
+    desc: 'Price divided by the stress test EPS on the Diluted EPS chart, which removes the same circular-financing deduction as adjusted revenue. Reported years keep their fiscal year-end price.',
     values,
   };
 }
@@ -603,8 +608,8 @@ function buildDynamicFinancials(price: number) {
   return {
     ...financials,
     reverseDcf,
-    keyMetrics: financials.keyMetrics.flatMap(m =>
-      m === dilutedEps ? [m, adjustedEpsMetric] : [m]
+    keyMetrics: financials.keyMetrics.map(m =>
+      m === dilutedEps ? dilutedEpsWithStressTest : m
     ),
     criticalMetrics: financials.criticalMetrics.map(m => {
       if (m.label === 'P/E ratio') {
@@ -618,7 +623,7 @@ function buildDynamicFinancials(price: number) {
             ...m.yearNotes,
             FY21: `Stress test: ${negativeAdjustedNote}`,
             FY22: `Stress test: ${negativeAdjustedNote}`,
-            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${scenario.values.at(-1)} divides the same price by adjusted diluted EPS of $${adjustedEpsEst.toFixed(2)}.`,
+            FY27E: `Calculated from $${price.toFixed(2)} divided by consensus diluted EPS of $${EPS_EST}. The stress test P/E of ${scenario.values.at(-1)} divides the same price by stress test EPS of $${adjustedEpsEst.toFixed(2)}.`,
           },
           scenario,
         };
