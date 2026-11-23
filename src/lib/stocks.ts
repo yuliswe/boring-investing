@@ -82,6 +82,14 @@ export const STOCKS: Stock[] = [
     template: 'software',
   },
   {
+    symbol: 'COST',
+    name: 'Costco Wholesale Corporation',
+    sector: 'Retail',
+    summary:
+      'Membership warehouse club operating 939 warehouses in 14 countries, which sells a limited range of goods at low markups and earns about half its operating income from the annual fees paid by 84.1 million members, who renew at a 92% rate in the U.S. and Canada.',
+    template: 'retail',
+  },
+  {
     symbol: 'CSU',
     name: 'Constellation Software Inc.',
     sector: 'Software',
