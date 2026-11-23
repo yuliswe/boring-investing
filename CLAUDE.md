@@ -35,7 +35,7 @@ src/
   methods/<type>.md               Analytical method per company type (e.g. software.md)
   charts/<Chart>.tsx              Reusable chart components (LineChart, BarChart)
   templates/<template>.tsx        Layout templates, one per company type (software.tsx)
-  lib/                            Shared helpers (stocks registry, base path)
+  lib/                            Shared helpers (stocks registry, base path, raw data builder)
   companies/
     <SYMBOL>/
       CLAUDE.md                   Company-specific notes; references methods/<type>.md
@@ -45,6 +45,7 @@ src/
   app/
     layout.tsx                    Root layout and global styles
     page.tsx                      Home page: directory of all stocks
+    data/[symbol]/page.tsx        Raw data page for every stock (one route, all companies)
     <SYMBOL>/
       page.tsx                    Thin route file; imports from src/companies/<SYMBOL>
 public/
@@ -77,6 +78,21 @@ public/
    cash, the latest actual and forward-year free cash flow, with sources in
    `references.md`), so the base template renders the reverse DCF sections.
 5. Add any stock-only sections under `src/companies/<SYMBOL>/components/`.
+
+## Raw data pages
+
+`/data/<SYMBOL>` shows every figure in a company's data files as Excel-style
+numeric tables. A single route, `src/app/data/[symbol]/page.tsx`, serves every
+stock in `STOCKS`. `src/lib/companyData.ts` imports
+`src/companies/<SYMBOL>/data/financials.ts` and, when it exists, `segments.ts`
+by symbol, and `buildRawSheets` in `src/lib/rawData.ts` turns their exports into
+tables that the shared `Workbook` component renders. The builder recognises the
+shapes the data files already use: year-keyed records (`[{ year, ... }]`),
+`label`/`values` series whose columns come from a sibling `<stem>Years` array
+or the template's years, `{ columns, rows }` tables, and keyed records. A new
+stock therefore needs no extra work for its raw data page, provided its data
+keeps to those shapes. Every company page links to its raw data from the
+footer.
 
 ## Imports and paths
 

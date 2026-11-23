@@ -35,7 +35,50 @@ import {
   RemovableTag,
   Text,
   NoteBubble,
+  Workbook,
 } from '@/design-system';
+import type { SpreadsheetSheet } from '@/design-system';
+
+const WORKBOOK_SHEETS: SpreadsheetSheet[] = [
+  {
+    name: 'Financials',
+    tables: [
+      {
+        id: 'demo-income',
+        title: 'Income statement',
+        columns: ['FY24', 'FY25', 'FY26E'],
+        rows: [
+          { label: 'Revenue', unit: '$B', values: [12.4, 13.9, 15.1] },
+          { label: 'Operating income', unit: '$B', values: [3.1, 3.6, null] },
+          { label: 'Diluted EPS', unit: '$', values: [2.41, 2.87, 3.2] },
+        ],
+      },
+      {
+        id: 'demo-cashflow',
+        title: 'Cash flow statement',
+        columns: ['FY24', 'FY25'],
+        rows: [
+          { label: 'Operating activities', values: [4.2, 4.9] },
+          { label: 'Capital expenditures', indent: 1, values: [-1.1, -1.4] },
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Segments',
+    tables: [
+      {
+        id: 'demo-segments',
+        title: 'Segments',
+        columns: ['FY24', 'FY25'],
+        rows: [
+          { label: 'Textiles', values: [7.9, 8.6] },
+          { label: 'Materials', values: [4.5, 5.3] },
+        ],
+      },
+    ],
+  },
+];
 
 type Row = {
   sym: string;
@@ -1032,9 +1075,20 @@ export function Gallery() {
           </div>
         </Section>
 
+        {/* 23 Workbook */}
+        <Section
+          n='23'
+          title='Workbook'
+          blurb='Excel-style sheets of numeric tables with lettered columns, numbered rows, a formula bar for the selected cell, copy-as-TSV and sheet tabs. Used by every raw data page.'
+        >
+          <div className='py-4.5 border-t border-divider-faint'>
+            <Workbook sheets={WORKBOOK_SHEETS} />
+          </div>
+        </Section>
+
         <footer className='pt-8.5 border-t border-divider'>
           <Text variant='caption'>
-            Twenty-two components on the Ledger tokens. Every interactive
+            Twenty-three components on the Ledger tokens. Every interactive
             element carries a themed hover, a pressed state and the 2px accent
             focus ring — tab through the page to see it.
           </Text>
