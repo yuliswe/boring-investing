@@ -1,6 +1,7 @@
 'use client';
 
 import { Banner, Tag, Text, ThemeToggle } from '@/design-system';
+import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 import { LabelPopoverProvider } from './LabelPopover';
 import { buildReverseDcfSections, type ReverseDcfData } from './reverseDcf';
@@ -188,7 +189,13 @@ function Header({
   );
 }
 
-function FooterSection({ footer }: { footer: FooterData }) {
+function FooterSection({
+  footer,
+  symbol,
+}: {
+  footer: FooterData;
+  symbol: string;
+}) {
   return (
     <footer
       id='footer'
@@ -202,6 +209,15 @@ function FooterSection({ footer }: { footer: FooterData }) {
           {footer.disclaimer ||
             'Figures traced to filed statements and dated where they appear. Delayed data marked †'}
         </p>
+      </div>
+      <div className='flex flex-col gap-1'>
+        <span className='ds-kicker'>Data</span>
+        <NextLink
+          href={`/data/${symbol}`}
+          className='font-interactable text-xs no-underline text-secondary'
+        >
+          Raw data
+        </NextLink>
       </div>
       {footer.links && footer.links.length > 0 && (
         <div className='flex flex-col gap-1'>
@@ -601,6 +617,7 @@ export function BaseTemplate({
           {children}
 
           <FooterSection
+            symbol={hero.symbol}
             footer={
               footer || {
                 links: [

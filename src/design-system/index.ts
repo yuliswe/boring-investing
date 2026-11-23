@@ -15,6 +15,13 @@ export { Card } from '@/design-system/components/Card';
 export { ListRow } from '@/design-system/components/ListRow';
 export { Table, SortHeader } from '@/design-system/components/Table';
 export { Tabs } from '@/design-system/components/Tabs';
+export { Spreadsheet, Workbook } from '@/design-system/components/Spreadsheet';
+export type {
+  SpreadsheetCell,
+  SpreadsheetRow,
+  SpreadsheetSheet,
+  SpreadsheetTable,
+} from '@/design-system/components/Spreadsheet';
 export { Accordion } from '@/design-system/components/Accordion';
 export { Dialog } from '@/design-system/components/Dialog';
 export {
